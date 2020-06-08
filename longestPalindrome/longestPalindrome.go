@@ -8,13 +8,16 @@ func LongestPalindrome(s string) string {
 	ans, start, end := 0, 0, 0
 
 	hashSet := make(map[rune]int)
+	hashSet2 := make(map[rune][]int)
 
 	for i, v := range s {
-		oi, ok := hashSet[v]
+		_, ok := hashSet[v]
 
 		if ok {
-			for a := oi; a <= i; a++ {
-				if string(s[a]) == string(v) {
+			xi := hashSet2[v]
+
+			for _,a := range xi {
+				if ans < (i - a +1) {
 					if checkPalindromic(s[a:i+1]) {
 						ans = max(ans, i-a+1)
 						if ans == i-a+1 {
@@ -24,8 +27,11 @@ func LongestPalindrome(s string) string {
 					}
 				}
 			}
+			hashSet2[v] = append(xi, i)
+
 		} else {
 			hashSet[v] = i
+			hashSet2[v] = []int{i}
 		}
 	}
 

@@ -11,7 +11,7 @@ func TestLongestPalindrome(t *testing.T) {
 		input 		string
 		expected 	string
 	} {
-		{"babad", "aba"},
+		{"babad", "bab"},
 		{"cbbd", "bb"},
 		{"acbca", "acbca"},
 		{"abcda", "a"},
