@@ -1,11 +1,11 @@
-package main
+package addTwoNumbers
 
 type ListNode struct {
 	Val  int
 	Next *ListNode
 }
 
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	var firstNode *ListNode
 	loopNode1 := &ListNode{}
 	loopNode2 := &ListNode{}
@@ -76,7 +76,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	return firstNode
 }
 
-func addTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
+func AddTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
 
 	var carry int
 	firstNode := ListNode{0,nil}
