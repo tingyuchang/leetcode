@@ -1,4 +1,4 @@
-package LengthOfLongestSubstring
+package lengthOfLongestSubstring
 
 
 func LengthOfLongestSubstring(s string) int {

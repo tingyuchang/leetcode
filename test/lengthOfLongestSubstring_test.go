@@ -2,7 +2,7 @@ package test
 
 import (
 	"github.com/stretchr/testify/assert"
-	"leetcode/LengthOfLongestSubstring"
+	"leetcode/lengthOfLongestSubstring"
 	"testing"
 )
 
@@ -20,7 +20,7 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 	}
 
 	for _, tt := range testData {
-		actual := LengthOfLongestSubstring.LengthOfLongestSubstring(tt.input)
+		actual := lengthOfLongestSubstring.LengthOfLongestSubstring(tt.input)
 		assert.Equal(t, actual, tt.expected)
 	}
 }
