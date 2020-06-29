@@ -2,12 +2,16 @@ package maxArea
 
 func MaxArea(height []int) int {
 	var area int
+	var index int
 
 	for i, v := range height {
-		for j := i + 1; j < len(height); j++ {
-			k := height[j]
-			tempArea := (j - i) * min(v, k)
-			area = max(area, tempArea)
+		if v >= index {
+			index = v
+			for j := i + 1; j < len(height); j++ {
+				k := height[j]
+				tempArea := (j - i) * min(v, k)
+				area = max(area, tempArea)
+			}
 		}
 	}
 
