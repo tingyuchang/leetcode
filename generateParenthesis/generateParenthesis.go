@@ -1,31 +1,27 @@
 package generateParenthesis
 
-import "fmt"
-
-var tmp []string
-var N int
-var count int
 func GenerateParenthesis(n int) []string {
-	N = n
-	count = 1
-	tmp = []string{}
-	backtrack("", 0, 0)
-	return tmp
+	if n == 0 {
+		return []string{}
+	}
+	leftRemain, rightRemain := n-1, n
+	cur := []byte{'('}
+	var res []string
+	doGenerateParenthesis(leftRemain, rightRemain, cur, &res)
+	return res
 }
 
-func backtrack (s string, l, r int){
-	fmt.Printf("Count: %v\tS: %v L: %v R: %v\n", count, s, l , r)
-	count++
-	if len(s) == 2* N {
-		tmp = append(tmp, s)
+func doGenerateParenthesis(leftRemain, rightRemain int, cur []byte, res *[]string) {
+	if leftRemain == 0 && rightRemain == 0 {
+		*res = append(*res, string(cur))
 		return
 	}
-	if l < N {
-		backtrack(fmt.Sprintf("%v(", s), l+1, r)
-	}
-	if r < l {
-		fmt.Printf("-------\n")
-		backtrack(fmt.Sprintf("%v)", s), l, r+1)
+	if leftRemain > 0 {
+		doGenerateParenthesis(leftRemain-1, rightRemain, append(cur, '('), res)
 	}
 
+	if rightRemain > leftRemain {
+		doGenerateParenthesis(leftRemain, rightRemain-1, append(cur, ')'), res)
+	}
 }
+

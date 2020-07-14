@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(generateParenthesis.GenerateParenthesis(1))
+	fmt.Println(generateParenthesis.GenerateParenthesis(3))
 }
