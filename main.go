@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"leetcode/reverseInteger"
+	"leetcode/generateParenthesis"
 )
 
 func main() {
-	fmt.Println(reverseInteger.Reverse(1534236469))
+	fmt.Println(generateParenthesis.GenerateParenthesis(3))
 }
