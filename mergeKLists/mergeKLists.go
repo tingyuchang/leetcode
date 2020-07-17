@@ -1,48 +1,40 @@
 package mergeKLists
 
+import "container/heap"
+
 type ListNode struct {
 	Val int
 	Next *ListNode
 }
+type minHeap []int
 
-func MergeKLists(lists []*ListNode) *ListNode {
-	k := len(lists)
-
-	var tempNode *ListNode
-	if k >=1 {
-		tempNode = lists[0]
-	}
-	for k >= 2 {
-		tempNode = mergeTwoLists(tempNode, lists[k-1])
-		k--
-	}
-
-	return tempNode
+func (h minHeap) Len() int { return len(h) }
+func (h minHeap) Less(i, j int) bool { return h[i] < h[j] }
+func (h minHeap) Swap(i, j int) { h[i], h[j] = h[j], h[i] }
+func (h *minHeap) Push(x interface{}) { *h = append(*h, x.(int)) }
+func (h *minHeap) Pop() interface{} {
+	min := (*h)[len(*h) - 1]
+	*h = (*h)[:len(*h) - 1]
+	return min
 }
 
-func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
-	dummyNode := &ListNode{}
-	tempNode := dummyNode
-	for l1 != nil || l2 != nil {
-		if l1 == nil  {
-			tempNode.Next = l2
-			break
+func MergeKLists(lists []*ListNode) *ListNode {
+	pq := &minHeap{}
+	heap.Init(pq)
+	for _, v := range lists {
+		for v != nil {
+			heap.Push(pq, v.Val)
+			v = v.Next
 		}
-
-		if l2 == nil {
-			tempNode.Next = l1
-			break
-		}
-
-		if l1.Val < l2.Val {
-			tempNode.Next = l1
-			l1 = l1.Next
-		} else {
-			tempNode.Next = l2
-			l2 = l2.Next
-		}
-		tempNode = tempNode.Next
 	}
-
-	return dummyNode.Next
+	dummy := new(ListNode)
+	head := dummy
+	for pq.Len() > 0 {
+		head.Next = &ListNode{
+			Val: heap.Pop(pq).(int),
+			Next: nil,
+		}
+		head = head.Next
+	}
+	return dummy.Next
 }
