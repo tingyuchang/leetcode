@@ -15,6 +15,10 @@ func RemoveDuplicates(nums []int) int {
 				nums[count-1] = v
 			}
 		}
+
+		if i == len(nums) -1 {
+			nums = nums[:count]
+		}
 	}
 
 	return count
