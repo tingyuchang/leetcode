@@ -17,20 +17,17 @@ Output: [0,1]
  */
 
 func TwoSum(nums []int, target int) []int {
-	var result []int
+	m := make(map[int]int)
 
 	for i, v := range nums {
-		j := i+1
+		_, n := m[v]
 
-		for v + nums[j] != target && j < len(nums)-1 {
-			j++
-		}
-
-		if v + nums[j] == target {
-			result = append(result, i, j)
-			break
+		if n {
+			return []int{m[v], i}
+		} else {
+			m[target - v] = i
 		}
 	}
 
- 	return result
+ 	return nil
 }
