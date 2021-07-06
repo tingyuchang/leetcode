@@ -2,15 +2,13 @@ package main
 
 import (
 	"fmt"
+	"leetcode/divide"
 	"leetcode/mergeKLists"
 )
 
 func main() {
-	fmt.Println("Finish: ", mergeKLists.MergeKLists([]*mergeKLists.ListNode{
-		generateList([]int{1,4,5}),
-		generateList([]int{1,3,4}),
-		generateList([]int{2,6}),
-	}))
+	fmt.Println("result:", divide.Divide(-2147483648, -1))
+	fmt.Println("result:", divide.Divide(720, 2))
 }
 
 func generateList(firstNodes[]int) (*mergeKLists.ListNode) {
