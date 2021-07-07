@@ -8,29 +8,29 @@ import (
 
 func TestFindSubstring(t *testing.T) {
 	testData := []struct {
-		input string
-		word []string
+		input    string
+		words    []string
 		expected []int
 	}{
 		{
-			input: "wordgoodgoodgoodbestword",
-			word: []string{"word","good","best","word"},
+			input:    "wordgoodgoodgoodbestword",
+			words:    []string{"words","good","best","words"},
 			expected: []int{},
 		},
 		{
-			input: "barfoothefoobarman",
-			word: []string{"foo", "bar"},
+			input:    "barfoothefoobarman",
+			words:    []string{"foo", "bar"},
 			expected: []int{0,9},
 		},
 		{
-			input: "barfoofoobarthefoobarman",
-			word: []string{"bar","foo","the"},
+			input:    "barfoofoobarthefoobarman",
+			words:    []string{"bar","foo","the"},
 			expected: []int{6,9,12},
 		},
 	}
 
 	for _,tt := range testData {
-		result := findSubstring.FindSubstring(tt.input, tt.word)
+		result := findSubstring.FindSubstring(tt.input, tt.words)
 		assert.Equal(t, result, tt.expected)
 	}
 }
