@@ -29,3 +29,9 @@ func BenchmarkReverseString2(b *testing.B) {
 		reverseString2("abcd")
 	}
 }
+
+func BenchmarkReverseString3(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		reverseString3("abcd")
+	}
+}

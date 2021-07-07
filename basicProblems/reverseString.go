@@ -18,3 +18,12 @@ func reverseString2(s string) string {
 	}
 	return reverseString
 }
+
+func reverseString3(s string) string {
+	var reverseString string
+	for _,v := range s {
+		reverseString = string(v) + reverseString
+	}
+
+	return reverseString
+}
