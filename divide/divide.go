@@ -1,7 +1,7 @@
 package divide
 
 import (
-	"math"
+	"fmt"
 )
 
 /*
@@ -17,53 +17,54 @@ range: [−2^31, 2^31 − 1]. For this problem, assume that your function return
  */
 
 func Divide(dividend int, divisor int) int {
-	sum := 0
-	result := 0
+	fmt.Println("Start:", dividend, divisor)
+
+	if dividend == 0 {
+		return 0
+	}
+
+	quotient := 0
 
 	isNegative := false
 
-	newDivisor := divisor
-	divisorCount := 1
-
 	if dividend < 0  {
-		dividend = 0 - dividend
 		isNegative  = !isNegative
 	}
 
 	if divisor < 0  {
-		divisor = 0 - divisor
-		newDivisor = divisor
 		isNegative  = !isNegative
 	}
 
-	for sum < dividend {
-		if dividend-sum < newDivisor {
-			if newDivisor == divisor {
-				break
-			}
-			newDivisor -= divisor
-			divisorCount--
-			continue
+	absDividend, absDivisor := abs(dividend), abs(divisor)
+
+	for absDividend >= absDivisor {
+		tmp, m := absDivisor, 1
+		for absDividend >= tmp <<1 {
+			tmp, m = tmp << 1, m <<1
+			fmt.Printf("tmp:\t %d\n", tmp)
+			fmt.Printf("m:\t %d\n", m)
 		}
-		result += divisorCount
-		sum+=newDivisor
-		if dividend - sum > sum  {
-			newDivisor = sum
-			divisorCount = result
-		}
+		absDividend -= tmp
+		quotient += m
 	}
 
 	if isNegative {
-		result = 0 - result
+		quotient = - quotient
 	}
 
-	if float64(result) > math.Pow(2, 31)-1 {
-		return int(math.Pow(2, 31))-1
+	if quotient < -2147483648 {
+		return -2147483648
+	} else if quotient > 2147483647 {
+		return 2147483647
 	}
 
-	if float64(result) < -math.Pow(2, 31) {
-		return -int(math.Pow(2, 31))
-	}
+	return quotient
+}
 
-	return result
+func abs(n int) int64 {
+	absn := int64(n)
+	if absn < 0 {
+		return -absn
+	}
+	return absn
 }

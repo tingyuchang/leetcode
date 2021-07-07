@@ -7,7 +7,6 @@ import (
 )
 
 func main() {
-	fmt.Println("result:", divide.Divide(-2147483648, -1))
 	fmt.Println("result:", divide.Divide(720, 2))
 }
 
