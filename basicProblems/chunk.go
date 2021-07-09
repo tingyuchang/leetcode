@@ -10,7 +10,21 @@ package basicProblems
 // chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
 // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 
-func chuck(n []int, size int) [][]int {
+func chunk(n []int, size int) [][]int {
+	var chunked [][]int
+	index := 0
+
+	for index < len(n) {
+		if index+size > len(n) {
+			chunked = append(chunked, n[index:])
+		} else {
+			chunked = append(chunked, n[index:index+size])
+		}
+		index+=size
+	}
+	return chunked
+}
+func chunk2(n []int, size int) [][]int {
 	capacity := len(n)/size
 	isRemainder := false
 	if len(n)%size > 0 {
@@ -29,4 +43,3 @@ func chuck(n []int, size int) [][]int {
 
 	return result
 }
-
