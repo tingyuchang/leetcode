@@ -13,6 +13,7 @@ func TestAnagrams(t *testing.T) {
 	} {
 		{"Whoa! Hi!", "Whoa! Hi!", true},
 		{"hello", "llohe", true},
+		{"hello", "lloheaa", false},
 		{"Hello", "llohe!", true},
 		{"One one one", "Two two two", false},
 		{"A tree, a life, a bench", "A tree, a fence, a yard", false},

@@ -2,7 +2,6 @@ package basicProblems
 
 import (
 	"fmt"
-	"reflect"
 	"regexp"
 	"strings"
 )
@@ -41,6 +40,18 @@ func anagrams(a, b string) bool {
 			mapB[key] = 1
 		}
 	}
-	return reflect.DeepEqual(mapA, mapB)
+
+	for k,_ := range mapA {
+		if mapA[k] != mapB[k] {
+			return false
+		}
+	}
+	for k,_ := range mapB {
+		if mapA[k] != mapB[k] {
+			return false
+		}
+	}
+
+	return true
 }
 
