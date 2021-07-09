@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"reflect"
 	"regexp"
+	"strings"
 )
 
 // Check to see if two provided strings are anagrams of each other.
@@ -23,7 +24,7 @@ func anagrams(a, b string) bool {
 	mapA := make(map[string]int)
 	mapB := make(map[string]int)
 	for _,v := range regexStrA {
-		key := fmt.Sprintf("%q", v)
+		key := strings.ToLower(fmt.Sprintf("%q", v))
 		_, ok := mapA[key]
 		if ok {
 			mapA[key] = mapA[key]+1
@@ -32,7 +33,7 @@ func anagrams(a, b string) bool {
 		}
 	}
 	for _,v := range regexStrB {
-		key := fmt.Sprintf("%q", v)
+		key := strings.ToLower(fmt.Sprintf("%q", v))
 		_, ok := mapB[key]
 		if ok {
 			mapB[key] = mapB[key]+1
