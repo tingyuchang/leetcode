@@ -16,30 +16,8 @@ import (
 //   anagrams('Hi there', 'Bye there') --> False
 
 func anagrams(a, b string) bool {
-	re := regexp.MustCompile(`\w`)
-	regexStrA := re.FindAll([]byte(a), -1)
-	regexStrB := re.FindAll([]byte(b), -1)
-
-	mapA := make(map[string]int)
-	mapB := make(map[string]int)
-	for _,v := range regexStrA {
-		key := strings.ToLower(fmt.Sprintf("%q", v))
-		_, ok := mapA[key]
-		if ok {
-			mapA[key] = mapA[key]+1
-		}else {
-			mapA[key] = 1
-		}
-	}
-	for _,v := range regexStrB {
-		key := strings.ToLower(fmt.Sprintf("%q", v))
-		_, ok := mapB[key]
-		if ok {
-			mapB[key] = mapB[key]+1
-		}else {
-			mapB[key] = 1
-		}
-	}
+	mapA := buildCharMap(a)
+	mapB := buildCharMap(b)
 
 	for k,_ := range mapA {
 		if mapA[k] != mapB[k] {
@@ -53,5 +31,22 @@ func anagrams(a, b string) bool {
 	}
 
 	return true
+}
+
+func buildCharMap(s string)map[string]int {
+	charMap := make(map[string]int)
+	re := regexp.MustCompile(`\w`)
+	regexStr := re.FindAll([]byte(s), -1)
+	for _,v := range regexStr {
+		key := strings.ToLower(fmt.Sprintf("%q", v))
+		_, ok := charMap[key]
+		if ok {
+			charMap[key] = charMap[key]+1
+		}else {
+			charMap[key] = 1
+		}
+	}
+
+	return charMap
 }
 
