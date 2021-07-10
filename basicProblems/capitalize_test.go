@@ -15,12 +15,18 @@ func TestCapitalize(t *testing.T) {
 	}
 
 	for _,tt := range testData {
-		result := capitalize(tt.input)
+		result := capitalize2(tt.input)
 		assert.Equal(t, result, tt.expected)
 	}
 }
 func BenchmarkCapitalize(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		capitalize("hi there, how is it going?")
+	}
+}
+
+func BenchmarkCapitalize2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		capitalize2("hi there, how is it going?")
 	}
 }
