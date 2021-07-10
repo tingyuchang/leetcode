@@ -3,6 +3,7 @@ package basicProblems
 import (
 	"fmt"
 	"regexp"
+	"sort"
 	"strings"
 )
 
@@ -14,6 +15,15 @@ import (
 //   anagrams('rail safety', 'fairy tales') --> True
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
+
+func anagrams2 (a, b string) bool {
+	re := regexp.MustCompile(`\w`)
+	regexA := re.FindAllString(strings.ToLower(a), -1)
+	regexB := re.FindAllString(strings.ToLower(b), -1)
+	sort.Strings(regexA)
+	sort.Strings(regexB)
+	return strings.Join(regexA, "") == strings.Join(regexB, "")
+}
 
 func anagrams(a, b string) bool {
 	mapA := buildCharMap(a)
