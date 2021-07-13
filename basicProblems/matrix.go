@@ -1,7 +1,5 @@
 package basicProblems
 
-import "fmt"
-
 /*
 // Write a function that accepts an integer N
 // and returns a NxN spiral matrix.
@@ -49,8 +47,6 @@ func matrix(n int) [][]int {
 			row--
 		}
 		output[row][column] = i+2
-		fmt.Printf("Current value: %v\t Direction: %v \nrow: %v\tcolumn: %v\t\n", i+2, cases[direction], row, column)
-		fmt.Printf("tmp: %v\n", output)
 		// check changing direction or not
 		nextRow := row
 		nextColumn := column

@@ -40,3 +40,9 @@ func TestMatrix(t *testing.T) {
 		assert.Equal(t, result, tt.expected)
 	}
 }
+
+func BenchmarkMatrix(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		matrix(8)
+	}
+}
