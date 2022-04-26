@@ -2,61 +2,22 @@ package main
 
 import (
 	"fmt"
-	"leetcode/basicProblems/tree"
 	"leetcode/mergeKLists"
+	"log"
+	"os"
+	"path"
 )
-
+func PrintSlice[T any](s []T) {
+	for _, v := range s {
+		fmt.Print(v)
+	}
+	fmt.Println()
+}
 func main() {
-	node1 := &tree.Node{
-		Value: 20,
-		Children: nil,
-	}
-
-	node2 := &tree.Node{
-		Value: 0,
-		Children: []*tree.Node{
-			&tree.Node{
-				Value:12,
-			},
-			&tree.Node{
-				Value:-2,
-			},
-			&tree.Node{
-				Value:1,
-			},
-		},
-	}
-	node3 := &tree.Node{
-		Value: 40,
-		Children: nil,
-	}
-	node4 := &tree.Node{
-		Value: 15,
-		Children: []*tree.Node{
-			&tree.Node{
-				Value:-2,
-			},
-		},
-	}
-
-	node1.Children = append(node1.Children, node2, node3, node4)
-
-	tree1 := tree.Tree{
-		Root: node1,
-	}
-
-	for _,v := range tree1.BreadthFirst() {
-		fmt.Printf("%v ", v.Value)
-	}
-
-	fmt.Println("")
-
-	for _,v := range tree1.DepthFirst() {
-		fmt.Printf("%v ", v.Value)
-	}
-
-
-
+	ints := []int{1, 2,3,4,5}
+	strs := []string{"A", "B", "X"}
+	PrintSlice(ints)
+	PrintSlice(strs)
 }
 
 func generateList(firstNodes[]int) (*mergeKLists.ListNode) {
@@ -67,8 +28,20 @@ func generateList(firstNodes[]int) (*mergeKLists.ListNode) {
 		tempNode1.Next = &mergeKLists.ListNode{Val: v}
 		tempNode1 = tempNode1.Next
 	}
-
-
 	return l1.Next
+}
 
+func myLog(input interface{}) {
+	LOGFILE := path.Join(os.TempDir(), "mGo.log")
+	f, err := os.OpenFile(LOGFILE, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	defer f.Close()
+	LstFlags := log.Ldate | log.Lshortfile
+	iLog :=log.New(f, "LNum ", LstFlags)
+	iLog.Println(input)
+	iLog.SetFlags(log.Lshortfile|log.LstdFlags)
 }
