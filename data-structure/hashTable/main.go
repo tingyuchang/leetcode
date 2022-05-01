@@ -24,7 +24,8 @@ func (h *HashTable) Insert(key, value string) int {
 	return index
 }
 
-// Search
+// Search returns value by key
+// if key is not exist, return empty struct
 func (h *HashTable) Search(key string) Data {
 	index := h.hashKey(key)
 
@@ -45,7 +46,8 @@ func (h *HashTable) Search(key string) Data {
 	return Data{}
 }
 
-// Delete
+// Delete removes Data in hashtable
+// returns error when key is not exist
 func (h *HashTable) Delete(key string) error {
 	index := h.hashKey(key)
 
@@ -68,6 +70,7 @@ func (h *HashTable) Delete(key string) error {
 	return fmt.Errorf("Not found")
 }
 
+// hashKey returns index to insert to hashTable
 func (h *HashTable) hashKey(key string) int {
 	var sum int32 = 0
 	for _, v := range key {
@@ -94,6 +97,7 @@ func (h *HashTable) linerHashIndex(index int, key string) int {
 	return index
 }
 
+// NewHashTable is init function to create new HashTable{}
 func NewHashTable(size int) *HashTable {
 	h := new(HashTable)
 	h.size = size
