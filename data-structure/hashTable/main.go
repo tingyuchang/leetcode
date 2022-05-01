@@ -110,6 +110,8 @@ func (d *Data) isEmpty() bool {
 	return *d == Data{}
 }
 
+var SIZE = 100
+
 func main() {
 	/*
 		hashTable := NewHashTable(10000)
@@ -128,6 +130,7 @@ func main() {
 	*/
 
 	creatHashTables()
+	createMaps()
 
 }
 
@@ -142,10 +145,10 @@ func createRandomData() (keys, values []string) {
 	binary.Read(f, binary.LittleEndian, &seed)
 	rand.Seed(seed)
 
-	keys = make([]string, 1000)
-	values = make([]string, 1000)
+	keys = make([]string, SIZE)
+	values = make([]string, SIZE)
 
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < SIZE; i++ {
 		keys[i] = strconv.Itoa(rand.Int())
 		values[i] = strconv.Itoa(rand.Int())
 	}
@@ -154,12 +157,17 @@ func createRandomData() (keys, values []string) {
 
 func creatHashTables() {
 	keys, values := createRandomData()
-	hash
-	for i := 0; i < len(keys); i++ {
-
+	hashTable := NewHashTable(SIZE * SIZE)
+	for i := 0; i < SIZE; i++ {
+		hashTable.Insert(keys[i], values[i])
 	}
 }
 
 func createMaps() {
-
+	keys, values := createRandomData()
+	mapData := make(map[string]string)
+	for i := 0; i < SIZE; i++ {
+		mapData[keys[i]] = values[i]
+	}
+	fmt.Println(mapData)
 }
