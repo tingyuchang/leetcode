@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
+	"leetcode/insertionSort"
 	"leetcode/mergeKLists"
 	"log"
 	"os"
 	"path"
 )
+
 func PrintSlice[T any](s []T) {
 	for _, v := range s {
 		fmt.Print(v)
@@ -14,17 +16,14 @@ func PrintSlice[T any](s []T) {
 	fmt.Println()
 }
 func main() {
-	ints := []int{1, 2,3,4,5}
-	strs := []string{"A", "B", "X"}
-	PrintSlice(ints)
-	PrintSlice(strs)
+	fmt.Println(insertionSort.Sort([]int{6, 5, 4, 3, 2, 1}))
 }
 
-func generateList(firstNodes[]int) (*mergeKLists.ListNode) {
+func generateList(firstNodes []int) *mergeKLists.ListNode {
 	l1 := mergeKLists.ListNode{}
 	tempNode1 := &l1
 
-	for _,v := range firstNodes {
+	for _, v := range firstNodes {
 		tempNode1.Next = &mergeKLists.ListNode{Val: v}
 		tempNode1 = tempNode1.Next
 	}
@@ -41,7 +40,7 @@ func myLog(input interface{}) {
 
 	defer f.Close()
 	LstFlags := log.Ldate | log.Lshortfile
-	iLog :=log.New(f, "LNum ", LstFlags)
+	iLog := log.New(f, "LNum ", LstFlags)
 	iLog.Println(input)
-	iLog.SetFlags(log.Lshortfile|log.LstdFlags)
+	iLog.SetFlags(log.Lshortfile | log.LstdFlags)
 }
