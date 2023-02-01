@@ -1,4 +1,4 @@
-package DivideAndConquer
+package Sort
 
 func MergeSort(unsortedList []int) []int {
 	n := len(unsortedList)

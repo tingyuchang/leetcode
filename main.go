@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"leetcode/DivideAndConquer"
+	"leetcode/Sort"
 	"leetcode/mergeKLists"
 	"log"
 	"os"
@@ -17,7 +17,7 @@ func PrintSlice[T any](s []T) {
 }
 func main() {
 	a := []int{3, 5, 1, 6, 7, 2, 4, 9, 10, 8}
-	fmt.Println(DivideAndConquer.MergeSort(a))
+	fmt.Println(Sort.MergeSort(a))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {

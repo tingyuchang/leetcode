@@ -1,10 +1,10 @@
-package insertionSort
+package Sort
 
 import (
 	"fmt"
 )
 
-func Sort(list []int) []int {
+func InsertionSort(list []int) []int {
 	for i := 1; i < len(list); i++ {
 		key := list[i]
 		for j := i - 1; j >= 0; j-- {
@@ -22,7 +22,7 @@ func Sort(list []int) []int {
 	return list
 }
 
-func SortV2(list []int) []int {
+func InsertionSortV2(list []int) []int {
 	for i := 1; i < len(list); i++ {
 		key := list[i]
 		j := i - 1
@@ -35,7 +35,7 @@ func SortV2(list []int) []int {
 	return list
 }
 
-func SortDesc(list []int) []int {
+func InsertionSortDesc(list []int) []int {
 	for i := 1; i < len(list); i++ {
 		key := list[i]
 		j := i - 1
