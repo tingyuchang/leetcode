@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"leetcode/Sort"
+	"leetcode/DivideAndConquer"
 	"leetcode/mergeKLists"
 	"log"
 	"os"
@@ -16,8 +16,9 @@ func PrintSlice[T any](s []T) {
 	fmt.Println()
 }
 func main() {
-	a := []int{3, 5, 1, 6, 7, 2, 4, 9, 10, 8}
-	fmt.Println(Sort.BubbleSort(a))
+	a := [][]int{[]int{3, 1, 0}, []int{2, 1, 1}, []int{1, 1, 2}, []int{0, 1, 3}}
+	b := [][]int{[]int{10, 12, 13, 12}, []int{50, 40, 30, 20}, []int{20, 30, 40, 50}}
+	fmt.Println(DivideAndConquer.Multiply(a, b))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {
