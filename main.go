@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"leetcode/insertionSort"
+	"leetcode/DivideAndConquer"
 	"leetcode/mergeKLists"
 	"log"
 	"os"
@@ -16,7 +16,8 @@ func PrintSlice[T any](s []T) {
 	fmt.Println()
 }
 func main() {
-	fmt.Println(insertionSort.AddBinary([]int{1, 1, 1, 1}, []int{1, 0, 0, 1}))
+	a := []int{3, 5, 1, 6, 7, 2, 4, 9, 10, 8}
+	fmt.Println(DivideAndConquer.MergeSort(a))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {
