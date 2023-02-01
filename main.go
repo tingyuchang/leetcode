@@ -17,7 +17,7 @@ func PrintSlice[T any](s []T) {
 }
 func main() {
 	a := []int{3, 5, 1, 6, 7, 2, 4, 9, 10, 8}
-	fmt.Println(Sort.MergeSort(a))
+	fmt.Println(Sort.BubbleSort(a))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {
