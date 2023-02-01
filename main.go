@@ -16,7 +16,7 @@ func PrintSlice[T any](s []T) {
 	fmt.Println()
 }
 func main() {
-	fmt.Println(insertionSort.Sort([]int{6, 5, 4, 3, 2, 1}))
+	fmt.Println(insertionSort.SortV2([]int{6, 5, 4, 3, 2, 1}))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {
