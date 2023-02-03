@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"leetcode/Sort"
+	Daily_Prac "leetcode/0_Daily_Prac"
 	"leetcode/mergeKLists"
 	"log"
 	"os"
@@ -17,7 +17,7 @@ func PrintSlice[T any](s []T) {
 }
 func main() {
 	n := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-	fmt.Println(Sort.HeapSort(n))
+	fmt.Println(Daily_Prac.HeapSort(n))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {
