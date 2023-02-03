@@ -18,3 +18,27 @@ func SearchInsert(nums []int, target int) int {
 	}
 	return l
 }
+
+func SearchInsertV2(nums []int, target int) int {
+	for i := 0; i < len(nums); i++ {
+		if nums[i] == target {
+			return i
+		}
+
+		if target < nums[i] {
+			if i == 0 {
+				return 0
+			}
+
+			if target > nums[i-1] {
+				return i
+			}
+		}
+
+		if i+1 >= len(nums) {
+			return i + 1
+		}
+	}
+
+	return 0
+}

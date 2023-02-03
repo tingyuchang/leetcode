@@ -18,7 +18,7 @@ func TestSearchInsert(t *testing.T) {
 	}
 
 	for _, tt := range testData {
-		result := searchInsertPosition.SearchInsert(tt.input, tt.input2)
+		result := searchInsertPosition.SearchInsertV2(tt.input, tt.input2)
 		assert.Equal(t, result, tt.expected)
 	}
 }
