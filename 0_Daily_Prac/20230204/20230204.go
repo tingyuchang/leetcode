@@ -1,6 +1,4 @@
-package Daily_Prac
-
-import "fmt"
+package _0230204
 
 func MergeSort(nums []int) []int {
 	n := len(nums)
@@ -8,7 +6,7 @@ func MergeSort(nums []int) []int {
 		return nums
 	}
 
-	listA := nums[0 : n/2]
+	listA := nums[:n/2]
 	listB := nums[n/2:]
 
 	listA = MergeSort(listA)
@@ -38,21 +36,11 @@ func merge(a, b []int) []int {
 	if n < len(b) {
 		c = append(c, b[n:]...)
 	}
+
 	return c
 }
 
-func HeapSort(nums []int) []int {
-	n := len(nums)
-	nums = buildHeap(nums)
-	for i := n - 1; i > 0; i-- {
-		nums[0], nums[i] = nums[i], nums[0]
-		nums = nums[:i]
-		maxHeap(nums, 0)
-	}
-	return nums[:n]
-}
-
-func maxHeap(nums []int, n int) {
+func maxHep(nums []int, n int) {
 	l := ((n + 1) << 1) - 1
 	r := (n + 1) << 1
 	var largest int
@@ -67,17 +55,47 @@ func maxHeap(nums []int, n int) {
 	}
 
 	if largest != n {
-		nums[n], nums[largest] = nums[largest], nums[n]
-		maxHeap(nums, largest)
+		nums[largest], nums[n] = nums[n], nums[largest]
+		maxHep(nums, largest)
 	}
 }
 
-func buildHeap(nums []int) []int {
+func buildHeap(nums []int) {
 	n := len(nums)
 
 	for i := n / 2; i >= 0; i-- {
-		maxHeap(nums, i)
+		maxHep(nums, i)
 	}
-	fmt.Println(nums)
-	return nums
+}
+
+func HeapSort(nums []int) []int {
+	n := len(nums)
+	buildHeap(nums)
+	for i := n - 1; i > 0; i-- {
+		nums[i], nums[0] = nums[0], nums[i]
+		nums = nums[:i]
+		maxHep(nums, 0)
+	}
+
+	return nums[:n]
+}
+
+func BinarySaesrch(nums []int, target int) int {
+	l := 0
+	r := len(nums) - 1
+
+	for r >= l {
+		mid := (l + r) / 2
+
+		if nums[mid] > target {
+			r = mid - 1
+		} else if nums[mid] < target {
+			l = mid + 1
+		} else {
+			return mid
+		}
+	}
+
+	return l
+
 }
