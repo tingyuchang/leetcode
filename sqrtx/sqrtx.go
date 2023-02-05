@@ -1,6 +1,6 @@
 package sqrtx
 
-func mySqrt(x int) int {
+func MySqrt(x int) int {
 	// WTF
 	// return int(math.Sqrt(float64(x)))
 

@@ -2,15 +2,14 @@ package test
 
 import (
 	"github.com/stretchr/testify/assert"
-	"leetcode/lengthOfLongestSubstring"
+	"leetcode/LengthOfLongestSubstring"
 	"testing"
 )
 
-
 func TestLengthOfLongestSubstring(t *testing.T) {
 	var testData = []struct {
-		input        	string
-		expected 		int
+		input    string
+		expected int
 	}{
 		{"abcbbc", 3},
 		{" ", 1},
