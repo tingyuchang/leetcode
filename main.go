@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	_0230204 "leetcode/0_Daily_Prac/20230204"
+	"leetcode/addBinary"
 	"leetcode/mergeKLists"
 	"log"
 	"os"
@@ -23,6 +24,8 @@ func main() {
 	fmt.Println(_0230204.BinarySaesrch(sorted, 7))
 	fmt.Println(_0230204.BinarySaesrch(sorted, 11))
 	fmt.Println(_0230204.BinarySaesrch(sorted, 6))
+
+	fmt.Println(addBinary.AddBinary("11", "1"))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {
