@@ -1,4 +1,4 @@
-package _0230204
+package _0230205
 
 func MergeSort(nums []int) []int {
 	n := len(nums)
@@ -18,7 +18,6 @@ func MergeSort(nums []int) []int {
 func merge(a, b []int) []int {
 	var c []int
 	m, n := 0, 0
-
 	for m < len(a) && n < len(b) {
 		if a[m] > b[n] {
 			c = append(c, b[n])
@@ -36,14 +35,34 @@ func merge(a, b []int) []int {
 	if n < len(b) {
 		c = append(c, b[n:]...)
 	}
-
 	return c
 }
 
-func maxHep(nums []int, n int) {
+func HeapSort(nums []int) []int {
+	n := len(nums)
+	buildHeap(nums)
+
+	for i := n - 1; i > 0; i-- {
+		nums[i], nums[0] = nums[0], nums[i]
+		nums = nums[:i]
+		maxHeap(nums, 0)
+	}
+	return nums[:n]
+}
+
+func buildHeap(nums []int) {
+	n := len(nums)
+	for i := n / 2; i >= 0; i-- {
+		maxHeap(nums, i)
+	}
+}
+
+func maxHeap(nums []int, n int) {
 	l := ((n + 1) << 1) - 1
 	r := (n + 1) << 1
+
 	var largest int
+
 	if l < len(nums) && nums[l] > nums[n] {
 		largest = l
 	} else {
@@ -55,35 +74,18 @@ func maxHep(nums []int, n int) {
 	}
 
 	if largest != n {
-		nums[largest], nums[n] = nums[n], nums[largest]
-		maxHep(nums, largest)
+		nums[n], nums[largest] = nums[largest], nums[n]
+		maxHeap(nums, largest)
 	}
-}
-
-func buildHeap(nums []int) {
-	n := len(nums)
-
-	for i := n / 2; i >= 0; i-- {
-		maxHep(nums, i)
-	}
-}
-
-func HeapSort(nums []int) []int {
-	n := len(nums)
-	buildHeap(nums)
-	for i := n - 1; i > 0; i-- {
-		nums[i], nums[0] = nums[0], nums[i]
-		nums = nums[:i]
-		maxHep(nums, 0)
-	}
-
-	return nums[:n]
 }
 
 func BinarySearch(nums []int, target int) int {
 	l := 0
 	r := len(nums) - 1
-
+	// 3, 5, 7 ,9 ,11
+	// 7
+	// 11
+	// 6
 	for r >= l {
 		mid := (l + r) / 2
 
@@ -95,7 +97,5 @@ func BinarySearch(nums []int, target int) int {
 			return mid
 		}
 	}
-
 	return l
-
 }
