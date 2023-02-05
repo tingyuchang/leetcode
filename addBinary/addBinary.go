@@ -1,6 +1,8 @@
 package addBinary
 
-import "strconv"
+import (
+	"strconv"
+)
 
 func AddBinary(a string, b string) string {
 	var c string
@@ -9,12 +11,16 @@ func AddBinary(a string, b string) string {
 
 	for n < len(a) || n < len(b) {
 		var sum int
+		var x, y int
 
-		i := len(a) - n - 1
-		j := len(b) - n - 1
+		if len(a)-n-1 >= 0 {
+			x, _ = strconv.Atoi(string(a[len(a)-n-1]))
+		}
+		if len(b)-n-1 >= 0 {
+			y, _ = strconv.Atoi(string(b[len(b)-n-1]))
+		}
 
-		sum = int(a[i]) + int(a[j]) + carry
-
+		sum = x + y + carry
 		switch sum {
 		case 0:
 			carry = 0
@@ -24,7 +30,6 @@ func AddBinary(a string, b string) string {
 			carry = 1
 			sum -= 2
 		}
-
 		c = strconv.Itoa(sum) + c
 		n++
 	}
