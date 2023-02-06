@@ -25,6 +25,7 @@ func main() {
 	fmt.Println(_0230206.BinarySearch(sorted, 11))
 	fmt.Println(_0230206.BinarySearch(sorted, 6))
 	fmt.Println("Pascal's triangle", pascalsTriangle.GenerateV2(5))
+	fmt.Println("Pascal's triangle", pascalsTriangle.GetRow(5))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {

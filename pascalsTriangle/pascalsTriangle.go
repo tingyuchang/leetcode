@@ -59,3 +59,18 @@ func GenerateV2(numRows int) [][]int {
 
 	return result
 }
+
+func GetRow(rowIndex int) []int {
+	triangle := make([][]int, rowIndex+1)
+	for j := range triangle {
+		triangle[j] = make([]int, j+1)
+		triangle[j][0] = 1
+		// clever, hah
+		triangle[j][j] = 1
+		for i := 1; i < len(triangle[j])-1; i++ {
+			triangle[j][i] = triangle[j-1][i-1] + triangle[j-1][i]
+		}
+	}
+
+	return triangle[rowIndex]
+}
