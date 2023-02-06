@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"leetcode/0_Daily_Prac/20230205"
+	_0230206 "leetcode/0_Daily_Prac/20230206"
 	"leetcode/mergeKLists"
 	"log"
 	"os"
@@ -17,12 +17,12 @@ func PrintSlice[T any](s []T) {
 }
 func main() {
 	n := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-	fmt.Println("Merge Sort: ", _0230205.MergeSort(n))
-	fmt.Println("heap Sort: ", _0230205.HeapSort(n))
+	fmt.Println("Merge Sort: ", _0230206.MergeSort(n))
+	fmt.Println("Heap Sort: ", _0230206.HeapSort(n))
 	sorted := []int{3, 5, 7, 9, 11}
-	fmt.Println(_0230205.BinarySearch(sorted, 7))
-	fmt.Println(_0230205.BinarySearch(sorted, 11))
-	fmt.Println(_0230205.BinarySearch(sorted, 6))
+	fmt.Println(_0230206.BinarySearch(sorted, 7))
+	fmt.Println(_0230206.BinarySearch(sorted, 11))
+	fmt.Println(_0230206.BinarySearch(sorted, 6))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {
