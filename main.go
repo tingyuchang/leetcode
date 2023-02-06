@@ -4,6 +4,7 @@ import (
 	"fmt"
 	_0230206 "leetcode/0_Daily_Prac/20230206"
 	"leetcode/mergeKLists"
+	"leetcode/pascalsTriangle"
 	"log"
 	"os"
 	"path"
@@ -23,6 +24,8 @@ func main() {
 	fmt.Println(_0230206.BinarySearch(sorted, 7))
 	fmt.Println(_0230206.BinarySearch(sorted, 11))
 	fmt.Println(_0230206.BinarySearch(sorted, 6))
+	fmt.Println("Pascal's triangle", pascalsTriangle.GenerateV2(5))
+	fmt.Println("Pascal's triangle", pascalsTriangle.GetRow(5))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {
