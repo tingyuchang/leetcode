@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	_0230207 "leetcode/0_Daily_Prac/20230207"
+	"leetcode/Sort"
 	"leetcode/mergeKLists"
 	"leetcode/pascalsTriangle"
 	"log"
@@ -29,6 +30,10 @@ func main() {
 	fmt.Println(_0230207.BinarySearch(sorted, 6))
 	fmt.Println("Pascal's triangle", pascalsTriangle.GenerateV2(5))
 	fmt.Println("Pascal's triangle", pascalsTriangle.GetRow(5))
+
+	c := []int{3, 2, 5, 5, 1, 8, 0}
+
+	fmt.Println("Counting Sort: ", Sort.CountingSort(c, len(c), 8))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {
