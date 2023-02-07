@@ -6,6 +6,7 @@ import (
 	"leetcode/Sort"
 	"leetcode/mergeKLists"
 	"leetcode/pascalsTriangle"
+	"leetcode/validPalindrome"
 	"log"
 	"os"
 	"path"
@@ -34,6 +35,11 @@ func main() {
 	c := []int{3, 2, 5, 5, 1, 8, 0}
 
 	fmt.Println("Counting Sort: ", Sort.CountingSort(c, len(c), 8))
+
+	fmt.Println("Palindrome: ", validPalindrome.IsPalindrome("A man, a plan, a canal: Panama"))
+	fmt.Println("Palindrome: ", validPalindrome.IsPalindrome("race a car"))
+	fmt.Println("Palindrome: ", validPalindrome.IsPalindrome(" "))
+	fmt.Println("Palindrome: ", validPalindrome.IsPalindrome("0P"))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {
