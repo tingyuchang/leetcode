@@ -3,6 +3,7 @@ package singleNumber
 func SingleNumber(nums []int) int {
 	n := 0
 	for _, v := range nums {
+		// The operator ^ is the bitwise XOR operator
 		n ^= v
 	}
 	return n
