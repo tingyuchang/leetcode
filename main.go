@@ -2,11 +2,8 @@ package main
 
 import (
 	"fmt"
-	_0230207 "leetcode/0_Daily_Prac/20230207"
-	"leetcode/Sort"
+	_0230208 "leetcode/0_Daily_Prac/20230208"
 	"leetcode/mergeKLists"
-	"leetcode/pascalsTriangle"
-	"leetcode/validPalindrome"
 	"log"
 	"os"
 	"path"
@@ -22,24 +19,13 @@ func main() {
 	n := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
 	// [-7,-5,-4,-1,-1,0,0,4,7,9]
 	m := []int{-4, 0, 7, 4, 9, -5, -1, 0, -7, -1}
-	fmt.Println("Merge Sort: ", _0230207.MergeSort(n))
-	fmt.Println("Heap Sort: ", _0230207.HeapSort(n))
-	fmt.Println("Quick Sort: ", _0230207.QuickSort(m, 0, len(m)-1))
+	fmt.Println("Merge Sort: ", _0230208.MergeSort(n))
+	fmt.Println("Heap Sort: ", _0230208.HeapSort(n))
+	fmt.Println("Quick Sort: ", _0230208.QuickSort(m, 0, len(m)-1))
 	sorted := []int{3, 5, 7, 9, 11}
-	fmt.Println(_0230207.BinarySearch(sorted, 7))
-	fmt.Println(_0230207.BinarySearch(sorted, 11))
-	fmt.Println(_0230207.BinarySearch(sorted, 6))
-	fmt.Println("Pascal's triangle", pascalsTriangle.GenerateV2(5))
-	fmt.Println("Pascal's triangle", pascalsTriangle.GetRow(5))
-
-	c := []int{3, 2, 5, 5, 1, 8, 0}
-
-	fmt.Println("Counting Sort: ", Sort.CountingSort(c, len(c), 8))
-
-	fmt.Println("Palindrome: ", validPalindrome.IsPalindrome("A man, a plan, a canal: Panama"))
-	fmt.Println("Palindrome: ", validPalindrome.IsPalindrome("race a car"))
-	fmt.Println("Palindrome: ", validPalindrome.IsPalindrome(" "))
-	fmt.Println("Palindrome: ", validPalindrome.IsPalindrome("0P"))
+	fmt.Println(_0230208.BinarySearch(sorted, 7))
+	fmt.Println(_0230208.BinarySearch(sorted, 11))
+	fmt.Println(_0230208.BinarySearch(sorted, 6))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {
