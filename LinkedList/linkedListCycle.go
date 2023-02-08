@@ -1,4 +1,4 @@
-package linkedListCycle
+package LinkedList
 
 /**
  * Definition for singly-linked list.
@@ -7,11 +7,6 @@ package linkedListCycle
  *     Next *ListNode
  * }
  */
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
 
 func HasCycle(head *ListNode) bool {
 	if head == nil || head.Next == nil {
