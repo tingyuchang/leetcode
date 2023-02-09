@@ -2,51 +2,47 @@ package namingACompany
 
 func DistinctNames(ideas []string) int64 {
 	var result int64
-	original := make(map[string]int)
+	original := make(map[string]int64)
 	for i, v := range ideas {
-		original[v] = i
+		original[v] = int64(i)
 	}
-	keys := make(map[string][]string)
+	keys := make([]string, 26)
+	buckets := make(map[string][]string)
 
 	for _, v := range ideas {
 		initial := string(v[0])
-		keys[initial] = append(keys[initial], v)
+
+		_, ok := buckets[initial]
+
+		if !ok {
+			keys = append(keys, initial)
+		}
+
+		buckets[initial] = append(buckets[initial], v)
+
 	}
 
-	for i := 0; i < len(ideas); i++ {
-		initial := string(ideas[i][0])
-		//exist := map[string]int{initial: 0}
-		for k, v := range keys {
-			// do not look for same initial letter
-			if initial == k {
-				continue
+	for i := 0; i < len(keys); i++ {
+		// ex: {"a": {"abc", "ad"}}
+		for j := i + 1; j < len(keys); j++ {
+			mutualNum := 0
+			a := buckets[keys[i]]
+			b := buckets[keys[j]]
+			temp := make(map[string]int, len(a)+len(b))
+
+			for _, v := range a {
+				v = v[1:]
+				temp[v] = 1
 			}
-
-			for j := 0; j < len(v); j++ {
-				a, b := swapInitialLetter(ideas[i], v[j])
-				_, ok := original[a]
-
+			for _, v := range b {
+				v = v[1:]
+				_, ok := temp[v]
 				if ok {
-					break
-				}
-
-				_, ok = original[b]
-				if ok {
-					continue
-				}
-				_, ok = original[a+" "+b]
-
-				if !ok {
-					result++
-					original[a+" "+b] = int(result + 100)
-				}
-				_, ok = original[b+" "+a]
-
-				if !ok {
-					result++
-					original[b+" "+a] = int(result + 100)
+					mutualNum++
 				}
 			}
+			result += 2 * int64((len(a)-mutualNum)*(len(b)-mutualNum))
+
 		}
 	}
 	return result
