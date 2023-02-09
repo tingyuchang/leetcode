@@ -1,25 +1,6 @@
-package _0230207
+package _0230209
 
-import "strconv"
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func (n *ListNode) Show() string {
-	var dummyNode *ListNode
-	var s string
-	dummyNode.Next = n
-	for dummyNode.Next != nil {
-		s = s + strconv.Itoa(dummyNode.Next.Val)
-		dummyNode = dummyNode.Next
-	}
-
-	s = s + strconv.Itoa(dummyNode.Next.Val)
-
-	return s
-}
+import "leetcode/LinkedList"
 
 func MergeSort(nums []int) []int {
 	n := len(nums)
@@ -36,10 +17,9 @@ func MergeSort(nums []int) []int {
 	return merge(listA, listB)
 }
 
-// using new idea to do merge, avoid using append to reduce alloc
 func merge(a, b []int) []int {
 	c := make([]int, len(a)+len(b))
-	i, m, n := 0, 0, 0
+	m, n, i := 0, 0, 0
 
 	for m < len(a) && n < len(b) {
 		if a[m] > b[n] {
@@ -51,17 +31,17 @@ func merge(a, b []int) []int {
 		}
 		i++
 	}
-	for m < len(a) {
-		c[i] = a[m]
-		i++
-		m++
+
+	for j := i; j < len(c); j++ {
+		if m < len(a) {
+			c[j] = a[m]
+			m++
+		} else if n < len(b) {
+			c[j] = b[n]
+			n++
+		}
 	}
 
-	for n < len(b) {
-		c[i] = b[n]
-		i++
-		n++
-	}
 	return c
 }
 
@@ -73,7 +53,15 @@ func HeapSort(nums []int) []int {
 		nums = nums[:i]
 		maxHeap(nums, 0)
 	}
+
 	return nums[:n]
+}
+
+func buildHeap(nums []int) {
+	n := len(nums)
+	for i := n / 2; i >= 0; i-- {
+		maxHeap(nums, i)
+	}
 }
 
 func maxHeap(nums []int, n int) {
@@ -97,34 +85,27 @@ func maxHeap(nums []int, n int) {
 	}
 }
 
-func buildHeap(nums []int) {
-	n := len(nums)
-
-	for i := n / 2; i >= 0; i-- {
-		maxHeap(nums, i)
-	}
-}
-
 func QuickSort(nums []int, p, r int) []int {
 	if p < r {
 		q := partition(nums, p, r)
 		QuickSort(nums, p, q-1)
 		QuickSort(nums, q+1, r)
 	}
+
 	return nums
 }
 
 func partition(nums []int, p, r int) int {
 	x := nums[r]
 	i := p - 1
+
 	for j := p; j < r; j++ {
-		if nums[j] > x {
-			continue
-		} else {
+		if nums[j] <= x {
 			i++
 			nums[i], nums[j] = nums[j], nums[i]
 		}
 	}
+
 	nums[i+1], nums[r] = nums[r], nums[i+1]
 	return i + 1
 }
@@ -135,7 +116,6 @@ func BinarySearch(nums []int, target int) int {
 
 	for r >= l {
 		mid := (l + r) / 2
-
 		if nums[mid] > target {
 			r = mid - 1
 		} else if nums[mid] < target {
@@ -147,23 +127,19 @@ func BinarySearch(nums []int, target int) int {
 	return l
 }
 
-func removeDuplicatesFromSortedArray(head *ListNode) *ListNode {
-	var node *ListNode
-	node = head
+func RemoveDuplicatesFromSortedArray(head *LinkedList.ListNode) *LinkedList.ListNode {
+	node := head
 
 	for node != nil {
 		if node.Next != nil && node.Val == node.Next.Val {
-			if node.Next.Next == nil {
+			if node.Next.Next != nil {
+				node.Next = node.Next.Next
+			} else {
 				node.Next = nil
 				return head
-			} else {
-				node.Next = node.Next.Next
-				continue
 			}
+			node = node.Next
 		}
-
-		node = node.Next
 	}
-
 	return head
 }
