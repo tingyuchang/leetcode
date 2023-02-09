@@ -21,3 +21,19 @@ func TestConvertToTitle(t *testing.T) {
 		assert.Equal(t, result, td.expected)
 	}
 }
+
+func TestTitleToNumber(t *testing.T) {
+	testData := []struct {
+		input    string
+		expected int
+	}{
+		{"A", 1},
+		{"AB", 28},
+		{"ZY", 701},
+	}
+
+	for _, td := range testData {
+		result := Strings.TitleToNumber(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
