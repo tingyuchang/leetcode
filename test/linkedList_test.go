@@ -7,6 +7,22 @@ import (
 	"testing"
 )
 
+func TestRemoveElements(t *testing.T) {
+	testData := []struct {
+		input    *LinkedList.ListNode
+		input2   int
+		expected *LinkedList.ListNode
+	}{
+		{LinkedList.GenerateNodeFromArray([]int{7, 7, 7, 7}), 7, nil},
+		{nil, 1, nil},
+	}
+
+	for _, td := range testData {
+		result := LinkedList.RemoveElements(td.input, td.input2)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestGetIntersectionNode(t *testing.T) {
 	var testData = []struct {
 		input1 []int
