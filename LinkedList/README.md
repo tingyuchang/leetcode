@@ -1,3 +1,23 @@
+# 203. Remove Linked List Elements
+Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val, and return the new head.
+
+Example 1:
+
+![](https://assets.leetcode.com/uploads/2021/03/06/removelinked-list.jpg)
+```
+Input: head = [1,2,6,3,4,5,6], val = 6
+Output: [1,2,3,4,5]
+```
+Example 2:
+```
+Input: head = [], val = 1
+Output: []
+```
+Example 3:
+```
+Input: head = [7,7,7,7], val = 7
+Output: []
+```
 # 160. Intersection of Two Linked Lists
 
 Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
@@ -42,7 +62,7 @@ Explanation: The intersected node's value is 2 (note that this must not be 0 if 
 From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,2,4]. There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
 ```
 
-Example 3: 
+Example 3:
 
 ![](https://assets.leetcode.com/uploads/2021/03/05/160_example_3.png)
 
@@ -55,3 +75,47 @@ Explanation: The two lists do not intersect, so return null.
 
 Follow up: Could you write a solution that runs in O(m + n) time and use only O(1) memory?
 
+# 141. Linked List Cycle
+
+Given head, the head of a linked list, determine if the linked list has a cycle in it.
+
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+
+Return true if there is a cycle in the linked list. Otherwise, return false.
+
+
+
+Example 1:
+
+![](https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist.png)
+```
+nput: head = [3,2,0,-4], pos = 1
+Output: true
+Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+```
+Example 2:
+
+![](https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test2.png)
+
+```js
+Input: head = [1,2], pos = 0
+Output: true
+Explanation: There is a cycle in the linked list, where the tail connects to the 0th node.
+```
+
+Example 3:
+
+![](https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test3.png)
+
+```js
+Input: head = [1], pos = -1
+Output: false
+Explanation: There is no cycle in the linked list.
+
+```
+
+Constraints:
+
+The number of the nodes in the list is in the range [0, 104].
+-105 <= Node.val <= 105
+pos is -1 or a valid index in the linked-list.
