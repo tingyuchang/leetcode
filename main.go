@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	_0230209 "leetcode/0_Daily_Prac/20230209"
+	_0230210 "leetcode/0_Daily_Prac/20230210"
+	"leetcode/Sort"
 	"leetcode/mergeKLists"
 	"log"
 	"os"
@@ -18,15 +19,16 @@ func PrintSlice[T any](s []T) {
 func main() {
 	n := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
 	m := []int{-4, 0, 7, 4, 9, -5, -1, 0, -7, -1}
-	fmt.Println("Merge Sort: ", _0230209.MergeSort(n))
-	fmt.Println("Heap Sort: ", _0230209.HeapSort(n))
-	fmt.Println("Quick Sort: ", _0230209.QuickSort(m, 0, len(m)-1))
+	fmt.Println("Merge Sort: ", _0230210.MergeSort(n))
+	fmt.Println("Heap Sort: ", _0230210.HeapSort(n))
+	fmt.Println("Insertion Sort: ", _0230210.InsertionSort(n))
+	fmt.Println("Quick Sort: ", _0230210.QuickSort(m, 0, len(m)-1))
 	sorted := []int{3, 5, 7, 9, 11}
 	target1 := 7
 	target2 := 11
 	target3 := 6
-	fmt.Printf("Binary Saerch in %v: \n\tTarget1 %v result: %v\n\tTarget2 %v result: %v\n\tTarget3 %v result: %v  \n", sorted, target1, _0230209.BinarySearch(sorted, target1), target2, _0230209.BinarySearch(sorted, target2), target3, _0230209.BinarySearch(sorted, target3))
-
+	fmt.Printf("Binary Saerch in %v: \n\tTarget1 %v result: %v\n\tTarget2 %v result: %v\n\tTarget3 %v result: %v  \n", sorted, target1, _0230210.BinarySearch(sorted, target1), target2, _0230210.BinarySearch(sorted, target2), target3, _0230210.BinarySearch(sorted, target3))
+	fmt.Println("Randomized-Quick-Selection: ", Sort.RandomizedSelect(n, 0, len(n)-1, 5))
 }
 
 func generateList(firstNodes []int) *mergeKLists.ListNode {
