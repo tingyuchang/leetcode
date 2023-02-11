@@ -16,7 +16,7 @@ func TestMaxDistance(t *testing.T) {
 		{[][]int{{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}}, -1},
 	}
 	for _, td := range testData {
-		result := Matrix.MaxDistance(td.input)
+		result := Matrix.MaxDistanceV2(td.input)
 		assert.Equal(t, result, td.expected)
 	}
 }
