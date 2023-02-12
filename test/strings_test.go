@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestIsIsomorphic(t *testing.T) {
+	testData := []struct {
+		input1   string
+		input2   string
+		expected bool
+	}{
+		{"egg", "add", true},
+		{"paper", "title", true},
+		{"foo", "bar", false},
+	}
+
+	for _, td := range testData {
+		result := Strings.IsIsomorphic(td.input1, td.input2)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestConvertToTitle(t *testing.T) {
 	testData := []struct {
 		input    int
