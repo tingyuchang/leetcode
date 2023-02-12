@@ -2,12 +2,21 @@ package main
 
 import (
 	"fmt"
-	_0230211 "leetcode/0_Daily_Prac/20230211"
+	_0230212 "leetcode/0_Daily_Prac/20230212"
 	"leetcode/mergeKLists"
 	"log"
 	"os"
 	"path"
+	"reflect"
+	"regexp"
 )
+
+var name = _0230212.Name{}
+var mergeSort = _0230212.MergeSort
+var heapSort = _0230212.HeapSort
+var insertionSort = _0230212.InsertionSort
+var quickSort = _0230212.QuickSort
+var binarySearch = _0230212.BinarySearch
 
 func PrintSlice[T any](s []T) {
 	for _, v := range s {
@@ -22,17 +31,19 @@ func main() {
 func dailyPrac() {
 	n := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
 	m := []int{-4, 0, 7, 4, 9, -5, -1, 0, -7, -1}
-	fmt.Println("Merge Sort: ", _0230211.MergeSort(n))
+	re := regexp.MustCompile(`\d{8}`)
+	fmt.Printf("%q\n", re.Find([]byte(reflect.TypeOf(name).PkgPath())))
+	fmt.Println("Merge Sort: ", mergeSort(n))
 	n = []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-	fmt.Println("Heap Sort: ", _0230211.HeapSort(n))
+	fmt.Println("Heap Sort: ", heapSort(n))
 	n = []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-	fmt.Println("Insertion Sort: ", _0230211.InsertionSort(n))
-	fmt.Println("Quick Sort: ", _0230211.QuickSort(m, 0, len(m)-1))
+	fmt.Println("Insertion Sort: ", insertionSort(n))
+	fmt.Println("Quick Sort: ", quickSort(m, 0, len(m)-1))
 	sorted := []int{3, 5, 7, 9, 11}
 	target1 := 7
 	target2 := 11
 	target3 := 6
-	fmt.Printf("Binary Saerch in %v: \n\tTarget1 %v result: %v\n\tTarget2 %v result: %v\n\tTarget3 %v result: %v  \n", sorted, target1, _0230211.BinarySearch(sorted, target1), target2, _0230211.BinarySearch(sorted, target2), target3, _0230211.BinarySearch(sorted, target3))
+	fmt.Printf("Binary Saerch in %v: \n\tTarget1 %v result: %v\n\tTarget2 %v result: %v\n\tTarget3 %v result: %v  \n", sorted, target1, binarySearch(sorted, target1), target2, binarySearch(sorted, target2), target3, binarySearch(sorted, target3))
 
 }
 
