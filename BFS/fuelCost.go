@@ -2,11 +2,6 @@ package BFS
 
 type status int
 
-type Node struct {
-	Val    int
-	People int
-}
-
 const (
 	unvisited = iota
 	visited
@@ -17,10 +12,10 @@ var Fuel = 0
 
 func MinimumFuelCost(roads [][]int, seats int) int64 {
 	Fuel = 0
-	adjList := make(map[int][]*Node)
+	adjList := make(map[int][]int)
 	for _, edge := range roads {
-		adjList[edge[0]] = append(adjList[edge[0]], &Node{edge[1], 1})
-		adjList[edge[1]] = append(adjList[edge[1]], &Node{edge[0], 1})
+		adjList[edge[0]] = append(adjList[edge[0]], edge[1])
+		adjList[edge[1]] = append(adjList[edge[1]], edge[0])
 	}
 
 	visitedList := make(map[int]status)
@@ -32,7 +27,7 @@ func MinimumFuelCost(roads [][]int, seats int) int64 {
 	return int64(Fuel)
 }
 
-func dfs(node int, adjList map[int][]*Node, visitedList *map[int]status, seats int) int {
+func dfs(node int, adjList map[int][]int, visitedList *map[int]status, seats int) int {
 	neighbourArr, ok := adjList[node]
 	if !ok {
 		return 0
@@ -53,7 +48,7 @@ func dfs(node int, adjList map[int][]*Node, visitedList *map[int]status, seats i
 		people = 1
 	}
 	for _, neighbour := range neighbourArr {
-		people += dfs(neighbour.Val, adjList, visitedList, seats)
+		people += dfs(neighbour, adjList, visitedList, seats)
 	}
 
 	(*visitedList)[node] = visited
