@@ -38,3 +38,21 @@ func TestCountOdds(t *testing.T) {
 		assert.Equal(t, result, td.expected)
 	}
 }
+
+func TestIsPowerOfTwo(t *testing.T) {
+	testData := []struct {
+		input    int
+		expected bool
+	}{
+		{1, true},
+		{16, true},
+		{3, false},
+		{0, false},
+		{-16, false},
+	}
+
+	for _, td := range testData {
+		result := Math.IsPowerOfTwo(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
