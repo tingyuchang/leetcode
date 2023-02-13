@@ -22,3 +22,19 @@ func TestIsHappy(t *testing.T) {
 		assert.Equal(t, result, td.expected)
 	}
 }
+
+func TestCountOdds(t *testing.T) {
+	testData := []struct {
+		low      int
+		high     int
+		expected int
+	}{
+		{3, 7, 3},
+		{8, 10, 1},
+	}
+
+	for _, td := range testData {
+		result := Math.CountOdds(td.low, td.high)
+		assert.Equal(t, result, td.expected)
+	}
+}
