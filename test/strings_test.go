@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestIsAnagram(t *testing.T) {
+	testData := []struct {
+		input1   string
+		input2   string
+		expected bool
+	}{
+		{"anagram", "nagaram", true},
+		{"car", "rat", false},
+	}
+
+	for _, td := range testData {
+		result := Strings.IsAnagram(td.input1, td.input2)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestIsIsomorphic(t *testing.T) {
 	testData := []struct {
 		input1   string
