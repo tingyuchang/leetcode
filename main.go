@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	_0230213 "leetcode/0_Daily_Prac/20230213"
+	_0230214 "leetcode/0_Daily_Prac/20230214"
 	"leetcode/mergeKLists"
 	"log"
 	"os"
@@ -11,12 +11,12 @@ import (
 	"regexp"
 )
 
-var name = _0230213.Name{}
-var mergeSort = _0230213.MergeSort
-var heapSort = _0230213.HeapSort
-var insertionSort = _0230213.InsertionSort
-var quickSort = _0230213.QuickSort
-var binarySearch = _0230213.BinarySearch
+var name = _0230214.Name{}
+var mergeSort = _0230214.MergeSort
+var heapSort = _0230214.HeapSort
+var insertionSort = _0230214.InsertionSort
+var quickSort = _0230214.QuickSort
+var binarySearch = _0230214.BinarySearch
 
 func PrintSlice[T any](s []T) {
 	for _, v := range s {
