@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestMergeIntervals(t *testing.T) {
+	testData := []struct {
+		input    [][]int
+		expected [][]int
+	}{
+		{[][]int{{1, 3}, {2, 6}, {8, 10}, {15, 18}}, [][]int{{1, 6}, {8, 10}, {15, 18}}},
+		{[][]int{{1, 4}, {4, 5}}, [][]int{{1, 5}}},
+		{[][]int{{1, 4}, {0, 4}}, [][]int{{0, 4}}},
+		{[][]int{{1, 4}, {2, 3}}, [][]int{{1, 4}}},
+	}
+
+	for _, td := range testData {
+		result := Math.MergeIntervals(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestMinCostClimbingStairs(t *testing.T) {
 	testData := []struct {
 		input    []int
