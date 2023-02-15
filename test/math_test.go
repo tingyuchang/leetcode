@@ -6,6 +6,24 @@ import (
 	"testing"
 )
 
+func TestAddToArrayForm(t *testing.T) {
+	testData := []struct {
+		num      []int
+		k        int
+		expected []int
+	}{
+		{[]int{1, 2, 0, 0}, 34, []int{1, 2, 3, 4}},
+		{[]int{2, 7, 4}, 181, []int{4, 5, 5}},
+		{[]int{3, 4}, 71, []int{1, 0, 5}},
+		{[]int{9, 9, 9, 9, 9, 9, 9, 9, 9, 9}, 1, []int{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
+	}
+
+	for _, td := range testData {
+		result := Math.AddToArrayForm(td.num, td.k)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestThreeSum(t *testing.T) {
 	testData := []struct {
 		input    []int
