@@ -3,6 +3,28 @@ package Math
 import "fmt"
 
 func MaxProduct(nums []int) int {
+	minVal, maxVal, maxProduct := nums[0], nums[0], nums[0]
+
+	for i := 1; i < len(nums); i++ {
+		v := nums[i]
+
+		if v < 0 {
+			minVal, maxVal = maxVal, minVal
+		}
+
+		minVal = min(minVal*v, v)
+		maxVal = max(maxVal*v, v)
+
+		if maxProduct < maxVal {
+			maxProduct = maxVal
+		}
+
+	}
+
+	return maxProduct
+}
+
+func MaxProductSlow(nums []int) int {
 	fmt.Println("Start: ", nums)
 	if len(nums) == 0 {
 		return 0
