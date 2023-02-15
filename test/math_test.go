@@ -6,6 +6,33 @@ import (
 	"testing"
 )
 
+func TestMaxProduct(t *testing.T) {
+	testData := []struct {
+		input    []int
+		expected int
+	}{
+		{[]int{2, 3, -2, 4}, 6},
+		{[]int{-2, 0, -1}, 0},
+		{[]int{-2}, -2},
+		{[]int{-3, -1, -1}, 3},
+		{[]int{-4, -3}, 12},
+		{[]int{0, 2}, 2},
+		{[]int{2, -5, -2, -4, 3}, 24},
+		{[]int{7, -2, -4}, 56},
+		{[]int{-1, -2, -9, -6}, 108},
+		{[]int{1, 0, -1, 2, 3, -5, -2}, 60},
+		{[]int{0, -2, -3}, 6},
+		{[]int{-2, 3, 1, 3}, 9},
+		{[]int{0, -2, 0}, 0},
+		{[]int{3, -2, -3, 3, -1, 0, 1}, 54},
+	}
+
+	for _, td := range testData {
+		result := Math.MaxProduct(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestAddToArrayForm(t *testing.T) {
 	testData := []struct {
 		num      []int
