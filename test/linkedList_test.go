@@ -7,6 +7,25 @@ import (
 	"testing"
 )
 
+func TestLinkedListIsPalindrome(t *testing.T) {
+	testData := []struct {
+		input    *LinkedList.ListNode
+		expected bool
+	}{
+		{LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 4, 5, 6}), false},
+		{LinkedList.GenerateNodeFromArray([]int{2, 2, 1, 2, 1, 1}), false},
+		{LinkedList.GenerateNodeFromArray([]int{1, 2, 2, 1}), true},
+		{LinkedList.GenerateNodeFromArray([]int{1, 2}), false},
+		{LinkedList.GenerateNodeFromArray([]int{1}), true},
+		{LinkedList.GenerateNodeFromArray([]int{1, 0, 1}), true},
+	}
+
+	for _, td := range testData {
+		result := LinkedList.IsPalindrome(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestRemoveElements(t *testing.T) {
 	testData := []struct {
 		input    *LinkedList.ListNode
