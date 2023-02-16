@@ -6,6 +6,21 @@ import (
 	"testing"
 )
 
+func TestAddDigits(t *testing.T) {
+	testData := []struct {
+		input    int
+		expected int
+	}{
+		{38, 2},
+		{0, 0},
+	}
+
+	for _, td := range testData {
+		result := Math.AddDigits(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestMaxProduct(t *testing.T) {
 	testData := []struct {
 		input    []int
