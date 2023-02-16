@@ -1,5 +1,20 @@
 package Math
 
+func AddDigits(num int) int {
+	// return (num-1)%9=1
+	for num/10 >= 1 {
+		sum := 0
+		for num/10 != 0 {
+			sum += num % 10
+			num = num / 10
+		}
+
+		num += sum
+	}
+
+	return num
+}
+
 func AddToArrayForm(num []int, k int) []int {
 	// ks is reverse
 	var ks []int
