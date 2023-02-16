@@ -1,5 +1,29 @@
 package Search
 
+func FindMinInRotatedArray(nums []int) int {
+	if nums[0] <= nums[len(nums)-1] {
+		return nums[0]
+	}
+	l := 0
+	r := len(nums) - 1
+	pivot := 0
+	for r >= l {
+		mid := (l + r) / 2
+		if nums[mid] > nums[mid+1] {
+			pivot = mid + 1
+			break
+		}
+
+		if nums[mid] > nums[l] {
+			l = mid
+		} else {
+			r = mid
+		}
+	}
+
+	return nums[pivot]
+}
+
 func SearchRotatedArray(nums []int, target int) int {
 	if nums[0] < nums[len(nums)-1] || len(nums) == 1 {
 		return BinarySearch(nums, target)

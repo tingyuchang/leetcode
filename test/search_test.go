@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestFindMinInRotatedArray(t *testing.T) {
+	testData := []struct {
+		input    []int
+		expected int
+	}{
+		{[]int{3, 4, 5, 1, 2}, 1},
+		{[]int{4, 5, 6, 7, 0, 1, 2}, 0},
+		{[]int{11, 12, 13, 15}, 11},
+		{[]int{1}, 1},
+	}
+
+	for _, td := range testData {
+		result := Search.FindMinInRotatedArray(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestSearchRotatedArray(t *testing.T) {
 	testData := []struct {
 		input    []int
