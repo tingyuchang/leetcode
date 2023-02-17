@@ -3,19 +3,20 @@ package test
 import (
 	"fmt"
 	"github.com/magiconair/properties/assert"
-	_0230216 "leetcode/0_Daily_Prac/20230216"
+	_0230217 "leetcode/0_Daily_Prac/20230217"
 	"reflect"
 	"regexp"
 	"testing"
 )
 
-var name = _0230216.Name{}
-var mergeSort = _0230216.MergeSort
-var heapSort = _0230216.HeapSort
-var insertionSort = _0230216.InsertionSort
-var quickSort = _0230216.QuickSort
-var binarySearch = _0230216.BinarySearch
-var maxProduct = _0230216.SlidingWindowMaxProduct
+var name = _0230217.Name{}
+var mergeSort = _0230217.MergeSort
+var heapSort = _0230217.HeapSort
+var insertionSort = _0230217.InsertionSort
+var quickSort = _0230217.QuickSort
+var binarySearch = _0230217.BinarySearch
+var binarySearchRotated = _0230217.BinarySearchInRotatedArray
+var maxProduct = _0230217.SlidingWindowMaxProduct
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -51,15 +52,34 @@ func TestDaily(t *testing.T) {
 	binarySearchTarget3 := 6
 	binarySearchExpected1 := 2
 	binarySearchExpected2 := 4
-	binarySearchExpected3 := 2
+	binarySearchExpected3 := -1
 
 	binarySearchAns1 := binarySearch(binarySearchInput, binarySearchTarget1)
 	binarySearchAns2 := binarySearch(binarySearchInput, binarySearchTarget2)
 	binarySearchAns3 := binarySearch(binarySearchInput, binarySearchTarget3)
-	fmt.Printf("\nBinarySearrch")
+	fmt.Printf("\nBinarySearch")
 	assert.Equal(t, binarySearchAns1, binarySearchExpected1)
 	assert.Equal(t, binarySearchAns2, binarySearchExpected2)
 	assert.Equal(t, binarySearchAns3, binarySearchExpected3)
+
+	binarySearchRotatedTestData := []struct {
+		input    []int
+		target   int
+		expected int
+	}{
+		{[]int{4, 5, 6, 7, 0, 1, 2}, 0, 4},
+		{[]int{4, 5, 6, 7, 0, 1, 2}, 3, -1},
+		{[]int{4, 5, 6, 7, 9, 0, 1, 2}, 3, -1},
+		{[]int{1}, 0, -1},
+		{[]int{1, 3}, 3, 1},
+		{[]int{3, 1}, 2, -1},
+		{[]int{3, 1}, 3, 0},
+	}
+	fmt.Printf("\nBinarySearch Rotated Array")
+	for _, td := range binarySearchRotatedTestData {
+		result := binarySearchRotated(td.input, td.target)
+		assert.Equal(t, result, td.expected)
+	}
 
 	maxProductTestData := []struct {
 		input    []int

@@ -33,13 +33,15 @@ func SearchRotatedArray(nums []int, target int) int {
 	pivot := 0
 	for r >= l {
 		mid := (l + r) / 2
-		if nums[mid] < nums[l] {
-			r = r - 1
-		} else if nums[mid] > nums[r] {
-			l = l + 1
-		} else {
-			pivot = l
+		if nums[mid] > nums[mid+1] {
+			pivot = mid + 1
 			break
+		}
+
+		if nums[mid] > nums[l] {
+			l = mid
+		} else {
+			r = mid
 		}
 	}
 
