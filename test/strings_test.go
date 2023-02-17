@@ -6,6 +6,25 @@ import (
 	"testing"
 )
 
+func TestCharacterReplacement(t *testing.T) {
+	testData := []struct {
+		input       string
+		replacement int
+		expected    int
+	}{
+		{"ABCDDCABAA", 2, 5},
+		{"ABAB", 2, 4},
+		{"AABABBA", 1, 4},
+		{"KRSCDCSONAJNHLBMDQGIFCPEKPOHQIHLTDIQGEKLRLCQNBOHNDQGHJPNDQPERNFSSSRDEQLFPCCCARFMDLHADJADAGNNSBNCJQOF", 4, 7},
+		{"IMNJJTRMJEGMSOLSCCQICIHLQIOGBJAEHQOCRAJQMBIBATGLJDTBNCPIFRDLRIJHRABBJGQAOLIKRLHDRIGERENNMJSDSSMESSTR", 2, 6},
+	}
+
+	for _, td := range testData {
+		result := Strings.CharacterReplacement(td.input, td.replacement)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestIsAnagram(t *testing.T) {
 	testData := []struct {
 		input1   string
