@@ -1,8 +1,6 @@
 # 94. Binary Tree Inorder Traversal
 Given the root of a binary tree, return the inorder traversal of its nodes' values.
 
-
-
 Example 1:
 ![](https://assets.leetcode.com/uploads/2020/09/15/inorder_1.jpg)
 
