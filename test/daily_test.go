@@ -3,20 +3,21 @@ package test
 import (
 	"fmt"
 	"github.com/magiconair/properties/assert"
-	_0230217 "leetcode/0_Daily_Prac/20230217"
+	_0230218 "leetcode/0_Daily_Prac/20230218"
 	"reflect"
 	"regexp"
 	"testing"
 )
 
-var name = _0230217.Name{}
-var mergeSort = _0230217.MergeSort
-var heapSort = _0230217.HeapSort
-var insertionSort = _0230217.InsertionSort
-var quickSort = _0230217.QuickSort
-var binarySearch = _0230217.BinarySearch
-var binarySearchRotated = _0230217.BinarySearchInRotatedArray
-var maxProduct = _0230217.SlidingWindowMaxProduct
+var name = _0230218.Name{}
+var mergeSort = _0230218.MergeSort
+var heapSort = _0230218.HeapSort
+var insertionSort = _0230218.InsertionSort
+var quickSort = _0230218.QuickSort
+var binarySearch = _0230218.BinarySearch
+var binarySearchRotated = _0230218.BinarySearchInRotatedArray
+var maxProduct = _0230218.MaxProduct
+var longestChar = _0230218.LongestCharatersInReplacement
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -105,4 +106,22 @@ func TestDaily(t *testing.T) {
 		result := maxProduct(td.input)
 		assert.Equal(t, result, td.expected)
 	}
+
+	LongestCharatersTestData := []struct {
+		input       string
+		replacement int
+		expected    int
+	}{
+		{"ABCDDCABAA", 2, 5},
+		{"ABAB", 2, 4},
+		{"AABABBA", 1, 4},
+		{"KRSCDCSONAJNHLBMDQGIFCPEKPOHQIHLTDIQGEKLRLCQNBOHNDQGHJPNDQPERNFSSSRDEQLFPCCCARFMDLHADJADAGNNSBNCJQOF", 4, 7},
+		{"IMNJJTRMJEGMSOLSCCQICIHLQIOGBJAEHQOCRAJQMBIBATGLJDTBNCPIFRDLRIJHRABBJGQAOLIKRLHDRIGERENNMJSDSSMESSTR", 2, 6},
+	}
+	fmt.Printf("\nLongest Charaters")
+	for _, td := range LongestCharatersTestData {
+		result := longestChar(td.input, td.replacement)
+		assert.Equal(t, result, td.expected)
+	}
+
 }
