@@ -1,5 +1,24 @@
 package Tree
 
+func MinDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+
+	if root.Left == nil && root.Right == nil {
+		return 1
+	}
+	var left, right = 100000, 100000
+	if root.Left != nil {
+		left = MinDepth(root.Left)
+	}
+	if root.Right != nil {
+		right = MinDepth(root.Right)
+	}
+
+	return min(left, right) + 1
+
+}
 func MaxDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
@@ -9,6 +28,13 @@ func MaxDepth(root *TreeNode) int {
 	right := MaxDepth(root.Right)
 
 	return max(left, right) + 1
+}
+
+func min(a, b int) int {
+	if a > b {
+		return b
+	}
+	return a
 }
 
 func max(a, b int) int {
