@@ -42,3 +42,37 @@ func isSameTree(p *TreeNode, q *TreeNode) bool {
 
 	return true
 }
+
+func preorderTraversal(root *TreeNode) []int {
+	nums := make([]int, 0)
+
+	preOrder(root, &nums)
+
+	return nums
+}
+
+func preOrder(node *TreeNode, nums *[]int) {
+	if node == nil {
+		return
+	}
+	*nums = append(*nums, node.Val)
+	preOrder(node.Left, nums)
+	preOrder(node.Right, nums)
+}
+
+func postorderTraversal(root *TreeNode) []int {
+	nums := make([]int, 0)
+
+	postOrder(root, &nums)
+
+	return nums
+}
+
+func postOrder(node *TreeNode, nums *[]int) {
+	if node == nil {
+		return
+	}
+	postOrder(node.Left, nums)
+	postOrder(node.Right, nums)
+	*nums = append(*nums, node.Val)
+}
