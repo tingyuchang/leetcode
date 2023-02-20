@@ -1,5 +1,44 @@
 package Tree
 
+func levelOrderBottom(root *TreeNode) [][]int {
+	queue1 := make([]*TreeNode, 0)
+	queue2 := make([]*TreeNode, 0)
+
+	result := make([][]int, 0)
+
+	if root == nil {
+		return result
+	}
+
+	var currentQueue *[]*TreeNode
+	var backQueue *[]*TreeNode
+
+	queue1 = append(queue1, root)
+	currentQueue = &queue1
+	backQueue = &queue2
+	temp := make([]int, 0)
+	for len(queue1)+len(queue2) != 0 {
+		// queue POP
+		node := (*currentQueue)[0]
+		*currentQueue = append([]*TreeNode{}, (*currentQueue)[1:]...)
+		temp = append(temp, node.Val)
+		if node.Left != nil {
+			*backQueue = append(*backQueue, node.Left)
+		}
+		if node.Right != nil {
+			*backQueue = append(*backQueue, node.Right)
+		}
+
+		if len(*currentQueue) == 0 {
+			currentQueue, backQueue = backQueue, currentQueue
+
+			result = append([][]int{temp}, result...)
+			temp = make([]int, 0)
+		}
+	}
+	return result
+}
+
 func InorderTraversal(root *TreeNode) []int {
 	result := make([]int, 0)
 	inorder(root, &result)
