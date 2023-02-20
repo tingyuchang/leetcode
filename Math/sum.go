@@ -4,6 +4,20 @@ import (
 	"sort"
 )
 
+func MissingNumbers(nums []int) int {
+	sum := len(nums)
+	if (1+len(nums))%2 != 0 {
+		sum = sum / 2 * (1 + len(nums))
+	} else {
+		sum *= (1 + len(nums)) / 2
+	}
+	for i := 0; i < len(nums); i++ {
+		sum -= nums[i]
+	}
+
+	return sum
+}
+
 func ThreeSum(nums []int) [][]int {
 	result := make([][]int, 0)
 	sort.Ints(nums)

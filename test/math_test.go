@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestMissingNumber(t *testing.T) {
+	testData := []struct {
+		input    []int
+		expected int
+	}{
+		{[]int{3, 0, 1}, 2},
+		{[]int{0, 1}, 2},
+		{[]int{9, 7, 6, 5, 4, 3, 2, 1, 0}, 8},
+	}
+
+	for _, td := range testData {
+		result := Math.MissingNumbers(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestIsUgly(t *testing.T) {
 	testData := []struct {
 		input    int
