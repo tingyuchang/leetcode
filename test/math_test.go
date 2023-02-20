@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestIsUgly(t *testing.T) {
+	testData := []struct {
+		input    int
+		expected bool
+	}{
+		{6, true},
+		{1, true},
+		{14, false},
+		{0, false},
+	}
+
+	for _, td := range testData {
+		result := Math.IsUgly(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestAddDigits(t *testing.T) {
 	testData := []struct {
 		input    int
