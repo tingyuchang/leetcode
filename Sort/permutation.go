@@ -1,5 +1,100 @@
 package Sort
 
+import "sort"
+
+func permuteUnique(nums []int) [][]int {
+	result := make([][]int, 0)
+	if len(nums) == 0 {
+		return result
+	}
+	sort.Ints(nums)
+	result = append(result, append([]int{}, nums...))
+	if len(nums) == 1 {
+		return result
+	}
+
+	// n!/(a!*b!*c!), a, b, c means numbers of duplicated elements
+	n := 1
+	count := make(map[int]int, 0)
+	for i := 1; i <= len(nums); i++ {
+		n = n * i
+		val, ok := count[nums[i-1]]
+		if !ok {
+			count[nums[i-1]] = 1
+		} else {
+			count[nums[i-1]] = val * (val + 1)
+		}
+	}
+
+	for _, v := range count {
+		if v != 1 {
+			n = n / v
+		}
+	}
+
+	for n > 0 {
+		n--
+		i := len(nums) - 1
+
+		for nums[i-1] >= nums[i] {
+			i--
+			if i == 0 {
+				return result
+			}
+		}
+
+		j := len(nums) - 1
+		for j > i && nums[j] <= nums[i-1] {
+			j--
+		}
+		nums[j], nums[i-1] = nums[i-1], nums[j]
+		reverse(nums, i)
+		temp := append([]int{}, nums...)
+		result = append(result, temp)
+	}
+
+	return result
+}
+
+func Permutation(nums []int) [][]int {
+	result := make([][]int, 0)
+	if len(nums) == 0 {
+		return result
+	}
+	sort.Ints(nums)
+	result = append(result, append([]int{}, nums...))
+	if len(nums) == 1 {
+		return result
+	}
+	n := 1
+	for i := 1; i <= len(nums); i++ {
+		n = n * i
+	}
+
+	for n > 0 {
+		n--
+		if n == 0 {
+			return result
+		}
+		i := len(nums) - 1
+
+		for nums[i-1] >= nums[i] {
+			i--
+		}
+
+		j := len(nums) - 1
+		for j > i && nums[j] <= nums[i-1] {
+			j--
+		}
+		nums[j], nums[i-1] = nums[i-1], nums[j]
+		reverse(nums, i)
+		temp := append([]int{}, nums...)
+		result = append(result, temp)
+	}
+
+	return result
+}
+
 func NextPermutation(nums []int) []int {
 	if len(nums) == 0 {
 		return nums
