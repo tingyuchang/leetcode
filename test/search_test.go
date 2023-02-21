@@ -6,6 +6,21 @@ import (
 	"testing"
 )
 
+func TestSingleNonDuplicate(t *testing.T) {
+	testData := []struct {
+		input    []int
+		expected int
+	}{
+		{[]int{1, 1, 2, 3, 3, 4, 4, 8, 8}, 2},
+		{[]int{3, 3, 7, 7, 10, 11, 11}, 10},
+	}
+
+	for _, td := range testData {
+		result := Search.SingleNonDuplicate(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestFindMinInRotatedArray(t *testing.T) {
 	testData := []struct {
 		input    []int
