@@ -4,6 +4,41 @@ import (
 	"fmt"
 )
 
+func MoveZeroes(nums []int) {
+	count := 0
+	for i := 0; i < len(nums); i++ {
+		v := nums[i]
+		if v == 0 {
+			count++
+			continue
+		}
+		if count != 0 {
+			nums[i-count] = nums[i]
+			nums[i] = 0
+		}
+	}
+	// insertion sort's thinking
+	/*
+		for i := len(nums) - 1; i >= 0; i-- {
+				key := nums[i]
+				if key != 0 {
+					continue
+				}
+				for j := i + 1; j < len(nums); j++ {
+					if nums[j] != 0 {
+						nums[j-1] = nums[j]
+						if j == len(nums)-1 {
+							nums[j] = key
+						}
+					} else {
+						nums[j-1] = key
+						break
+					}
+				}
+			}
+	*/
+}
+
 func InsertionSort(list []int) []int {
 	for i := 1; i < len(list); i++ {
 		key := list[i]
