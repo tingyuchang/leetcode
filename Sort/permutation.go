@@ -1,36 +1,42 @@
 package Sort
 
-import "sort"
+import (
+	"fmt"
+	"sort"
+	"strconv"
+)
 
 func permuteUnique(nums []int) [][]int {
 	result := make([][]int, 0)
+	duplicated := make(map[string]int)
 	if len(nums) == 0 {
 		return result
 	}
 	sort.Ints(nums)
 	result = append(result, append([]int{}, nums...))
+	duplicated[toString(nums)] = 1
 	if len(nums) == 1 {
 		return result
 	}
 
 	// n!/(a!*b!*c!), a, b, c means numbers of duplicated elements
 	n := 1
-	count := make(map[int]int, 0)
+	//count := make(map[int]int, 0)
 	for i := 1; i <= len(nums); i++ {
 		n = n * i
-		val, ok := count[nums[i-1]]
-		if !ok {
-			count[nums[i-1]] = 1
-		} else {
-			count[nums[i-1]] = val * (val + 1)
-		}
+		//val, ok := count[nums[i-1]]
+		//if !ok {
+		//	count[nums[i-1]] = 1
+		//} else {
+		//	count[nums[i-1]] = val * (val + 1)
+		//}
 	}
 
-	for _, v := range count {
-		if v != 1 {
-			n = n / v
-		}
-	}
+	//for _, v := range count {
+	//	if v != 1 {
+	//		n = n / v
+	//	}
+	//}
 
 	for n > 0 {
 		n--
@@ -50,10 +56,27 @@ func permuteUnique(nums []int) [][]int {
 		nums[j], nums[i-1] = nums[i-1], nums[j]
 		reverse(nums, i)
 		temp := append([]int{}, nums...)
-		result = append(result, temp)
+		unique := toString(temp)
+		_, ok := duplicated[unique]
+		if !ok {
+			result = append(result, temp)
+			duplicated[unique] = 1
+		}
+
 	}
 
 	return result
+}
+
+func toString(nums []int) string {
+	s := ""
+
+	for i := 0; i < len(nums); i++ {
+		fmt.Println(strconv.Itoa(nums[i]))
+		s = s + strconv.Itoa(nums[i])
+	}
+
+	return s
 }
 
 func Permutation(nums []int) [][]int {
