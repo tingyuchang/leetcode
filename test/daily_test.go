@@ -3,21 +3,22 @@ package test
 import (
 	"fmt"
 	"github.com/magiconair/properties/assert"
-	_0230221 "leetcode/0_Daily_Prac/20230221"
+	_0230222 "leetcode/0_Daily_Prac/20230222"
 	"reflect"
 	"regexp"
 	"testing"
 )
 
-var name = _0230221.Name{}
-var mergeSort = _0230221.MergeSort
-var heapSort = _0230221.HeapSort
-var insertionSort = _0230221.InsertionSort
-var quickSort = _0230221.QuickSort
-var binarySearch = _0230221.BinarySearch
-var binarySearchRotated = _0230221.BinarySearchInRotatedArray
-var maxProduct = _0230221.MaxProduct
-var longestChar = _0230221.LongestCharatersInReplacement
+var name = _0230222.Name{}
+var mergeSort = _0230222.MergeSort
+var heapSort = _0230222.HeapSort
+var insertionSort = _0230222.InsertionSort
+var quickSort = _0230222.QuickSort
+var binarySearch = _0230222.BinarySearch
+var binarySearchRotated = _0230222.BinarySearchInRotatedArray
+var maxProduct = _0230222.MaxProduct
+var longestChar = _0230222.LongestCharatersInReplacement
+var nextPermutation = _0230222.NextPermutation
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -122,6 +123,22 @@ func TestDaily(t *testing.T) {
 	for _, td := range LongestCharatersTestData {
 		result := longestChar(td.input, td.replacement)
 		assert.Equal(t, result, td.expected)
+	}
+
+	nextPermutationTestData := []struct {
+		input    []int
+		expected []int
+	}{
+		{[]int{1, 2, 3, 4, 5, 6}, []int{1, 2, 3, 4, 6, 5}},
+		{[]int{1, 2, 3, 4, 6, 5}, []int{1, 2, 3, 5, 4, 6}},
+		{[]int{1, 2, 3, 5, 4, 6}, []int{1, 2, 3, 5, 6, 4}},
+	}
+
+	fmt.Printf("\nnext Permutation")
+	for _, td := range nextPermutationTestData {
+		nextPermutation(td.input)
+		// in place exchange
+		assert.Equal(t, td.input, td.expected)
 	}
 
 }
