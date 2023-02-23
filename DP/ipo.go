@@ -23,7 +23,7 @@ func (p ProjectList) Swap(i, j int) {
 	p[i], p[j] = p[j], p[i]
 }
 
-func FindMaximizedCapital(k int, w int, profits []int, capital []int) int {
+func findMaximizedCapital(k int, w int, profits []int, capital []int) int {
 	n := len(capital)
 	projects := make([]Project, 0)
 	for i := 0; i < len(capital); i++ {
@@ -77,54 +77,51 @@ func insert(nums []int, target int) int {
 	return l
 }
 
-// TLE -> can be optimized
+func insertMax(nums []int, target int) int {
+	l := 0
+	r := len(nums) - 1
+	for r >= l {
+		mid := (l + r) / 2
+		if nums[mid] > target {
+			l = mid + 1
+		} else if nums[mid] < target {
+			r = mid - 1
+		} else {
+			return mid
+		}
+	}
 
-func findMaximizedCapital(k int, w int, profits []int, capital []int) int {
+	return l
+}
+
+// save space but slower
+
+func FindMaximizedCapital(k int, w int, profits []int, capital []int) int {
 	quickSort(profits, capital, 0, len(capital)-1)
-	for k > 0 {
+
+	availableProject := 0
+	for i := 0; i < k; i++ {
 		// find capital[x] <= w
 		// which x has maximum net profit
-
-		start, end := -1, -1
-
-		for i := 0; i < len(capital); i++ {
-			v := capital[i]
-			if v <= w {
-				if start == -1 {
-					start = i
-				}
-				end = i
+		for availableProject < len(capital) && capital[availableProject] <= w {
+			//fmt.Printf("i: %v, avail: %v\n", i, availableProject)
+			index := insertMax(profits[i:availableProject+1], profits[availableProject])
+			profit := profits[availableProject]
+			//fmt.Println(profits, " <-", profit, "at ", index)
+			for j := availableProject; j > (i + index); j-- {
+				profits[j] = profits[j-1]
 			}
+			profits[index+i] = profit
 
-			if v > w {
-				end = i - 1
-				break
-			}
+			//fmt.Println("final: ", profits)
+			availableProject++
 		}
 
-		if start == -1 && end == -1 {
+		if i >= availableProject {
 			break
 		}
-
-		max := -1000000000
-		project := -1
-		for i := start; i <= end; i++ {
-			if profits[i] > max {
-				max = profits[i]
-				project = i
-			}
-		}
-
-		if project == -1 {
-			break
-
-		}
-
-		profit := profits[project]
-		profits[project] = -10000000000
-		w += profit
-		k--
-
+		//fmt.Println("use: ", profits[i])
+		w += profits[i]
 	}
 	return w
 }
