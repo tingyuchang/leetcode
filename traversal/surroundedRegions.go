@@ -1,4 +1,4 @@
-package BFS
+package traversal
 
 func SolveSurroundedRegions(board [][]byte) {
 	for i := 0; i < len(board); i++ {

@@ -2,9 +2,35 @@ package test
 
 import (
 	"github.com/magiconair/properties/assert"
-	"leetcode/BFS"
+	"leetcode/traversal"
 	"testing"
 )
+
+func TestMaxAreaOfIsland(t *testing.T) {
+	testData := []struct {
+		input    [][]int
+		expected int
+	}{
+		{[][]int{
+			{0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+			{0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+			{0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0},
+			{0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0},
+			{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
+			{0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+			{0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+		}, 6},
+		{[][]int{
+			{0, 0, 0, 0, 0, 0, 0, 0},
+		}, 0},
+	}
+
+	for _, td := range testData {
+		result := traversal.MaxAreaOfIsland(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
 
 func TestSurroundedRegions(t *testing.T) {
 	testData := []struct {
@@ -60,7 +86,7 @@ func TestSurroundedRegions(t *testing.T) {
 	}
 
 	for _, td := range testData {
-		BFS.SolveSurroundedRegions(td.input)
+		traversal.SolveSurroundedRegions(td.input)
 		assert.Equal(t, td.input, td.expected)
 	}
 }
@@ -86,7 +112,7 @@ func TestNumsOfIslands(t *testing.T) {
 	}
 
 	for _, td := range testData {
-		result := BFS.NumIslands(td.input)
+		result := traversal.NumIslands(td.input)
 		assert.Equal(t, result, td.expected)
 	}
 }

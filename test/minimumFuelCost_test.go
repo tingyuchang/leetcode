@@ -2,7 +2,7 @@ package test
 
 import (
 	"github.com/magiconair/properties/assert"
-	"leetcode/BFS"
+	"leetcode/traversal"
 	"testing"
 )
 
@@ -18,7 +18,7 @@ func TestMinimumFuelCost(t *testing.T) {
 	}
 
 	for _, td := range testData {
-		result := BFS.MinimumFuelCost(td.roads, td.seats)
+		result := traversal.MinimumFuelCost(td.roads, td.seats)
 		assert.Equal(t, result, td.expected)
 	}
 }

@@ -1,4 +1,4 @@
-package BFS
+package traversal
 
 func NumIslands(grid [][]byte) int {
 	sum := -1

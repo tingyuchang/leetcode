@@ -1,4 +1,4 @@
-package BFS
+package traversal
 
 type status int
 
