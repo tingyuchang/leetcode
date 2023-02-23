@@ -6,6 +6,32 @@ import (
 	"testing"
 )
 
+func TestPalindromePartition(t *testing.T) {
+	testData := []struct {
+		input    string
+		expected [][]string
+	}{
+		{"aab", [][]string{
+			{"a", "a", "b"},
+			{"aa", "b"},
+		}},
+		{"a", [][]string{
+			{"a"},
+		}},
+		{"aaab", [][]string{
+			{"a", "a", "a", "b"},
+			{"a", "aa", "b"},
+			{"aa", "a", "b"},
+			{"aaa", "b"},
+		}},
+	}
+
+	for _, td := range testData {
+		result := Strings.PalindromePartition(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestCharacterReplacement(t *testing.T) {
 	testData := []struct {
 		input       string
