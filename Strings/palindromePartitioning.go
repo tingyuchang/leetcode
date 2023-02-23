@@ -2,6 +2,31 @@ package Strings
 
 import "fmt"
 
+func CountSubstrings(s string) int {
+	if len(s) == 0 {
+		return 0
+	}
+
+	count := 0
+	for i := 0; i < len(s); i++ {
+		count += checkPalindrome(s, i, i)   // odd
+		count += checkPalindrome(s, i, i+1) // even
+	}
+
+	return count
+}
+
+func checkPalindrome(s string, start, end int) int {
+	count := 0
+	for start >= 0 && end < len(s) && s[start] == s[end] {
+		count++
+		start--
+		end++
+	}
+
+	return count
+}
+
 /*
 1. backtracking + dfs
 2. backtracking with dynamic programming
