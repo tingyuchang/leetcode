@@ -6,6 +6,31 @@ import (
 	"testing"
 )
 
+func TestCountSubStrings(t *testing.T) {
+	testData := []struct {
+		input    string
+		expected int
+	}{
+		{
+			"abc",
+			3,
+		},
+		{
+			"aaa",
+			6,
+		},
+		{
+			"addaccadbabdbdbdbcabdcbcadacccbdddcbddacdaacbbdcbdbccdaaddadcaacdacbaaddbcaadcdab",
+			126,
+		},
+	}
+
+	for _, td := range testData {
+		result := Strings.CountSubstrings(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestPalindromePartition(t *testing.T) {
 	testData := []struct {
 		input    string
