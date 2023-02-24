@@ -6,6 +6,31 @@ import (
 	"testing"
 )
 
+func TestMinimizedDeviation(t *testing.T) {
+	testData := []struct {
+		input    []int
+		expected int
+	}{
+		{
+			[]int{1, 2, 3, 4},
+			1,
+		},
+		{
+			[]int{4, 1, 5, 20, 3},
+			3,
+		},
+		{
+			[]int{3, 5},
+			1,
+		},
+	}
+
+	for _, td := range testData {
+		result := Math.MinimumDeviation(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestMissingNumber(t *testing.T) {
 	testData := []struct {
 		input    []int
