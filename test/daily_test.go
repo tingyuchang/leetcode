@@ -3,22 +3,22 @@ package test
 import (
 	"fmt"
 	"github.com/magiconair/properties/assert"
-	_0230224 "leetcode/0_Daily_Prac/20230224"
+	_0230225 "leetcode/0_Daily_Prac/20230225"
 	"reflect"
 	"regexp"
 	"testing"
 )
 
-var name = _0230224.Name{}
-var mergeSort = _0230224.MergeSort
-var heapSort = _0230224.HeapSort
-var insertionSort = _0230224.InsertionSort
-var quickSort = _0230224.QuickSort
-var binarySearch = _0230224.BinarySearch
-var binarySearchRotated = _0230224.BinarySearchInRotatedArray
-var maxProduct = _0230224.MaxProduct
-var longestChar = _0230224.LongestCharatersInReplacement
-var nextPermutation = _0230224.NextPermutation
+var name = _0230225.Name{}
+var mergeSort = _0230225.MergeSort
+var heapSort = _0230225.HeapSort
+var insertionSort = _0230225.InsertionSort
+var quickSort = _0230225.QuickSort
+var binarySearch = _0230225.BinarySearch
+var binarySearchRotated = _0230225.BinarySearchInRotatedArray
+var maxProduct = _0230225.MaxProduct
+var longestChar = _0230225.LongestCharatersInReplacement
+var nextPermutation = _0230225.NextPermutation
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
