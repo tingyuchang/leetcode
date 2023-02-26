@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestEditDistance(t *testing.T) {
+	testData := []struct {
+		word1    string
+		word2    string
+		expected int
+	}{
+		{"horse", "ros", 3},
+		{"intention", "execution", 5},
+	}
+
+	for _, td := range testData {
+		result := Strings.MinDistance(td.word1, td.word2)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestCountSubStrings(t *testing.T) {
 	testData := []struct {
 		input    string
