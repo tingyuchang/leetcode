@@ -6,6 +6,20 @@ import (
 	"testing"
 )
 
+func TestSummaryRanges(t *testing.T) {
+	testData := []struct {
+		input    []int
+		expected []string
+	}{
+		{[]int{0, 1, 2, 4, 5, 7}, []string{"0->2", "4->5", "7"}},
+		{[]int{0, 2, 3, 4, 6, 8, 9}, []string{"0", "2->4", "6", "8->9"}},
+	}
+
+	for _, td := range testData {
+		result := Math.SummaryRanges(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
 func TestMinimizedDeviation(t *testing.T) {
 	testData := []struct {
 		input    []int
@@ -24,7 +38,6 @@ func TestMinimizedDeviation(t *testing.T) {
 			1,
 		},
 	}
-
 	for _, td := range testData {
 		result := Math.MinimumDeviation(td.input)
 		assert.Equal(t, result, td.expected)
