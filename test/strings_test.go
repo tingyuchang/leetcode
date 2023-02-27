@@ -6,6 +6,45 @@ import (
 	"testing"
 )
 
+func TestWordPattern(t *testing.T) {
+	testData := []struct {
+		pattern  string
+		s        string
+		expected bool
+	}{
+		{
+			"abba",
+			"dog cat cat dog",
+			true,
+		},
+		{
+			"abba",
+			"dog cat cat fish",
+			false,
+		},
+		{
+			"aaaa",
+			"dog cat cat dog",
+			false,
+		},
+		{
+			"abba",
+			"dog dog dog dog",
+			false,
+		},
+		{
+			"aaa",
+			"aa aa aa aa",
+			false,
+		},
+	}
+
+	for _, td := range testData {
+		result := Strings.WordPattern(td.pattern, td.s)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestEditDistance(t *testing.T) {
 	testData := []struct {
 		word1    string
