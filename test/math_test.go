@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestCanWinNim(t *testing.T) {
+	testData := []struct {
+		input    int
+		expected bool
+	}{
+		{4, false},
+		{1, true},
+		{2, true},
+		{45, true},
+	}
+
+	for _, td := range testData {
+		result := Math.CanWinNim(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestSummaryRanges(t *testing.T) {
 	testData := []struct {
 		input    []int
