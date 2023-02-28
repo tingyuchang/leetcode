@@ -6,6 +6,25 @@ import (
 	"testing"
 )
 
+func TestCountAndSay(t *testing.T) {
+	testData := []struct {
+		input    int
+		expected string
+	}{
+		{1, "1"},
+		{2, "11"},
+		{3, "21"},
+		{4, "1211"},
+		{5, "111221"},
+		{6, "312211"},
+		{7, "13112221"},
+	}
+	for _, td := range testData {
+		result := Math.CountAndSay(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestCanWinNim(t *testing.T) {
 	testData := []struct {
 		input    int
