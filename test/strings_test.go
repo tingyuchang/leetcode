@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestMinWindow(t *testing.T) {
+	testData := []struct {
+		s        string
+		t        string
+		expected string
+	}{
+		{"ADOBECODEBANC", "ABC", "BANC"},
+		{"a", "a", "a"},
+		{"a", "aa", ""},
+	}
+
+	for _, td := range testData {
+		result := Strings.MinWindow(td.s, td.t)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestWordPattern(t *testing.T) {
 	testData := []struct {
 		pattern  string
