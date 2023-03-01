@@ -6,6 +6,21 @@ import (
 	"testing"
 )
 
+func TestCountBits(t *testing.T) {
+	testData := []struct {
+		input    int
+		expected []int
+	}{
+		{2, []int{0, 1, 1}},
+		{5, []int{0, 1, 1, 2, 1, 2}},
+	}
+
+	for _, td := range testData {
+		result := Math.CountBits(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestCountAndSay(t *testing.T) {
 	testData := []struct {
 		input    int
