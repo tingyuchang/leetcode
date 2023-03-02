@@ -6,6 +6,21 @@ import (
 	"testing"
 )
 
+func TestReverseString(t *testing.T) {
+	testData := []struct {
+		input    []byte
+		expected []byte
+	}{
+		{[]byte{'h', 'e', 'l', 'l', 'o'}, []byte{'o', 'l', 'l', 'e', 'h'}},
+		{[]byte{'H', 'a', 'n', 'n', 'a', 'h'}, []byte{'h', 'a', 'n', 'n', 'a', 'H'}},
+	}
+
+	for _, td := range testData {
+		Strings.ReverseString(td.input)
+		assert.Equal(t, td.input, td.expected)
+	}
+}
+
 func TestCompress(t *testing.T) {
 	testData := []struct {
 		input    []byte
