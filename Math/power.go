@@ -36,3 +36,26 @@ func isPowerOfThree(n int) bool {
 
 	return true
 }
+
+func IsPowerOfFour(n int) bool {
+	//a := 1
+	//
+	//for a < n {
+	//	a = a * 4
+	//}
+	//
+	//return a == n
+
+	if n == 0 {
+		return false
+	}
+	if n == 1 {
+		return true
+	}
+
+	if n%4 != 0 {
+		return false
+	}
+
+	return IsPowerOfFour(n / 4)
+}
