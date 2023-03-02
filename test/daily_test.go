@@ -4,20 +4,22 @@ import (
 	"fmt"
 	"github.com/magiconair/properties/assert"
 	_0230228 "leetcode/0_Daily_Prac/20230228"
+	_0230302 "leetcode/0_Daily_Prac/20230302"
 	"reflect"
 	"regexp"
 	"testing"
 )
 
-var name = _0230228.Name{}
-var mergeSort = _0230228.MergeSort
-var heapSort = _0230228.HeapSort
-var insertionSort = _0230228.InsertionSort
-var quickSort = _0230228.QuickSort
-var binarySearch = _0230228.BinarySearch
-var binarySearchRotated = _0230228.BinarySearchInRotatedArray
-var maxProduct = _0230228.MaxProduct
-var longestChar = _0230228.LongestCharatersInReplacement
+var name = _0230302.Name{}
+var mergeSort = _0230302.MergeSort
+var heapSort = _0230302.HeapSort
+var insertionSort = _0230302.InsertionSort
+var quickSort = _0230302.QuickSort
+var binarySearch = _0230302.BinarySearch
+var binarySearchRotated = _0230302.BinarySearchInRotatedArray
+var maxProduct = _0230302.MaxProduct
+var longestChar = _0230302.LongestCharatersInReplacement
+var minWindow = _0230302.MinWindow
 var nextPermutation = _0230228.NextPermutation
 
 func TestDaily(t *testing.T) {
@@ -139,6 +141,21 @@ func TestDaily(t *testing.T) {
 		nextPermutation(td.input)
 		// in place exchange
 		assert.Equal(t, td.input, td.expected)
+	}
+
+	minWindowTestData := []struct {
+		s        string
+		t        string
+		expected string
+	}{
+		{"ADOBECODEBANC", "ABC", "BANC"},
+		{"a", "a", "a"},
+		{"a", "aa", ""},
+	}
+	fmt.Printf("\nmin window substring")
+	for _, td := range minWindowTestData {
+		result := minWindow(td.s, td.t)
+		assert.Equal(t, result, td.expected)
 	}
 
 }
