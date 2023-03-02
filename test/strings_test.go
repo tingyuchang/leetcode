@@ -6,6 +6,25 @@ import (
 	"testing"
 )
 
+func TestReverseVowels(t *testing.T) {
+	testData := []struct {
+		input    string
+		expected string
+	}{
+		{"hello", "holle"},
+		{"leetcode", "leotcede"},
+		{" ", " "},
+		{" le ol ", " lo el "},
+		{".", "."},
+		{"aA", "Aa"},
+	}
+
+	for _, td := range testData {
+		result := Strings.ReverseVowels(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestReverseString(t *testing.T) {
 	testData := []struct {
 		input    []byte
