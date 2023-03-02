@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestIsPowerOfFour(t *testing.T) {
+	testData := []struct {
+		input    int
+		expected bool
+	}{
+		{16, true},
+		{5, false},
+		{1, true},
+	}
+
+	for _, td := range testData {
+		result := Math.IsPowerOfFour(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestCountBits(t *testing.T) {
 	testData := []struct {
 		input    int
