@@ -6,6 +6,37 @@ import (
 	"testing"
 )
 
+func TestCombinationSum(t *testing.T) {
+	testData := []struct {
+		candidates []int
+		target     int
+		expected   [][]int
+	}{
+		{
+			[]int{2, 3, 6, 7},
+			7,
+			[][]int{
+				{2, 2, 3},
+				{7},
+			},
+		},
+		{
+			[]int{2, 3, 5},
+			8,
+			[][]int{
+				{2, 2, 2, 2},
+				{2, 3, 3},
+				{3, 5},
+			},
+		},
+	}
+
+	for _, td := range testData {
+		result := Math.CombinationSum(td.candidates, td.target)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestIsPowerOfFour(t *testing.T) {
 	testData := []struct {
 		input    int
