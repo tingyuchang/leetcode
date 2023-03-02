@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestCompress(t *testing.T) {
+	testData := []struct {
+		input    []byte
+		expected int
+	}{
+		{[]byte{'a', 'a', 'b', 'b', 'c', 'c', 'c'}, 6},
+		{[]byte{'a'}, 1},
+		{[]byte{'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'}, 4},
+		{[]byte{'a', 'a', 'a', 'a', 'b', 'a'}, 4},
+		{[]byte{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'g', 'g', 'g', 'g', 'g', 'g', 'g', 'g', 'g', 'g', 'g', 'a', 'b', 'c'}, 12},
+	}
+	for _, td := range testData {
+		result := Strings.Compress(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestMinWindow(t *testing.T) {
 	testData := []struct {
 		s        string
