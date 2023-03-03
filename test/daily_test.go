@@ -3,24 +3,24 @@ package test
 import (
 	"fmt"
 	"github.com/magiconair/properties/assert"
-	_0230228 "leetcode/0_Daily_Prac/20230228"
-	_0230302 "leetcode/0_Daily_Prac/20230302"
+	_0230303 "leetcode/0_Daily_Prac/20230303"
 	"reflect"
 	"regexp"
 	"testing"
 )
 
-var name = _0230302.Name{}
-var mergeSort = _0230302.MergeSort
-var heapSort = _0230302.HeapSort
-var insertionSort = _0230302.InsertionSort
-var quickSort = _0230302.QuickSort
-var binarySearch = _0230302.BinarySearch
-var binarySearchRotated = _0230302.BinarySearchInRotatedArray
-var maxProduct = _0230302.MaxProduct
-var longestChar = _0230302.LongestCharatersInReplacement
-var minWindow = _0230302.MinWindow
-var nextPermutation = _0230228.NextPermutation
+var name = _0230303.Name{}
+var mergeSort = _0230303.MergeSort
+var heapSort = _0230303.HeapSort
+var insertionSort = _0230303.InsertionSort
+var quickSort = _0230303.QuickSort
+var binarySearch = _0230303.BinarySearch
+var binarySearchRotated = _0230303.BinarySearchInRotatedArray
+var maxProduct = _0230303.MaxProduct
+var longestChar = _0230303.LongestCharatersInReplacement
+var minWindow = _0230303.MinWindow
+var nextPermutation = _0230303.NextPermutation
+var combination = _0230303.Combination
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -158,4 +158,33 @@ func TestDaily(t *testing.T) {
 		assert.Equal(t, result, td.expected)
 	}
 
+	fmt.Printf("\ncombination")
+	combinationTestData := []struct {
+		candidates []int
+		target     int
+		expected   [][]int
+	}{
+		{
+			[]int{2, 3, 6, 7},
+			7,
+			[][]int{
+				{2, 2, 3},
+				{7},
+			},
+		},
+		{
+			[]int{2, 3, 5},
+			8,
+			[][]int{
+				{2, 2, 2, 2},
+				{2, 3, 3},
+				{3, 5},
+			},
+		},
+	}
+
+	for _, td := range combinationTestData {
+		result := combination(td.candidates, td.target)
+		assert.Equal(t, result, td.expected)
+	}
 }
