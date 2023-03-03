@@ -6,6 +6,30 @@ import (
 	"testing"
 )
 
+func TestIndexOfSubString(t *testing.T) {
+	testData := []struct {
+		haystack string
+		needle   string
+		expected int
+	}{
+		{
+			"sadbutsad", "sad", 0,
+		},
+		{
+			"leetcode", "leeto", -1,
+		},
+		{"a", "a", 0},
+		{"abc", "c", 2},
+		{"aaa", "aaaa", -1},
+		{"mississippi", "issip", 4},
+	}
+
+	for _, td := range testData {
+		result := Strings.IndexOfSubString(td.haystack, td.needle)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestReverseVowels(t *testing.T) {
 	testData := []struct {
 		input    string
