@@ -1,5 +1,53 @@
 package Strings
 
+import (
+	"strings"
+)
+
+func RepeatedSubstringPattern(s string) bool {
+	i := 0
+	n := len(s)
+
+	switch {
+	case n == 0:
+		return false
+	case n == 1:
+		return false
+	}
+
+	c0 := s[i]
+
+	for i < n {
+		start := 0
+		next := strings.IndexByte(s[i+1:], c0)
+		if next == -1 {
+			return false
+		}
+		next += i + 1
+		ok := false
+		length := next - start
+
+		for next+length <= n {
+			if s[start:next] != s[next:next+length] {
+				break
+			}
+			start = next
+			next = next + length
+
+			if next == n {
+				ok = true
+			}
+		}
+
+		if ok {
+			return true
+		}
+		i++
+	}
+
+	return false
+}
+
 func WordPattern(pattern string, s string) bool {
 	// ex: a : dog
 	// b: cat
