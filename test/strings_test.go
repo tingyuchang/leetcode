@@ -6,6 +6,27 @@ import (
 	"testing"
 )
 
+func TestRepeatedSubstringPattern(t *testing.T) {
+	testData := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			"abab",
+			true,
+		},
+		{"aba", false},
+		{"abcabcabcabc", true},
+		{"abaabaa", false},
+		{"abaababaab", true},
+	}
+
+	for _, td := range testData {
+		result := Strings.RepeatedSubstringPattern(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestIndexOfSubString(t *testing.T) {
 	testData := []struct {
 		haystack string
