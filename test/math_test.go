@@ -6,6 +6,24 @@ import (
 	"testing"
 )
 
+func TestCountSubarrays(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		minK     int
+		maxK     int
+		expected int64
+	}{
+		{[]int{1, 3, 5, 2, 7, 5}, 1, 5, 2},
+		{[]int{1, 1, 1, 1}, 1, 1, 10},
+		{[]int{4, 4, 4, 3, 4, 5}, 3, 5, 4},
+	}
+
+	for _, td := range testData {
+		result := Math.CountSubarrays(td.nums, td.minK, td.maxK)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestCombinationSum(t *testing.T) {
 	testData := []struct {
 		candidates []int
