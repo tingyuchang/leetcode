@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestIntersect(t *testing.T) {
+	testData := []struct {
+		nums1    []int
+		nums2    []int
+		expected []int
+	}{
+		{[]int{1, 2, 2, 1}, []int{2, 2}, []int{2, 2}},
+		{[]int{4, 9, 5}, []int{9, 4, 9, 8, 4}, []int{4, 9}},
+	}
+
+	for _, td := range testData {
+		result := Math.Intersect(td.nums1, td.nums2)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestIntersection(t *testing.T) {
 	testData := []struct {
 		nums1    []int
