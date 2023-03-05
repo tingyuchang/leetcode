@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestJumpGameIV(t *testing.T) {
+	testData := []struct {
+		input    []int
+		expected int
+	}{
+		{[]int{100, -23, -23, 404, 100, 23, 23, 23, 3, 404}, 3},
+		{[]int{7}, 0},
+		{[]int{7, 6, 9, 6, 9, 6, 9, 7}, 1},
+	}
+
+	for _, td := range testData {
+		result := jumpGame.JumpsIV(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+
+}
+
 func TestJumpGame(t *testing.T) {
 	testData := []struct {
 		input    []int
