@@ -1,5 +1,44 @@
 package jumpGame
 
+func CanJump(nums []int) bool {
+	longest := 0
+	for i, v := range nums {
+		if longest >= i && i+v > longest {
+			longest = i + v
+		}
+
+		if longest > len(nums)-1 {
+			return true
+		}
+	}
+
+	return longest >= len(nums)-1
+	//n := len(nums)
+	//if n == 1 {
+	//	return true
+	//}
+	//
+	//visited := make(map[int]bool)
+	//q := []int{0}
+	//
+	//for len(q) > 0 {
+	//	index := q[0]
+	//	q = q[1:]
+	//	if nums[index]+index >= n-1 {
+	//		return true
+	//	}
+	//	// add possible
+	//	for i := index + 1; i <= index+nums[index]; i++ {
+	//		if !visited[i] {
+	//			visited[i] = true
+	//			q = append(q, i)
+	//		}
+	//	}
+	//}
+	//
+	//return false
+}
+
 func JumpsIV(arr []int) int {
 	n := len(arr)
 	if n == 1 {
