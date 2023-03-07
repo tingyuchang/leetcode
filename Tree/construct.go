@@ -1,5 +1,38 @@
 package Tree
 
+func buildTree2(inorder []int, postorder []int) *TreeNode {
+	cache := make(map[int]int)
+	currentIndex := len(postorder) - 1
+	for i, v := range inorder {
+		cache[v] = i
+	}
+
+	return constructFromInorderAndPostorder(inorder, postorder, 0, len(postorder)-1, &currentIndex, &cache)
+}
+
+func constructFromInorderAndPostorder(inorder, postorder []int, start, end int, currentIndex *int, cache *map[int]int) *TreeNode {
+	if *currentIndex < 0 {
+		return nil
+	}
+
+	// find head from postorder
+	headValue := postorder[*currentIndex]
+	head := &TreeNode{Val: headValue}
+	*currentIndex--
+
+	target := (*cache)[headValue]
+
+	if end-target > 0 {
+		head.Right = constructFromInorderAndPostorder(inorder, postorder, target+1, end, currentIndex, cache)
+	}
+
+	if target-start > 0 {
+		head.Left = constructFromInorderAndPostorder(inorder, postorder, start, target-1, currentIndex, cache)
+	}
+
+	return head
+}
+
 func buildTree(preorder []int, inorder []int) *TreeNode {
 	cache := make(map[int]int)
 	currentIndex := 0
@@ -15,7 +48,7 @@ func constructFromPreorderAndInorder(preorder, inorder []int, start, end int, cu
 		return nil
 	}
 
-	// find gead from preorder
+	// find head from preorder
 	headValue := preorder[*currentIndex]
 	head := &TreeNode{Val: headValue}
 	*currentIndex++
