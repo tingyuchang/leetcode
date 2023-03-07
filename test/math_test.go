@@ -23,7 +23,7 @@ func TestTopKFrequent(t *testing.T) {
 	}
 
 	for _, td := range testData {
-		result := Math.TopKFrequent(td.nums, td.k)
+		result := Math.TopKFrequentV2(td.nums, td.k)
 		assert.Equal(t, result, td.expected)
 	}
 }

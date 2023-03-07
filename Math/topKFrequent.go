@@ -2,6 +2,29 @@ package Math
 
 import "fmt"
 
+func TopKFrequentV2(nums []int, k int) []int {
+	cache := make(map[int]int)
+	freq := make([][]int, 1)
+	freq[0] = []int{}
+
+	for _, v := range nums {
+		cache[v]++
+		freq = append(freq, []int{})
+	}
+	for k, v := range cache {
+		freq[v] = append(freq[v], k)
+	}
+
+	var res []int
+	for i := len(freq) - 1; i >= 0; i-- {
+		res = append(res, freq[i]...)
+		if len(res) == k {
+			break
+		}
+	}
+	return res
+}
+
 func TopKFrequent(nums []int, k int) []int {
 	cache := make(map[int]int)
 	res := make([]int, 0)
