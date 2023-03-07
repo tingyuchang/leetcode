@@ -6,6 +6,28 @@ import (
 	"testing"
 )
 
+func TestTopKFrequent(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		k        int
+		expected []int
+	}{
+		{[]int{1, 1, 1, 2, 2, 3}, 2, []int{1, 2}},
+		{[]int{1}, 1, []int{1}},
+		{[]int{3, 0, 1, 0}, 1, []int{0}},
+		{[]int{1, 1, 1, 2, 2, 2, 3, 3, 3}, 3, []int{1, 2, 3}},
+		{[]int{5, 3, 1, 1, 1, 3, 73, 1}, 2, []int{3, 1}},
+		{[]int{5, 3, 1, 1, 1, 3, 5, 73, 1}, 3, []int{3, 5, 1}},
+		{[]int{4, 1, -1, 2, -1, 2, 3}, 2, []int{-1, 2}},
+		{[]int{5, 2, 5, 3, 5, 3, 1, 1, 3}, 2, []int{3, 5}},
+	}
+
+	for _, td := range testData {
+		result := Math.TopKFrequent(td.nums, td.k)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestMinimumTime(t *testing.T) {
 	testData := []struct {
 		time       []int
