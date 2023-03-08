@@ -1,5 +1,20 @@
 package LinkedList
 
+func mergeKLists(lists []*ListNode) *ListNode {
+	k := len(lists)
+
+	var tmpNode *ListNode
+	if k >= 1 {
+		tmpNode = lists[0]
+	}
+	for k >= 2 {
+		tmpNode = mergeTwoLists(tmpNode, lists[k-1])
+		k--
+	}
+
+	return tmpNode
+}
+
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	if list1 == nil && list2 == nil {
 		return nil
