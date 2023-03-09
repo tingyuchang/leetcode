@@ -8,6 +8,51 @@ package LinkedList
  * }
  */
 
+func detectCycle(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return nil
+	}
+
+	slow, fast := head, head.Next
+
+	for slow != nil && fast != nil {
+		if slow == fast {
+			break
+		}
+		slow = slow.Next
+		fast = fast.Next
+
+		if fast != nil {
+			fast = fast.Next
+		} else {
+			return nil
+		}
+	}
+
+	if slow == nil || fast == nil {
+		return nil
+	}
+
+	temp := make(map[*ListNode]int)
+	temp[slow] = 0
+	count := 1
+	slow = slow.Next
+
+	for slow != fast {
+		temp[slow] = count
+		count++
+		slow = slow.Next
+	}
+
+	slow = head
+	for {
+		if _, ok := temp[slow]; ok {
+			return slow
+		}
+		slow = slow.Next
+	}
+}
+
 func HasCycle(head *ListNode) bool {
 	if head == nil || head.Next == nil {
 		return false
