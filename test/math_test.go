@@ -6,6 +6,40 @@ import (
 	"testing"
 )
 
+func TestInsertIntervals(t *testing.T) {
+	testData := []struct {
+		intervals   [][]int
+		newInterval []int
+		expected    [][]int
+	}{
+		{
+			[][]int{
+				{1, 3},
+				{6, 9},
+			},
+			[]int{2, 5},
+			[][]int{
+				{1, 5},
+				{6, 9},
+			},
+		},
+		{[][]int{{2, 4}, {5, 7}, {8, 10}, {11, 13}}, []int{3, 6}, [][]int{{2, 7}, {8, 10}, {11, 13}}},
+		{[][]int{}, []int{5, 7}, [][]int{{5, 7}}},
+		{[][]int{{1, 5}}, []int{0, 0}, [][]int{{0, 0}, {1, 5}}},
+		{[][]int{{1, 5}}, []int{6, 8}, [][]int{{1, 5}, {6, 8}}},
+		{[][]int{{1, 5}, {6, 8}}, []int{5, 6}, [][]int{{1, 8}}},
+		{[][]int{{1, 2}, {3, 4}, {6, 8}}, []int{2, 3}, [][]int{{1, 4}, {6, 8}}},
+		{[][]int{{1, 5}}, []int{2, 3}, [][]int{{1, 5}}},
+		{[][]int{{1, 5}}, []int{2, 7}, [][]int{{1, 7}}},
+		{[][]int{{1, 2}, {3, 5}, {9, 10}}, []int{6, 7}, [][]int{{1, 2}, {3, 5}, {6, 7}, {9, 10}}},
+	}
+
+	for _, td := range testData {
+		result := Math.InsertInterval(td.intervals, td.newInterval)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestTopKFrequent(t *testing.T) {
 	testData := []struct {
 		nums     []int
