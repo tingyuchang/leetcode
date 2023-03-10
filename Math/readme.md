@@ -1,3 +1,27 @@
+# 70. Climbing Stairs
+You are climbing a staircase. It takes n steps to reach the top.
+
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+Example 1:
+```
+Input: n = 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+```
+Example 2:
+```
+Input: n = 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+```
+Constraints:
+* 1 <= n <= 45
 # 57. Insert Interval
 
 You are given an array of non-overlapping intervals intervals where intervals[i] = [starti, endi] represent the start and the end of the ith interval and intervals is sorted in ascending order by starti. You are also given an interval newInterval = [start, end] that represents the start and end of another interval.
@@ -492,7 +516,7 @@ Explanation: The ranges are:
 [2,4] --> "2->4"
 [6,6] --> "6"
 [8,9] --> "8->9"
-``
+```
 
 Constraints:
 
@@ -681,11 +705,13 @@ Output: []
 Explanation: The only possible triplet does not sum up to 0.
 ```
 Example 3:
+
 ```
 Input: nums = [0,0,0]
 Output: [[0,0,0]]
 Explanation: The only possible triplet sums up to 0.
 ```
+
 # 746. Min Cost Climbing Stairs
 
 You are given an integer array cost where cost[i] is the cost of ith step on a staircase. Once you pay the cost, you can either climb one or two steps.
