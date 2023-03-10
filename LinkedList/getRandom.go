@@ -1,6 +1,9 @@
 package LinkedList
 
-import "math/rand"
+import (
+	"math/rand"
+	"time"
+)
 
 type Solution struct {
 	lists []*ListNode
@@ -17,7 +20,8 @@ func Constructor(head *ListNode) Solution {
 }
 
 func (this *Solution) GetRandom() int {
-	return this.lists[rand.Intn(this.Len())-1].Val
+	rand.Seed(time.Now().UnixNano())
+	return this.lists[rand.Intn(this.Len())].Val
 }
 
 func (this *Solution) Len() int {
