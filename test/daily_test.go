@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/magiconair/properties/assert"
 	_0230311 "leetcode/0_Daily_Prac/20230311"
+	_0230312 "leetcode/0_Daily_Prac/20230312"
 	"reflect"
 	"regexp"
 	"testing"
@@ -21,6 +22,7 @@ var longestChar = _0230311.LongestCharatersInReplacement
 var minWindow = _0230311.MinWindow
 var nextPermutation = _0230311.NextPermutation
 var combination = _0230311.Combination
+var coinChange = _0230312.CoinChange
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -107,6 +109,22 @@ func TestDaily(t *testing.T) {
 	fmt.Printf("\nMax Prodcut")
 	for _, td := range maxProductTestData {
 		result := maxProduct(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+
+	coinChangeTestData := []struct {
+		coins    []int
+		amount   int
+		expected int
+	}{
+		{[]int{1, 2, 5}, 11, 3},
+		{[]int{2}, 3, -1},
+		{[]int{1}, 0, 0},
+	}
+
+	fmt.Printf("\nCoin Change")
+	for _, td := range coinChangeTestData {
+		result := coinChange(td.coins, td.amount)
 		assert.Equal(t, result, td.expected)
 	}
 
