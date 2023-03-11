@@ -1,4 +1,4 @@
-package Math
+package DP
 
 func MinCostClimbingStairs(cost []int) int {
 	cost = append(cost, 0)

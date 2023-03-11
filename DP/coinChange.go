@@ -1,4 +1,4 @@
-package Math
+package DP
 
 import (
 	"math"
@@ -8,6 +8,14 @@ import (
 func CoinChange(coins []int, amount int) int {
 	dp := make([]int, amount+1)
 	dp[0] = 0
+
+	min := func(a, b int) int {
+		if a > b {
+			return b
+		}
+
+		return a
+	}
 
 	sort.Ints(coins)
 

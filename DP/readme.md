@@ -1,0 +1,123 @@
+# 300. Longest Increasing Subsequence
+
+Given an integer array nums, return the length of the longest strictly increasing
+subsequence
+.
+Example 1:
+```
+Input: nums = [10,9,2,5,3,7,101,18]
+Output: 4
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+```
+Example 2:
+```
+Input: nums = [0,1,0,3,2,3]
+Output: 4
+```
+Example 3:
+```
+Input: nums = [7,7,7,7,7,7,7]
+Output: 1
+```
+
+Constraints:
+
+* 1 <= nums.length <= 2500
+* -104 <= nums[i] <= 104
+
+Follow up: Can you come up with an algorithm that runs in O(n log(n)) time complexity?
+
+# 322. Coin Change
+You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.
+
+Return the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
+
+You may assume that you have an infinite number of each kind of coin.
+
+
+Example 1:
+```
+Input: coins = [1,2,5], amount = 11
+Output: 3
+Explanation: 11 = 5 + 5 + 1
+```
+Example 2:
+```
+Input: coins = [2], amount = 3
+Output: -1
+```
+Example 3:
+```
+Input: coins = [1], amount = 0
+Output: 0
+```
+
+Constraints:
+
+* 1 <= coins.length <= 12
+* 1 <= coins[i] <= 231 - 1
+* 0 <= amount <= 104
+
+# 70. Climbing Stairs
+You are climbing a staircase. It takes n steps to reach the top.
+
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+Example 1:
+```
+Input: n = 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+```
+Example 2:
+```
+Input: n = 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+```
+Constraints:
+* 1 <= n <= 45
+# 502. IPO
+
+Suppose LeetCode will start its IPO soon. In order to sell a good price of its shares to Venture Capital, LeetCode would like to work on some projects to increase its capital before the IPO. Since it has limited resources, it can only finish at most k distinct projects before the IPO. Help LeetCode design the best way to maximize its total capital after finishing at most k distinct projects.
+
+You are given n projects where the ith project has a pure profit profits[i] and a minimum capital of capital[i] is needed to start it.
+
+Initially, you have w capital. When you finish a project, you will obtain its pure profit and the profit will be added to your total capital.
+
+Pick a list of at most k distinct projects from given projects to maximize your final capital, and return the final maximized capital.
+
+The answer is guaranteed to fit in a 32-bit signed integer.
+
+
+
+Example 1:
+```
+Input: k = 2, w = 0, profits = [1,2,3], capital = [0,1,1]
+Output: 4
+Explanation: Since your initial capital is 0, you can only start the project indexed 0.
+After finishing it you will obtain profit 1 and your capital becomes 1.
+With capital 1, you can either start the project indexed 1 or the project indexed 2.
+Since you can choose at most 2 projects, you need to finish the project indexed 2 to get the maximum capital.
+Therefore, output the final maximized capital, which is 0 + 1 + 3 = 4.
+```
+Example 2:
+```
+Input: k = 3, w = 0, profits = [1,2,3], capital = [0,1,2]
+Output: 6
+```
+
+Constraints:
+
+* 1 <= k <= 105
+* 0 <= w <= 109
+* n == profits.length
+* n == capital.length
+* 1 <= n <= 105
+* 0 <= profits[i] <= 104
+* 0 <= capital[i] <= 109
