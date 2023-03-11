@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestLongestCommonSubsequence(t *testing.T) {
+	testData := []struct {
+		text1    string
+		text2    string
+		expected int
+	}{
+		{"abcde", "ace", 3},
+		{"abc", "abc", 3},
+		{"abc", "def", 0},
+	}
+
+	for _, td := range testData {
+		result := DP.LongestCommonSubsequence(td.text1, td.text2)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestCoinChange(t *testing.T) {
 	testData := []struct {
 		coins    []int
