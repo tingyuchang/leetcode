@@ -2,26 +2,10 @@ package test
 
 import (
 	"github.com/magiconair/properties/assert"
+	"leetcode/DP"
 	"leetcode/Math"
 	"testing"
 )
-
-func TestCoinChange(t *testing.T) {
-	testData := []struct {
-		coins    []int
-		amount   int
-		expected int
-	}{
-		{[]int{1, 2, 5}, 11, 3},
-		{[]int{2}, 3, -1},
-		{[]int{1}, 0, 0},
-	}
-
-	for _, td := range testData {
-		result := Math.CoinChange(td.coins, td.amount)
-		assert.Equal(t, result, td.expected)
-	}
-}
 
 func TestInsertIntervals(t *testing.T) {
 	testData := []struct {
@@ -437,7 +421,7 @@ func TestMinCostClimbingStairs(t *testing.T) {
 	}
 
 	for _, td := range testData {
-		result := Math.MinCostClimbingStairs(td.input)
+		result := DP.MinCostClimbingStairs(td.input)
 		assert.Equal(t, result, td.expected)
 	}
 }
