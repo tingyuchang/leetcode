@@ -2,7 +2,6 @@ package Math
 
 import (
 	"fmt"
-	"leetcode/DP"
 )
 
 func MaxProduct(nums []int) int {
@@ -15,7 +14,7 @@ func MaxProduct(nums []int) int {
 			minVal, maxVal = maxVal, minVal
 		}
 
-		minVal = DP.min(minVal*v, v)
+		minVal = min(minVal*v, v)
 		maxVal = max(maxVal*v, v)
 
 		if maxProduct < maxVal {

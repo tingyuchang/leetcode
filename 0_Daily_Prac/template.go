@@ -24,20 +24,6 @@ func maxHeap(nums []int, n int) {
 }
 
 func InsertionSort(nums []int) []int {
-	for i := 1; i < len(nums); i++ {
-		key := nums[i]
-		for j := i - 1; j >= 0; j-- {
-			if nums[j] > key {
-				nums[j+1] = nums[j]
-				if j == 0 {
-					nums[0] = key
-				}
-			} else {
-				nums[j+1] = key
-				break
-			}
-		}
-	}
 	return nums
 }
 
