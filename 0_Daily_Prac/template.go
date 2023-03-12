@@ -53,6 +53,10 @@ func CoinChange(coins []int, amount int) int {
 	return -1
 }
 
+func LongestCommonSubsequence(text1 string, text2 string) int {
+	return 0
+}
+
 func LongestCharatersInReplacement(s string, k int) int {
 
 	return -1

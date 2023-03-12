@@ -15,6 +15,9 @@ func TestLongestCommonSubsequence(t *testing.T) {
 		{"abcde", "ace", 3},
 		{"abc", "abc", 3},
 		{"abc", "def", 0},
+		{"ezupkr", "ubmrapg", 2},
+		{"bsbininm", "jmjkbkjkv", 1},
+		{"oxcpqrsvwf", "shmtulqrypy", 2},
 	}
 
 	for _, td := range testData {

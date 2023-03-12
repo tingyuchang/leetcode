@@ -3,6 +3,7 @@ package test
 import (
 	"fmt"
 	"github.com/magiconair/properties/assert"
+	__Daily_Prac "leetcode/0_Daily_Prac"
 	_0230312 "leetcode/0_Daily_Prac/20230312"
 	"reflect"
 	"regexp"
@@ -22,6 +23,7 @@ var minWindow = _0230312.MinWindow
 var nextPermutation = _0230312.NextPermutation
 var combination = _0230312.Combination
 var coinChange = _0230312.CoinChange
+var longestCommonSubsequence = __Daily_Prac.LongestCommonSubsequence
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -124,6 +126,24 @@ func TestDaily(t *testing.T) {
 	fmt.Printf("\nCoin Change")
 	for _, td := range coinChangeTestData {
 		result := coinChange(td.coins, td.amount)
+		assert.Equal(t, result, td.expected)
+	}
+
+	longestCommonSubsequenceTestData := []struct {
+		text1    string
+		text2    string
+		expected int
+	}{
+		{"abcde", "ace", 3},
+		{"abc", "abc", 3},
+		{"abc", "def", 0},
+		{"ezupkr", "ubmrapg", 2},
+		{"bsbininm", "jmjkbkjkv", 1},
+		{"oxcpqrsvwf", "shmtulqrypy", 2},
+	}
+
+	for _, td := range longestCommonSubsequenceTestData {
+		result := longestCommonSubsequence(td.text1, td.text2)
 		assert.Equal(t, result, td.expected)
 	}
 
