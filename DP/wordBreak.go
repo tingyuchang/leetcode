@@ -69,6 +69,7 @@ func WordBreakBFS(s string, wordDict []string) bool {
 		queue = queue[1:len(queue)]
 
 		if visited[start] {
+			fmt.Println(start)
 			continue
 		}
 
