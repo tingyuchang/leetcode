@@ -6,6 +6,26 @@ import (
 	"testing"
 )
 
+func TestWordBreak(t *testing.T) {
+	testData := []struct {
+		s        string
+		wordDict []string
+		excepted bool
+	}{
+		{"leetcode", []string{"leet", "code"}, true},
+		{"applepenapple", []string{"apple", "pen"}, true},
+		{"catsandog", []string{"cats", "dog", "sand", "and", "cat"}, false},
+		{"aaaaaaa", []string{"aaaa", "aaa"}, true},
+		{"catcats", []string{"cat", "cats"}, true},
+		{"catsand", []string{"cat", "cats", "and"}, true},
+	}
+
+	for _, td := range testData {
+		result := DP.WordBreak(td.s, td.wordDict)
+		assert.Equal(t, result, td.excepted)
+	}
+}
+
 func TestCombinationSum4(t *testing.T) {
 	testData := []struct {
 		nums     []int
