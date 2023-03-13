@@ -1,6 +1,36 @@
 package DP
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
+
+func WordBreakII(s string, wordDict []string) []string {
+	res := make([]string, 0)
+	cache := make(map[string]struct{})
+	for _, v := range wordDict {
+		cache[v] = struct{}{}
+	}
+	currentsString := make([]string, 0)
+	wordBreakII(s, cache, 0, &res, &currentsString)
+	return res
+}
+
+func wordBreakII(s string, cache map[string]struct{}, start int, res *[]string, currentString *[]string) {
+	if start == len(s) {
+		*res = append(*res, strings.Join(*currentString, " "))
+		return
+	}
+
+	for end := start + 1; end <= len(s); end++ {
+		if _, ok := cache[s[start:end]]; ok {
+			*currentString = append(*currentString, s[start:end])
+			wordBreakII(s, cache, end, res, currentString)
+			*currentString = (*currentString)[:len(*currentString)-1]
+		}
+	}
+
+}
 
 // Dp
 func WordBreak(s string, wordDict []string) bool {

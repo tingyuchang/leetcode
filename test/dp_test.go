@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestWordBreakII(t *testing.T) {
+	testData := []struct {
+		s        string
+		wordDict []string
+		excepted []string
+	}{
+		{"catsanddog", []string{"cats", "dog", "sand", "and", "cat"}, []string{"cats and dog", "cat sand dog"}},
+		{"catsandog", []string{"cats", "dog", "sand", "and", "cat"}, []string{}},
+	}
+
+	for _, td := range testData {
+		result := DP.WordBreakII(td.s, td.wordDict)
+		assert.Equal(t, result, td.excepted)
+	}
+}
+
 func TestWordBreak(t *testing.T) {
 	testData := []struct {
 		s        string
