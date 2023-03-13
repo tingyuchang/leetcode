@@ -6,6 +6,30 @@ import (
 	"testing"
 )
 
+func TestCombinationSum4(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		target   int
+		expected int
+	}{
+		{
+			[]int{1, 2, 3},
+			4,
+			7,
+		},
+		{
+			[]int{9},
+			3,
+			0,
+		},
+	}
+
+	for _, td := range testData {
+		result := DP.CombinationSum4(td.nums, td.target)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestLongestCommonSubsequence(t *testing.T) {
 	testData := []struct {
 		text1    string

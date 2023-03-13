@@ -337,6 +337,7 @@ func combination(nums []int, target, currentIndex, currentSum int, res *[][]int,
 		temp := make([]int, len(*currentRes))
 		copy(temp[:], (*currentRes)[:])
 		*res = append(*res, temp)
+		return
 	}
 
 	for i := currentIndex; i < len(nums); i++ {
