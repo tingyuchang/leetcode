@@ -28,7 +28,7 @@ func InsertionSort(nums []int) []int {
 }
 
 func QuickSort(nums []int, p, r int) []int {
-	return nil
+	return nums
 }
 
 func partition(nums []int, p, r int) int {
