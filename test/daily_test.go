@@ -3,26 +3,26 @@ package test
 import (
 	"fmt"
 	"github.com/magiconair/properties/assert"
-	_0230315 "leetcode/0_Daily_Prac/20230315"
+	_0230316 "leetcode/0_Daily_Prac/20230316"
 	"reflect"
 	"regexp"
 	"testing"
 )
 
-var name = _0230315.Name{}
-var mergeSort = _0230315.MergeSort
-var heapSort = _0230315.HeapSort
-var insertionSort = _0230315.InsertionSort
-var quickSort = _0230315.QuickSort
-var binarySearch = _0230315.BinarySearch
-var binarySearchRotated = _0230315.BinarySearchInRotatedArray
-var maxProduct = _0230315.MaxProduct
-var longestChar = _0230315.LongestCharatersInReplacement
-var minWindow = _0230315.MinWindow
-var nextPermutation = _0230315.NextPermutation
-var combination = _0230315.Combination
-var coinChange = _0230315.CoinChange
-var longestCommonSubsequence = _0230315.LongestCommonSubsequence
+var name = _0230316.Name{}
+var mergeSort = _0230316.MergeSort
+var heapSort = _0230316.HeapSort
+var insertionSort = _0230316.InsertionSort
+var quickSort = _0230316.QuickSort
+var binarySearch = _0230316.BinarySearch
+var binarySearchRotated = _0230316.BinarySearchInRotatedArray
+var maxProduct = _0230316.MaxProduct
+var longestChar = _0230316.LongestCharatersInReplacement
+var minWindow = _0230316.MinWindow
+var nextPermutation = _0230316.NextPermutation
+var combination = _0230316.Combination
+var coinChange = _0230316.CoinChange
+var longestCommonSubsequence = _0230316.LongestCommonSubsequence
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -141,6 +141,7 @@ func TestDaily(t *testing.T) {
 		{"oxcpqrsvwf", "shmtulqrypy", 2},
 	}
 
+	fmt.Printf("\nlongest Common Subsequence")
 	for _, td := range longestCommonSubsequenceTestData {
 		result := longestCommonSubsequence(td.text1, td.text2)
 		assert.Equal(t, result, td.expected)
