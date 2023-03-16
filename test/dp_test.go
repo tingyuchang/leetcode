@@ -6,6 +6,36 @@ import (
 	"testing"
 )
 
+func TestCombinationSumII(t *testing.T) {
+	testData := []struct {
+		candidates []int
+		target     int
+		expected   [][]int
+	}{
+		{
+			[]int{10, 1, 2, 7, 6, 1, 5},
+			8,
+			[][]int{{1, 1, 6},
+				{1, 2, 5},
+				{1, 7},
+				{2, 6}},
+		},
+		{
+			[]int{2, 5, 2, 1, 2},
+			5,
+			[][]int{
+				{1, 2, 2},
+				{5},
+			},
+		},
+	}
+
+	for _, td := range testData {
+		result := DP.CombinationSum2(td.candidates, td.target)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestWordBreakII(t *testing.T) {
 	testData := []struct {
 		s        string
