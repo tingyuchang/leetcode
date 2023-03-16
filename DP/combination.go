@@ -4,6 +4,33 @@ import (
 	"sort"
 )
 
+func CombinationSum3(k int, n int) [][]int {
+	res := make([][]int, 0)
+	currentRes := make([]int, 0)
+	combinationSum3(k, n, 0, 1, &res, &currentRes)
+	return res
+}
+
+func combinationSum3(k, n, currentSum, currentIndex int, res *[][]int, currentRes *[]int) {
+	if currentSum > n {
+		return
+	}
+
+	if currentSum == n && k == 0 {
+		temp := make([]int, len(*currentRes))
+		copy(temp[:], (*currentRes)[:])
+		*res = append(*res, temp)
+	}
+
+	for i := currentIndex; i <= 9; i++ {
+		currentSum += i
+		*currentRes = append(*currentRes, i)
+		combinationSum3(k-1, n, currentSum, i+1, res, currentRes)
+		currentSum -= i
+		*currentRes = (*currentRes)[:len(*currentRes)-1]
+	}
+}
+
 func CombinationSum2(candidates []int, target int) [][]int {
 	sort.Ints(candidates)
 	res := make([][]int, 0)
