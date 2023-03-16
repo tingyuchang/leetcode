@@ -4,6 +4,7 @@ type Name struct {
 }
 
 func MergeSort(nums []int) []int {
+
 	return nil
 }
 
@@ -13,10 +14,12 @@ func merge(a, b []int) []int {
 }
 
 func HeapSort(nums []int) []int {
+
 	return nil
 }
 
 func buildHeap(nums []int) {
+
 }
 
 func maxHeap(nums []int, n int) {
@@ -24,14 +27,17 @@ func maxHeap(nums []int, n int) {
 }
 
 func InsertionSort(nums []int) []int {
+
 	return nums
 }
 
 func QuickSort(nums []int, p, r int) []int {
+
 	return nums
 }
 
 func partition(nums []int, p, r int) int {
+
 	return 0
 }
 
@@ -41,6 +47,7 @@ func BinarySearch(nums []int, target int) int {
 }
 
 func BinarySearchInRotatedArray(nums []int, target int) int {
+
 	return -1
 }
 
@@ -50,10 +57,12 @@ func MaxProduct(nums []int) int {
 }
 
 func CoinChange(coins []int, amount int) int {
+
 	return -1
 }
 
 func LongestCommonSubsequence(text1 string, text2 string) int {
+
 	return 0
 }
 
@@ -72,6 +81,7 @@ func NextPermutation(nums []int) {
 }
 
 func Combination(nums []int, target int) [][]int {
+
 	return nil
 }
 
