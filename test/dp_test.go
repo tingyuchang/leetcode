@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestCombination3(t *testing.T) {
+	testData := []struct {
+		k        int
+		n        int
+		expected [][]int
+	}{
+		{3, 7, [][]int{{1, 2, 4}}},
+		{3, 9, [][]int{{1, 2, 6}, {1, 3, 5}, {2, 3, 4}}},
+		{4, 1, [][]int{}},
+	}
+
+	for _, td := range testData {
+		result := DP.CombinationSum3(td.k, td.n)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestCombinationSumII(t *testing.T) {
 	testData := []struct {
 		candidates []int
