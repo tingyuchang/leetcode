@@ -6,6 +6,21 @@ import (
 	"testing"
 )
 
+func TestRob(t *testing.T) {
+	testData := []struct {
+		input    []int
+		expected int
+	}{
+		{[]int{1, 2, 3, 1}, 4},
+		{[]int{2, 7, 9, 3, 1}, 12},
+	}
+
+	for _, td := range testData {
+		result := DP.Rob(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestCombination3(t *testing.T) {
 	testData := []struct {
 		k        int
