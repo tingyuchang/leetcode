@@ -10,37 +10,37 @@ func Constructor() Trie {
 }
 
 func (this *Trie) Insert(word string) {
-	curr := this
+	current := this
 	for _, ch := range word {
 		idx := ch - 'a'
-		if curr.children[idx] == nil {
-			curr.children[idx] = &Trie{}
+		if current.children[idx] == nil {
+			current.children[idx] = &Trie{}
 		}
-		curr = curr.children[idx]
+		current = current.children[idx]
 	}
-	curr.isEnd = true
+	current.isEnd = true
 }
 
 func (this *Trie) Search(word string) bool {
-	curr := this
+	current := this
 	for _, ch := range word {
 		idx := ch - 'a'
-		if curr.children[idx] == nil {
+		if current.children[idx] == nil {
 			return false
 		}
-		curr = curr.children[idx]
+		current = current.children[idx]
 	}
-	return curr.isEnd
+	return current.isEnd
 }
 
 func (this *Trie) StartsWith(prefix string) bool {
-	curr := this
+	current := this
 	for _, ch := range prefix {
 		idx := ch - 'a'
-		if curr.children[idx] == nil {
+		if current.children[idx] == nil {
 			return false
 		}
-		curr = curr.children[idx]
+		current = current.children[idx]
 	}
 	return true
 }
