@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestCanPlaceFlowers(t *testing.T) {
+	testData := []struct {
+		flowerbed []int
+		n         int
+		expected  bool
+	}{
+		{[]int{1, 0, 0, 0, 1}, 1, true},
+		{[]int{1, 0, 0, 0, 1}, 2, false},
+		{[]int{0, 0, 1, 0, 0}, 1, true},
+	}
+
+	for _, td := range testData {
+		result := greedy.CanPlaceFlowers(td.flowerbed, td.n)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestEraseOverlapIntervals(t *testing.T) {
 	testData := []struct {
 		intervals [][]int
