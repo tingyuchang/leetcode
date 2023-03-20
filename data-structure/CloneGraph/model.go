@@ -13,7 +13,7 @@ type Node struct {
 	Neighbors []*Node
 }
 
-func cloneGraph(node *Node) *Node {\
+func cloneGraph(node *Node) *Node {
 	if node == nil {
 		return nil
 	}
