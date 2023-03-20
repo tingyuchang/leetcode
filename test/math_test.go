@@ -7,6 +7,37 @@ import (
 	"testing"
 )
 
+func TestCanFinish(t *testing.T) {
+	testData := []struct {
+		numCourses    int
+		prerequisites [][]int
+		expected      bool
+	}{
+		{2, [][]int{{1, 0}}, true},
+		{2, [][]int{{1, 0}, {0, 1}}, false},
+		{3, [][]int{{1, 0}, {1, 2}, {0, 1}}, false},
+		{5, [][]int{{1, 3}, {2, 1}, {3, 1}}, false},
+		{5, [][]int{{1, 4}, {2, 4}, {3, 1}, {3, 2}}, true},
+		{6, [][]int{{1, 4}, {2, 4}, {3, 1}, {3, 2}, {4, 5}}, true},
+		{6, [][]int{{1, 4}, {2, 4}, {3, 5}, {4, 1}}, false},
+		{7, [][]int{
+			{1, 0},
+			{0, 3},
+			{0, 2},
+			{3, 2},
+			{2, 5},
+			{4, 5},
+			{5, 6},
+			{2, 4},
+		}, true},
+	}
+
+	for _, td := range testData {
+		result := Math.CanFinish(td.numCourses, td.prerequisites)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestInsertIntervals(t *testing.T) {
 	testData := []struct {
 		intervals   [][]int
