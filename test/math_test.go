@@ -7,6 +7,21 @@ import (
 	"testing"
 )
 
+func TestZeroFilledSubarray(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		expected int64
+	}{
+		{[]int{1, 3, 0, 0, 2, 0, 0, 4}, 6},
+		{[]int{0, 0, 0, 2, 0, 0}, 9},
+		{[]int{1, 2, 3}, 0},
+	}
+	for _, td := range testData {
+		result := Math.ZeroFilledSubarray(td.nums)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestCanFinish(t *testing.T) {
 	testData := []struct {
 		numCourses    int
