@@ -75,6 +75,10 @@ func (this *Codec) Deserialize(data string) *TreeNode {
 		node := queue[0]
 		queue = queue[1:]
 
+		if i >= len(vals) {
+			break
+		}
+
 		if vals[i] != "null" {
 			value, _ := strconv.Atoi(vals[i])
 			node.Left = &TreeNode{
