@@ -14,7 +14,8 @@ func TestIsSubTree(t *testing.T) {
 		expected bool
 	}{
 		{code.Deserialize("3,4,5,1,2"), code.Deserialize("4,1,2"), true},
-		{code.Deserialize("3,4,5,1,2,null,null,null,null,0"), code.Deserialize("4,1,2"), true},
+		{code.Deserialize("3,4,5,1,2,null,null,null,null,0"), code.Deserialize("4,1,2"), false},
+		{code.Deserialize("1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,2"), code.Deserialize("1,null,1,null,1,null,1,null,1,null,1,2"), true},
 	}
 
 	for _, td := range testData {

@@ -1,11 +1,12 @@
 package Tree
 
 func IsSubtree(root *TreeNode, subRoot *TreeNode) bool {
+
 	if root == nil && subRoot != nil {
 		return false
 	}
 
-	if IsSubtree(root, subRoot) {
+	if isSameTree(root, subRoot) {
 		return true
 	}
 	if isSameTree(root.Left, subRoot) {
@@ -15,14 +16,8 @@ func IsSubtree(root *TreeNode, subRoot *TreeNode) bool {
 	if isSameTree(root.Right, subRoot) {
 		return true
 	}
-	if IsSubtree(root.Left, subRoot) {
-		return true
-	}
-	if IsSubtree(root.Right, subRoot) {
-		return true
-	}
 
-	return false
+	return IsSubtree(root.Right, subRoot) || IsSubtree(root.Left, subRoot)
 }
 func levelOrderBottom(root *TreeNode) [][]int {
 	queue1 := make([]*TreeNode, 0)
