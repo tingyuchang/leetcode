@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestIsSubTree(t *testing.T) {
+	code := Tree.Codec{}
+	testData := []struct {
+		root     *Tree.TreeNode
+		subRoot  *Tree.TreeNode
+		expected bool
+	}{
+		{code.Deserialize("3,4,5,1,2"), code.Deserialize("4,1,2"), true},
+		{code.Deserialize("3,4,5,1,2,null,null,null,null,0"), code.Deserialize("4,1,2"), true},
+	}
+
+	for _, td := range testData {
+		result := Tree.IsSubtree(td.root, td.subRoot)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestMaxPathSum(t *testing.T) {
 	code := Tree.Codec{}
 	testData := []struct {
