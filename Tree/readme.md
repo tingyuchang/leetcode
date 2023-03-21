@@ -1,3 +1,31 @@
+# 572. Subtree of Another Tree
+Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values of subRoot and false otherwise.
+
+A subtree of a binary tree tree is a tree that consists of a node in tree and all of this node's descendants. The tree tree could also be considered as a subtree of itself.
+
+Example 1:
+
+![](https://assets.leetcode.com/uploads/2021/04/28/subtree1-tree.jpg)
+
+```
+Input: root = [3,4,5,1,2], subRoot = [4,1,2]
+Output: true
+```
+
+Example 2:
+
+![](https://assets.leetcode.com/uploads/2021/04/28/subtree2-tree.jpg)
+```
+Input: root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]
+Output: false
+```
+Constraints:
+
+* The number of nodes in the root tree is in the range [1, 2000].
+* The number of nodes in the subRoot tree is in the range [1, 1000].
+* -104 <= root.val <= 104
+* -104 <= subRoot.val <= 104
+
 # 124. Binary Tree Maximum Path Sum
 A path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence at most once. Note that the path does not need to pass through the root.
 
@@ -26,8 +54,11 @@ Explanation: The optimal path is 15 -> 20 -> 7 with a path sum of 15 + 20 + 7 = 
 
 Constraints:
 
-* The number of nodes in the tree is in the range [1, 3 * 104].
-* -1000 <= Node.val <= 1000
+* The number of nodes in the root tree is in the range [1, 2000].
+* The number of nodes in the subRoot tree is in the range [1, 1000].
+* -104 <= root.val <= 104
+* -104 <= subRoot.val <= 104
+
 
 # 297. Serialize and Deserialize Binary Tree
 Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
