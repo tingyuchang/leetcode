@@ -43,6 +43,15 @@ func (this *Codec) Serialize(root *TreeNode) string {
 		queue = temp
 	}
 
+	// remove unnecessary null
+
+	for i := len(result) - 1; i >= 0; i-- {
+		if result[i] != "null" {
+			break
+		}
+		result = result[:i]
+	}
+
 	return strings.Join(result, ",")
 }
 
