@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestMaxPathSum(t *testing.T) {
+	code := Tree.Codec{}
+	testData := []struct {
+		root     *Tree.TreeNode
+		expected int
+	}{
+		{code.Deserialize("1,2,3"), 6},
+		{code.Deserialize("-10,9,20,null,null,15,7"), 42},
+		{code.Deserialize("-3"), -3},
+	}
+
+	for _, td := range testData {
+		result := Tree.MaxPathSum(td.root)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestSerialize(t *testing.T) {
 
 	node1 := Tree.TreeNode{Val: 1}
