@@ -6,6 +6,34 @@ import (
 	"testing"
 )
 
+func TestLowestCommonAncestor(t *testing.T) {
+	codec := Tree.Codec{}
+	testData := []struct {
+		root     *Tree.TreeNode
+		p        *Tree.TreeNode
+		q        *Tree.TreeNode
+		expected *Tree.TreeNode
+	}{
+		{
+			codec.Deserialize("6,2,8,0,4,7,9,null,null,3,5"),
+			codec.Deserialize("2"),
+			codec.Deserialize("8"),
+			codec.Deserialize("6"),
+		},
+		{
+			codec.Deserialize("6,2,8,0,4,7,9,null,null,3,5"),
+			codec.Deserialize("2"),
+			codec.Deserialize("4"),
+			codec.Deserialize("2"),
+		},
+	}
+
+	for _, td := range testData {
+		result := Tree.LowestCommonAncestor(td.root, td.p, td.q)
+		assert.Equal(t, result.Val, td.expected.Val)
+	}
+}
+
 func TestIsSubTree(t *testing.T) {
 	code := Tree.Codec{}
 	testData := []struct {
