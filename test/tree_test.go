@@ -15,6 +15,34 @@ func TestLowestCommonAncestor(t *testing.T) {
 		expected *Tree.TreeNode
 	}{
 		{
+			codec.Deserialize("3,5,1,6,2,0,8,null,null,7,4"),
+			codec.Deserialize("5"),
+			codec.Deserialize("1"),
+			codec.Deserialize("3"),
+		},
+		{
+			codec.Deserialize("3,5,1,6,2,0,8,null,null,7,4"),
+			codec.Deserialize("5"),
+			codec.Deserialize("4"),
+			codec.Deserialize("5"),
+		},
+	}
+
+	for _, td := range testData {
+		result := Tree.LowestCommonAncestor(td.root, td.p, td.q)
+		assert.Equal(t, result.Val, td.expected.Val)
+	}
+}
+
+func TestLowestCommonAncestorOfBST(t *testing.T) {
+	codec := Tree.Codec{}
+	testData := []struct {
+		root     *Tree.TreeNode
+		p        *Tree.TreeNode
+		q        *Tree.TreeNode
+		expected *Tree.TreeNode
+	}{
+		{
 			codec.Deserialize("6,2,8,0,4,7,9,null,null,3,5"),
 			codec.Deserialize("2"),
 			codec.Deserialize("8"),
@@ -29,7 +57,7 @@ func TestLowestCommonAncestor(t *testing.T) {
 	}
 
 	for _, td := range testData {
-		result := Tree.LowestCommonAncestor(td.root, td.p, td.q)
+		result := Tree.LowestCommonAncestorOfBST(td.root, td.p, td.q)
 		assert.Equal(t, result.Val, td.expected.Val)
 	}
 }
