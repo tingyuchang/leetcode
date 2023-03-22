@@ -3,6 +3,7 @@ package test
 import (
 	"fmt"
 	"github.com/magiconair/properties/assert"
+	__Daily_Prac "leetcode/0_Daily_Prac"
 	_0230322 "leetcode/0_Daily_Prac/20230322"
 	"reflect"
 	"regexp"
@@ -23,6 +24,7 @@ var nextPermutation = _0230322.NextPermutation
 var combination = _0230322.Combination
 var coinChange = _0230322.CoinChange
 var longestCommonSubsequence = _0230322.LongestCommonSubsequence
+var medianFinder = __Daily_Prac.Constructor()
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -224,4 +226,29 @@ func TestDaily(t *testing.T) {
 		result := combination(td.candidates, td.target)
 		assert.Equal(t, result, td.expected)
 	}
+
+	fmt.Printf("\nMedian Finder")
+
+	medianFinder.AddNum(6)
+	assert.Equal(t, medianFinder.FindMedian(), float64(6))
+	medianFinder.AddNum(10)
+	assert.Equal(t, medianFinder.FindMedian(), float64(8))
+	medianFinder.AddNum(2)
+	assert.Equal(t, medianFinder.FindMedian(), float64(6))
+	medianFinder.AddNum(6)
+	assert.Equal(t, medianFinder.FindMedian(), float64(6))
+	medianFinder.AddNum(5)
+	assert.Equal(t, medianFinder.FindMedian(), float64(6))
+	medianFinder.AddNum(0)
+	assert.Equal(t, medianFinder.FindMedian(), 5.5)
+	medianFinder.AddNum(6)
+	assert.Equal(t, medianFinder.FindMedian(), float64(6))
+	medianFinder.AddNum(3)
+	assert.Equal(t, medianFinder.FindMedian(), 5.5)
+	medianFinder.AddNum(1)
+	assert.Equal(t, medianFinder.FindMedian(), float64(5))
+	medianFinder.AddNum(0)
+	assert.Equal(t, medianFinder.FindMedian(), float64(4))
+	medianFinder.AddNum(0)
+	assert.Equal(t, medianFinder.FindMedian(), float64(3))
 }

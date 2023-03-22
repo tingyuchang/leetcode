@@ -3,6 +3,40 @@ package __Daily_Prac
 type Name struct {
 }
 
+type MedianFinder struct {
+	minHeap []int
+	maxHeap []int
+}
+
+func Constructor() MedianFinder {
+	min := make([]int, 0)
+	max := make([]int, 0)
+	return MedianFinder{min, max}
+}
+
+func (mf *MedianFinder) AddNum(n int) {
+
+}
+func (mf *MedianFinder) FindMedian() int {
+	return -1
+}
+
+func (mf *MedianFinder) minHeapUp() {
+
+}
+
+func (mf *MedianFinder) minHeapDown() {
+
+}
+
+func (mf *MedianFinder) maxHeapUp() {
+
+}
+
+func (mf *MedianFinder) maxHeapDown() {
+
+}
+
 func MergeSort(nums []int) []int {
 
 	return nil
