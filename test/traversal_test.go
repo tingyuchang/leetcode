@@ -6,6 +6,39 @@ import (
 	"testing"
 )
 
+func TestMinScore(t *testing.T) {
+	testData := []struct {
+		n        int
+		roads    [][]int
+		expected int
+	}{
+		{4, [][]int{{1, 2, 9}, {2, 3, 6}, {2, 4, 5}, {1, 4, 7}}, 5},
+		{4, [][]int{{1, 2, 2}, {1, 3, 4}, {3, 4, 7}}, 2},
+		{14, [][]int{
+			{2, 9, 2308},
+			{2, 5, 2150},
+			{12, 3, 4944},
+			{13, 5, 5462},
+			{2, 10, 2187},
+			{2, 12, 8132},
+			{2, 13, 3666},
+			{4, 14, 3019},
+			{2, 4, 6759},
+			{2, 14, 9869},
+			{1, 10, 8147},
+			{3, 4, 7971},
+			{9, 13, 8026},
+			{5, 12, 9982},
+			{10, 9, 6459},
+		}, 2150},
+	}
+
+	for _, td := range testData {
+		result := traversal.MinScore(td.n, td.roads)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestPacificAtlantic(t *testing.T) {
 	testData := []struct {
 		input    [][]int
