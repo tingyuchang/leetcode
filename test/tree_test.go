@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestKthSmallest(t *testing.T) {
+	codex := Tree.Codec{}
+	testData := []struct {
+		root     *Tree.TreeNode
+		k        int
+		expected int
+	}{
+		{codex.Deserialize("3,1,4,null,2"), 1, 1},
+		{codex.Deserialize("5,3,6,2,4,null,null,1"), 3, 3},
+	}
+
+	for _, td := range testData {
+		result := Tree.KthSmallest(td.root, td.k)
+		assert.Equal(t, result, td.expected)
+	}
+}
 func TestLowestCommonAncestor(t *testing.T) {
 	codec := Tree.Codec{}
 	testData := []struct {
