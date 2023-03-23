@@ -7,6 +7,21 @@ import (
 	"testing"
 )
 
+func TestLongestConsecutive(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		expected int
+	}{
+		{[]int{100, 4, 200, 3, 2, 1}, 4},
+		{[]int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1}, 9},
+	}
+
+	for _, td := range testData {
+		result := Math.LongestConsecutive(td.nums)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestZeroFilledSubarray(t *testing.T) {
 	testData := []struct {
 		nums     []int
