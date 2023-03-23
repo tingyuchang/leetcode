@@ -6,6 +6,45 @@ import (
 	"testing"
 )
 
+func TestMakeConnected(t *testing.T) {
+	testData := []struct {
+		n           int
+		connections [][]int
+		expected    int
+	}{
+		{
+			4,
+			[][]int{{0, 1}, {0, 2}, {1, 2}},
+			1,
+		},
+		{
+			6,
+			[][]int{{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}},
+			2,
+		},
+		{
+			6,
+			[][]int{{0, 1}, {0, 2}, {4, 5}, {1, 2}, {1, 3}},
+			1,
+		},
+		{
+			6,
+			[][]int{{0, 1}, {0, 2}, {0, 3}, {1, 3}},
+			-1,
+		},
+		{
+			12,
+			[][]int{{1, 5}, {1, 7}, {1, 2}, {1, 4}, {3, 7}, {4, 7}, {3, 5}, {0, 6}, {0, 1}, {0, 4}, {2, 6}, {0, 3}, {0, 2}},
+			4,
+		},
+	}
+
+	for _, td := range testData {
+		result := traversal.MakeConnected(td.n, td.connections)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestMinScore(t *testing.T) {
 	testData := []struct {
 		n        int
