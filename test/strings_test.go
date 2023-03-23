@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestNumDecoding(t *testing.T) {
+	testData := []struct {
+		s        string
+		expected int
+	}{
+		{"12", 2},
+		{"226", 3},
+		{"06", 0},
+	}
+
+	for _, td := range testData {
+		result := Strings.NumDecodings(td.s)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestRepeatedSubstringPattern(t *testing.T) {
 	testData := []struct {
 		input    string
