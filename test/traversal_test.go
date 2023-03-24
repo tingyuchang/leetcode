@@ -6,6 +6,58 @@ import (
 	"testing"
 )
 
+func TestFindWords(t *testing.T) {
+	testData := []struct {
+		board    [][]byte
+		words    []string
+		expected []string
+	}{
+		{
+			[][]byte{
+				{'o', 'a', 'a', 'n'},
+				{'e', 't', 'a', 'e'},
+				{'i', 'h', 'k', 'r'},
+				{'i', 'f', 'l', 'v'},
+			},
+			[]string{"oath", "pea", "eat", "rain"},
+			[]string{"eat", "oath"},
+		},
+		{
+			[][]byte{
+				{'o', 'a', 'b', 'n'},
+				{'o', 't', 'a', 'e'},
+				{'a', 'h', 'k', 'r'},
+				{'a', 'f', 'l', 'v'},
+			},
+			[]string{"oa", "oaa"},
+			[]string{"oa", "oaa"},
+		},
+		{
+			[][]byte{
+				{'a', 'b', 'c'},
+				{'a', 'e', 'd'},
+				{'a', 'f', 'g'},
+			},
+			//[]string{"eaabcdgfa"},
+			[]string{"abcdefg", "gfedcbaaa", "eaabcdgfa", "befa", "dgc", "ade"},
+			[]string{"abcdefg", "befa", "eaabcdgfa", "gfedcbaaa"},
+		},
+		{
+			[][]byte{
+				{'a', 'b'},
+				{'c', 'd'},
+			},
+			[]string{"abcd"},
+			[]string{},
+		},
+	}
+
+	for _, td := range testData {
+		result := traversal.FindWords(td.board, td.words)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestMinReOrder(t *testing.T) {
 	testData := []struct {
 		n          int
