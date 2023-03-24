@@ -6,6 +6,37 @@ import (
 	"testing"
 )
 
+func TestMinReOrder(t *testing.T) {
+	testData := []struct {
+		n          int
+		connection [][]int
+		expected   int
+	}{
+		{6, [][]int{
+			{0, 1},
+			{1, 3},
+			{2, 3},
+			{4, 0},
+			{4, 5},
+		}, 3},
+		{5, [][]int{
+			{1, 0},
+			{1, 2},
+			{3, 2},
+			{3, 4},
+		}, 2},
+		{3, [][]int{
+			{1, 0},
+			{2, 0},
+		}, 0},
+	}
+
+	for _, td := range testData {
+		result := traversal.MinReorder(td.n, td.connection)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestMakeConnected(t *testing.T) {
 	testData := []struct {
 		n           int
