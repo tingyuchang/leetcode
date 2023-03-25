@@ -6,6 +6,40 @@ import (
 	"testing"
 )
 
+func TestCountPairs(t *testing.T) {
+	testData := []struct {
+		n        int
+		edges    [][]int
+		expected int64
+	}{
+		{
+			3,
+			[][]int{
+				{0, 1},
+				{0, 2},
+				{1, 2},
+			},
+			0,
+		},
+		{
+			7,
+			[][]int{
+				{0, 2},
+				{0, 5},
+				{2, 4},
+				{1, 6},
+				{5, 4},
+			},
+			14,
+		},
+	}
+
+	for _, td := range testData {
+		result := traversal.CountPairs(td.n, td.edges)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestFindWords(t *testing.T) {
 	testData := []struct {
 		board    [][]byte
