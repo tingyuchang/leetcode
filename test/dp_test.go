@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestUniquePaths(t *testing.T) {
+	testData := []struct {
+		m        int
+		n        int
+		expected int
+	}{
+		{3, 7, 28},
+		{3, 2, 3},
+	}
+
+	for _, td := range testData {
+		result := DP.UniquePaths(td.m, td.n)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestMaxSubarray(t *testing.T) {
 	testData := []struct {
 		nums     []int
