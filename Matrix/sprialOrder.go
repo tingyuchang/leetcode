@@ -1,5 +1,58 @@
 package Matrix
 
+func GenerateMatrix(n int) [][]int {
+	res := make([][]int, n)
+	for i, _ := range res {
+		res[i] = make([]int, n)
+	}
+
+	sum := n * n
+	i := 0
+	x, y := 0, -1
+
+	layer := 0
+	a, b := n, n-1
+	currentLayer := a
+	currentIndex := 0
+	currentDirection := 0
+
+	directions := [][]int{
+		{0, 1},
+		{1, 0},
+		{0, -1},
+		{-1, 0},
+	}
+
+	for i < sum {
+		x, y = x+directions[currentDirection][0], y+directions[currentDirection][1]
+		res[x][y] = i + 1
+		currentIndex++
+
+		if currentIndex == currentLayer {
+			currentDirection++
+			if currentDirection == len(directions) {
+				currentDirection = 0
+			}
+
+			layer++
+
+			if layer%2 == 1 {
+				currentLayer = b
+				a--
+			} else {
+				currentLayer = a
+				b--
+			}
+
+			currentIndex = 0
+		}
+		i++
+
+	}
+
+	return res
+}
+
 func SpiralOrder(matrix [][]int) []int {
 	sum := len(matrix) * len(matrix[0])
 

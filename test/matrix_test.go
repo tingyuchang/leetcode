@@ -6,6 +6,30 @@ import (
 	"testing"
 )
 
+func TestGenerateMatrix(t *testing.T) {
+	testData := []struct {
+		n        int
+		expected [][]int
+	}{
+		{3, [][]int{
+			{1, 2, 3},
+			{8, 9, 4},
+			{7, 6, 5},
+		}},
+		{
+			1,
+			[][]int{
+				{1},
+			},
+		},
+	}
+
+	for _, td := range testData {
+		result := Matrix.GenerateMatrix(td.n)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestSpiralMatrix(t *testing.T) {
 	testData := []struct {
 		matrix   [][]int
