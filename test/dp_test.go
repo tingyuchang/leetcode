@@ -6,6 +6,34 @@ import (
 	"testing"
 )
 
+func TestMinPathSum(t *testing.T) {
+	testData := []struct {
+		grid     [][]int
+		expected int
+	}{
+		{
+			[][]int{
+				{1, 3, 1},
+				{1, 5, 1},
+				{4, 2, 1},
+			},
+			7,
+		},
+		{
+			[][]int{
+				{1, 2, 3},
+				{4, 5, 6},
+			},
+			12,
+		},
+	}
+
+	for _, td := range testData {
+		result := DP.MinPathSum(td.grid)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestUniquePaths(t *testing.T) {
 	testData := []struct {
 		m        int
