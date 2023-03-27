@@ -6,6 +6,44 @@ import (
 	"testing"
 )
 
+func TestSetZeroes(t *testing.T) {
+	testData := []struct {
+		matrix   [][]int
+		expected [][]int
+	}{
+		{[][]int{
+			{1, 1, 1},
+			{1, 0, 1},
+			{1, 1, 1},
+		},
+			[][]int{
+				{1, 0, 1},
+				{0, 0, 0},
+				{1, 0, 1},
+			},
+		},
+
+		{
+			[][]int{
+				{0, 1, 2, 0},
+				{3, 4, 5, 2},
+				{1, 3, 1, 5},
+			},
+			[][]int{
+				{0, 0, 0, 0},
+				{0, 4, 5, 0},
+				{0, 3, 1, 0},
+			},
+		},
+	}
+
+	for _, td := range testData {
+		Matrix.SetZeroes(td.matrix)
+		assert.Equal(t, td.matrix, td.expected)
+	}
+
+}
+
 func TestGenerateMatrix(t *testing.T) {
 	testData := []struct {
 		n        int
