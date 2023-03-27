@@ -6,6 +6,57 @@ import (
 	"strconv"
 )
 
+func GetPermutation(n int, k int) string {
+	res := ""
+	nums := make([]int, n)
+
+	reverse := func(nums []int, n int) {
+		l := n
+		r := len(nums) - 1
+
+		if r > l {
+			nums[l], nums[r] = nums[r], nums[n]
+			l++
+			r--
+		}
+
+	}
+
+	for i, _ := range nums {
+		nums[i] = i + 1
+	}
+
+	for k > 1 {
+
+		i := len(nums) - 1
+
+		for nums[i-1] >= nums[i] {
+			i--
+			if i == 0 {
+				reverse(nums, 0)
+				break
+			}
+		}
+
+		j := len(nums) - 1
+		for j > i && nums[j] <= nums[i-1] {
+			j--
+		}
+
+		nums[i-1], nums[j] = nums[j], nums[i-1]
+
+		reverse(nums, i)
+		k--
+		fmt.Println(nums)
+	}
+
+	for _, v := range nums {
+		res += strconv.Itoa(v)
+	}
+
+	return res
+}
+
 func permuteUnique(nums []int) [][]int {
 	result := make([][]int, 0)
 	duplicated := make(map[string]int)

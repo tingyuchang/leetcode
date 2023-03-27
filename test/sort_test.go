@@ -6,6 +6,24 @@ import (
 	"testing"
 )
 
+func TestGetPermutation(t *testing.T) {
+	testData := []struct {
+		n        int
+		k        int
+		expected string
+	}{
+		{3, 3, "213"},
+		{4, 9, "2314"},
+		{3, 1, "123"},
+		{5, 37, "24135"},
+	}
+
+	for _, td := range testData {
+		result := Sort.GetPermutation(td.n, td.k)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestNextPermutation(t *testing.T) {
 	testData := []struct {
 		input    []int
