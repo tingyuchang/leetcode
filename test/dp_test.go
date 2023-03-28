@@ -6,6 +6,24 @@ import (
 	"testing"
 )
 
+func TestCombination(t *testing.T) {
+	testData := []struct {
+		n        int
+		k        int
+		expected int
+	}{
+		{4, 2, 6},
+		{1, 1, 1},
+	}
+
+	for _, td := range testData {
+
+		result := DP.Combination(td.n, td.k)
+		assert.Equal(t, len(result), td.expected)
+	}
+
+}
+
 func TestMincostTickets(t *testing.T) {
 	testData := []struct {
 		days     []int

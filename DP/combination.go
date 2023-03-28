@@ -79,3 +79,31 @@ func CombinationSum4(nums []int, target int) int {
 
 	return dp[target]
 }
+
+func Combination(n, k int) [][]int {
+	res := make([][]int, 0)
+	currentRes := make([]int, 0)
+
+	dfsCombination(n, k, 1, &res, &currentRes)
+
+	return res
+}
+
+func dfsCombination(n, k, currentIndex int, res *[][]int, currentRes *[]int) {
+	if len(*currentRes) > k {
+		return
+	}
+
+	if len(*currentRes) == k {
+		temp := make([]int, k)
+		copy(temp[:], (*currentRes)[:])
+		*res = append(*res, temp)
+	}
+
+	for i := currentIndex; i <= n; i++ {
+		*currentRes = append(*currentRes, i)
+		dfsCombination(n, k, i+1, res, currentRes)
+		*currentRes = (*currentRes)[:len(*currentRes)-1]
+	}
+
+}
