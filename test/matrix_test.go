@@ -6,6 +6,45 @@ import (
 	"testing"
 )
 
+func TestSearchMatrix(t *testing.T) {
+	testData := []struct {
+		matrix   [][]int
+		target   int
+		expected bool
+	}{
+		{
+			[][]int{
+				{1, 3, 5, 7},
+				{10, 11, 16, 20},
+				{23, 30, 34, 60},
+			},
+			3,
+			true,
+		},
+		{
+			[][]int{
+				{1, 3, 5, 7},
+				{10, 11, 16, 20},
+				{23, 30, 34, 60},
+			},
+			3,
+			true,
+		},
+		{
+			[][]int{
+				{1},
+			},
+			0,
+			false,
+		},
+	}
+
+	for _, td := range testData {
+		result := Matrix.SearchMatrix(td.matrix, td.target)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestSetZeroes(t *testing.T) {
 	testData := []struct {
 		matrix   [][]int
