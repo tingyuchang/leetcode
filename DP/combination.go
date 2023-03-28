@@ -30,26 +30,18 @@ func dfsSubsetsWithDup(nums []int, currentIndex int, res *[][]int, currentRes *[
 func SubSet(nums []int) [][]int {
 	res := make([][]int, 0)
 	currentRes := make([]int, 0)
-	for i := 0; i <= len(nums); i++ {
-		dfsSubset(nums, 0, i, &res, &currentRes)
-	}
+	dfsSubset(nums, 0, &res, &currentRes)
 	return res
 }
 
-func dfsSubset(nums []int, currentIndex, k int, res *[][]int, currentRes *[]int) {
-	if len(*currentRes) > k {
-		return
-	}
-
-	if len(*currentRes) == k {
-		temp := make([]int, k)
-		copy(temp[:], (*currentRes)[:])
-		*res = append(*res, temp)
-	}
+func dfsSubset(nums []int, currentIndex int, res *[][]int, currentRes *[]int) {
+	temp := make([]int, len(*currentRes))
+	copy(temp[:], (*currentRes)[:])
+	*res = append(*res, temp)
 
 	for i := currentIndex; i < len(nums); i++ {
 		*currentRes = append(*currentRes, nums[i])
-		dfsSubset(nums, i+1, k, res, currentRes)
+		dfsSubset(nums, i+1, res, currentRes)
 		*currentRes = (*currentRes)[:len(*currentRes)-1]
 	}
 
