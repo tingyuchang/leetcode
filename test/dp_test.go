@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestSubSet(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		expected int
+	}{
+		{[]int{1, 2, 3}, 8},
+		{[]int{0}, 2},
+	}
+
+	for _, td := range testData {
+
+		result := DP.SubSet(td.nums)
+		assert.Equal(t, len(result), td.expected)
+	}
+
+}
+
 func TestCombination(t *testing.T) {
 	testData := []struct {
 		n        int
