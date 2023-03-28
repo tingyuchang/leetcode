@@ -4,6 +4,29 @@ import (
 	"sort"
 )
 
+func SubsetsWithDup(nums []int) [][]int {
+	res := make([][]int, 0)
+	currentRes := make([]int, 0)
+	sort.Ints(nums)
+	dfsSubsetsWithDup(nums, 0, &res, &currentRes)
+	return res
+}
+
+func dfsSubsetsWithDup(nums []int, currentIndex int, res *[][]int, currentRes *[]int) {
+	temp := make([]int, len(*currentRes))
+	copy(temp[:], (*currentRes)[:])
+	*res = append(*res, temp)
+
+	for i := currentIndex; i < len(nums); i++ {
+		if i != currentIndex && nums[i] == nums[i-1] {
+			continue
+		}
+		*currentRes = append(*currentRes, nums[i])
+		dfsSubsetsWithDup(nums, i+1, res, currentRes)
+		*currentRes = (*currentRes)[:len(*currentRes)-1]
+	}
+}
+
 func SubSet(nums []int) [][]int {
 	res := make([][]int, 0)
 	currentRes := make([]int, 0)
