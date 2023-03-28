@@ -6,6 +6,30 @@ import (
 	"testing"
 )
 
+func TestMincostTickets(t *testing.T) {
+	testData := []struct {
+		days     []int
+		costs    []int
+		expected int
+	}{
+		{
+			[]int{1, 4, 6, 7, 8, 20},
+			[]int{2, 7, 15},
+			11,
+		},
+		{
+			[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31},
+			[]int{2, 7, 15},
+			17,
+		},
+	}
+
+	for _, td := range testData {
+		result := DP.MincostTickets(td.days, td.costs)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestMinPathSum(t *testing.T) {
 	testData := []struct {
 		grid     [][]int
