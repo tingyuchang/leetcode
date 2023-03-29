@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestMaxSatisfaction(t *testing.T) {
+	testData := []struct {
+		satisfaction []int
+		expected     int
+	}{
+		{[]int{-1, -8, 0, 5, -9}, 14},
+		{[]int{4, 3, 2}, 20},
+		{[]int{-1, -4, -5}, 0},
+		{[]int{-2, 5, -1., 0, 3, -3}, 35},
+	}
+
+	for _, td := range testData {
+		result := DP.MaxSatisfaction(td.satisfaction)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestSubSetWithDup(t *testing.T) {
 	testData := []struct {
 		nums     []int
