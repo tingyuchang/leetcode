@@ -6,6 +6,36 @@ import (
 	"testing"
 )
 
+func TestSearchInRotatedII(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		target   int
+		expected bool
+	}{
+		{
+			[]int{2, 5, 6, 0, 0, 1, 2},
+			0, true,
+		},
+		{
+			[]int{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1},
+			2, true,
+		},
+		{
+			[]int{1, 0, 1, 1, 1},
+			0, true,
+		},
+		{
+			[]int{3, 1},
+			1, true,
+		},
+	}
+
+	for _, td := range testData {
+		result := Sort.SearchInRotatedII(td.nums, td.target)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestNextPermutation(t *testing.T) {
 	testData := []struct {
 		input    []int
