@@ -24,6 +24,10 @@ func TestSearchInRotatedII(t *testing.T) {
 			[]int{1, 0, 1, 1, 1},
 			0, true,
 		},
+		{
+			[]int{3, 1},
+			1, true,
+		},
 	}
 
 	for _, td := range testData {

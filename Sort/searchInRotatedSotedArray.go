@@ -14,7 +14,7 @@ func SearchInRotatedII(nums []int, target int) bool {
 		if nums[l] == nums[mid] && nums[r] == nums[mid] {
 			l++
 			r--
-		} else if nums[l] < nums[mid] {
+		} else if nums[l] <= nums[mid] {
 			if nums[l] <= target && nums[mid] > target {
 				r = mid - 1
 			} else {
@@ -32,4 +32,3 @@ func SearchInRotatedII(nums []int, target int) bool {
 	return false
 
 }
-
