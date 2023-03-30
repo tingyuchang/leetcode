@@ -4,26 +4,23 @@ import (
 	"fmt"
 	"github.com/magiconair/properties/assert"
 	_0230323 "leetcode/0_Daily_Prac/20230323"
-	_0230329 "leetcode/0_Daily_Prac/20230329"
+	_0230330 "leetcode/0_Daily_Prac/20230330"
 	"reflect"
 	"regexp"
 	"testing"
 )
 
-var name = _0230329.Name{}
-var mergeSort = _0230329.MergeSort
-var heapSort = _0230329.HeapSort
-var insertionSort = _0230329.InsertionSort
-var quickSort = _0230329.QuickSort
-var binarySearch = _0230329.BinarySearch
-var binarySearchRotated = _0230329.BinarySearchInRotatedArray
-var maxProduct = _0230329.MaxProduct
-var longestChar = _0230329.LongestCharatersInReplacement
-var minWindow = _0230329.MinWindow
-var nextPermutation = _0230329.NextPermutation
-var combination = _0230329.Combination
-var coinChange = _0230329.CoinChange
-var longestCommonSubsequence = _0230329.LongestCommonSubsequence
+var name = _0230330.Name{}
+var mergeSort = _0230330.MergeSort
+var heapSort = _0230330.HeapSort
+var insertionSort = _0230330.InsertionSort
+var quickSort = _0230330.QuickSort
+var binarySearch = _0230330.BinarySearch
+var longestChar = _0230330.LongestCharatersInReplacement
+var minWindow = _0230330.MinWindow
+var combination = _0230330.Combination
+var coinChange = _0230330.CoinChange
+var longestCommonSubsequence = _0230330.LongestCommonSubsequence
 var medianFinder = _0230323.Constructor()
 
 func TestDaily(t *testing.T) {
@@ -69,50 +66,6 @@ func TestDaily(t *testing.T) {
 	assert.Equal(t, binarySearchAns1, binarySearchExpected1)
 	assert.Equal(t, binarySearchAns2, binarySearchExpected2)
 	assert.Equal(t, binarySearchAns3, binarySearchExpected3)
-
-	binarySearchRotatedTestData := []struct {
-		input    []int
-		target   int
-		expected int
-	}{
-		{[]int{4, 5, 6, 7, 0, 1, 2}, 0, 4},
-		{[]int{4, 5, 6, 7, 0, 1, 2}, 3, -1},
-		{[]int{4, 5, 6, 7, 9, 0, 1, 2}, 3, -1},
-		{[]int{1}, 0, -1},
-		{[]int{1, 3}, 3, 1},
-		{[]int{3, 1}, 2, -1},
-		{[]int{3, 1}, 3, 0},
-	}
-	fmt.Printf("\nBinarySearch Rotated Array")
-	for _, td := range binarySearchRotatedTestData {
-		result := binarySearchRotated(td.input, td.target)
-		assert.Equal(t, result, td.expected)
-	}
-
-	maxProductTestData := []struct {
-		input    []int
-		expected int
-	}{
-		{[]int{2, 3, -2, 4}, 6},
-		{[]int{-2, 0, -1}, 0},
-		{[]int{-2}, -2},
-		{[]int{-3, -1, -1}, 3},
-		{[]int{-4, -3}, 12},
-		{[]int{0, 2}, 2},
-		{[]int{2, -5, -2, -4, 3}, 24},
-		{[]int{7, -2, -4}, 56},
-		{[]int{-1, -2, -9, -6}, 108},
-		{[]int{1, 0, -1, 2, 3, -5, -2}, 60},
-		{[]int{0, -2, -3}, 6},
-		{[]int{-2, 3, 1, 3}, 9},
-		{[]int{0, -2, 0}, 0},
-		{[]int{3, -2, -3, 3, -1, 0, 1}, 54},
-	}
-	fmt.Printf("\nMax Prodcut")
-	for _, td := range maxProductTestData {
-		result := maxProduct(td.input)
-		assert.Equal(t, result, td.expected)
-	}
 
 	coinChangeTestData := []struct {
 		coins    []int
@@ -164,22 +117,6 @@ func TestDaily(t *testing.T) {
 	for _, td := range LongestCharatersTestData {
 		result := longestChar(td.input, td.replacement)
 		assert.Equal(t, result, td.expected)
-	}
-
-	nextPermutationTestData := []struct {
-		input    []int
-		expected []int
-	}{
-		{[]int{1, 2, 3, 4, 5, 6}, []int{1, 2, 3, 4, 6, 5}},
-		{[]int{1, 2, 3, 4, 6, 5}, []int{1, 2, 3, 5, 4, 6}},
-		{[]int{1, 2, 3, 5, 4, 6}, []int{1, 2, 3, 5, 6, 4}},
-	}
-
-	fmt.Printf("\nnext Permutation")
-	for _, td := range nextPermutationTestData {
-		nextPermutation(td.input)
-		// in place exchange
-		assert.Equal(t, td.input, td.expected)
 	}
 
 	minWindowTestData := []struct {

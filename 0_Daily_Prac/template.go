@@ -80,16 +80,6 @@ func BinarySearch(nums []int, target int) int {
 	return -1
 }
 
-func BinarySearchInRotatedArray(nums []int, target int) int {
-
-	return -1
-}
-
-func MaxProduct(nums []int) int {
-
-	return -1
-}
-
 func CoinChange(coins []int, amount int) int {
 
 	return -1
@@ -108,10 +98,6 @@ func LongestCharatersInReplacement(s string, k int) int {
 func MinWindow(s, t string) string {
 
 	return ""
-}
-
-func NextPermutation(nums []int) {
-
 }
 
 func Combination(nums []int, target int) [][]int {
