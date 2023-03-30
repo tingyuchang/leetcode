@@ -6,6 +6,24 @@ import (
 	"testing"
 )
 
+func TestIsScramble(t *testing.T) {
+	testData := []struct {
+		s1       string
+		s2       string
+		expected bool
+	}{
+		{"great", "rgeat", true},
+		{"abcde", "caebd", false},
+		{"a", "a", true},
+		{"acddaaaadbcbdcdaccabdbadccaaa", "adcbacccabbaaddadcdaabddccaaa", false},
+	}
+
+	for _, td := range testData {
+		result := DP.IsScramble(td.s1, td.s2)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestMaxSatisfaction(t *testing.T) {
 	testData := []struct {
 		satisfaction []int
