@@ -7,6 +7,43 @@ import (
 	"testing"
 )
 
+func TestDeleteDuplicatesII(t *testing.T) {
+	testData := []struct {
+		head     *LinkedList.ListNode
+		expected *LinkedList.ListNode
+	}{
+		{LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 3, 4, 4, 5}),
+			LinkedList.GenerateNodeFromArray([]int{1, 2, 5})},
+		{LinkedList.GenerateNodeFromArray([]int{1, 1, 1, 2, 3}),
+			LinkedList.GenerateNodeFromArray([]int{2, 3})},
+		{LinkedList.GenerateNodeFromArray([]int{1, 2, 2}),
+			LinkedList.GenerateNodeFromArray([]int{1})},
+		{LinkedList.GenerateNodeFromArray([]int{1, 2, 2, 2}),
+			LinkedList.GenerateNodeFromArray([]int{1})},
+	}
+
+	for _, td := range testData {
+		result := LinkedList.DeleteDuplicatesII(td.head)
+		assert.Equal(t, td.expected.String(), result.String())
+	}
+}
+
+func TestRemoveDuplicatesFromSortedList(t *testing.T) {
+	var testData = []struct {
+		input    *LinkedList.ListNode
+		expected string
+	}{
+		{LinkedList.GenerateNodeFromArray([]int{1, 1, 2}), "12"},
+		{LinkedList.GenerateNodeFromArray([]int{1, 1, 2, 3, 3}), "123"},
+		{LinkedList.GenerateNodeFromArray([]int{0, 0, 0, 0, 0}), "0"},
+	}
+
+	for _, tt := range testData {
+		result := LinkedList.DeleteDuplicates(tt.input)
+		assert.Equal(t, result.Show(), tt.expected)
+	}
+}
+
 func TestLinkedListIsPalindrome(t *testing.T) {
 	testData := []struct {
 		input    *LinkedList.ListNode

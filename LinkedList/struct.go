@@ -36,3 +36,19 @@ func GenerateNodeFromArray(nums []int) *ListNode {
 
 	return head
 }
+
+func (n *ListNode) String() string {
+	res := ""
+
+	node := n
+
+	for node != nil {
+		res += strconv.Itoa(node.Val) + "->"
+		node = node.Next
+	}
+	if len(res) > 2 {
+		res = string([]byte(res)[:len(res)-2])
+	}
+
+	return res
+}
