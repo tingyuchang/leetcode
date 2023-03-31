@@ -7,6 +7,30 @@ import (
 	"testing"
 )
 
+func TestPartitionLinkList(t *testing.T) {
+	testData := []struct {
+		head     *LinkedList.ListNode
+		x        int
+		expected *LinkedList.ListNode
+	}{
+		{
+			LinkedList.GenerateNodeFromArray([]int{1, 4, 3, 2, 5, 2}),
+			3,
+			LinkedList.GenerateNodeFromArray([]int{1, 2, 2, 4, 3, 5}),
+		},
+		{
+			LinkedList.GenerateNodeFromArray([]int{2, 1}),
+			2,
+			LinkedList.GenerateNodeFromArray([]int{1, 2}),
+		},
+	}
+
+	for _, td := range testData {
+		result := LinkedList.Partition(td.head, td.x)
+		assert.Equal(t, result.String(), td.expected.String())
+	}
+}
+
 func TestDeleteDuplicatesII(t *testing.T) {
 	testData := []struct {
 		head     *LinkedList.ListNode
