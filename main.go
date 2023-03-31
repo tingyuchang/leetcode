@@ -1,61 +1,102 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	_0230215 "leetcode/0_Daily_Prac/20230215"
-	"leetcode/mergeKLists"
+	"io"
 	"log"
 	"os"
 	"path"
-	"reflect"
-	"regexp"
+	"time"
 )
 
-var name = _0230215.Name{}
-var mergeSort = _0230215.MergeSort
-var heapSort = _0230215.HeapSort
-var insertionSort = _0230215.InsertionSort
-var quickSort = _0230215.QuickSort
-var binarySearch = _0230215.BinarySearch
+var TEMPLATEFILE string = "./0_Daily_Prac/template.go"
 
-func PrintSlice[T any](s []T) {
-	for _, v := range s {
-		fmt.Print(v)
-	}
-	fmt.Println()
-}
 func main() {
-	dailyPrac()
-}
-
-func dailyPrac() {
-	n := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-	m := []int{-4, 0, 7, 4, 9, -5, -1, 0, -7, -1}
-	re := regexp.MustCompile(`\d{8}`)
-	fmt.Printf("%q\n", re.Find([]byte(reflect.TypeOf(name).PkgPath())))
-	fmt.Println("Merge Sort: ", mergeSort(n))
-	n = []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-	fmt.Println("Heap Sort: ", heapSort(n))
-	n = []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-	fmt.Println("Insertion Sort: ", insertionSort(n))
-	fmt.Println("Quick Sort: ", quickSort(m, 0, len(m)-1))
-	sorted := []int{3, 5, 7, 9, 11}
-	target1 := 7
-	target2 := 11
-	target3 := 6
-	fmt.Printf("Binary Saerch in %v: \n\tTarget1 %v result: %v\n\tTarget2 %v result: %v\n\tTarget3 %v result: %v  \n", sorted, target1, binarySearch(sorted, target1), target2, binarySearch(sorted, target2), target3, binarySearch(sorted, target3))
-
-}
-
-func generateList(firstNodes []int) *mergeKLists.ListNode {
-	l1 := mergeKLists.ListNode{}
-	tempNode1 := &l1
-
-	for _, v := range firstNodes {
-		tempNode1.Next = &mergeKLists.ListNode{Val: v}
-		tempNode1 = tempNode1.Next
+	template, err := readTemplate()
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
-	return l1.Next
+
+	err = createDailyPracticeFile(template)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+}
+
+func readTemplate() ([]string, error) {
+	f, err := os.Open(TEMPLATEFILE)
+
+	if err != nil {
+		return nil, err
+
+	}
+	defer f.Close()
+
+	r := bufio.NewReader(f)
+
+	data := make([]string, 0)
+
+	for {
+		line, err := r.ReadString('\n')
+
+		if err == io.EOF {
+			break
+		} else if err != nil {
+			fmt.Println(err)
+			return nil, err
+		}
+
+		data = append(data, line)
+	}
+
+	for i := 0; i < len(data); i++ {
+		if data[i] == "// COPY FROM HERE\n" {
+			data = data[i+1:]
+			break
+		}
+	}
+
+	return data, nil
+}
+
+func createDailyPracticeFile(template []string) error {
+	today := time.Now().Format("20060102")
+	dirName := "./0_Daily_Prac/" + today
+	err := os.Mkdir(dirName, os.ModePerm)
+	if err != nil {
+		return err
+	}
+	f, err := os.Create(dirName + "/" + today + ".go")
+
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	// insert package name to template
+	packageName := "package " + "_" + string([]byte(today)[1:]) + "\n\n"
+	template = append([]string{packageName}, template...)
+	sum := 0
+	for i := 0; i < len(template); i++ {
+		n, err := io.WriteString(f, template[i])
+		if err != nil {
+			return err
+		}
+		sum += n
+	}
+
+	fmt.Printf("Create Daily practice success with %d data\n", sum)
+	defer cleanUp(err)
+	return nil
+}
+
+func cleanUp(err error) {
+	if err != nil {
+		fmt.Println("need remove file")
+	}
 }
 
 func myLog(input interface{}) {
