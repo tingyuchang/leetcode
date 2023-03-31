@@ -1,6 +1,5 @@
-package __Daily_Prac
+package _0230331
 
-// COPY FROM HERE
 type Name struct {
 }
 
