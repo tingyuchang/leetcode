@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestCutPizza(t *testing.T) {
+	testData := []struct {
+		pizza    []string
+		k        int
+		expected int
+	}{
+		{[]string{"A..", "AAA", "..."}, 3, 3},
+		{[]string{"A..", "AA.", "..."}, 3, 1},
+		{[]string{"A..", "A..", "..."}, 1, 1},
+	}
+
+	for _, td := range testData {
+		result := DP.CurPizza(td.pizza, td.k)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestIsScramble(t *testing.T) {
 	testData := []struct {
 		s1       string
