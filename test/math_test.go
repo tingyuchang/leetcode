@@ -7,6 +7,34 @@ import (
 	"testing"
 )
 
+func TestIsMonotonic(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		expected bool
+	}{
+		{
+			[]int{1, 2, 3, 3}, true,
+		},
+		{
+			[]int{6, 5, 4, 4}, true,
+		},
+		{
+			[]int{1, 3, 2}, false,
+		},
+		{
+			[]int{1, 1, 2}, true,
+		},
+		{
+			[]int{1, 1, 1}, true,
+		},
+	}
+
+	for _, td := range testData {
+		result := Math.IsMonotonic(td.nums)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestRunningSum(t *testing.T) {
 	testData := []struct {
 		nums     []int
