@@ -7,6 +7,23 @@ import (
 	"testing"
 )
 
+func TestRunningSum(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		expected []int
+	}{
+		{
+			[]int{1, 2, 3, 4},
+			[]int{1, 3, 6, 10},
+		},
+	}
+
+	for _, td := range testData {
+		result := Math.RunningSum(td.nums)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestLongestConsecutive(t *testing.T) {
 	testData := []struct {
 		nums     []int
