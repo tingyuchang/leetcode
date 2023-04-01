@@ -7,6 +7,57 @@ import (
 	"testing"
 )
 
+func TestReverseListII(t *testing.T) {
+	testData := []struct {
+		head     *LinkedList.ListNode
+		left     int
+		right    int
+		expected *LinkedList.ListNode
+	}{
+		{
+			LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 4, 5}),
+			2,
+			4,
+			LinkedList.GenerateNodeFromArray([]int{1, 4, 3, 2, 5}),
+		},
+		{
+			LinkedList.GenerateNodeFromArray([]int{5}),
+			1,
+			1,
+			LinkedList.GenerateNodeFromArray([]int{5}),
+		},
+		{
+			LinkedList.GenerateNodeFromArray([]int{3, 5}),
+			1,
+			2,
+			LinkedList.GenerateNodeFromArray([]int{5, 3}),
+		},
+		{
+			LinkedList.GenerateNodeFromArray([]int{1, 2, 3}),
+			2,
+			3,
+			LinkedList.GenerateNodeFromArray([]int{1, 3, 2}),
+		},
+		{
+			LinkedList.GenerateNodeFromArray([]int{3, 5}),
+			1,
+			1,
+			LinkedList.GenerateNodeFromArray([]int{3, 5}),
+		},
+		{
+			LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 4, 5}),
+			1,
+			5,
+			LinkedList.GenerateNodeFromArray([]int{5, 4, 3, 2, 1}),
+		},
+	}
+
+	for _, td := range testData {
+		result := LinkedList.ReverseListII(td.head, td.left, td.right)
+		assert.Equal(t, result.String(), td.expected.String())
+	}
+}
+
 func TestPartitionLinkList(t *testing.T) {
 	testData := []struct {
 		head     *LinkedList.ListNode
