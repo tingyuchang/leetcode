@@ -6,6 +6,24 @@ import (
 	"testing"
 )
 
+func TestIsSubSequence(t *testing.T) {
+	testData := []struct {
+		s        string
+		t        string
+		expected bool
+	}{
+		{"abc", "ahbgdc", true},
+		{"foo", "bar", false},
+		{"ab", "baab", true},
+		{"aaaaaa", "bbaaaa", false},
+	}
+
+	for _, td := range testData {
+		result := Strings.IsSubsequence(td.s, td.t)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestNumDecoding(t *testing.T) {
 	testData := []struct {
 		s        string

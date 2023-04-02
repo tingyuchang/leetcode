@@ -1,8 +1,29 @@
 package Strings
 
-import "strings"
+import (
+	"strings"
+)
 
-//strings.Index(haystack, needle)
+func IsSubsequence(s string, t string) bool {
+	return isSubsequence(s, t)
+}
+
+func isSubsequence(s string, t string) bool {
+	l := 0
+	temp := 0
+	for l < len(s) {
+		temp = strings.IndexByte(t, s[l])
+		t = string([]byte(t)[temp+1:])
+		if temp == -1 {
+			return false
+		}
+
+		l++
+	}
+	return true
+}
+
+// strings.Index(haystack, needle)
 func StrStr(haystack string, needle string) int {
 	if needle == haystack {
 		return 0
