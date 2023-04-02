@@ -6,6 +6,55 @@ import (
 	"testing"
 )
 
+func TestSortedSquares(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		expected []int
+	}{
+		{
+			[]int{-4, -1, 0, 3, 10},
+			[]int{0, 1, 9, 16, 100},
+		},
+		//{
+		//	[]int{-7, -3, 2, 3, 11},
+		//	[]int{4, 9, 9, 49, 121},
+		//},
+		//{
+		//	[]int{1},
+		//	[]int{1},
+		//},
+		//{
+		//	[]int{-1},
+		//	[]int{1},
+		//},
+		//{
+		//	[]int{-5, -3, -2, -1},
+		//	[]int{1, 4, 9, 25},
+		//},
+		//{
+		//	[]int{-10000, -9999, -7, -5, 0, 0, 10000},
+		//	[]int{0, 0, 25, 49, 99980001, 100000000, 100000000},
+		//},
+		//{
+		//	[]int{-10000, -1, 0, 3, 10000},
+		//	[]int{0, 1, 9, 100000000, 100000000},
+		//},
+		//{
+		//	[]int{-4, -4, -3},
+		//	[]int{9, 16, 16},
+		//},
+		//{
+		//	[]int{-2, 0},
+		//	[]int{0, 4},
+		//},
+	}
+
+	for _, td := range testData {
+		result := Sort.SortedSquares(td.nums)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestRemoveDuplicatesII(t *testing.T) {
 	testData := []struct {
 		input    []int
