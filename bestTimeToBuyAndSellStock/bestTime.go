@@ -1,5 +1,20 @@
 package bestTimeToBuyAndSellStock
 
+func MaxProfit2(prices []int) int {
+	minVal := prices[0]
+	maxVal := 0
+
+	for i := 1; i < len(prices); i++ {
+		if prices[i] < minVal {
+			minVal = prices[i]
+		} else if prices[i]-minVal > maxVal {
+			maxVal = prices[i] - minVal
+		}
+	}
+
+	return maxVal
+}
+
 type Stock struct {
 	Day   int
 	Price int
