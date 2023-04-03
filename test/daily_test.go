@@ -4,23 +4,23 @@ import (
 	"fmt"
 	"github.com/magiconair/properties/assert"
 	_0230323 "leetcode/0_Daily_Prac/20230323"
-	_0230331 "leetcode/0_Daily_Prac/20230331"
+	_0230403 "leetcode/0_Daily_Prac/20230403"
 	"reflect"
 	"regexp"
 	"testing"
 )
 
-var name = _0230331.Name{}
-var mergeSort = _0230331.MergeSort
-var heapSort = _0230331.HeapSort
-var insertionSort = _0230331.InsertionSort
-var quickSort = _0230331.QuickSort
-var binarySearch = _0230331.BinarySearch
-var longestChar = _0230331.LongestCharatersInReplacement
-var minWindow = _0230331.MinWindow
-var combination = _0230331.Combination
-var coinChange = _0230331.CoinChange
-var longestCommonSubsequence = _0230331.LongestCommonSubsequence
+var name = _0230403.Name{}
+var mergeSort = _0230403.MergeSort
+var heapSort = _0230403.HeapSort
+var insertionSort = _0230403.InsertionSort
+var quickSort = _0230403.QuickSort
+var binarySearch = _0230403.BinarySearch
+var longestChar = _0230403.LongestCharatersInReplacement
+var minWindow = _0230403.MinWindow
+var combination = _0230403.Combination
+var coinChange = _0230403.CoinChange
+var longestCommonSubsequence = _0230403.LongestCommonSubsequence
 var medianFinder = _0230323.Constructor()
 
 func TestDaily(t *testing.T) {
