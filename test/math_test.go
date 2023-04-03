@@ -7,6 +7,24 @@ import (
 	"testing"
 )
 
+func TestTwoSumII(t *testing.T) {
+	testData := []struct {
+		numbers  []int
+		target   int
+		expected []int
+	}{
+		{[]int{2, 7, 11, 15}, 9, []int{1, 2}},
+		{[]int{2, 3, 4}, 6, []int{1, 3}},
+		{[]int{-1, 0}, -1, []int{1, 2}},
+	}
+
+	for _, td := range testData {
+		result := Math.TwoSumII(td.numbers, td.target)
+		assert.Equal(t, result, td.expected)
+	}
+
+}
+
 func TestIsMonotonic(t *testing.T) {
 	testData := []struct {
 		nums     []int
