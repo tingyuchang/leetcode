@@ -7,6 +7,25 @@ import (
 	"testing"
 )
 
+func TestNumRescueBoats(t *testing.T) {
+	testData := []struct {
+		people   []int
+		limit    int
+		expected int
+	}{
+		{[]int{1, 2}, 3, 1},
+		{[]int{3, 2, 2, 1}, 3, 3},
+		{[]int{3, 5, 3, 4}, 5, 4},
+		{[]int{2, 2}, 6, 1},
+		{[]int{3, 2, 3, 2, 2}, 6, 3},
+	}
+
+	for _, td := range testData {
+		result := Math.NumRescueBoats(td.people, td.limit)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestEvalRPN(t *testing.T) {
 	testData := []struct {
 		token    []string
