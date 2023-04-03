@@ -7,6 +7,24 @@ import (
 	"testing"
 )
 
+func TestEvalRPN(t *testing.T) {
+	testData := []struct {
+		token    []string
+		expected int
+	}{
+		{
+			[]string{"2", "1", "+", "3", "*"}, 9,
+		},
+		{[]string{"4", "13", "5", "/", "+"}, 6},
+		{[]string{"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"}, 22},
+	}
+
+	for _, td := range testData {
+		result := Math.EvalRPN(td.token)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestTwoSumII(t *testing.T) {
 	testData := []struct {
 		numbers  []int
