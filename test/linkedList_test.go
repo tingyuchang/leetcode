@@ -7,6 +7,27 @@ import (
 	"testing"
 )
 
+func TestMiddleNode(t *testing.T) {
+	testData := []struct {
+		head     *LinkedList.ListNode
+		expected *LinkedList.ListNode
+	}{
+		{LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 4, 5}),
+			LinkedList.GenerateNodeFromArray([]int{3, 4, 5})},
+		{LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 4, 5, 6}),
+			LinkedList.GenerateNodeFromArray([]int{4, 5, 6})},
+		{LinkedList.GenerateNodeFromArray([]int{1, 2}),
+			LinkedList.GenerateNodeFromArray([]int{2})},
+		{LinkedList.GenerateNodeFromArray([]int{1}),
+			LinkedList.GenerateNodeFromArray([]int{1})},
+	}
+
+	for _, td := range testData {
+		result := LinkedList.MiddleNode(td.head)
+		assert.Equal(t, result.String(), td.expected.String())
+	}
+}
+
 func TestReverseListII(t *testing.T) {
 	testData := []struct {
 		head     *LinkedList.ListNode
