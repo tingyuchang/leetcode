@@ -1,5 +1,42 @@
 package Strings
 
+import (
+	"strings"
+)
+
+func ReverseWords(s string) string {
+	return reverseWords(s)
+}
+
+func reverseWords(s string) string {
+	res := []byte(s)
+	i := 0
+	// another approach, find ' ' and reverse it from start
+	for i < len(res) {
+		if res[i] == ' ' {
+			continue
+		}
+		l := i
+		r := strings.IndexByte(string(res[i:]), ' ')
+
+		if r == -1 {
+			r = len(res) - 1
+		} else {
+			r = r + i - 1
+		}
+
+		i = r + 2
+
+		for r > l {
+			res[l], res[r] = res[r], res[l]
+			l++
+			r--
+		}
+
+	}
+	return string(res)
+}
+
 func ReverseString(s []byte) {
 	l := 0
 	r := len(s) - 1
