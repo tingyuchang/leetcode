@@ -6,6 +6,21 @@ import (
 	"testing"
 )
 
+func TestReverseWords(t *testing.T) {
+	testData := []struct {
+		s        string
+		expected string
+	}{
+		{"Let's take LeetCode contest", "s'teL ekat edoCteeL tsetnoc"},
+		{"God Ding", "doG gniD"},
+	}
+
+	for _, td := range testData {
+		result := Strings.ReverseWords(td.s)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestIsSubSequence(t *testing.T) {
 	testData := []struct {
 		s        string
