@@ -7,6 +7,31 @@ import (
 	"testing"
 )
 
+func TestReshape(t *testing.T) {
+	testData := []struct {
+		mat      [][]int
+		r        int
+		c        int
+		expected [][]int
+	}{
+		{
+			[][]int{{1, 2}, {3, 4}},
+			1, 4,
+			[][]int{{1, 2, 3, 4}},
+		},
+		{
+			[][]int{{1, 2}, {3, 4}},
+			2, 4,
+			[][]int{{1, 2}, {3, 4}},
+		},
+	}
+
+	for _, td := range testData {
+		result := Math.MatrixReshape(td.mat, td.r, td.c)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestNumRescueBoats(t *testing.T) {
 	testData := []struct {
 		people   []int
