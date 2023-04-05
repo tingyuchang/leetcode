@@ -1,4 +1,29 @@
-package palindrome
+package Strings
+
+func LongestPalindrome(s string) int {
+	return longestPalindrome(s)
+}
+
+func longestPalindrome(s string) int {
+	res := 0
+	cache := make(map[byte]int)
+	for i, _ := range s {
+		cache[s[i]]++
+
+		if cache[s[i]] == 2 {
+			res += 2
+			cache[s[i]] = 0
+		}
+	}
+
+	if res == len(s) {
+		return res
+	}
+
+	res++
+
+	return res
+}
 
 func IsPalindrome(x int) bool {
 
@@ -25,7 +50,7 @@ func reverse(x int) int {
 	count, result := 0, 0
 	for float64(x)/10.0 > 0 {
 		n = append(n, x%10)
-		x = x/10
+		x = x / 10
 		count++
 	}
 
