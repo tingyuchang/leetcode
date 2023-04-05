@@ -6,6 +6,21 @@ import (
 	"testing"
 )
 
+func TestMinimizeArrayValue(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		expected int
+	}{
+		{[]int{3, 7, 1, 6}, 5},
+		{[]int{10, 1}, 10},
+	}
+
+	for _, td := range testData {
+		result := greedy.MinimizeArrayValue(td.nums)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestCanPlaceFlowers(t *testing.T) {
 	testData := []struct {
 		flowerbed []int
