@@ -6,6 +6,21 @@ import (
 	"testing"
 )
 
+func TestLongestPalindrome2(t *testing.T) {
+	testData := []struct {
+		s        string
+		expected int
+	}{
+		{"abccccdd", 7},
+		{"a", 1},
+	}
+
+	for _, td := range testData {
+		result := Strings.LongestPalindrome(td.s)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestReverseWords(t *testing.T) {
 	testData := []struct {
 		s        string

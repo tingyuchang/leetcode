@@ -2,13 +2,13 @@ package test
 
 import (
 	"github.com/magiconair/properties/assert"
-	"leetcode/palindrome"
+	"leetcode/Strings"
 	"testing"
 )
 
 func TestIsPalindrome(t *testing.T) {
 	testData := []struct {
-		input int
+		input    int
 		expected bool
 	}{
 		{input: 121, expected: true},
@@ -16,8 +16,8 @@ func TestIsPalindrome(t *testing.T) {
 		{10, false},
 	}
 
-	for _,tt := range testData {
-		result := palindrome.IsPalindrome(tt.input)
+	for _, tt := range testData {
+		result := Strings.IsPalindrome(tt.input)
 		assert.Equal(t, tt.expected, result)
 	}
 }
