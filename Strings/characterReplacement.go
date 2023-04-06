@@ -2,6 +2,43 @@ package Strings
 
 import "fmt"
 
+func CheckInclusion(s1 string, s2 string) bool {
+	return checkInclusion(s1, s2)
+}
+
+func checkInclusion(s1 string, s2 string) bool {
+	l, r := 0, 0
+	cache := make(map[byte]int)
+
+	for i := 0; i < len(s1); i++ {
+		cache[s1[i]]++
+	}
+
+	for r < len(s2) {
+		if cache[s2[r]] > 0 {
+			if (r - l + 1) == len(s1) {
+				return true
+			}
+		} else {
+			for l < r {
+				cache[s2[l]]++
+				if s2[l] == s2[r] {
+					break
+				}
+				l++
+			}
+
+			l++
+		}
+		fmt.Println(cache)
+
+		cache[s2[r]]--
+		r++
+	}
+
+	return false
+}
+
 func LengthOfLongestSubstring(s string) int {
 	return lengthOfLongestSubstring(s)
 }

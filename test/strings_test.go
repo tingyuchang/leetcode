@@ -6,6 +6,29 @@ import (
 	"testing"
 )
 
+func TestCheckInclusion(t *testing.T) {
+	testData := []struct {
+		s1       string
+		s2       string
+		expected bool
+	}{
+		{"ab",
+			"eidbaooo",
+			true},
+		{"ab",
+			"eidboaoo",
+			false},
+		{"adc",
+			"dcda",
+			true},
+	}
+
+	for _, td := range testData {
+		result := Strings.CheckInclusion(td.s1, td.s2)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestFirstUniqChar(t *testing.T) {
 	testData := []struct {
 		s        string
