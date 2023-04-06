@@ -2,6 +2,27 @@ package Strings
 
 import "strings"
 
+func CanConstruct(ransomNote string, magazine string) bool {
+	return canConstruct(ransomNote, magazine)
+}
+
+func canConstruct(ransomNote string, magazine string) bool {
+	cache := make(map[byte]int)
+	for i := 0; i < len(magazine); i++ {
+		cache[magazine[i]]++
+	}
+
+	for i := 0; i < len(ransomNote); i++ {
+		if cache[ransomNote[i]] == 0 {
+			return false
+		}
+
+		cache[ransomNote[i]]--
+	}
+
+	return true
+}
+
 func FirstUniqChar(s string) int {
 	return firstUniqChar(s)
 }
