@@ -6,6 +6,35 @@ import (
 	"testing"
 )
 
+func TestDailyTemperatures(t *testing.T) {
+	tesdtData := []struct {
+		tempertures []int
+		expected    []int
+	}{
+		{
+			[]int{73, 74, 75, 71, 69, 72, 76, 73},
+			[]int{1, 1, 4, 2, 1, 1, 0, 0},
+		},
+		{
+			[]int{3, 4, 5, 6},
+			[]int{1, 1, 1, 0},
+		},
+		{
+			[]int{3, 6, 9},
+			[]int{1, 1, 0},
+		},
+		{
+			[]int{55, 38, 53, 81, 61, 93, 97, 32, 43, 78},
+			[]int{3, 1, 1, 2, 1, 1, 0, 1, 1, 0},
+		},
+	}
+
+	for _, td := range tesdtData {
+		result := DP.DailyTemperatures(td.tempertures)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestIsScramble(t *testing.T) {
 	testData := []struct {
 		s1       string
