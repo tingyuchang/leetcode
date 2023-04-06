@@ -1,12 +1,6 @@
-package removeNthFromEnd
+package LinkedList
 
 import "fmt"
-
-// Definition for singly-linked list.
- type ListNode struct {
- 	Val int
- 	Next *ListNode
- }
 
 func RemoveNthFromEnd(head *ListNode, n int) *ListNode {
 	if head.Next == nil {
@@ -27,14 +21,13 @@ func RemoveNthFromEnd(head *ListNode, n int) *ListNode {
 	node = head
 	index := 1
 	for node != nil {
-		if count - n == index  {
+		if count-n == index {
 			node.Next = node.Next.Next
 			fmt.Printf("node: %v\t head: %v\n", node, head)
-			break;
+			break
 		}
 		index++
 		node = node.Next
 	}
 	return head
 }
-

@@ -3,8 +3,25 @@ package test
 import (
 	"github.com/magiconair/properties/assert"
 	"leetcode/DP"
+	"leetcode/Strings"
 	"testing"
 )
+
+func TestLengthOfLongestSubstring(t *testing.T) {
+	testData := []struct {
+		s        string
+		expected int
+	}{
+		{"abcabcbb", 3},
+		{"bbbbb", 1},
+		{"pwwkew", 3},
+	}
+
+	for _, td := range testData {
+		result := Strings.LengthOfLongestSubstring(td.s)
+		assert.Equal(t, result, td.expected)
+	}
+}
 
 func TestDailyTemperatures(t *testing.T) {
 	tesdtData := []struct {

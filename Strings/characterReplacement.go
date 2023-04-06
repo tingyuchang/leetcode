@@ -2,6 +2,59 @@ package Strings
 
 import "fmt"
 
+func LengthOfLongestSubstring(s string) int {
+	return lengthOfLongestSubstring(s)
+}
+
+func lengthOfLongestSubstring2(s string) int {
+	cache := make(map[byte]int)
+
+	ans, start := 0, 0
+
+	max := func(a, b int) int {
+		if a > b {
+			return a
+		}
+		return b
+	}
+
+	for i := 0; i < len(s); i++ {
+		_, ok := cache[s[i]]
+
+		if ok {
+			start = max(start, cache[s[i]]+1)
+		}
+
+		cache[s[i]] = i
+
+		ans = max(ans, i-start+1)
+
+	}
+
+	return ans
+}
+
+func lengthOfLongestSubstring(s string) int {
+	l, r, res := 0, 0, 0
+	cache := make(map[byte]int)
+
+	for r < len(s) {
+		cache[s[r]]++
+
+		for cache[s[r]] > 1 {
+			cache[s[l]]--
+			l++
+		}
+
+		if (r - l + 1) > res {
+			res = r - l + 1
+		}
+		r++
+	}
+
+	return res
+}
+
 func CharacterReplacement(s string, k int) int {
 	l := 0
 	r := 0

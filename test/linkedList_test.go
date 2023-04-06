@@ -7,6 +7,28 @@ import (
 	"testing"
 )
 
+func TestRemoveNthFromEnd(t *testing.T) {
+	testData := []struct {
+		input    *LinkedList.ListNode
+		target   int
+		expected *LinkedList.ListNode
+	}{
+		{LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 4, 5}), 2, LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 5})},
+		{LinkedList.GenerateNodeFromArray([]int{1, 2}), 1, LinkedList.GenerateNodeFromArray([]int{1})},
+		{LinkedList.GenerateNodeFromArray([]int{1, 2}), 2, LinkedList.GenerateNodeFromArray([]int{2})},
+	}
+
+	for _, td := range testData {
+		result := LinkedList.RemoveNthFromEnd(td.input, td.target)
+		for result.Next != nil {
+			assert.Equal(t, result.Val, td.expected.Val)
+			result = result.Next
+			td.expected = td.expected.Next
+		}
+	}
+
+}
+
 func TestMiddleNode(t *testing.T) {
 	testData := []struct {
 		head     *LinkedList.ListNode
