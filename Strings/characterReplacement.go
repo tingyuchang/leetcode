@@ -8,32 +8,41 @@ func CheckInclusion(s1 string, s2 string) bool {
 
 func checkInclusion(s1 string, s2 string) bool {
 	l, r := 0, 0
-	cache := make(map[byte]int)
+	cacheS1 := make(map[byte]int)
 
 	for i := 0; i < len(s1); i++ {
-		cache[s1[i]]++
+		cacheS1[s1[i]]++
+	}
+
+	cacheS2 := make(map[byte]int)
+
+	equal := func(a, b map[byte]int) bool {
+		for k, v := range a {
+			if v != b[k] {
+				return false
+			}
+		}
+
+		return true
 	}
 
 	for r < len(s2) {
-		if cache[s2[r]] > 0 {
-			if (r - l + 1) == len(s1) {
+		cacheS2[s2[r]]++
+
+		if r-l+1 == len(s1) {
+			if equal(cacheS1, cacheS2) {
 				return true
 			}
-		} else {
-			for l < r {
-				cache[s2[l]]++
-				if s2[l] == s2[r] {
-					break
-				}
-				l++
-			}
-
-			l++
 		}
-		fmt.Println(cache)
 
-		cache[s2[r]]--
-		r++
+		if r-l+1 < len(s1) {
+			r++
+		} else {
+			cacheS2[s2[l]]--
+			l++
+			r++
+		}
+
 	}
 
 	return false
