@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestFirstUniqChar(t *testing.T) {
+	testData := []struct {
+		s        string
+		expected int
+	}{
+		{"leetcode", 0},
+		{"loveleetcode", 2},
+		{"aaaa", -1},
+	}
+
+	for _, td := range testData {
+		result := Strings.FirstUniqChar(td.s)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestLongestPalindrome2(t *testing.T) {
 	testData := []struct {
 		s        string
