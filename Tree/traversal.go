@@ -1,5 +1,25 @@
 package Tree
 
+func preorderWithArray(root *Node) []int {
+	res := make([]int, 0)
+	dfsPreorderWithArray(root, &res)
+
+	return res
+}
+
+func dfsPreorderWithArray(root *Node, res *[]int) {
+	if root == nil {
+		return
+	}
+
+	*res = append(*res, root.Val)
+
+	for i := 0; i < len(root.Children); i++ {
+		dfsPreorderWithArray(root.Children[i], res)
+	}
+
+}
+
 func IsSubtree(root *TreeNode, subRoot *TreeNode) bool {
 
 	if root == nil && subRoot != nil {
