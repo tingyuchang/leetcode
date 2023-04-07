@@ -6,6 +6,94 @@ import (
 	"testing"
 )
 
+func TestRotateImage(t *testing.T) {
+	testData := []struct {
+		matrix   [][]int
+		expected [][]int
+	}{
+		{
+			[][]int{
+				{1, 2, 3},
+				{4, 5, 6},
+				{7, 8, 9},
+			},
+			[][]int{
+				{7, 4, 1},
+				{8, 5, 2},
+				{9, 6, 3},
+			},
+		},
+		{
+			[][]int{
+				{5, 1, 9, 11},
+				{2, 4, 8, 10},
+				{13, 3, 6, 7},
+				{15, 14, 12, 16},
+			},
+			[][]int{
+				{15, 13, 2, 5},
+				{14, 3, 4, 1},
+				{12, 6, 8, 9},
+				{16, 7, 10, 11},
+			},
+		},
+	}
+
+	for _, td := range testData {
+		Matrix.RotateImage(td.matrix)
+		assert.Equal(t, td.matrix, td.expected)
+	}
+}
+
+func TestFindRatation(t *testing.T) {
+	testData := []struct {
+		mat      [][]int
+		target   [][]int
+		expected bool
+	}{
+		{
+			[][]int{
+				{0, 1},
+				{1, 0},
+			},
+			[][]int{
+				{1, 0},
+				{0, 1},
+			},
+			true,
+		},
+		{
+			[][]int{
+				{0, 1},
+				{1, 1},
+			},
+			[][]int{
+				{1, 0},
+				{0, 1},
+			},
+			false,
+		},
+		{
+			[][]int{
+				{0, 0, 0},
+				{0, 1, 0},
+				{1, 1, 1},
+			},
+			[][]int{
+				{1, 1, 1},
+				{0, 1, 0},
+				{0, 0, 0},
+			},
+			true,
+		},
+	}
+
+	for _, td := range testData {
+		result := Matrix.FindRotation(td.mat, td.target)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestSearchMatrix(t *testing.T) {
 	testData := []struct {
 		matrix   [][]int
