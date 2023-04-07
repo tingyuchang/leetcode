@@ -6,6 +6,53 @@ import (
 	"testing"
 )
 
+func TestNumEnclaves(t *testing.T) {
+	testData := []struct {
+		grid     [][]int
+		expected int
+	}{
+		{
+			[][]int{
+				{0, 0, 0, 0},
+				{1, 0, 1, 0},
+				{0, 1, 1, 0},
+				{0, 0, 0, 0},
+			},
+			3,
+		},
+		{
+			[][]int{
+				{0, 1, 1, 0},
+				{0, 0, 1, 0},
+				{0, 0, 1, 0},
+				{0, 0, 0, 0},
+			},
+			0,
+		},
+		{
+			[][]int{
+				{0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1},
+				{1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0},
+				{0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0},
+				{1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1},
+				{0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0},
+				{1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1},
+				{0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0},
+				{0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0},
+				{1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0},
+				{1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1},
+			},
+			7,
+		},
+	}
+
+	for _, td := range testData {
+		result := traversal.NumEnclaves(td.grid)
+		assert.Equal(t, result, td.expected)
+	}
+
+}
+
 func TestLongestCycle(t *testing.T) {
 	testData := []struct {
 		edges    []int
