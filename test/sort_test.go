@@ -6,6 +6,42 @@ import (
 	"testing"
 )
 
+func TestKClosest(t *testing.T) {
+	testData := []struct {
+		pointer  [][]int
+		k        int
+		expected [][]int
+	}{
+		{
+			[][]int{
+				{1, 3},
+				{-2, 2},
+			},
+			1,
+			[][]int{
+				{-2, 2},
+			},
+		},
+		{
+			[][]int{
+				{3, 3},
+				{5, -1},
+				{-2, 4},
+			},
+			2,
+			[][]int{
+				{3, 3},
+				{-2, 4},
+			},
+		},
+	}
+
+	for _, td := range testData {
+		result := Sort.KClosest(td.pointer, td.k)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestSuccessfulPairs(t *testing.T) {
 	testData := []struct {
 		spells   []int
