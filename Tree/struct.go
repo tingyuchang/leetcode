@@ -16,6 +16,13 @@ type TreeNode struct {
 	Val   int
 }
 
+type TreeNodeWithNext struct {
+	Left  *TreeNodeWithNext
+	Right *TreeNodeWithNext
+	Val   int
+	Next  *TreeNodeWithNext
+}
+
 // GenerateTreeBySlice
 // input ["1', "", "2"]  empty string means nil node
 func GenerateTreeBySlice(input []string) *TreeNode {
