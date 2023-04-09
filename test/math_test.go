@@ -7,6 +7,36 @@ import (
 	"testing"
 )
 
+func TestCheckArithmeticSubarrays(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		l        []int
+		r        []int
+		expected []bool
+	}{
+		{
+			[]int{4, 6, 5, 9, 3, 7},
+			[]int{0, 0, 2},
+			[]int{2, 3, 5},
+			[]bool{true, false, true},
+		},
+
+		// Input: nums = [-12,-9,-3,-12,-6,15,20,-25,-20,-15,-10], l = [0,1,6,4,8,7], r = [4,4,9,7,9,10]
+		// Output: [false,true,false,false,true,true]
+		{
+			[]int{-12, -9, -3, -12, -6, 15, 20, -25, -20, -15, -10},
+			[]int{0, 1, 6, 4, 8, 7},
+			[]int{4, 4, 9, 7, 9, 10},
+			[]bool{false, true, false, false, true, true},
+		},
+	}
+
+	for _, td := range testData {
+		result := Math.CheckArithmeticSubarrays(td.nums, td.l, td.r)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestReshape(t *testing.T) {
 	testData := []struct {
 		mat      [][]int
