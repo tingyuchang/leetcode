@@ -1,5 +1,29 @@
 package Tree
 
+func nodeLevelOrder(root *Node) [][]int {
+	if root == nil {
+		return [][]int{}
+	}
+	res := make([][]int, 0)
+
+	current := []*Node{root}
+	background := make([]*Node, 0)
+
+	for len(current) != 0 {
+		temp := make([]int, 0)
+
+		for _, v := range current {
+			temp = append(temp, v.Val)
+			background = append(background, v.Children...)
+		}
+
+		current, background = background, []*Node{}
+		res = append(res, temp)
+	}
+
+	return res
+}
+
 func preorderWithArray(root *Node) []int {
 	res := make([]int, 0)
 	dfsPreorderWithArray(root, &res)
