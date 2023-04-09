@@ -6,6 +6,53 @@ import (
 	"testing"
 )
 
+func TestOrangeRotting(t *testing.T) {
+	testData := []struct {
+		grid     [][]int
+		expected int
+	}{
+		{
+			[][]int{
+				{2, 1, 1},
+				{1, 1, 0},
+				{0, 1, 1},
+			},
+			4,
+		},
+		{
+			[][]int{
+				{2, 1, 1},
+				{0, 1, 1},
+				{1, 0, 1},
+			},
+			-1,
+		},
+		{
+			[][]int{
+				{0, 2},
+			},
+			0,
+		},
+		{
+			[][]int{
+				{2},
+				{2},
+				{1},
+				{0},
+				{1},
+				{1},
+			},
+			-1,
+		},
+	}
+
+	for _, td := range testData {
+		result := traversal.OrangesRotting(td.grid)
+		assert.Equal(t, result, td.expected)
+	}
+
+}
+
 func TestNumEnclaves(t *testing.T) {
 	testData := []struct {
 		grid     [][]int
