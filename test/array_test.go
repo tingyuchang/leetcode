@@ -6,6 +6,27 @@ import (
 	"testing"
 )
 
+func TestNextGreaterElementsII(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		expected []int
+	}{
+		{
+			[]int{1, 2, 1},
+			[]int{2, -1, 2},
+		},
+		{
+			[]int{1, 2, 3, 4, 3},
+			[]int{2, 3, 4, -1, 4},
+		},
+	}
+
+	for _, td := range testData {
+		result := Array.NextGreaterElementsII(td.nums)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestNextGreaterElement(t *testing.T) {
 	testData := []struct {
 		nums1    []int
