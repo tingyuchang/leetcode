@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestNextGreaterElementsIII(t *testing.T) {
+	testData := []struct {
+		n        int
+		expected int
+	}{
+		{12, 21},
+		{21, -1},
+		{230241, 230412},
+		{2147483486, -1},
+	}
+
+	for _, td := range testData {
+		result := Array.NextGreaterElementIII(td.n)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestNextGreaterElementsII(t *testing.T) {
 	testData := []struct {
 		nums     []int
