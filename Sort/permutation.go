@@ -4,7 +4,73 @@ import (
 	"fmt"
 	"sort"
 	"strconv"
+	"unicode"
 )
+
+func LetterCasePermutation(s string) []string {
+	return letterCasePermutation(s)
+}
+
+func letterCasePermutation(s string) []string {
+	temp := make(map[string]struct{}, 0)
+
+	numOfLetters := 0
+	newS := make([]rune, len(s))
+	for i, v := range s {
+		if (v < 'a' || v > 'z') && (v < 'A' || v > 'Z') {
+			newS[i] = v
+			continue
+		}
+
+		newS[i] = unicode.ToLower(v)
+		numOfLetters++
+	}
+
+	temp[string(newS)] = struct{}{}
+
+	for i := 1; i <= numOfLetters; i++ {
+		combinationLetterCase(newS, 0, i, &temp, make([]rune, len(s)))
+	}
+
+	res := make([]string, len(temp))
+	i := 0
+	for k, _ := range temp {
+		res[i] = k
+		i++
+	}
+
+	return res
+}
+
+func combinationLetterCase(s []rune, currentIndex, currentUppercaseNum int, res *map[string]struct{}, currentRes []rune) {
+	if currentUppercaseNum < 0 {
+		return
+	}
+
+	if currentUppercaseNum == 0 {
+		_, ok := (*res)[string(s)]
+
+		if !ok {
+			(*res)[string(s)] = struct{}{}
+		}
+		return
+	}
+
+	for i := currentIndex; i < len(s); i++ {
+
+		if (s[i] < 'a' || s[i] > 'z') && (s[i] < 'A' || s[i] > 'Z') {
+			combinationLetterCase(s, i+1, currentUppercaseNum, res, currentRes)
+		} else {
+
+			// to uppercase
+			s[i] = unicode.ToUpper(s[i])
+			combinationLetterCase(s, i+1, currentUppercaseNum-1, res, currentRes)
+			// revert o lowercase
+			s[i] = unicode.ToLower(s[i])
+		}
+
+	}
+}
 
 func permuteUnique(nums []int) [][]int {
 	result := make([][]int, 0)

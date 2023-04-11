@@ -6,6 +6,31 @@ import (
 	"testing"
 )
 
+func TestLetterCasePermutation(t *testing.T) {
+	testData := []struct {
+		s        string
+		expected []string
+	}{
+		{
+			"a1b2",
+			[]string{"a1b2", "a1B2", "A1b2", "A1B2"},
+		},
+		{
+			"3z4",
+			[]string{"3z4", "3Z4"},
+		},
+		{
+			"C",
+			[]string{"c", "C"},
+		},
+	}
+
+	for _, td := range testData {
+		result := Sort.LetterCasePermutation(td.s)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestKClosest(t *testing.T) {
 	testData := []struct {
 		pointer  [][]int
