@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestRemoveStars(t *testing.T) {
+	testData := []struct {
+		s        string
+		expected string
+	}{
+		{
+			"leet**cod*e", "lecoe",
+		},
+		{"erase*****", ""},
+	}
+
+	for _, td := range testData {
+		result := Strings.RemoveStars(td.s)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestCheckInclusion(t *testing.T) {
 	testData := []struct {
 		s1       string
