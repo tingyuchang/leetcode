@@ -6,6 +6,24 @@ import (
 	"testing"
 )
 
+func TestNumOfMinutes(t *testing.T) {
+	testData := []struct {
+		n          int
+		headID     int
+		manager    []int
+		informTime []int
+		expected   int
+	}{
+		{1, 0, []int{-1}, []int{0}, 0},
+		{6, 2, []int{2, 2, -1, 2, 2, 2}, []int{0, 0, 1, 0, 0, 0}, 1},
+	}
+
+	for _, td := range testData {
+		result := traversal.NumOfMinutes(td.n, td.headID, td.manager, td.informTime)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestOrangeRotting(t *testing.T) {
 	testData := []struct {
 		grid     [][]int
