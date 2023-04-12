@@ -1,11 +1,7 @@
-package swapPairs
+package LinkedList
 
-import (
-	"leetcode/models"
-)
-
-func SwapPairs(head *models.ListNode) *models.ListNode {
-	firstNode := &models.ListNode{}
+func SwapPairs(head *ListNode) *ListNode {
+	firstNode := &ListNode{}
 	firstNode.Next = head
 	preNode := firstNode
 
