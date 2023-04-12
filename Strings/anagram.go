@@ -2,6 +2,48 @@ package Strings
 
 import "strconv"
 
+func findAnagrams(s string, p string) []int {
+	l, r, lengthOfP := 0, 0, len(p)
+	cache := make(map[byte]int)
+
+	for i := 0; i < lengthOfP; i++ {
+		cache[p[i]]++
+	}
+
+	res := make([]int, 0)
+
+	for r < len(s) {
+
+		if cache[s[r]] > 0 {
+			lengthOfP--
+		}
+		cache[s[r]]--
+
+		if lengthOfP == 0 {
+			res = append(res, l)
+
+			if cache[s[l]] == 0 {
+				lengthOfP++
+			}
+			cache[s[l]]++
+			l++
+		} else if r-l+1 == len(p) {
+			for cache[s[l]] >= 0 {
+				lengthOfP++
+				cache[s[l]]++
+				l++
+			}
+
+			cache[s[l]]++
+			l++
+		}
+
+		r++
+	}
+
+	return res
+}
+
 func GroupAnagrams(strs []string) [][]string {
 	result := make([][]string, 0)
 	// a1e1t1 / a1b1t1 / a1n1t1
