@@ -6,6 +6,31 @@ import (
 	"testing"
 )
 
+func TestValidateStackSequences(t *testing.T) {
+	testData := []struct {
+		pushed   []int
+		popped   []int
+		expected bool
+	}{
+		{
+			[]int{1, 2, 3, 4, 5},
+			[]int{4, 5, 3, 2, 1},
+			true,
+		},
+		{
+			[]int{1, 2, 3, 4, 5},
+			[]int{4, 3, 5, 1, 2},
+			false,
+		},
+	}
+
+	for _, td := range testData {
+		result := Array.ValidateStackSequences(td.pushed, td.popped)
+		assert.Equal(t, result, td.expected)
+	}
+
+}
+
 func TestNextGreaterElementsIII(t *testing.T) {
 	testData := []struct {
 		n        int
