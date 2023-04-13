@@ -7,6 +7,22 @@ import (
 	"testing"
 )
 
+func TestNumSubarrayProductLessThanK(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		k        int
+		expected int
+	}{
+		{[]int{10, 5, 2, 6}, 100, 8},
+		{[]int{1, 2, 3}, 0, 0},
+	}
+
+	for _, td := range testData {
+		result := Math.NumSubarrayProductLessThanK(td.nums, td.k)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestCheckArithmeticSubarrays(t *testing.T) {
 	testData := []struct {
 		nums     []int

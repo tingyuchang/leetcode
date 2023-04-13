@@ -5,6 +5,68 @@ import (
 	"sort"
 )
 
+func NumSubarrayProductLessThanK(nums []int, k int) int {
+	return numSubarrayProductLessThanK(nums, k)
+}
+
+func numSubarrayProductLessThanK(nums []int, k int) int {
+	// DP solution
+	if k <= 1 {
+		return 0
+	}
+
+	l := 0
+	current := 1
+	res := 0
+
+	for r, v := range nums {
+		current = current * v
+		for current >= k {
+			current = current / nums[l]
+			l++
+		}
+
+		res += (r - l + 1)
+	}
+
+	//res := 0
+	//for i := 0; i < len(nums); i++ {
+	//	temp := nums[i]
+	//
+	//	if temp < k {
+	//		res++
+	//	} else {
+	//		continue
+	//	}
+	//	for j := i + 1; j < len(nums); j++ {
+	//		temp = temp * nums[j]
+	//		if temp < k {
+	//			res++
+	//		} else {
+	//			break
+	//		}
+	//	}
+	//}
+	//return res
+}
+
+func dfsNumSubarrayProductLessThanK(nums []int, currentIndex, target int, res *int, currentProduct int) {
+	if currentProduct >= target {
+		return
+	}
+
+	if currentProduct < target {
+		fmt.Println(currentProduct)
+		*res++
+	}
+
+	for i := currentIndex; i < len(nums); i++ {
+		currentProduct = currentProduct * nums[i]
+		dfsNumSubarrayProductLessThanK(nums, i+1, target, res, currentProduct)
+		currentProduct = currentProduct / nums[i]
+	}
+}
+
 func CountSubarrays(nums []int, minK int, maxK int) int64 {
 	var res int64
 	l := -1
