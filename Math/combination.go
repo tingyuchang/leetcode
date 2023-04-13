@@ -29,6 +29,7 @@ func numSubarrayProductLessThanK(nums []int, k int) int {
 		res += (r - l + 1)
 	}
 
+	return res
 	//res := 0
 	//for i := 0; i < len(nums); i++ {
 	//	temp := nums[i]
