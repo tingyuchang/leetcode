@@ -33,3 +33,50 @@ func LowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	}
 	return left
 }
+
+// LowestCommonAncestorWithUnCertain
+// 1. Check both a, b exist in the tree, if not exist, can direct return -1
+// 2. dfs traversal base on 2 targets exist.
+// 2a. : if root == a || root == b, we can return root
+// 2b. if root is not a || b, them try root.left & root.right
+// 2c. if both left & right find a, b, the root will be answer, otherwise return which one has value
+func LowestCommonAncestorWithUnCertain(root *TreeNode, a, b int) int {
+	if !findAncesator(root, a) || !findAncesator(root, b) {
+		return -1
+	}
+	return lcaHelper(root, a, b).Val
+}
+
+func lcaHelper(root *TreeNode, a, b int) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	if root.Val == a || root.Val == b {
+		return root
+	}
+	left := lcaHelper(root.Left, a, b)
+	right := lcaHelper(root.Right, a, b)
+
+	if left == nil {
+		return right
+	}
+
+	if right == nil {
+		return left
+	}
+
+	return root
+
+}
+
+func findAncesator(root *TreeNode, n int) bool {
+	if root == nil {
+		return false
+	}
+
+	if root.Val == n {
+		return true
+	}
+
+	return findAncesator(root.Left, n) || findAncesator(root.Right, n)
+}
