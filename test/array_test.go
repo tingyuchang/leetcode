@@ -6,6 +6,24 @@ import (
 	"testing"
 )
 
+func TestBackspaceCompare(t *testing.T) {
+	testData := []struct {
+		s   string
+		t   string
+		exp bool
+	}{
+		{"ab#c", "ad#c", true},
+		{"ab##", "a#c#", true},
+		{"a#c", "b", false},
+	}
+
+	for _, td := range testData {
+		restult := Array.BackspaceCompare(td.s, td.t)
+		assert.Equal(t, restult, td.exp)
+	}
+
+}
+
 func TestValidateStackSequences(t *testing.T) {
 	testData := []struct {
 		pushed   []int
