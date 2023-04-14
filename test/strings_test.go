@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestDecodeString(t *testing.T) {
+	testData := []struct {
+		s   string
+		exp string
+	}{
+		{"3[a]2[bc]", "aaabcbc"},
+		{"3[a2[c]]", "accaccacc"},
+		{"2[abc]3[cd]ef", "abcabccdcdcdef"},
+		{"100[leetcode]", "leetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcode"},
+	}
+
+	for _, td := range testData {
+		result := Strings.DecodeString(td.s)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestLongestPalindrome(t *testing.T) {
 	var testData = []struct {
 		input    string
