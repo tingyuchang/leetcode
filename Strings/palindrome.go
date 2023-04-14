@@ -2,6 +2,42 @@ package Strings
 
 import "fmt"
 
+func LongestPalindromeSubString(s string) string {
+	if len(s) == 0 {
+		return ""
+	}
+	start, end := 0, 0
+
+	max := func(a, b int) int {
+		if a > b {
+			return a
+		}
+
+		return b
+	}
+
+	for i := 0; i < len(s); i++ {
+		len1 := expandAroundCenter(s, i, i)
+		len2 := expandAroundCenter(s, i, i+1) // if center is between 2 nodes
+		ans := max(len1, len2)
+		if ans > end-start {
+			start = i - (ans-1)/2
+			end = i + ans/2
+		}
+	}
+
+	return s[start : end+1]
+}
+
+func expandAroundCenter(s string, l, r int) int {
+	for l >= 0 && r < len(s) && s[l] == s[r] {
+		l--
+		r++
+	}
+
+	return r - l - 1
+}
+
 func LongestPalindromeSubseq(s string) int {
 	return longestPalindromeSubseq(s)
 }

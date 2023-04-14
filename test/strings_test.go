@@ -6,6 +6,27 @@ import (
 	"testing"
 )
 
+func TestLongestPalindrome(t *testing.T) {
+	var testData = []struct {
+		input    string
+		expected string
+	}{
+		{"babad", "aba"},
+		{"cbbd", "bb"},
+		{"acbca", "acbca"},
+		{"abcda", "a"},
+		{"", ""},
+		{"babadada", "adada"},
+		{"1baccab2", "baccab"},
+	}
+
+	for _, tt := range testData {
+		actual := Strings.LongestPalindromeSubString(tt.input)
+		assert.Equal(t, actual, tt.expected)
+	}
+
+}
+
 func TestLongestPalindromeSubseq(t *testing.T) {
 	testData := []struct {
 		s        string
