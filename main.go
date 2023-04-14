@@ -113,3 +113,29 @@ func myLog(input interface{}) {
 	iLog.Println(input)
 	iLog.SetFlags(log.Lshortfile | log.LstdFlags)
 }
+
+func printSubsequence(s string) {
+
+	res := make([]string, 0)
+
+	combinationOfSubSequence(s, 0, &res, make([]byte, 0))
+
+	fmt.Println(res)
+
+}
+
+func combinationOfSubSequence(s string, currentIndex int, res *[]string, current []byte) {
+	if currentIndex > len(s) {
+		return
+	}
+
+	if len(current) > 0 {
+		*res = append(*res, string(current))
+	}
+
+	for i := currentIndex; i < len(s); i++ {
+		current = append(current, s[i])
+		combinationOfSubSequence(s, i+1, res, current)
+		current = current[:len(current)-1]
+	}
+}

@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestLongestPalindromeSubseq(t *testing.T) {
+	testData := []struct {
+		s        string
+		expected int
+	}{
+		{"bbbab", 4},
+		{"cbbd", 2},
+		{"euazbipzncptldueeuechubrcourfpftcebikrxhybkymimgvldiwqvkszfycvqyvtiwfckexmowcxztkfyzqovbtmzpxojfofbvwnncajvrvdbvjhcrameamcfmcoxryjukhpljwszknhiypvyskmsujkuggpztltpgoczafmfelahqwjbhxtjmebnymdyxoeodqmvkxittxjnlltmoobsgzdfhismogqfpfhvqnxeuosjqqalvwhsidgiavcatjjgeztrjuoixxxoznklcxolgpuktirmduxdywwlbikaqkqajzbsjvdgjcnbtfksqhquiwnwflkldgdrqrnwmshdpykicozfowmumzeuznolmgjlltypyufpzjpuvucmesnnrwppheizkapovoloneaxpfinaontwtdqsdvzmqlgkdxlbeguackbdkftzbnynmcejtwudocemcfnuzbttcoew", 159},
+	}
+
+	for _, td := range testData {
+		result := Strings.LongestPalindromeSubseq(td.s)
+		assert.Equal(t, result, td.expected)
+	}
+}
+
 func TestBullsCowsGetHint(t *testing.T) {
 	testData := []struct {
 		secret   string
