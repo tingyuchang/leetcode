@@ -7,6 +7,22 @@ import (
 	"testing"
 )
 
+func TestMaxValueOfCoins(t *testing.T) {
+	testData := []struct {
+		piles [][]int
+		k     int
+		exp   int
+	}{
+		{[][]int{{1, 100, 3}, {7, 8, 9}}, 2, 101},
+		{[][]int{{100}, {100}, {100}, {100}, {100}, {100}, {1, 1, 1, 1, 1, 1, 700}}, 7, 706},
+	}
+
+	for _, td := range testData {
+		result := DP.MaxValueOfCoins(td.piles, td.k)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestLengthOfLongestSubstring(t *testing.T) {
 	testData := []struct {
 		s        string
