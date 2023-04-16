@@ -7,6 +7,26 @@ import (
 	"testing"
 )
 
+func TestAddTwoNumbers(t *testing.T) {
+
+	var testData = []struct {
+		l1  *LinkedList.ListNode
+		l2  *LinkedList.ListNode
+		exp *LinkedList.ListNode
+	}{
+		{LinkedList.GenerateNodeFromArray([]int{2, 3, 4}), LinkedList.GenerateNodeFromArray([]int{5, 6, 4}), LinkedList.GenerateNodeFromArray([]int{7, 9, 8})},
+		{LinkedList.GenerateNodeFromArray([]int{2, 9, 2}), LinkedList.GenerateNodeFromArray([]int{1, 3, 8}), LinkedList.GenerateNodeFromArray([]int{3, 2, 1, 1})},
+		{LinkedList.GenerateNodeFromArray([]int{9, 1, 6}), LinkedList.GenerateNodeFromArray([]int{0}), LinkedList.GenerateNodeFromArray([]int{9, 1, 6})},
+		{LinkedList.GenerateNodeFromArray([]int{1, 8}), LinkedList.GenerateNodeFromArray([]int{0}), LinkedList.GenerateNodeFromArray([]int{1, 8})},
+		{LinkedList.GenerateNodeFromArray([]int{9, 9, 9, 9, 9, 9, 9}), LinkedList.GenerateNodeFromArray([]int{9, 9, 9, 9}), LinkedList.GenerateNodeFromArray([]int{8, 9, 9, 9, 0, 0, 0, 1})},
+	}
+
+	for _, tt := range testData {
+		result := LinkedList.AddTwoNumbers(tt.l1, tt.l2)
+		assert.Equal(t, result.String(), tt.exp.String())
+	}
+}
+
 func TestSwapPairs2(t *testing.T) {
 	testData := []struct {
 		root     *LinkedList.ListNode
