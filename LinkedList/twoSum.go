@@ -2,6 +2,19 @@ package LinkedList
 
 import "fmt"
 
+func AddTwoNumbersII(l1 *ListNode, l2 *ListNode) *ListNode {
+	return addTwoNumbersII(l1, l2)
+}
+
+func addTwoNumbersII(l1 *ListNode, l2 *ListNode) *ListNode {
+	l1 = ReverseList(l1)
+	l2 = ReverseList(l2)
+
+	res := addTwoNumbers(l1, l2)
+
+	return ReverseList(res)
+}
+
 func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	return addTwoNumbers(l1, l2)
 }

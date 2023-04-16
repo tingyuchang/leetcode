@@ -7,6 +7,28 @@ import (
 	"testing"
 )
 
+func TestAddTwoNumbersII(t *testing.T) {
+	testData := []struct {
+		l1  *LinkedList.ListNode
+		l2  *LinkedList.ListNode
+		exp *LinkedList.ListNode
+	}{
+		{LinkedList.GenerateNodeFromArray([]int{2, 3, 4}),
+			LinkedList.GenerateNodeFromArray([]int{5, 6, 4}),
+			LinkedList.GenerateNodeFromArray([]int{7, 9, 8}),
+		},
+		{LinkedList.GenerateNodeFromArray([]int{7, 2, 4, 3}),
+			LinkedList.GenerateNodeFromArray([]int{5, 6, 4}),
+			LinkedList.GenerateNodeFromArray([]int{7, 8, 0, 7}),
+		},
+	}
+
+	for _, td := range testData {
+		result := LinkedList.AddTwoNumbersII(td.l1, td.l2)
+		assert.Equal(t, result.String(), td.exp.String())
+	}
+}
+
 func TestAddTwoNumbers(t *testing.T) {
 
 	var testData = []struct {
