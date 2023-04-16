@@ -7,6 +7,22 @@ import (
 	"testing"
 )
 
+func TestNumWays(t *testing.T) {
+	testData := []struct {
+		word   []string
+		target string
+		exp    int
+	}{
+		{[]string{"acca", "bbbb", "caca"}, "aba", 6},
+		{[]string{"abba", "baab"}, "bab", 4},
+	}
+
+	for _, td := range testData {
+		result := DP.NumWays(td.word, td.target)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestMaxValueOfCoins(t *testing.T) {
 	testData := []struct {
 		piles [][]int
