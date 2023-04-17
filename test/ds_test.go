@@ -3,8 +3,28 @@ package test
 import (
 	"github.com/magiconair/properties/assert"
 	"leetcode/data-structure/MedianFinder"
+	"leetcode/data-structure/Trie"
 	"testing"
 )
+
+func TestLongestCommonPrefix(t *testing.T) {
+	testData := []struct {
+		strs []string
+		exp  string
+	}{
+		{[]string{"flower", "flow", "flight"}, "fl"},
+		{[]string{"dog", "racecar", "car"}, ""},
+		{[]string{"a"}, "a"},
+		{[]string{"", "b"}, ""},
+		{[]string{"a", "ab"}, "a"},
+		{[]string{"flower", "flower", "flower", "flower"}, "flower"},
+	}
+
+	for _, td := range testData {
+		result := Trie.LongestCommonPrefix(td.strs)
+		assert.Equal(t, result, td.exp)
+	}
+}
 
 func TestMedianFinder(t *testing.T) {
 	mf := MedianFinder.Constructor()
