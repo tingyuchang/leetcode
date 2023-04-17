@@ -7,6 +7,47 @@ import (
 	"testing"
 )
 
+func BenchmarkCutRodRecursive(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		DP.MaxCutRodRecursive([]int{0, 1, 5, 8, 9, 10, 17, 17, 29, 24, 20}, 10)
+	}
+}
+
+func BenchmarkCutRodMemo(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		DP.MaxCutRodMemo([]int{0, 1, 5, 8, 9, 10, 17, 17, 29, 24, 20}, 10)
+	}
+}
+
+func BenchmarkCutRodButtonUp(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		DP.MaxCutRodButtonUp([]int{0, 1, 5, 8, 9, 10, 17, 17, 29, 24, 20}, 10)
+	}
+}
+
+func TestCutRod(t *testing.T) {
+	testData := []struct {
+		prices []int
+		n      int
+		exp    int
+	}{
+		{
+			[]int{0, 1, 5, 8, 9, 10, 17, 17, 29, 24, 20}, 4, 10,
+		},
+		{
+			[]int{0, 1, 5, 8, 9, 10, 17, 17, 29, 24, 20}, 1, 1,
+		},
+		{
+			[]int{0, 1, 5, 8, 9, 10, 17, 17, 29, 24, 20}, 2, 5,
+		},
+	}
+
+	for _, td := range testData {
+		result := DP.MaxCutRodButtonUp(td.prices, td.n)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestNumWays(t *testing.T) {
 	testData := []struct {
 		word   []string
