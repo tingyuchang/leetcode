@@ -7,6 +7,30 @@ import (
 	"testing"
 )
 
+func TestRotateRight(t *testing.T) {
+	testData := []struct {
+		head *LinkedList.ListNode
+		k    int
+		exp  *LinkedList.ListNode
+	}{
+		{
+			LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 4, 5}),
+			2,
+			LinkedList.GenerateNodeFromArray([]int{4, 5, 1, 2, 3}),
+		},
+		{
+			LinkedList.GenerateNodeFromArray([]int{0, 1, 2}),
+			4,
+			LinkedList.GenerateNodeFromArray([]int{2, 0, 1}),
+		},
+	}
+
+	for _, td := range testData {
+		result := LinkedList.RotateRight(td.head, td.k)
+		assert.Equal(t, result.String(), td.exp.String())
+	}
+}
+
 func TestAddTwoNumbersII(t *testing.T) {
 	testData := []struct {
 		l1  *LinkedList.ListNode
