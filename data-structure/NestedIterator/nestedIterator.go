@@ -80,16 +80,35 @@ func (this NestedInteger) GetList() []*NestedInteger {
 }
 
 type NestedIterator struct {
+	nestedList []*NestedInteger
+	nums       []int
 }
 
 func Constructor(nestedList []*NestedInteger) *NestedIterator {
+	n := &NestedIterator{nestedList: nestedList}
+	n.nums = flatten(n.nestedList)
+	return n
+}
 
+func flatten(nestedList []*NestedInteger) []int {
+	res := make([]int, 0)
+	for _, nestInt := range nestedList {
+		if nestInt.IsInteger() {
+			res = append(res, nestInt.GetInteger())
+		} else {
+			res = append(res, flatten(nestInt.GetList())...)
+		}
+	}
+
+	return res
 }
 
 func (this *NestedIterator) Next() int {
-
+	res := this.nums[0]
+	this.nums = this.nums[1:]
+	return res
 }
 
 func (this *NestedIterator) HasNext() bool {
-
+	return len(this.nums) > 0
 }
