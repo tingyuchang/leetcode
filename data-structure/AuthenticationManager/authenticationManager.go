@@ -1,97 +1,132 @@
 package AuthenticationManager
 
-import (
-	"container/heap"
-)
+import "fmt"
 
 // TODO using heap to resolve this
-type TokenId struct {
-	len     byte
-	payload [5]byte
-}
-
-func NewTokenId(tokenId string) TokenId {
-	t := TokenId{}
-	t.len = byte(len(tokenId))
-	copy(t.payload[:], tokenId)
-	return t
-}
 
 type Token struct {
-	id        TokenId
+	id        string
 	ttl       int
 	heapIndex int
 }
 
-type tokenHeap []*Token
+type TokenHeap []*Token
 
-func (t tokenHeap) Len() int {
-	return len(t)
+func (t *TokenHeap) minHeapButtonUp(n int) {
+	current := n
+	for current > 0 {
+		parrent := (current - 1) / 2
+		if (*t)[current].ttl < (*t)[parrent].ttl {
+			(*t)[current], (*t)[parrent] = (*t)[parrent], (*t)[current]
+			(*t)[current].heapIndex = current
+			(*t)[parrent].heapIndex = parrent
+		} else {
+			break
+		}
+		current = parrent
+	}
 }
 
-func (t tokenHeap) Less(i, j int) bool {
-	return t[i].ttl < t[j].ttl
+func (t *TokenHeap) minHeapTopDown(n int) {
+	l := ((n + 1) << 1) - 1
+	r := (n + 1) << 1
+
+	var smallest int
+
+	if l < len(*t) && (*t)[l].ttl < (*t)[n].ttl {
+		smallest = l
+	} else {
+		smallest = n
+	}
+
+	if r < len(*t) && (*t)[r].ttl < (*t)[smallest].ttl {
+		smallest = r
+	}
+
+	if smallest != n {
+		(*t)[n], (*t)[smallest] = (*t)[smallest], (*t)[n]
+		(*t)[n].heapIndex = n
+		(*t)[smallest].heapIndex = smallest
+		t.minHeapTopDown(smallest)
+	}
+
 }
 
-func (t tokenHeap) Swap(i, j int) {
-	t[i], t[j] = t[j], t[i]
-	t[i].heapIndex = j
-	t[j].heapIndex = i
-}
-
-func (t *tokenHeap) Push(x interface{}) {
-	token := x.(*Token)
-	token.heapIndex = len(*t)
-	*t = append(*t, token)
-}
-
-func (t *tokenHeap) Pop() interface{} {
-	token := (*t)[len(*t)-1]
+func (t *TokenHeap) removeElement(n int) {
+	// swap index n & last element
+	(*t)[n], (*t)[len(*t)-1] = (*t)[len(*t)-1], (*t)[n]
+	(*t)[n].heapIndex = n
+	(*t)[len(*t)-1].heapIndex = len(*t) - 1
 	*t = (*t)[:len(*t)-1]
-	return token
+	t.minHeapTopDown(n)
+
 }
 
 type AuthenticationManager struct {
 	ttl       int
-	tokens    tokenHeap
-	idToToken map[TokenId]*Token
+	tokens    TokenHeap
+	idToToken map[string]*Token
 }
 
 func ConstructorAuthenticationManager(timeToLive int) AuthenticationManager {
 	return AuthenticationManager{
-		idToToken: make(map[TokenId]*Token),
-		tokens:    make(tokenHeap, 0, 1),
 		ttl:       timeToLive,
+		tokens:    make([]*Token, 0),
+		idToToken: make(map[string]*Token),
 	}
 }
 
 func (this *AuthenticationManager) Generate(tokenId string, currentTime int) {
-	id := NewTokenId(tokenId)
-	if token := this.idToToken[id]; token != nil {
-		token.ttl = currentTime + this.ttl
-		heap.Fix(&this.tokens, int(token.heapIndex))
-	} else {
-		token = &Token{
-			id:  id,
-			ttl: currentTime + this.ttl,
-		}
-		heap.Push(&this.tokens, token)
-		this.idToToken[id] = token
+	if _, ok := this.idToToken[tokenId]; ok {
+		return
 	}
+
+	token := Token{id: tokenId, ttl: currentTime + this.ttl}
+	token.heapIndex = len(this.tokens)
+	this.tokens = append(this.tokens, &token)
+	this.tokens.minHeapButtonUp(token.heapIndex)
+	this.idToToken[tokenId] = &token
 }
 
 func (this *AuthenticationManager) Renew(tokenId string, currentTime int) {
-	if token := this.idToToken[NewTokenId(tokenId)]; token != nil && token.ttl > currentTime {
+	if _, ok := this.idToToken[tokenId]; !ok {
+		return
+	}
+	token := this.idToToken[tokenId]
+	if token.ttl <= currentTime {
+		// drop token
+		delete(this.idToToken, tokenId)
+		// remove from heap
+		this.tokens.removeElement(token.heapIndex)
+	} else {
 		token.ttl = currentTime + this.ttl
-		heap.Fix(&this.tokens, int(token.heapIndex))
+		// run minHeapTop Down
+		this.tokens.minHeapTopDown(token.heapIndex)
 	}
 }
 
 func (this *AuthenticationManager) CountUnexpiredTokens(currentTime int) int {
-	for len(this.tokens) != 0 && this.tokens[0].ttl <= currentTime {
-		delete(this.idToToken, this.tokens[0].id)
-		heap.Pop(&this.tokens)
+
+	for i, v := range this.tokens {
+		fmt.Printf("%d %v\n", i, *v)
 	}
+
+	if len(this.tokens) == 0 {
+		return 0
+	}
+
+	token := this.tokens[0]
+
+	for token.ttl <= currentTime {
+		delete(this.idToToken, token.id)
+		this.tokens.removeElement(0)
+
+		if len(this.tokens) == 0 {
+			break
+		}
+		token = this.tokens[0]
+	}
+
 	return len(this.tokens)
 }
 
