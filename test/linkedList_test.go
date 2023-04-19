@@ -7,6 +7,27 @@ import (
 	"testing"
 )
 
+func TestSortList(t *testing.T) {
+	testData := []struct {
+		head *LinkedList.ListNode
+		exp  *LinkedList.ListNode
+	}{
+		{
+			LinkedList.GenerateNodeFromArray([]int{-1, 5, 3, 4, 0}),
+			LinkedList.GenerateNodeFromArray([]int{-1, 0, 3, 4, 5}),
+		},
+		{
+			LinkedList.GenerateNodeFromArray([]int{}),
+			LinkedList.GenerateNodeFromArray([]int{}),
+		},
+	}
+
+	for _, td := range testData {
+		result := LinkedList.SortList(td.head)
+		assert.Equal(t, result.String(), td.exp.String())
+	}
+}
+
 func TestOddEvenList(t *testing.T) {
 	testData := []struct {
 		head *LinkedList.ListNode
