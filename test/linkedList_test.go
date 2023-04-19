@@ -7,6 +7,27 @@ import (
 	"testing"
 )
 
+func TestOddEvenList(t *testing.T) {
+	testData := []struct {
+		head *LinkedList.ListNode
+		exp  *LinkedList.ListNode
+	}{
+		{
+			LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 4, 5}),
+			LinkedList.GenerateNodeFromArray([]int{1, 3, 5, 2, 4}),
+		},
+		{
+			LinkedList.GenerateNodeFromArray([]int{2, 1, 3, 5, 6, 4, 7}),
+			LinkedList.GenerateNodeFromArray([]int{2, 3, 6, 7, 1, 5, 4}),
+		},
+	}
+
+	for _, td := range testData {
+		result := LinkedList.OddEvenList(td.head)
+		assert.Equal(t, result.String(), td.exp.String())
+	}
+}
+
 func TestRotateRight(t *testing.T) {
 	testData := []struct {
 		head *LinkedList.ListNode
