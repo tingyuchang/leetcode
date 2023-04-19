@@ -6,6 +6,32 @@ import (
 	"testing"
 )
 
+func TestLongestZigZag(t *testing.T) {
+	codex := Tree.Codec{}
+	testData := []struct {
+		root *Tree.TreeNode
+		exp  int
+	}{
+		{
+			codex.Deserialize("1,null,1,1,1,null,null,1,1,null,1,null,null,null,1,null,1"),
+			3,
+		},
+		{
+			codex.Deserialize("1,1,1,null,1,null,null,1,1,null,1"),
+			4,
+		},
+		{
+			codex.Deserialize("1"),
+			0,
+		},
+	}
+
+	for _, td := range testData {
+		result := Tree.LongestZigZag(td.root)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestKthSmallest(t *testing.T) {
 	codex := Tree.Codec{}
 	testData := []struct {
