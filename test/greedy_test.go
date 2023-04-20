@@ -14,6 +14,8 @@ func TestLeastInterval(t *testing.T) {
 	}{
 		{[]byte{'A', 'A', 'A', 'B', 'B', 'B'}, 2, 8},
 		{[]byte{'A', 'A', 'A', 'B', 'B', 'B'}, 0, 6},
+		{[]byte{'A', 'B', 'A'}, 2, 4},
+		{[]byte{'A', 'A', 'A', 'B', 'B', 'B', 'C', 'C', 'C', 'D', 'D', 'E'}, 2, 12},
 		{[]byte{'A', 'A', 'A', 'A', 'A', 'A', 'B', 'C', 'D', 'E', 'F', 'G'}, 2, 16},
 	}
 
