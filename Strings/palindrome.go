@@ -2,6 +2,60 @@ package Strings
 
 import "fmt"
 
+func LongestPalindromeByConcatenating(words []string) int {
+	return longestPalindromeByConcatenating(words)
+}
+
+func longestPalindromeByConcatenating(words []string) int {
+	// find current word's palindrome if find , the there 2 can use to create palindrome string
+	// notes:
+	// 1. if find more than 2, we only use 2n candidates
+	// 2. if word itself is palindrome, then it can be along
+	// ex: aa, we can use below cases {"aa"} or {"aa", "aa"} or {"aa", "aa", "aa"}
+	// T O(2n) n is number of keys
+	// S O(n) n is number of keys
+
+	cache := make(map[string]int)
+	res := 0
+
+	for _, v := range words {
+		cache[v]++
+	}
+
+	min := func(a, b int) int {
+		if a > b {
+			return b
+		}
+		return a
+	}
+
+	only := true
+	for k, v := range cache {
+
+		kr := string(k[1]) + string(k[0])
+		//fmt.Println(res, k, kr)
+		if kr != k {
+			v2, ok := cache[kr]
+			if ok {
+				res += min(v, v2) * 4
+			}
+			// reset k & kr
+			cache[k] = 0
+			cache[kr] = 0
+		} else {
+
+			res += (v / 2) * 2 * 2
+			// only accept 1
+			if only && v%2 != 0 {
+				res += 2
+				only = false
+			}
+		}
+	}
+
+	return res
+}
+
 func LongestPalindromeSubString(s string) string {
 	if len(s) == 0 {
 		return ""
