@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestLongestPalindromeByConcatenating(t *testing.T) {
+	testData := []struct {
+		words []string
+		exp   int
+	}{
+		{[]string{"lc", "cl", "gg"}, 6},
+		{[]string{"ab", "ty", "yt", "lc", "cl", "ab"}, 8},
+		{[]string{"cc", "ll", "xx"}, 2},
+		{[]string{"aa", "aa"}, 4},
+	}
+
+	for _, td := range testData {
+		result := Strings.LongestPalindromeByConcatenating(td.words)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestDecodeString(t *testing.T) {
 	testData := []struct {
 		s   string
