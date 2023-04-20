@@ -23,6 +23,7 @@ func (t *TokenHeap) minHeapButtonUp(n int) {
 		} else {
 			break
 		}
+
 		current = parrent
 	}
 }
