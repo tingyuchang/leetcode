@@ -6,6 +6,24 @@ import (
 	"testing"
 )
 
+func TestWidthOfBinaryTree(t *testing.T) {
+	codex := Tree.Codec{}
+	testData := []struct {
+		root *Tree.TreeNode
+		exp  int
+	}{
+		{codex.Deserialize("1,3,2,5,3,null,9"), 4},
+		{codex.Deserialize("1,3,2,5,null,null,9,6,null,7"), 7},
+		{codex.Deserialize("1,3,2,5"), 2},
+		{codex.Deserialize("1,1,1,1,1,1,1,null,null,null,1,null,null,null,null,2,2,2,2,2,2,2,null,2,null,null,2,null,2"), 8},
+	}
+
+	for _, td := range testData {
+		result := Tree.WidthOfBinaryTree(td.root)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestLongestZigZag(t *testing.T) {
 	codex := Tree.Codec{}
 	testData := []struct {
