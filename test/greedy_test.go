@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestLeastInterval(t *testing.T) {
+	testData := []struct {
+		tasks []byte
+		n     int
+		exp   int
+	}{
+		{[]byte{'A', 'A', 'A', 'B', 'B', 'B'}, 2, 8},
+		{[]byte{'A', 'A', 'A', 'B', 'B', 'B'}, 0, 6},
+		{[]byte{'A', 'A', 'A', 'A', 'A', 'A', 'B', 'C', 'D', 'E', 'F', 'G'}, 2, 16},
+	}
+
+	for _, td := range testData {
+		result := greedy.LeastInterval(td.tasks, td.n)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestMinimizeArrayValue(t *testing.T) {
 	testData := []struct {
 		nums     []int
