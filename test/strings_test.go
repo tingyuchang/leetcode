@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestMinInsertions(t *testing.T) {
+	testData := []struct {
+		s   string
+		exp int
+	}{
+		{"zzazz", 0},
+		{"mbadm", 2},
+		{"leetcode", 5},
+	}
+
+	for _, td := range testData {
+		restult := Strings.MinInsertions(td.s)
+		assert.Equal(t, restult, td.exp)
+	}
+}
+
 func TestLongestPalindromeByConcatenating(t *testing.T) {
 	testData := []struct {
 		words []string

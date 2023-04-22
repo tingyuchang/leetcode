@@ -2,6 +2,16 @@ package Strings
 
 import "fmt"
 
+func MinInsertions(s string) int {
+	return minInsertions(s)
+}
+
+func minInsertions(s string) int {
+	n := longestPalindromeSubseq(s)
+
+	return len(s) - n
+}
+
 func LongestPalindromeByConcatenating(words []string) int {
 	return longestPalindromeByConcatenating(words)
 }

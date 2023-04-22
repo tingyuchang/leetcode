@@ -95,17 +95,14 @@ func profitableSchemesTopDown(n int, minProfit int, group []int, profit []int) i
 	return dpProfitableSchemesTopDown(0, 0, 0, minProfit, n, group, profit, memo)
 }
 
-func dpProfitableSchemesTopDown(position, count, profit, minProfit, n int, group, profits []int, memo [][][]int) int {
+func dpProfitableSchemesTopDown(position, numOfMembers, currentProfit, totalMember, minProfit int, group, profit []int, memo [][][]int) int {
 	if position == len(group) {
 
-		if profit >= minProfit {
+		if currentProfit >= minProfit {
 			return 1
 		}
-		return 0
-	}
 
-	if memo[position][count][profit] != -1 {
-		return memo[position][count][profit]
+		return 0
 	}
 
 	min := func(a, b int) int {
@@ -114,15 +111,22 @@ func dpProfitableSchemesTopDown(position, count, profit, minProfit, n int, group
 		}
 		return b
 	}
-
-	total := dpProfitableSchemesTopDown(position+1, count, profit, minProfit, n, group, profits, memo)
-	var mod int = 1e9 + 7
-	if count+group[position] <= n {
-		total += dpProfitableSchemesTopDown(position+1, count+group[position], min(minProfit, profit+profits[position]), minProfit, n, group, profits, memo)
+	if memo[position][numOfMembers][currentProfit] != -1 {
+		return memo[position][numOfMembers][currentProfit]
 	}
 
-	memo[position][count][profit] = total % mod
-	return memo[position][count][profit]
+	total := dpProfitableSchemesTopDown(position+1, numOfMembers, currentProfit, totalMember, minProfit, group, profit, memo)
+	// not add current crime
+
+	if (group[position] + numOfMembers) <= totalMember {
+		// add current crime
+		total += dpProfitableSchemesTopDown(position+1, numOfMembers+group[position], min(minProfit, currentProfit+profit[position]), totalMember, minProfit, group, profit, memo)
+	}
+
+	memo[position][numOfMembers][currentProfit] = total % (1e9 + 7)
+
+	return memo[position][numOfMembers][currentProfit]
+
 }
 
 func profitableSchemes(n int, minProfit int, group []int, profit []int) int {
