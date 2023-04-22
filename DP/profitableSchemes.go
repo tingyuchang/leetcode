@@ -3,7 +3,7 @@ package DP
 import "fmt"
 
 func ProfitableSchemes(n int, minProfit int, group []int, profit []int) int {
-	return profitableSchemesTopDown(n, minProfit, group, profit)
+	return profitableSchemesButtonUp(n, minProfit, group, profit)
 }
 
 func dpProfitableSchemesV1(n int, minProfit int, group []int, profit []int) int {
@@ -79,20 +79,54 @@ func dpProfitableSchemes(n int, minProfit int, group []int, profit []int) int {
 	return sum
 }
 
-func profitableSchemesTopDown(n int, minProfit int, group []int, profit []int) int {
-	memo := make([][][]int, len(group)+1)
+func profitableSchemesButtonUp(n int, minProfit int, group []int, profit []int) int {
+	var mod int = 1e9 + 7
+	dp := make([][][]int, len(group)+1)
 
-	for i, _ := range memo {
-		memo[i] = make([][]int, n+1)
-		for j, _ := range memo[i] {
-			memo[i][j] = make([]int, minProfit+1)
-			for k := 0; k < len(memo[i][j]); k++ {
-				memo[i][j][k] = -1
+	for i, _ := range dp {
+		dp[i] = make([][]int, n+1)
+		for j, _ := range dp[i] {
+			dp[i][j] = make([]int, minProfit+1)
+		}
+	}
+
+	for i := 0; i <= n; i++ {
+		dp[len(group)][i][minProfit] = 1
+	}
+	min := func(a, b int) int {
+		if a < b {
+			return a
+		}
+		return b
+	}
+
+	for i := len(group) - 1; i >= 0; i-- {
+		for count := 0; count <= n; count++ {
+			for p := 0; p <= minProfit; p++ {
+				dp[i][count][p] = dp[i+1][count][p]
+				if count+group[i] <= n {
+					dp[i][count][p] = (dp[i+1][count][p] + dp[i+1][count+group[i]][min(p+profit[i], minProfit)]) % mod
+				}
 			}
 		}
 	}
 
-	return dpProfitableSchemesTopDown(0, 0, 0, minProfit, n, group, profit, memo)
+	return dp[0][0][0]
+}
+
+func profitableSchemesTopDown(n int, minProfit int, group []int, profit []int) int {
+	memo := make([][][]int, 101)
+
+	for i, _ := range memo {
+		memo[i] = make([][]int, 101)
+		for j, _ := range memo[i] {
+			memo[i][j] = make([]int, 101)
+			for k, _ := range memo[i][j] {
+				memo[i][j][k] = -1
+			}
+		}
+	}
+	return dpProfitableSchemesTopDown(0, 0, 0, n, minProfit, group, profit, memo)
 }
 
 func dpProfitableSchemesTopDown(position, numOfMembers, currentProfit, totalMember, minProfit int, group, profit []int, memo [][][]int) int {
@@ -111,12 +145,13 @@ func dpProfitableSchemesTopDown(position, numOfMembers, currentProfit, totalMemb
 		}
 		return b
 	}
+
 	if memo[position][numOfMembers][currentProfit] != -1 {
 		return memo[position][numOfMembers][currentProfit]
 	}
 
-	total := dpProfitableSchemesTopDown(position+1, numOfMembers, currentProfit, totalMember, minProfit, group, profit, memo)
 	// not add current crime
+	total := dpProfitableSchemesTopDown(position+1, numOfMembers, currentProfit, totalMember, minProfit, group, profit, memo)
 
 	if (group[position] + numOfMembers) <= totalMember {
 		// add current crime
