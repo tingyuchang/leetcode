@@ -7,6 +7,23 @@ import (
 	"testing"
 )
 
+func TestDeleteAndEarn(t *testing.T) {
+	testData := []struct {
+		nums []int
+		exp  int
+	}{
+		{[]int{3, 4, 2}, 6},
+		{[]int{2, 2, 3, 3, 3, 4}, 9},
+		{[]int{3, 1}, 4},
+		{[]int{8, 7, 3, 8, 1, 4, 10, 10, 10, 2}, 52},
+	}
+
+	for _, td := range testData {
+		restult := DP.DeleteAndEarn(td.nums)
+		assert.Equal(t, restult, td.exp)
+	}
+}
+
 func TestKanspack(t *testing.T) {
 	testData := []struct {
 		price     []int
