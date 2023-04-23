@@ -6,6 +6,26 @@ import (
 	"testing"
 )
 
+func TestNumbersOfArrays(t *testing.T) {
+	testData := []struct {
+		s   string
+		k   int
+		exp int
+	}{
+		{
+			"1000", 10000, 1,
+		},
+		{"1000", 10, 0},
+		{"1317", 2000, 8},
+		{"1317", 100, 5},
+	}
+
+	for _, td := range testData {
+		result := Array.NumberOfArrays(td.s, td.k)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestBackspaceCompare(t *testing.T) {
 	testData := []struct {
 		s   string
