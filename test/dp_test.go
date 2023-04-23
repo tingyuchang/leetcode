@@ -7,6 +7,37 @@ import (
 	"testing"
 )
 
+func TestUniquePathsWithObstacles(t *testing.T) {
+	testData := []struct {
+		obstacleGrid [][]int
+		exp          int
+	}{
+		{
+			[][]int{
+				{0, 0, 0},
+				{0, 1, 0},
+				{0, 0, 0},
+			}, 2,
+		},
+		{
+			[][]int{
+				{0, 1},
+				{0, 0},
+			}, 1,
+		},
+		{
+			[][]int{
+				{1},
+			}, 0,
+		},
+	}
+
+	for _, td := range testData {
+		result := DP.UniquePathsWithObstacles(td.obstacleGrid)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestDeleteAndEarn(t *testing.T) {
 	testData := []struct {
 		nums []int
