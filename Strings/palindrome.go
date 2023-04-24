@@ -84,7 +84,7 @@ func LongestPalindromeSubString(s string) string {
 		len1 := expandAroundCenter(s, i, i)
 		len2 := expandAroundCenter(s, i, i+1) // if center is between 2 nodes
 		ans := max(len1, len2)
-		if ans > end-start {
+		if ans > end-start+1 {
 			start = i - (ans-1)/2
 			end = i + ans/2
 		}
