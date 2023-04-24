@@ -7,6 +7,31 @@ import (
 	"testing"
 )
 
+func TestMinFallingPathSum(t *testing.T) {
+	testData := []struct {
+		matrix [][]int
+		exp    int
+	}{
+		{[][]int{
+			{2, 1, 3},
+			{6, 5, 4},
+			{7, 8, 9},
+		}, 13},
+		{
+			[][]int{
+				{-19, 57},
+				{-40, -5},
+			},
+			-59,
+		},
+	}
+
+	for _, td := range testData {
+		result := DP.MinFallingPathSum(td.matrix)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestUniquePathsWithObstacles(t *testing.T) {
 	testData := []struct {
 		obstacleGrid [][]int
