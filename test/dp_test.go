@@ -7,6 +7,39 @@ import (
 	"testing"
 )
 
+func TestMaximalSquare(t *testing.T) {
+	testData := []struct {
+		matrix [][]byte
+		exp    int
+	}{
+		{
+			[][]byte{
+				{1, 0, 1, 0, 0},
+				{1, 0, 1, 1, 1},
+				{1, 1, 1, 1, 1},
+				{1, 0, 0, 1, 0},
+			},
+			4,
+		},
+		{
+			[][]byte{
+				{0, 1},
+				{1, 0},
+			},
+			1,
+		},
+		{
+			[][]byte{{1}}, 1,
+		},
+		{[][]byte{{0, 1}}, 1},
+	}
+
+	for _, td := range testData {
+		result := DP.MaximalSquare(td.matrix)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestMinFallingPathSum(t *testing.T) {
 	testData := []struct {
 		matrix [][]int
