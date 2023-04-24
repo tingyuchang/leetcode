@@ -1,5 +1,51 @@
 package DP
 
+import "math"
+
+// 931. Minimum Falling Path Sum
+func MinFallingPathSum(matrix [][]int) int {
+	return minFallingPathSum(matrix)
+}
+
+func minFallingPathSum(matrix [][]int) int {
+
+	min := func(a, b int) int {
+		if a > b {
+			return b
+		}
+
+		return a
+	}
+
+	for i := 1; i < len(matrix); i++ {
+
+		for j := 0; j < len(matrix[i]); j++ {
+			var v int
+			if j == 0 {
+				v = min(matrix[i-1][j], matrix[i-1][j+1])
+			} else if j == len(matrix[i])-1 {
+				v = min(matrix[i-1][j-1], matrix[i-1][j])
+			} else {
+				v = min(matrix[i-1][j-1], matrix[i-1][j])
+				v = min(v, matrix[i-1][j+1])
+
+			}
+			matrix[i][j] += v
+		}
+
+	}
+
+	ans := math.MaxInt
+
+	for _, v := range matrix[len(matrix)-1] {
+		if v < ans {
+			ans = v
+		}
+	}
+
+	return ans
+}
+
 // 63 Unique PathII
 func UniquePathsWithObstacles(obstacleGrid [][]int) int {
 	return uniquePathsWithObstacles(obstacleGrid)
