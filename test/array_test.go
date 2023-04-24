@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestLastStoneWeight(t *testing.T) {
+	testData := []struct {
+		stones []int
+		exp    int
+	}{
+		{[]int{2, 7, 4, 1, 8, 1}, 1},
+		{[]int{3, 7, 8}, 2},
+		{[]int{1}, 1},
+		{[]int{239, 198, 980, 404, 413, 804, 912, 546, 849, 506, 917, 837, 210, 837, 917, 6, 723, 929, 506, 438, 267, 225, 533, 312, 568, 596, 82, 685, 138, 276}, 1},
+	}
+
+	for _, td := range testData {
+		result := Array.LastStoneWeight(td.stones)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestNumbersOfArrays(t *testing.T) {
 	testData := []struct {
 		s   string
