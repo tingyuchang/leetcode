@@ -58,7 +58,7 @@ func bfsLadderLength(source, target string, words []string) int {
 
 	}
 
-	return ans
+	return 0
 }
 
 /*
