@@ -399,7 +399,7 @@ func TestEditDistance(t *testing.T) {
 	}
 
 	for _, td := range testData {
-		result := Strings.MinDistance(td.word1, td.word2)
+		result := Strings.EditDistance(td.word1, td.word2)
 		assert.Equal(t, result, td.expected)
 	}
 }
