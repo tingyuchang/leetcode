@@ -103,10 +103,39 @@ func expandAroundCenter(s string, l, r int) int {
 }
 
 func LongestPalindromeSubseq(s string) int {
-	return longestPalindromeSubseq(s)
+	return longestPalindromeSubSequenceButtonUp(s)
+}
+
+func longestPalindromeSubSequenceButtonUp(s string) int {
+	dp := make([][]int, len(s))
+	for i, _ := range dp {
+		dp[i] = make([]int, len(s))
+	}
+	max := func(a, b int) int {
+		if a > b {
+			return a
+		}
+
+		return b
+	}
+
+	for i := len(s) - 1; i >= 0; i-- {
+		dp[i][i] = 1
+		for j := i + 1; j < len(s); j++ {
+			if s[i] == s[j] {
+				dp[i][j] = dp[i+1][j-1] + 2
+			} else {
+				dp[i][j] = max(dp[i+1][j], dp[i][j-1])
+			}
+		}
+	}
+
+	return dp[0][len(s)-1]
+
 }
 
 func longestPalindromeSubseq(s string) int {
+	// dp[i][j] means s[i:j] is palindrome string length
 	dp := make([][]int, len(s))
 	fmt.Println("s len: ", len(s))
 	for i, _ := range dp {
