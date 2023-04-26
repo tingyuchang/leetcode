@@ -7,6 +7,22 @@ import (
 	"testing"
 )
 
+func TestMinimumDeleteSum(t *testing.T) {
+	testData := []struct {
+		s1  string
+		s2  string
+		exp int
+	}{
+		{"sea", "eat", 231},
+		{"delete", "leet", 403},
+	}
+
+	for _, td := range testData {
+		result := DP.MinimumDeleteSum(td.s1, td.s2)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestMaximalSquare(t *testing.T) {
 	testData := []struct {
 		matrix [][]byte
