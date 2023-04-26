@@ -7,6 +7,20 @@ import (
 	"testing"
 )
 
+func TestNumDistinct(t *testing.T) {
+	testData := []struct {
+		s   string
+		t   string
+		exp int
+	}{
+		{"rabbbit", "rabbit", 3},
+	}
+
+	for _, td := range testData {
+		result := DP.NumDistinct(td.s, td.t)
+		assert.Equal(t, result, td.exp)
+	}
+}
 func TestMinimumDeleteSum(t *testing.T) {
 	testData := []struct {
 		s1  string
