@@ -1,4 +1,4 @@
-package Sort
+package Array
 
 import "fmt"
 
@@ -40,25 +40,16 @@ func removeDuplicatesII(nums []int) int {
 }
 
 func RemoveDuplicates(nums []int) int {
-	count := 0
-	var current int
+	nonDuplicated := 0
 
-	for i, v := range nums {
-		if i == 0 {
-			current = v
-			count++
-		} else {
-			if current < v {
-				current = v
-				count++
-				nums[count-1] = v
-			}
-		}
+	for i := 1; i < len(nums); i++ {
+		if nums[i] != nums[nonDuplicated] {
+			nonDuplicated++
+			nums[i], nums[nonDuplicated] = nums[nonDuplicated], nums[i]
 
-		if i == len(nums)-1 {
-			nums = nums[:count]
 		}
 	}
-
-	return count
+	// nums = nums[:nonDuplicated+1]
+	// fmt.Println(nums,  nonDuplicated)
+	return nonDuplicated + 1
 }

@@ -185,36 +185,6 @@ func TestSortedSquares(t *testing.T) {
 	}
 }
 
-func TestRemoveDuplicatesII(t *testing.T) {
-	testData := []struct {
-		input    []int
-		expected int
-	}{
-		{[]int{1, 1, 1, 2, 2, 3}, 5},
-		{[]int{0, 0, 1, 1, 1, 1, 2, 3, 3}, 7},
-	}
-
-	for _, td := range testData {
-		result := Sort.RemoveDuplicatesII(td.input)
-		assert.Equal(t, result, td.expected)
-	}
-}
-
-func TestRemoveDuplicates(t *testing.T) {
-	testData := []struct {
-		input    []int
-		expected int
-	}{
-		{[]int{1, 1, 2}, 2},
-		{[]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}, 5},
-	}
-
-	for _, td := range testData {
-		result := Sort.RemoveDuplicates(td.input)
-		assert.Equal(t, result, td.expected)
-	}
-}
-
 func TestSearchInRotatedII(t *testing.T) {
 	testData := []struct {
 		nums     []int
