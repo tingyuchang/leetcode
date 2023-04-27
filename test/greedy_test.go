@@ -6,6 +6,30 @@ import (
 	"testing"
 )
 
+func TestCanCompleteCircuit(t *testing.T) {
+	testData := []struct {
+		gas  []int
+		cost []int
+		exp  int
+	}{
+		{
+			[]int{1, 2, 3, 4, 5},
+			[]int{3, 4, 5, 1, 2},
+			3,
+		},
+		{
+			[]int{2, 3, 4},
+			[]int{3, 4, 3},
+			-1,
+		},
+	}
+
+	for _, td := range testData {
+		result := greedy.CanCompleteCircuit(td.gas, td.cost)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestLeastInterval(t *testing.T) {
 	testData := []struct {
 		tasks []byte
