@@ -7,6 +7,30 @@ import (
 	"testing"
 )
 
+func TestBulbSwitch(t *testing.T) {
+	testData := []struct {
+		n   int
+		exp int
+	}{
+		{3, 1},
+		{0, 0},
+		{1, 1},
+		{4, 2},
+		{5, 2},
+		{6, 2},
+		{7, 2},
+		{8, 2},
+		{9, 3},
+		{10, 3},
+		//{99999, 316},
+	}
+
+	for _, td := range testData {
+		result := Math.BulbSwitch(td.n)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestBestTimeToBuyAndSell(t *testing.T) {
 	var testData = []struct {
 		input    []int
