@@ -1,5 +1,7 @@
 package __Daily_Prac
 
+var MOD int = 1e9 + 7
+
 func Max(a, b int) int {
 	if a > b {
 		return a
