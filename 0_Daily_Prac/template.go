@@ -30,7 +30,7 @@ Input: s = "bbbab"
 Output: 4
 Explanation: One possible longest palindromic subsequence is "bbbb".
 */
-func longestPalindromeSubseq(s string) int {
+func LongestPalindromeSubseq(s string) int {
 	return 0
 }
 
@@ -40,7 +40,7 @@ Input: coins = [1,2,5], amount = 11
 Output: 3
 Explanation: 11 = 5 + 5 + 1
 */
-func coinChange(coins []int, amount int) int {
+func CoinChange(coins []int, amount int) int {
 	return 0
 }
 
@@ -50,7 +50,7 @@ Input: s = "1317", k = 2000
 Output: 8
 Explanation: Possible arrays are [1317],[131,7],[13,17],[1,317],[13,1,7],[1,31,7],[1,3,17],[1,3,1,7]
 */
-func numberOfArrays(s string, k int) int {
+func NumberOfArrays(s string, k int) int {
 	return 0
 }
 
@@ -63,7 +63,7 @@ horse -> rorse (replace 'h' with 'r')
 rorse -> rose (remove 'r')
 rose -> ros (remove 'e')
 */
-func minDistance(word1 string, word2 string) int {
+func MinDistance(word1 string, word2 string) int {
 	return 0
 }
 
@@ -75,7 +75,7 @@ Explanation: Return true because "applepenapple" can be segmented as "apple pen 
 Note that you are allowed to reuse a dictionary word.
 */
 
-func wordBreak(s string, wordDict []string) bool {
+func WordBreak(s string, wordDict []string) bool {
 	return false
 }
 
@@ -85,7 +85,7 @@ Input: beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","
 Output: 5
 Explanation: One shortest transformation sequence is "hit" -> "hot" -> "dot" -> "dog" -> cog", which is 5 words long.
 */
-func ladderLength(beginWord string, endWord string, wordList []string) int {
+func LadderLength(beginWord string, endWord string, wordList []string) int {
 	return 0
 }
 
@@ -94,6 +94,6 @@ func ladderLength(beginWord string, endWord string, wordList []string) int {
 Input: matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]
 Output: 4
 */
-func maximalSquare(matrix [][]byte) int {
+func MaximalSquare(matrix [][]byte) int {
 	return 0
 }

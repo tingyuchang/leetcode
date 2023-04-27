@@ -5,12 +5,186 @@ import (
 	"github.com/magiconair/properties/assert"
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
+	_0230427 "leetcode/0_Daily_Prac/20230427"
+	"leetcode/DP"
 	"reflect"
 	"regexp"
 	"testing"
 )
 
-var name = _0230403.Name{}
+var name = _0230427.Name{}
+
+var LongestCommonSubsequence = _0230427.LongestCommonSubsequence
+var LongestPalindrome = _0230427.LongestPalindrome
+var CoinChange = _0230427.CoinChange
+var NumberOfArrays = _0230427.NumberOfArrays
+var MinDistance = _0230427.MinDistance
+var WordBreak = _0230427.WordBreak
+var LadderLength = _0230427.LadderLength
+var MaximalSquare = _0230427.MaximalSquare
+
+func TestDaily(t *testing.T) {
+	re := regexp.MustCompile(`\d{8}`)
+	fmt.Printf("%q\n", re.Find([]byte(reflect.TypeOf(name).PkgPath())))
+
+	LongestCommonSubsequenceTestData := []struct {
+		text1    string
+		text2    string
+		expected int
+	}{
+		{"abcde", "ace", 3},
+		{"abc", "abc", 3},
+		{"abc", "def", 0},
+		{"ezupkr", "ubmrapg", 2},
+		{"bsbininm", "jmjkbkjkv", 1},
+		{"oxcpqrsvwf", "shmtulqrypy", 2},
+	}
+	fmt.Printf("Start test\tLongestCommonSubsequenceTestData\n")
+	for _, td := range LongestCommonSubsequenceTestData {
+		result := LongestCommonSubsequence(td.text1, td.text2)
+		assert.Equal(t, result, td.expected)
+	}
+	fmt.Printf("End test\tLongestCommonSubsequenceTestData\n")
+
+	LongestPalindromeTestData := []struct {
+		input    string
+		expected string
+	}{
+		{"babad", "bab"},
+		{"cbbd", "bb"},
+		{"acbca", "acbca"},
+		{"abcda", "a"},
+		{"", ""},
+		{"babadada", "adada"},
+		{"1baccab2", "baccab"},
+	}
+	fmt.Printf("Start test\tLongestPalindrome\n")
+	for _, td := range LongestPalindromeTestData {
+		actual := LongestPalindrome(td.input)
+		assert.Equal(t, actual, td.expected)
+	}
+	fmt.Printf("End test\tLongestPalindrome\n")
+
+	CoinChangeTestData := []struct {
+		coins    []int
+		amount   int
+		expected int
+	}{
+		{[]int{1, 2, 5}, 11, 3},
+		{[]int{2}, 3, -1},
+		{[]int{1}, 0, 0},
+	}
+
+	fmt.Printf("Start test\tCoinChange\n")
+	for _, td := range CoinChangeTestData {
+		result := DP.CoinChange(td.coins, td.amount)
+		assert.Equal(t, result, td.expected)
+	}
+	fmt.Printf("End test\tCoinChange\n")
+
+	NumberOfArraysTestData := []struct {
+		s   string
+		k   int
+		exp int
+	}{
+		{
+			"1000", 10000, 1,
+		},
+		{"1000", 10, 0},
+		{"1317", 2000, 8},
+		{"1317", 100, 5},
+	}
+	fmt.Printf("Start test\tNumberOfArrays\n")
+	for _, td := range NumberOfArraysTestData {
+		result := NumberOfArrays(td.s, td.k)
+		assert.Equal(t, result, td.exp)
+	}
+	fmt.Printf("End test\tNumberOfArrays\n")
+
+	MinDistanceTestData := []struct {
+		word1    string
+		word2    string
+		expected int
+	}{
+		{"horse", "ros", 3},
+		{"intention", "execution", 5},
+	}
+	fmt.Printf("Start test\tMinDistance\n")
+	for _, td := range MinDistanceTestData {
+		result := MinDistance(td.word1, td.word2)
+		assert.Equal(t, result, td.expected)
+	}
+	fmt.Printf("End test\tMinDistance\n")
+
+	WordBreakTestData := []struct {
+		s        string
+		wordDict []string
+		excepted bool
+	}{
+		{"leetcode", []string{"leet", "code"}, true},
+		{"applepenapple", []string{"apple", "pen"}, true},
+		{"catsandog", []string{"cats", "dog", "sand", "and", "cat"}, false},
+		{"aaaaaaa", []string{"aaaa", "aaa"}, true},
+		{"catcats", []string{"cat", "cats"}, true},
+		{"catsand", []string{"cat", "cats", "and"}, true},
+	}
+	fmt.Printf("Start test\tWordBreak\n")
+	for _, td := range WordBreakTestData {
+		result := WordBreak(td.s, td.wordDict)
+		assert.Equal(t, result, td.excepted)
+	}
+	fmt.Printf("End test\tWordBreak\n")
+
+	LadderLengthTestData := []struct {
+		beginWord string
+		endWord   string
+		wordList  []string
+		exp       int
+	}{
+		{"hit", "cog", []string{"hot", "dot", "dog", "lot", "log", "cog"}, 5},
+		{"hit", "cog", []string{"hot", "dot", "dog", "lot", "log"}, 0},
+	}
+
+	fmt.Printf("Start test\tLadderLength\n")
+	for _, td := range LadderLengthTestData {
+		result := LadderLength(td.beginWord, td.endWord, td.wordList)
+		assert.Equal(t, result, td.exp)
+	}
+	fmt.Printf("End test\tLadderLength\n")
+
+	MaximalSquareTestData := []struct {
+		matrix [][]byte
+		exp    int
+	}{
+		{
+			[][]byte{
+				{'1', '0', '1', '0', '0'},
+				{'1', '0', '1', '1', '1'},
+				{'1', '1', '1', '1', '1'},
+				{'1', '0', '0', '1', '0'},
+			},
+			4,
+		},
+		{
+			[][]byte{
+				{'0', '1'},
+				{'1', '0'},
+			},
+			1,
+		},
+		{
+			[][]byte{{'0'}}, 0,
+		},
+		{[][]byte{{'0', '1'}}, 1},
+	}
+	fmt.Printf("Start test\tMaximalSquare\n")
+	for _, td := range MaximalSquareTestData {
+		result := MaximalSquare(td.matrix)
+		assert.Equal(t, result, td.exp)
+	}
+	fmt.Printf("End test\tMaximalSquare\n")
+}
+
 var mergeSort = _0230403.MergeSort
 var heapSort = _0230403.HeapSort
 var insertionSort = _0230403.InsertionSort
@@ -23,7 +197,7 @@ var coinChange = _0230403.CoinChange
 var longestCommonSubsequence = _0230403.LongestCommonSubsequence
 var medianFinder = _0230323.Constructor()
 
-func TestDaily(t *testing.T) {
+func testDailyOld(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
 	fmt.Printf("%q\n", re.Find([]byte(reflect.TypeOf(name).PkgPath())))
 

@@ -77,7 +77,7 @@ func BinarySearch(nums []int, target int) int {
 	return -1
 }
 
-func CoinChange(coins []int, amount int) int {
+func coinChange(coins []int, amount int) int {
 
 	return -1
 }
