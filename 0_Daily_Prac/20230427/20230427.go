@@ -95,7 +95,7 @@ Explanation: 11 = 5 + 5 + 1
 func CoinChange(coins []int, amount int) int {
 
 	dp := make([]int, amount+1)
-	dp[0] = 1
+	dp[0] = 0
 
 	sort.Ints(coins)
 	for i := 1; i <= amount; i++ {

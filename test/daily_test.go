@@ -6,7 +6,6 @@ import (
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
 	_0230427 "leetcode/0_Daily_Prac/20230427"
-	"leetcode/DP"
 	"reflect"
 	"regexp"
 	"testing"
@@ -77,7 +76,7 @@ func TestDaily(t *testing.T) {
 
 	fmt.Printf("Start test\tCoinChange\n")
 	for _, td := range CoinChangeTestData {
-		result := DP.CoinChange(td.coins, td.amount)
+		result := CoinChange(td.coins, td.amount)
 		assert.Equal(t, result, td.expected)
 	}
 	fmt.Printf("End test\tCoinChange\n")
