@@ -6,6 +6,25 @@ import (
 	"testing"
 )
 
+func TestNumSimilarGroups(t *testing.T) {
+	testData := []struct {
+		strs []string
+		exp  int
+	}{
+		{
+			[]string{"tars", "rats", "arts", "star"}, 2,
+		},
+		{
+			[]string{"omv", "ovm"}, 1,
+		},
+	}
+
+	for _, td := range testData {
+		result := traversal.NumSimilarGroups(td.strs)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestNumOfMinutes(t *testing.T) {
 	testData := []struct {
 		n          int
