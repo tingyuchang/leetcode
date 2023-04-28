@@ -5,22 +5,23 @@ import (
 	"github.com/magiconair/properties/assert"
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
-	_0230427 "leetcode/0_Daily_Prac/20230427"
+	_0230428 "leetcode/0_Daily_Prac/20230428"
 	"reflect"
 	"regexp"
 	"testing"
 )
 
-var name = _0230427.Name{}
+var name = _0230428.Name{}
 
-var LongestCommonSubsequence = _0230427.LongestCommonSubsequence
-var LongestPalindrome = _0230427.LongestPalindrome
-var CoinChange = _0230427.CoinChange
-var NumberOfArrays = _0230427.NumberOfArrays
-var MinDistance = _0230427.MinDistance
-var WordBreak = _0230427.WordBreak
-var LadderLength = _0230427.LadderLength
-var MaximalSquare = _0230427.MaximalSquare
+var LongestCommonSubsequence = _0230428.LongestCommonSubsequence
+var LongestPalindrome = _0230428.LongestPalindrome
+var LongestPalindromeSubseq = _0230428.LongestPalindromeSubseq
+var CoinChange = _0230428.CoinChange
+var NumberOfArrays = _0230428.NumberOfArrays
+var MinDistance = _0230428.MinDistance
+var WordBreak = _0230428.WordBreak
+var LadderLength = _0230428.LadderLength
+var MaximalSquare = _0230428.MaximalSquare
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -63,6 +64,21 @@ func TestDaily(t *testing.T) {
 		assert.Equal(t, actual, td.expected)
 	}
 	fmt.Printf("End test\tLongestPalindrome\n")
+
+	LongestPalindromeSubseqTestData := []struct {
+		s        string
+		expected int
+	}{
+		{"bbbab", 4},
+		{"cbbd", 2},
+		{"euazbipzncptldueeuechubrcourfpftcebikrxhybkymimgvldiwqvkszfycvqyvtiwfckexmowcxztkfyzqovbtmzpxojfofbvwnncajvrvdbvjhcrameamcfmcoxryjukhpljwszknhiypvyskmsujkuggpztltpgoczafmfelahqwjbhxtjmebnymdyxoeodqmvkxittxjnlltmoobsgzdfhismogqfpfhvqnxeuosjqqalvwhsidgiavcatjjgeztrjuoixxxoznklcxolgpuktirmduxdywwlbikaqkqajzbsjvdgjcnbtfksqhquiwnwflkldgdrqrnwmshdpykicozfowmumzeuznolmgjlltypyufpzjpuvucmesnnrwppheizkapovoloneaxpfinaontwtdqsdvzmqlgkdxlbeguackbdkftzbnynmcejtwudocemcfnuzbttcoew", 159},
+	}
+	fmt.Printf("Start test\tLongestPalindromeSubseq\n")
+	for _, td := range LongestPalindromeSubseqTestData {
+		result := LongestPalindromeSubseq(td.s)
+		assert.Equal(t, result, td.expected)
+	}
+	fmt.Printf("End test\tLongestPalindromeSubseq\n")
 
 	CoinChangeTestData := []struct {
 		coins    []int

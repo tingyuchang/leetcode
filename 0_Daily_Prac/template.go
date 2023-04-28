@@ -20,7 +20,7 @@ Input: s = "babad"
 Output: "bab"
 Explanation: "aba" is also a valid answer.
 */
-func longestPalindrome(s string) string {
+func LongestPalindrome(s string) string {
 	return ""
 }
 
