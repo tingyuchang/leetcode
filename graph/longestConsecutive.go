@@ -25,10 +25,11 @@ func longestConsecutive(nums []int) int {
 }
 
 type UnionFindMaxGroup struct {
-	group     []int
-	groupSize []int
-	rank      []int
-	maxGroup  int
+	group      []int
+	groupSize  []int
+	rank       []int
+	maxGroup   int
+	totalGroup int
 }
 
 func NewUnionFindMaxGroup(n int) *UnionFindMaxGroup {
@@ -41,10 +42,11 @@ func NewUnionFindMaxGroup(n int) *UnionFindMaxGroup {
 	}
 
 	return &UnionFindMaxGroup{
-		group:     group,
-		groupSize: groupSize,
-		maxGroup:  1,
-		rank:      make([]int, n),
+		group:      group,
+		groupSize:  groupSize,
+		maxGroup:   1,
+		totalGroup: n,
+		rank:       make([]int, n),
 	}
 }
 
@@ -81,6 +83,8 @@ func (uf *UnionFindMaxGroup) join(n1, n2 int) {
 			uf.rank[group2]++
 		}
 	}
+
+	uf.totalGroup--
 }
 
 func (uf *UnionFindMaxGroup) areConnected(n1, n2 int) bool {
