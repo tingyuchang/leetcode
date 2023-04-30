@@ -43,3 +43,7 @@ There may be multiple edges between two nodes.
 HINT: DSU/Union Find
 
 https://leetcode.com/discuss/general-discussion/1072418/Disjoint-Set-Union-(DSU)Union-Find-A-Complete-Guide
+
+related questions:
+
+https://leetcode.com/list/5lhmb4mj/
