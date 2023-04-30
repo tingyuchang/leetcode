@@ -41,7 +41,7 @@ Output: 3
 Explanation: 11 = 5 + 5 + 1
 */
 func CoinChange(coins []int, amount int) int {
-	return 0
+	return -1
 }
 
 // 1416. Restore The Array
