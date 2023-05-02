@@ -78,23 +78,52 @@ Output: 4
 Explanation: One possible longest palindromic subsequence is "bbbb".
 */
 func LongestPalindromeSubseq(s string) int {
-	dp := make([][]int, len(s))
+	// dp := make([][]int, len(s))
 
-	for i := len(s)-1; i >= 0; i-- {
-		dp[i] = make([]int, len(s))
-		dp[i][i] = 1
+	// for i := len(s)-1; i >= 0; i-- {
+	// 	dp[i] = make([]int, len(s))
+	// 	dp[i][i] = 1
 
-		for j := i+1; j < len(s); j++ {
-			if s[i] == s[j] {
-				dp[i][j] = dp[i+1][j-1] +2
-			} else {
-				dp[i][j] = __Daily_Prac.Max(dp[i+1][j], dp[i][j-1])
-			}
-		}
-	}
+	// 	for j := i+1; j < len(s); j++ {
+	// 		if s[i] == s[j] {
+	// 			dp[i][j] = dp[i+1][j-1] +2
+	// 		} else {
+	// 			dp[i][j] = __Daily_Prac.Max(dp[i+1][j], dp[i][j-1])
+	// 		}
+	// 	}
+	// }
 	
-	return dp[0][len(s)-1]
+	// return dp[0][len(s)-1]
+
+	memo := make([][]int, len(s))
+	for i := range memo {
+		 memo[i] = make([]int, len(s))
+	}
+	return dfsLongestPalindromeSubseq(s, 0, len(s)-1, memo)
+
 }
+// top down & memoization 
+func dfsLongestPalindromeSubseq(s string, start, end int, memo [][]int) int {
+	if start == end {
+		return 1 
+	}
+
+	if start > end {
+		return 0 
+	}
+	if memo[start][end] != 0 {
+		return memo[start][end]
+	}
+
+	if s[start] == s[end] {
+		memo[start][end] = dfsLongestPalindromeSubseq(s, start+1, end-1, memo) +2
+	} else {
+		memo[start][end] = __Daily_Prac.Max(dfsLongestPalindromeSubseq(s, start+1, end, memo), dfsLongestPalindromeSubseq(s, start, end-1, memo))
+	}
+
+	return memo[start][end]
+}
+
 
 // 322. Coin Change
 /*

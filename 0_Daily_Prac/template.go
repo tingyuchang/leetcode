@@ -97,3 +97,89 @@ Output: 4
 func MaximalSquare(matrix [][]byte) int {
 	return 0
 }
+
+// 300. Longest Increasing Subsequence
+/*
+Input: nums = [10,9,2,5,3,7,101,18]
+Output: 4
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+*/
+func lengthOfLIS(nums []int) int {
+	return 1
+}
+
+// 122. Best Time to Buy and Sell Stock II
+/*
+Input: prices = [7,1,5,3,6,4]
+Output: 7
+Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
+Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
+Total profit is 4 + 3 = 7.
+*/
+func maxProfit(prices []int) int {
+	return 0 
+}
+
+// 45. Jump Game II
+/*
+Return the minimum number of jumps to reach nums[n - 1].
+The test cases are generated such that you can reach nums[n - 1].
+
+Input: nums = [2,3,1,1,4]
+Output: 2
+Explanation: The minimum number of jumps to reach the last index is 2. 
+Jump 1 step from index 0 to 1, then 3 steps to the last index.
+*/
+
+func jump(nums []int) int {
+	return 0
+}
+
+// 134. Gas Station
+/*
+Input: gas = [1,2,3,4,5], cost = [3,4,5,1,2]
+Output: 3
+Explanation:
+Start at station 3 (index 3) and fill up with 4 unit of gas. Your tank = 0 + 4 = 4
+Travel to station 4. Your tank = 4 - 1 + 5 = 8
+Travel to station 0. Your tank = 8 - 2 + 1 = 7
+Travel to station 1. Your tank = 7 - 3 + 2 = 6
+Travel to station 2. Your tank = 6 - 4 + 3 = 5
+Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.
+Therefore, return 3 as the starting index.
+*/
+
+func canCompleteCircuit(gas []int, cost []int) int {
+	return -1
+}
+
+// 135. Candy
+/*
+Input: ratings = [1,0,2]
+Output: 5
+Explanation: You can allocate to the first, second and third child with 2, 1, 2 candies respectively.
+*/
+func candy(ratings []int) int {
+	return 0
+}
+
+// 42. Trapping Rain Water
+/*
+Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
+Output: 6
+Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.
+*/
+
+func trap(height []int) int {
+	return 0
+}
+
+// 209. Minimum Size Subarray Sum
+/*
+Input: target = 7, nums = [2,3,1,2,4,3]
+Output: 2
+Explanation: The subarray [4,3] has the minimal length under the problem constraint.
+*/
+func minSubArrayLen(target int, nums []int) int {
+	return 0 
+}

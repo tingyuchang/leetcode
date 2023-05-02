@@ -1,10 +1,10 @@
 package __Daily_Prac
 
 func LengthOfLIS(nums []int) int {
-	return lengthOfLIS(nums)
+	return _lengthOfLIS(nums)
 }
 
-func lengthOfLIS(nums []int) int {
+func _lengthOfLIS(nums []int) int {
 	/*
 		dp := make([]int, len(nums))
 			ans := 0
