@@ -101,3 +101,34 @@ func ReverseVowels(s string) string {
 
 	return string(sb[:])
 }
+
+func split(input string, delim byte) []string {
+	ans := make([]string, 0)
+
+	l, r := 0, 0
+
+	for r < len(input) {
+		if input[r] == delim {
+			subStr := input[l:r]
+			if len(subStr) > 0 {
+				ans = append(ans, subStr)
+			}
+
+			r++
+			for r < len(input) {
+				if input[r] != delim {
+					l = r
+					break
+				}
+				r++
+			}
+		}
+		r++
+	}
+	if r == len(input) {
+		subStr := input[l:r]
+		ans = append(ans, subStr)
+	}
+
+	return ans
+}
