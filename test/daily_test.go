@@ -5,23 +5,23 @@ import (
 	"github.com/magiconair/properties/assert"
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
-	_0230501 "leetcode/0_Daily_Prac/20230501"
+	_0230502 "leetcode/0_Daily_Prac/20230502"
 	"reflect"
 	"regexp"
 	"testing"
 )
 
-var name = _0230501.Name{}
+var name = _0230502.Name{}
 
-var LongestCommonSubsequence = _0230501.LongestCommonSubsequence
-var LongestPalindrome = _0230501.LongestPalindrome
-var LongestPalindromeSubseq = _0230501.LongestPalindromeSubseq
-var CoinChange = _0230501.CoinChange
-var NumberOfArrays = _0230501.NumberOfArrays
-var MinDistance = _0230501.MinDistance
-var WordBreak = _0230501.WordBreak
-var LadderLength = _0230501.LadderLength
-var MaximalSquare = _0230501.MaximalSquare
+var LongestCommonSubsequence = _0230502.LongestCommonSubsequence
+var LongestPalindrome = _0230502.LongestPalindrome
+var LongestPalindromeSubseq = _0230502.LongestPalindromeSubseq
+var CoinChange = _0230502.CoinChange
+var NumberOfArrays = _0230502.NumberOfArrays
+var MinDistance = _0230502.MinDistance
+var WordBreak = _0230502.WordBreak
+var LadderLength = _0230502.LadderLength
+var MaximalSquare = _0230502.MaximalSquare
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
