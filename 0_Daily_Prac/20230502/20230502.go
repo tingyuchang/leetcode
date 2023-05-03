@@ -22,11 +22,10 @@ func LongestCommonSubsequence(text1 string, text2 string) int {
 		dp[i] = make([]int, len(text2)+1)
 	}
 
-
 	for i := 1; i <= len(text1); i++ {
 		for j := 1; j <= len(text2); j++ {
 			if text1[i-1] == text2[j-1] {
-				dp[i][j] = dp[i-1][j-1]+1
+				dp[i][j] = dp[i-1][j-1] + 1
 			} else {
 				dp[i][j] = __Daily_Prac.Max(dp[i-1][j], dp[i][j-1])
 			}
@@ -54,12 +53,12 @@ func LongestPalindrome(s string) string {
 
 		ans := __Daily_Prac.Max(ans1, ans2)
 
-		if ans > end -start +1 {
+		if ans > end-start+1 {
 			start = i - (ans-1)/2
-			end = i+ans/2
+			end = i + ans/2
 		}
 	}
-	return s[start:end+1]
+	return s[start : end+1]
 }
 
 func expand(s string, start, end int) int {
@@ -68,7 +67,7 @@ func expand(s string, start, end int) int {
 		end++
 	}
 
-	return end-start+1-2
+	return end - start + 1 - 2
 }
 
 // 516. Longest Palindromic Subsequence
@@ -92,38 +91,38 @@ func LongestPalindromeSubseq(s string) int {
 	// 		}
 	// 	}
 	// }
-	
+
 	// return dp[0][len(s)-1]
 
 	memo := make([][]int, len(s))
 	for i := range memo {
-		 memo[i] = make([]int, len(s))
+		memo[i] = make([]int, len(s))
 	}
 	return dfsLongestPalindromeSubseq(s, 0, len(s)-1, memo)
 
 }
-// top down & memoization 
+
+// top down & memoization
 func dfsLongestPalindromeSubseq(s string, start, end int, memo [][]int) int {
 	if start == end {
-		return 1 
+		return 1
 	}
 
 	if start > end {
-		return 0 
+		return 0
 	}
 	if memo[start][end] != 0 {
 		return memo[start][end]
 	}
 
 	if s[start] == s[end] {
-		memo[start][end] = dfsLongestPalindromeSubseq(s, start+1, end-1, memo) +2
+		memo[start][end] = dfsLongestPalindromeSubseq(s, start+1, end-1, memo) + 2
 	} else {
 		memo[start][end] = __Daily_Prac.Max(dfsLongestPalindromeSubseq(s, start+1, end, memo), dfsLongestPalindromeSubseq(s, start, end-1, memo))
 	}
 
 	return memo[start][end]
 }
-
 
 // 322. Coin Change
 /*
@@ -132,7 +131,7 @@ Output: 3
 Explanation: 11 = 5 + 5 + 1
 */
 func CoinChange(coins []int, amount int) int {
-	
+
 	dp := make([]int, amount+1)
 	sort.Ints(coins)
 
@@ -145,10 +144,9 @@ func CoinChange(coins []int, amount int) int {
 			if dp[i-coin] != math.MaxInt {
 				dp[i] = __Daily_Prac.Min(dp[i], dp[i-coin]+1)
 			}
-			
+
 		}
 	}
-
 
 	if dp[amount] != math.MaxInt {
 		return dp[amount]
@@ -177,10 +175,10 @@ func NumberOfArrays(s string, k int) int {
 			if x > k {
 				break
 			}
-			dp[j+1] = (dp[j+1]+dp[i]) % __Daily_Prac.MOD
-		} 
+			dp[j+1] = (dp[j+1] + dp[i]) % __Daily_Prac.MOD
+		}
 	}
-	
+
 	return dp[len(s)]
 }
 
@@ -201,12 +199,11 @@ func MinDistance(word1 string, word2 string) int {
 		if i == 0 {
 			for j := 0; j < len(dp[i]); j++ {
 				dp[i][j] = j
-			} 
+			}
 		} else {
 			dp[i][0] = i
 		}
 	}
-
 
 	for i := 1; i <= len(word1); i++ {
 		for j := 1; j <= len(word2); j++ {
@@ -232,7 +229,7 @@ Note that you are allowed to reuse a dictionary word.
 func WordBreak(s string, wordDict []string) bool {
 	dp := make([]bool, len(s)+1)
 	dp[0] = true
-	wordsMap := make(map[string]struct{}) 
+	wordsMap := make(map[string]struct{})
 
 	for _, v := range wordDict {
 		wordsMap[v] = struct{}{}
@@ -286,7 +283,7 @@ func LadderLength(beginWord string, endWord string, wordList []string) int {
 
 				if count == 1 {
 					if word == endWord {
-						return ans +1
+						return ans + 1
 					}
 
 					backQueue = append(backQueue, word)
@@ -296,7 +293,7 @@ func LadderLength(beginWord string, endWord string, wordList []string) int {
 
 		if len(queue) == 0 {
 			ans++
-			queue, backQueue = backQueue, make([]string, 0) 
+			queue, backQueue = backQueue, make([]string, 0)
 		}
 	}
 
@@ -309,7 +306,7 @@ Input: matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1
 Output: 4
 */
 func MaximalSquare(matrix [][]byte) int {
-	
+
 	m, n := len(matrix), len(matrix[0])
 	dp := make([][]int, m+1)
 	ans := 0
@@ -318,9 +315,9 @@ func MaximalSquare(matrix [][]byte) int {
 	}
 
 	for i := 1; i <= m; i++ {
-		for j := 1; j <=n; j++ {
+		for j := 1; j <= n; j++ {
 			if matrix[i-1][j-1] == '1' {
-				dp[i][j] = __Daily_Prac.Min(__Daily_Prac.Min(dp[i-1][j], dp[i][j-1]), dp[i-1][j-1])+1
+				dp[i][j] = __Daily_Prac.Min(__Daily_Prac.Min(dp[i-1][j], dp[i][j-1]), dp[i-1][j-1]) + 1
 				if dp[i][j] > ans {
 					ans = dp[i][j]
 				}
@@ -328,5 +325,145 @@ func MaximalSquare(matrix [][]byte) int {
 		}
 	}
 
-	return ans*ans
+	return ans * ans
+}
+
+// 300. Longest Increasing Subsequence
+/*
+Input: nums = [10,9,2,5,3,7,101,18]
+Output: 4
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+*/
+func LengthOfLIS(nums []int) int {
+
+	ans := make([]int, 0)
+
+	for i := 0; i < len(nums); i++ {
+		if len(ans) == 0 || nums[i] > ans[len(ans)-1] {
+			ans = append(ans, nums[i])
+			continue
+		}
+
+		l := 0
+		r := len(ans) - 1
+		replaceIndex := 0
+
+		for r >= l {
+			mid := int(uint(l+r) >> 1)
+
+			if mid > 0 && (ans[mid] == nums[i] || ans[mid-1] < nums[i] && nums[i] < ans[mid]) {
+				replaceIndex = mid
+				break
+			}
+
+			if ans[mid] > nums[i] {
+				r = mid - 1
+			} else {
+				l = mid + 1
+			}
+		}
+		ans[replaceIndex] = nums[i]
+	}
+
+	return len(ans)
+}
+
+// 122. Best Time to Buy and Sell Stock II
+/*
+Input: prices = [7,1,5,3,6,4]
+Output: 7
+Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
+Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
+Total profit is 4 + 3 = 7.
+*/
+func MaxProfit(prices []int) int {
+	ans := 0
+
+	for i := 1; i < len(prices); i++ {
+		if prices[i] > prices[i-1] {
+			ans += prices[i] - prices[i-1]
+		}
+	}
+	return ans
+}
+
+// 45. Jump Game II
+/*
+Return the minimum number of jumps to reach nums[n - 1].
+The test cases are generated such that you can reach nums[n - 1].
+
+Input: nums = [2,3,1,1,4]
+Output: 2
+Explanation: The minimum number of jumps to reach the last index is 2.
+Jump 1 step from index 0 to 1, then 3 steps to the last index.
+*/
+
+func JumpII(nums []int) int {
+	return 0
+}
+
+// 134. Gas Station
+/*
+Input: gas = [1,2,3,4,5], cost = [3,4,5,1,2]
+Output: 3
+Explanation:
+Start at station 3 (index 3) and fill up with 4 unit of gas. Your tank = 0 + 4 = 4
+Travel to station 4. Your tank = 4 - 1 + 5 = 8
+Travel to station 0. Your tank = 8 - 2 + 1 = 7
+Travel to station 1. Your tank = 7 - 3 + 2 = 6
+Travel to station 2. Your tank = 6 - 4 + 3 = 5
+Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.
+Therefore, return 3 as the starting index.
+*/
+
+func CanCompleteCircuit(gas []int, cost []int) int {
+	totalCost := 0
+	currentTank := 0
+	stationIndex := 0
+	for i := 0; i < len(gas); i++ {
+		totalCost = totalCost + gas[i] - cost[i]
+		currentTank = currentTank + gas[i] - cost[i]
+
+		if currentTank < 0 {
+			currentTank = 0
+			stationIndex = i + 1
+		}
+
+	}
+
+	if totalCost < 0 {
+		return -1
+	}
+	return stationIndex
+}
+
+// 135. Candy
+/*
+Input: ratings = [1,0,2]
+Output: 5
+Explanation: You can allocate to the first, second and third child with 2, 1, 2 candies respectively.
+*/
+func Candy(ratings []int) int {
+	return 0
+}
+
+// 42. Trapping Rain Water
+/*
+Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
+Output: 6
+Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.
+*/
+
+func Trap(height []int) int {
+	return 0
+}
+
+// 209. Minimum Size Subarray Sum
+/*
+Input: target = 7, nums = [2,3,1,2,4,3]
+Output: 2
+Explanation: The subarray [4,3] has the minimal length under the problem constraint.
+*/
+func MinSubArrayLen(target int, nums []int) int {
+	return 0
 }

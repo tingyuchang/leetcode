@@ -104,7 +104,7 @@ Input: nums = [10,9,2,5,3,7,101,18]
 Output: 4
 Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
 */
-func lengthOfLIS(nums []int) int {
+func LengthOfLIS(nums []int) int {
 	return 1
 }
 
@@ -116,8 +116,8 @@ Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-
 Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
 Total profit is 4 + 3 = 7.
 */
-func maxProfit(prices []int) int {
-	return 0 
+func MaxProfit(prices []int) int {
+	return 0
 }
 
 // 45. Jump Game II
@@ -127,11 +127,11 @@ The test cases are generated such that you can reach nums[n - 1].
 
 Input: nums = [2,3,1,1,4]
 Output: 2
-Explanation: The minimum number of jumps to reach the last index is 2. 
+Explanation: The minimum number of jumps to reach the last index is 2.
 Jump 1 step from index 0 to 1, then 3 steps to the last index.
 */
 
-func jump(nums []int) int {
+func JumpII(nums []int) int {
 	return 0
 }
 
@@ -149,7 +149,7 @@ Travel to station 3. The cost is 5. Your gas is just enough to travel back to st
 Therefore, return 3 as the starting index.
 */
 
-func canCompleteCircuit(gas []int, cost []int) int {
+func CanCompleteCircuit(gas []int, cost []int) int {
 	return -1
 }
 
@@ -159,7 +159,7 @@ Input: ratings = [1,0,2]
 Output: 5
 Explanation: You can allocate to the first, second and third child with 2, 1, 2 candies respectively.
 */
-func candy(ratings []int) int {
+func Candy(ratings []int) int {
 	return 0
 }
 
@@ -170,7 +170,7 @@ Output: 6
 Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.
 */
 
-func trap(height []int) int {
+func Trap(height []int) int {
 	return 0
 }
 
@@ -180,6 +180,6 @@ Input: target = 7, nums = [2,3,1,2,4,3]
 Output: 2
 Explanation: The subarray [4,3] has the minimal length under the problem constraint.
 */
-func minSubArrayLen(target int, nums []int) int {
-	return 0 
+func MinSubArrayLen(target int, nums []int) int {
+	return 0
 }

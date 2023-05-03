@@ -22,6 +22,13 @@ var MinDistance = _0230502.MinDistance
 var WordBreak = _0230502.WordBreak
 var LadderLength = _0230502.LadderLength
 var MaximalSquare = _0230502.MaximalSquare
+var LengthOfLIS = _0230502.LengthOfLIS
+var MaxProfit = _0230502.MaxProfit
+var JumpII = _0230502.JumpII
+var CanCompleteCircuit = _0230502.CanCompleteCircuit
+var Candy = _0230502.Candy
+var Trap = _0230502.Trap
+var MinSubArrayLen = _0230502.MinSubArrayLen
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -198,6 +205,136 @@ func TestDaily(t *testing.T) {
 		assert.Equal(t, result, td.exp)
 	}
 	fmt.Printf("End test\tMaximalSquare\n")
+
+	LengthOfLISTestData := []struct {
+		nums []int
+		exp  int
+	}{
+		{
+			[]int{10, 9, 2, 5, 3, 7, 101, 18},
+			4,
+		},
+		{
+			[]int{0, 1, 0, 3, 2, 3},
+			4,
+		},
+		{[]int{7, 7, 7, 7, 7, 7, 7}, 1},
+	}
+	fmt.Printf("Start test\tLengthOfLIS\n")
+	for _, td := range LengthOfLISTestData {
+		result := LengthOfLIS(td.nums)
+		assert.Equal(t, result, td.exp)
+	}
+	fmt.Printf("End test\tLengthOfLIS\n")
+
+	MaxProfitTestData := []struct {
+		prices []int
+		exp    int
+	}{
+		{[]int{7, 1, 5, 3, 6, 4}, 7},
+		{[]int{1, 2, 3, 4, 5}, 4},
+		{[]int{7, 6, 4, 3, 1}, 0},
+	}
+	// MaxProfit
+	fmt.Printf("Start test\tMaxProfit\n")
+	for _, td := range MaxProfitTestData {
+		result := MaxProfit(td.prices)
+		assert.Equal(t, result, td.exp)
+	}
+	fmt.Printf("End test\tMaxProfit\n")
+
+	JumpIITestData := []struct {
+		input    []int
+		expected int
+	}{
+		{[]int{2, 3, 1, 1, 4}, 2},
+		{[]int{2, 3, 0, 1, 4}, 2},
+		{[]int{1, 3, 2}, 2},
+		{[]int{4, 3, 2, 1}, 1},
+		{[]int{2, 1, 1, 1, 1}, 3},
+		{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1, 0}, 2},
+	}
+	fmt.Printf("Start test\tJumpII\n")
+	for _, td := range JumpIITestData {
+		result := JumpII(td.input)
+		assert.Equal(t, result, td.expected)
+	}
+	fmt.Printf("End test\tJumpII\n")
+
+	CanCompleteCircuitTestData := []struct {
+		gas  []int
+		cost []int
+		exp  int
+	}{
+		{
+			[]int{1, 2, 3, 4, 5},
+			[]int{3, 4, 5, 1, 2},
+			3,
+		},
+		{
+			[]int{2, 3, 4},
+			[]int{3, 4, 3},
+			-1,
+		},
+	}
+	fmt.Printf("Start test\tCanCompleteCircuit\n")
+	for _, td := range CanCompleteCircuitTestData {
+		result := CanCompleteCircuit(td.gas, td.cost)
+		assert.Equal(t, result, td.exp)
+	}
+	fmt.Printf("End test\tCanCompleteCircuit\n")
+
+	CandyTestData := []struct {
+		ratings []int
+		exp     int
+	}{
+		{
+			[]int{1, 0, 2}, 5,
+		},
+		{[]int{1, 2, 2}, 4},
+	}
+
+	fmt.Printf("Start test\tCandy\n")
+	for _, td := range CandyTestData {
+		result := Candy(td.ratings)
+		assert.Equal(t, result, td.exp)
+	}
+	fmt.Printf("End test\tCandy\n")
+
+	TrapTestData := []struct {
+		height []int
+		exp    int
+	}{
+		{
+			[]int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}, 6,
+		},
+		{[]int{4, 2, 0, 3, 2, 5}, 9},
+	}
+
+	fmt.Printf("Start test\tTrap\n")
+	for _, td := range TrapTestData {
+		result := Trap(td.height)
+		assert.Equal(t, result, td.exp)
+	}
+	fmt.Printf("End test\tTrap\n")
+
+	// MinSubArrayLen
+
+	MinSubArrayLenTestData := []struct {
+		target int
+		nums   []int
+		exp    int
+	}{
+		{7, []int{2, 3, 1, 2, 4, 3}, 2},
+		{4, []int{1, 4, 4}, 1},
+		{11, []int{1, 1, 1, 1, 1, 1, 1, 1}, 0},
+	}
+	fmt.Printf("Start test\tMinSubArrayLen\n")
+	for _, td := range MinSubArrayLenTestData {
+		result := MinSubArrayLen(td.target, td.nums)
+		assert.Equal(t, result, td.exp)
+	}
+	fmt.Printf("End test\tMinSubArrayLen\n")
 }
 
 var mergeSort = _0230403.MergeSort

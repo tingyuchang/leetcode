@@ -1,6 +1,6 @@
 package __Daily_Prac
 
-func LengthOfLIS(nums []int) int {
+func _LengthOfLIS(nums []int) int {
 	return _lengthOfLIS(nums)
 }
 
