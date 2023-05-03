@@ -6,6 +6,36 @@ import (
 	"testing"
 )
 
+func TestFindDifference(t *testing.T) {
+	testData := []struct {
+		nums1 []int
+		nums2 []int
+		exp   [][]int
+	}{
+		{
+			[]int{1, 2, 3},
+			[]int{2, 4, 6},
+			[][]int{
+				{1, 3},
+				{4, 6},
+			},
+		},
+		{
+			[]int{1, 2, 3, 3},
+			[]int{1, 1, 2, 2},
+			[][]int{
+				{3},
+				{},
+			},
+		},
+	}
+
+	for _, td := range testData {
+		result := Array.FindDifference(td.nums1, td.nums2)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestTrap(t *testing.T) {
 	testData := []struct {
 		height []int
