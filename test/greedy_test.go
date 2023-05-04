@@ -6,6 +6,24 @@ import (
 	"testing"
 )
 
+func TestPredictPartyVictory(t *testing.T) {
+	testData := []struct {
+		senate string
+		exp    string
+	}{
+		{"RD", "Radiant"},
+		{"RDD", "Dire"},
+		{"DRRDRDRDRDDRDRDR", "Radiant"},
+		{"DDRRR", "Dire"},
+	}
+
+	for _, td := range testData {
+		result := greedy.PredictPartyVictory(td.senate)
+		assert.Equal(t, result, td.exp)
+	}
+
+}
+
 func TestCanCompleteCircuit(t *testing.T) {
 	testData := []struct {
 		gas  []int
