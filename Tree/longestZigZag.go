@@ -16,7 +16,7 @@ func longestZigZag(root *TreeNode) int {
 	return res
 }
 
-// direction true => right, false => left
+// direction true => Right, false => Left
 func zigZag(root *TreeNode, direction bool, res *int, currentLength int) {
 	if root == nil {
 		return

@@ -20,7 +20,7 @@ func insertIntoBST(root *TreeNode, val int) *TreeNode {
 	// or for loop to find the insert node
 	/*
 		var node *treeNode
-		if val < node.Val => node = node.left
+		if val < node.Val => node = node.Left
 		if val > node.Val => node = node.Right
 
 		until node == nil

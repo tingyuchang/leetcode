@@ -102,6 +102,52 @@ func (this *Codec) Deserialize(data string) *TreeNode {
 	return root
 }
 
+func (this *Codec) DeserializeP(data string) *NodeP {
+	vals := strings.Split(data, ",")
+
+	if len(vals) == 0 || vals[0] == "null" {
+		return nil
+	}
+
+	rootVal, _ := strconv.Atoi(vals[0])
+	root := &NodeP{
+		Left:  nil,
+		Right: nil,
+		Value: rootVal,
+	}
+	queue := []*NodeP{root}
+	i := 1
+	for len(queue) > 0 {
+		node := queue[0]
+		queue = queue[1:]
+
+		if i >= len(vals) {
+			break
+		}
+
+		if vals[i] != "null" {
+			value, _ := strconv.Atoi(vals[i])
+			node.Left = &NodeP{
+				value, nil, nil, node,
+			}
+			queue = append(queue, node.Left)
+		}
+		i++
+		if i >= len(vals) {
+			break
+		}
+		if vals[i] != "null" {
+			value, _ := strconv.Atoi(vals[i])
+			node.Right = &NodeP{
+				value, nil, nil, node,
+			}
+			queue = append(queue, node.Right)
+		}
+		i++
+	}
+	return root
+}
+
 func levelOrder(root *TreeNode) string {
 	res := ""
 	queue := make([]*TreeNode, 0)

@@ -8,8 +8,8 @@ func WidthOfBinaryTree(root *TreeNode) int {
 max width := 2 ^ high
 
 BFS
-if has left the width = 2^hight+1
-if has right the winth = 2^hight+2
+if has Left the width = 2^hight+1
+if has Right the winth = 2^hight+2
 
 
 */

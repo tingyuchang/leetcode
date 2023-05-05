@@ -1,7 +1,7 @@
 package Tree
 
 func LowestCommonAncestorOfBST(root, p, q *TreeNode) *TreeNode {
-	// left vs. right
+	// Left vs. Right
 	if p.Val <= root.Val && q.Val >= root.Val {
 		return root
 	}
@@ -38,8 +38,8 @@ func LowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 // 1. Check both a, b exist in the tree, if not exist, can direct return -1
 // 2. dfs traversal base on 2 targets exist.
 // 2a. : if root == a || root == b, we can return root
-// 2b. if root is not a || b, them try root.left & root.right
-// 2c. if both left & right find a, b, the root will be answer, otherwise return which one has value
+// 2b. if root is not a || b, them try root.Left & root.Right
+// 2c. if both Left & Right find a, b, the root will be answer, otherwise return which one has Value
 func LowestCommonAncestorWithUnCertain(root *TreeNode, a, b int) int {
 	if !findAncesator(root, a) || !findAncesator(root, b) {
 		return -1

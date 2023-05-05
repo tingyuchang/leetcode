@@ -55,12 +55,12 @@ func constructFromPreorderAndInorder(preorder, inorder []int, start, end int, cu
 
 	target := (*cache)[headValue]
 
-	// find left subtree form inorder
+	// find Left subtree form inorder
 
 	if target-start > 0 {
 		head.Left = constructFromPreorderAndInorder(preorder, inorder, start, target-1, currentIndex, cache)
 	}
-	// find right subtree from inorder
+	// find Right subtree from inorder
 	if end-target > 0 {
 		head.Right = constructFromPreorderAndInorder(preorder, inorder, target+1, end, currentIndex, cache)
 	}

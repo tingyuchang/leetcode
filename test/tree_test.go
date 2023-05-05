@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestFindInOrderSuccessor(t *testing.T) {
+	testData := []struct {
+		inputNode *Tree.NodeP
+		exp       int
+	}{
+		{Tree.GenerateNodeP("20,9,25,5,12,null,null,null,null,11,14", 11), 12},
+		{Tree.GenerateNodeP("20,9,25,5,12,null,null,null,null,11,14", 9), 11},
+		{Tree.GenerateNodeP("20,9,25,5,12,null,null,null,null,11,14", 14), 20},
+	}
+
+	for _, td := range testData {
+		result := Tree.FindInOrderSuccessor(td.inputNode)
+		assert.Equal(t, result.Value, td.exp)
+	}
+}
+
 func TestWidthOfBinaryTree(t *testing.T) {
 	codex := Tree.Codec{}
 	testData := []struct {
