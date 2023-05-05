@@ -1,5 +1,7 @@
 package __Daily_Prac
 
+import "leetcode/Tree"
+
 // COPY FROM HERE
 type Name struct {
 }
@@ -182,4 +184,26 @@ Explanation: The subarray [4,3] has the minimal length under the problem constra
 */
 func MinSubArrayLen(target int, nums []int) int {
 	return 0
+}
+
+// 105. Construct Binary Tree from Preorder and Inorder Traversal
+/*
+Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+Output: [3,9,20,null,null,15,7]
+*/
+func BuildTree(preorder []int, inorder []int) *Tree.TreeNode {
+	return nil
+}
+
+// 117. Populating Next Right Pointers in Each Node II
+/*
+Input: root = [1,2,3,4,5,null,7]
+Output: [1,#,2,3,#,4,5,7,#]
+Explanation: Given the above binary tree (Figure A), your function should populate each next pointer
+to point to its next right node, just like in Figure B. The serialized output is in level order
+as connected by the next pointers, with '#' signifying the end of each level.
+*/
+
+func ConnectTreeNode(root *Tree.NodeN) *Tree.NodeN {
+	return nil
 }

@@ -2,6 +2,7 @@ package _0230505
 
 import (
 	__Daily_Prac "leetcode/0_Daily_Prac"
+	"leetcode/Tree"
 	"math"
 	"sort"
 	"strconv"
@@ -514,4 +515,89 @@ func MinSubArrayLen(target int, nums []int) int {
 	}
 
 	return ans
+}
+
+// 105. Construct Binary Tree from Preorder and Inorder Traversal
+/*
+Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+Output: [3,9,20,null,null,15,7]
+*/
+func BuildTree(preorder []int, inorder []int) *Tree.TreeNode {
+	inorderMap := make(map[int]int)
+
+	for i, v := range inorder {
+		inorderMap[v] = i
+	}
+
+	currentIndex := 0
+	return constructBuildTree(preorder, inorder, &currentIndex, 0, len(preorder)-1, inorderMap)
+}
+
+func constructBuildTree(preorder, inorder []int, currentIndex *int, start, end int, inorderMap map[int]int) *Tree.TreeNode {
+	if *currentIndex >= len(preorder) {
+		return nil
+	}
+
+	rootVal := preorder[*currentIndex]
+	root := &Tree.TreeNode{Val: rootVal}
+	*currentIndex++
+
+	pivot := inorderMap[rootVal]
+
+	if pivot-start > 0 {
+		root.Left = constructBuildTree(preorder, inorder, currentIndex, start, pivot-1, inorderMap)
+	}
+
+	if end-pivot > 0 {
+		root.Right = constructBuildTree(preorder, inorder, currentIndex, pivot+1, end, inorderMap)
+	}
+	return root
+}
+
+// 117. Populating Next Right Pointers in Each Node II
+/*
+Input: root = [1,2,3,4,5,null,7]
+Output: [1,#,2,3,#,4,5,7,#]
+Explanation: Given the above binary tree (Figure A), your function should populate each next pointer
+to point to its next right node, just like in Figure B. The serialized output is in level order
+as connected by the next pointers, with '#' signifying the end of each level.
+*/
+
+func ConnectTreeNode(root *Tree.NodeN) *Tree.NodeN {
+	if root == nil {
+		return nil
+	}
+
+	current := root
+	var head, next *Tree.NodeN
+
+	for current != nil {
+		for current != nil {
+			if current.Left != nil {
+				if next != nil {
+					next.Next = current.Left
+				} else {
+					head = current.Left
+				}
+				next = current.Left
+			}
+
+			if current.Right != nil {
+				if next != nil {
+					next.Next = current.Right
+				} else {
+					head = current.Right
+				}
+				next = current.Right
+			}
+
+			current = current.Next
+		}
+
+		current = head
+		head = nil
+		next = nil
+
+	}
+	return root
 }

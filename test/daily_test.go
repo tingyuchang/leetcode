@@ -6,10 +6,13 @@ import (
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
 	_0230505 "leetcode/0_Daily_Prac/20230505"
+	"leetcode/Tree"
 	"reflect"
 	"regexp"
 	"testing"
 )
+
+var TreeHelper = Tree.Codec{}
 
 var name = _0230505.Name{}
 
@@ -29,6 +32,8 @@ var CanCompleteCircuit = _0230505.CanCompleteCircuit
 var Candy = _0230505.Candy
 var Trap = _0230505.Trap
 var MinSubArrayLen = _0230505.MinSubArrayLen
+var BuildTree = _0230505.BuildTree
+var ConnectTreeNode = _0230505.ConnectTreeNode
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -335,6 +340,22 @@ func TestDaily(t *testing.T) {
 		assert.Equal(t, result, td.exp)
 	}
 	fmt.Printf("End test\tMinSubArrayLen\n")
+
+	BuildTreeTestData := []struct {
+		preorder []int
+		inorder  []int
+		exp      string
+	}{
+		{[]int{3, 9, 20, 15, 7}, []int{9, 3, 15, 20, 7}, "3,9,20,null,null,15,7"},
+	}
+
+	fmt.Printf("Start test\tBuildTree\n")
+	for _, td := range BuildTreeTestData {
+		result := BuildTree(td.preorder, td.inorder)
+		assert.Equal(t, TreeHelper.Serialize(result), td.exp)
+	}
+	fmt.Printf("End test\tBuildTree\n")
+
 }
 
 var mergeSort = _0230403.MergeSort
