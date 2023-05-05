@@ -6,6 +6,22 @@ import (
 	"testing"
 )
 
+func TestFlatten(t *testing.T) {
+	testData := []struct {
+		root *Tree.TreeNode
+		exp  string
+	}{
+		{TreeHelper.Deserialize("1,2,5,3,4,null,6"), "1,null,2,null,3,null,4,null,5,null,6"},
+		{nil, ""},
+		{TreeHelper.Deserialize("0"), "0"},
+	}
+
+	for _, td := range testData {
+		Tree.Flatten(td.root)
+		assert.Equal(t, TreeHelper.Serialize(td.root), td.exp)
+	}
+}
+
 func TestFindInOrderSuccessor(t *testing.T) {
 	testData := []struct {
 		inputNode *Tree.NodeP
