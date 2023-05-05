@@ -5,30 +5,30 @@ import (
 	"github.com/magiconair/properties/assert"
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
-	_0230504 "leetcode/0_Daily_Prac/20230504"
+	_0230505 "leetcode/0_Daily_Prac/20230505"
 	"reflect"
 	"regexp"
 	"testing"
 )
 
-var name = _0230504.Name{}
+var name = _0230505.Name{}
 
-var LongestCommonSubsequence = _0230504.LongestCommonSubsequence
-var LongestPalindrome = _0230504.LongestPalindrome
-var LongestPalindromeSubseq = _0230504.LongestPalindromeSubseq
-var CoinChange = _0230504.CoinChange
-var NumberOfArrays = _0230504.NumberOfArrays
-var MinDistance = _0230504.MinDistance
-var WordBreak = _0230504.WordBreak
-var LadderLength = _0230504.LadderLength
-var MaximalSquare = _0230504.MaximalSquare
-var LengthOfLIS = _0230504.LengthOfLIS
-var MaxProfit = _0230504.MaxProfit
-var JumpII = _0230504.JumpII
-var CanCompleteCircuit = _0230504.CanCompleteCircuit
-var Candy = _0230504.Candy
-var Trap = _0230504.Trap
-var MinSubArrayLen = _0230504.MinSubArrayLen
+var LongestCommonSubsequence = _0230505.LongestCommonSubsequence
+var LongestPalindrome = _0230505.LongestPalindrome
+var LongestPalindromeSubseq = _0230505.LongestPalindromeSubseq
+var CoinChange = _0230505.CoinChange
+var NumberOfArrays = _0230505.NumberOfArrays
+var MinDistance = _0230505.MinDistance
+var WordBreak = _0230505.WordBreak
+var LadderLength = _0230505.LadderLength
+var MaximalSquare = _0230505.MaximalSquare
+var LengthOfLIS = _0230505.LengthOfLIS
+var MaxProfit = _0230505.MaxProfit
+var JumpII = _0230505.JumpII
+var CanCompleteCircuit = _0230505.CanCompleteCircuit
+var Candy = _0230505.Candy
+var Trap = _0230505.Trap
+var MinSubArrayLen = _0230505.MinSubArrayLen
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
