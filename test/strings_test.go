@@ -6,6 +6,23 @@ import (
 	"testing"
 )
 
+func TestMaxVowels(t *testing.T) {
+	testData := []struct {
+		s   string
+		k   int
+		exp int
+	}{
+		{"abciiidef", 3, 3},
+		{"aeiou", 2, 2},
+		{"leetcode", 3, 2},
+	}
+
+	for _, td := range testData {
+		result := Strings.MaxVowels(td.s, td.k)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestMinInsertions(t *testing.T) {
 	testData := []struct {
 		s   string
