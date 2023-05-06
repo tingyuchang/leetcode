@@ -5,6 +5,28 @@ func Flatten(root *TreeNode) {
 }
 
 func flatten(root *TreeNode) {
+	// preorder
+	queue := make([]*TreeNode, 0)
+	preorderFlatten(root, &queue)
+
+	for i := 0; i < len(queue)-1; i++ {
+		node := queue[i]
+		node.Right = queue[i+1]
+		node.Left = nil
+	}
+
+}
+
+func preorderFlatten(root *TreeNode, queue *[]*TreeNode) {
+	if root == nil {
+		return
+	}
+	*queue = append(*queue, root)
+	preorderFlatten(root.Left, queue)
+	preorderFlatten(root.Right, queue)
+}
+
+func flattenRecursive(root *TreeNode) {
 	if root == nil {
 		return
 	}
