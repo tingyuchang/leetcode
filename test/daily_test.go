@@ -6,6 +6,7 @@ import (
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
 	_0230507 "leetcode/0_Daily_Prac/20230507"
+	_0230508 "leetcode/0_Daily_Prac/20230508"
 	"leetcode/Tree"
 	"reflect"
 	"regexp"
@@ -14,25 +15,25 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230507.Name{}
+var name = _0230508.Name{}
 
-var LongestCommonSubsequence = _0230507.LongestCommonSubsequence
-var LongestPalindrome = _0230507.LongestPalindrome
-var LongestPalindromeSubseq = _0230507.LongestPalindromeSubseq
-var CoinChange = _0230507.CoinChange
-var NumberOfArrays = _0230507.NumberOfArrays
-var MinDistance = _0230507.MinDistance
-var WordBreak = _0230507.WordBreak
-var LadderLength = _0230507.LadderLength
-var MaximalSquare = _0230507.MaximalSquare
-var LengthOfLIS = _0230507.LengthOfLIS
-var MaxProfit = _0230507.MaxProfit
-var JumpII = _0230507.JumpII
-var CanCompleteCircuit = _0230507.CanCompleteCircuit
-var Candy = _0230507.Candy
-var Trap = _0230507.Trap
-var MinSubArrayLen = _0230507.MinSubArrayLen
-var BuildTree = _0230507.BuildTree
+var LongestCommonSubsequence = _0230508.LongestCommonSubsequence
+var LongestPalindrome = _0230508.LongestPalindrome
+var LongestPalindromeSubseq = _0230508.LongestPalindromeSubseq
+var CoinChange = _0230508.CoinChange
+var NumberOfArrays = _0230508.NumberOfArrays
+var MinDistance = _0230508.MinDistance
+var WordBreak = _0230508.WordBreak
+var LadderLength = _0230508.LadderLength
+var MaximalSquare = _0230508.MaximalSquare
+var LengthOfLIS = _0230508.LengthOfLIS
+var MaxProfit = _0230508.MaxProfit
+var JumpII = _0230508.JumpII
+var CanCompleteCircuit = _0230508.CanCompleteCircuit
+var Candy = _0230508.Candy
+var Trap = _0230508.Trap
+var MinSubArrayLen = _0230508.MinSubArrayLen
+var BuildTree = _0230508.BuildTree
 var ConnectTreeNode = _0230507.ConnectTreeNode
 
 func TestDaily(t *testing.T) {
