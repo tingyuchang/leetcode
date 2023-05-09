@@ -5,8 +5,7 @@ import (
 	"github.com/magiconair/properties/assert"
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
-	_0230507 "leetcode/0_Daily_Prac/20230507"
-	_0230508 "leetcode/0_Daily_Prac/20230508"
+	_0230509 "leetcode/0_Daily_Prac/20230509"
 	"leetcode/Tree"
 	"reflect"
 	"regexp"
@@ -15,26 +14,27 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230508.Name{}
+var name = _0230509.Name{}
 
-var LongestCommonSubsequence = _0230508.LongestCommonSubsequence
-var LongestPalindrome = _0230508.LongestPalindrome
-var LongestPalindromeSubseq = _0230508.LongestPalindromeSubseq
-var CoinChange = _0230508.CoinChange
-var NumberOfArrays = _0230508.NumberOfArrays
-var MinDistance = _0230508.MinDistance
-var WordBreak = _0230508.WordBreak
-var LadderLength = _0230508.LadderLength
-var MaximalSquare = _0230508.MaximalSquare
-var LengthOfLIS = _0230508.LengthOfLIS
-var MaxProfit = _0230508.MaxProfit
-var JumpII = _0230508.JumpII
-var CanCompleteCircuit = _0230508.CanCompleteCircuit
-var Candy = _0230508.Candy
-var Trap = _0230508.Trap
-var MinSubArrayLen = _0230508.MinSubArrayLen
-var BuildTree = _0230508.BuildTree
-var ConnectTreeNode = _0230507.ConnectTreeNode
+var LongestCommonSubsequence = _0230509.LongestCommonSubsequence
+var LongestPalindrome = _0230509.LongestPalindrome
+var LongestPalindromeSubseq = _0230509.LongestPalindromeSubseq
+var CoinChange = _0230509.CoinChange
+var NumberOfArrays = _0230509.NumberOfArrays
+var MinDistance = _0230509.MinDistance
+var WordBreak = _0230509.WordBreak
+var LadderLength = _0230509.LadderLength
+var MaximalSquare = _0230509.MaximalSquare
+var LengthOfLIS = _0230509.LengthOfLIS
+var MaxProfit = _0230509.MaxProfit
+var JumpII = _0230509.JumpII
+var CanCompleteCircuit = _0230509.CanCompleteCircuit
+var Candy = _0230509.Candy
+var Trap = _0230509.Trap
+var MinSubArrayLen = _0230509.MinSubArrayLen
+var BuildTree = _0230509.BuildTree
+var ConnectTreeNode = _0230509.ConnectTreeNode
+var NumSubseq = _0230509.NumSubseq
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -357,6 +357,23 @@ func TestDaily(t *testing.T) {
 	}
 	fmt.Printf("End test\tBuildTree\n")
 
+	NumSubseqTestData := []struct {
+		nums   []int
+		target int
+		exp    int
+	}{
+		{
+			[]int{27, 21, 14, 2, 15, 1, 19, 8, 12, 24, 21, 8, 12, 10, 11, 30, 15, 18, 28, 14, 26, 9, 2, 24, 23, 11, 7, 12, 9, 17, 30, 9, 28, 2, 14, 22, 19, 19, 27, 6, 15, 12, 29, 2, 30, 11, 20, 30, 21, 20, 2, 22, 6, 14, 13, 19, 21, 10, 18, 30, 2, 20, 28, 22},
+			31,
+			688052206,
+		},
+	}
+	fmt.Printf("Start test\tNumSubseq\n")
+	for _, td := range NumSubseqTestData {
+		result := NumSubseq(td.nums, td.target)
+		assert.Equal(t, result, td.exp)
+	}
+	fmt.Printf("End test\tNumSubseq\n")
 }
 
 var mergeSort = _0230403.MergeSort
