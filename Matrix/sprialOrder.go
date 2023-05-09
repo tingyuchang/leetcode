@@ -102,3 +102,35 @@ func SpiralOrder(matrix [][]int) []int {
 
 	return res
 }
+
+func spiralOrder2(matrix [][]int) []int {
+	directions := [][]int{
+		{0, 1},
+		{1, 0},
+		{0, -1},
+		{-1, 0},
+	}
+
+	ans := make([]int, 0)
+	numOfRow := len(matrix)
+	numOfCol := len(matrix[0])
+
+	steps := []int{numOfCol, numOfRow - 1}
+
+	indexOfDirection := 0
+	x, y := 0, -1 // start position
+
+	for steps[indexOfDirection%2] != 0 {
+		for i := 0; i < steps[indexOfDirection%2]; i++ {
+			x += directions[indexOfDirection][0]
+			y += directions[indexOfDirection][1]
+			ans = append(ans, matrix[x][y])
+		}
+
+		steps[indexOfDirection%2]--
+		indexOfDirection = (indexOfDirection + 1) % 4
+
+	}
+
+	return ans
+}
