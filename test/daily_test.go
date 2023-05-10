@@ -5,7 +5,7 @@ import (
 	"github.com/magiconair/properties/assert"
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
-	_0230509 "leetcode/0_Daily_Prac/20230509"
+	_0230510 "leetcode/0_Daily_Prac/20230510"
 	"leetcode/Tree"
 	"reflect"
 	"regexp"
@@ -14,27 +14,27 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230509.Name{}
+var name = _0230510.Name{}
 
-var LongestCommonSubsequence = _0230509.LongestCommonSubsequence
-var LongestPalindrome = _0230509.LongestPalindrome
-var LongestPalindromeSubseq = _0230509.LongestPalindromeSubseq
-var CoinChange = _0230509.CoinChange
-var NumberOfArrays = _0230509.NumberOfArrays
-var MinDistance = _0230509.MinDistance
-var WordBreak = _0230509.WordBreak
-var LadderLength = _0230509.LadderLength
-var MaximalSquare = _0230509.MaximalSquare
-var LengthOfLIS = _0230509.LengthOfLIS
-var MaxProfit = _0230509.MaxProfit
-var JumpII = _0230509.JumpII
-var CanCompleteCircuit = _0230509.CanCompleteCircuit
-var Candy = _0230509.Candy
-var Trap = _0230509.Trap
-var MinSubArrayLen = _0230509.MinSubArrayLen
-var BuildTree = _0230509.BuildTree
-var ConnectTreeNode = _0230509.ConnectTreeNode
-var NumSubseq = _0230509.NumSubseq
+var LongestCommonSubsequence = _0230510.LongestCommonSubsequence
+var LongestPalindrome = _0230510.LongestPalindrome
+var LongestPalindromeSubseq = _0230510.LongestPalindromeSubseq
+var CoinChange = _0230510.CoinChange
+var NumberOfArrays = _0230510.NumberOfArrays
+var MinDistance = _0230510.MinDistance
+var WordBreak = _0230510.WordBreak
+var LadderLength = _0230510.LadderLength
+var MaximalSquare = _0230510.MaximalSquare
+var LengthOfLIS = _0230510.LengthOfLIS
+var MaxProfit = _0230510.MaxProfit
+var JumpII = _0230510.JumpII
+var CanCompleteCircuit = _0230510.CanCompleteCircuit
+var Candy = _0230510.Candy
+var Trap = _0230510.Trap
+var MinSubArrayLen = _0230510.MinSubArrayLen
+var BuildTree = _0230510.BuildTree
+var ConnectTreeNode = _0230510.ConnectTreeNode
+var NumSubseq = _0230510.NumSubseq
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
