@@ -7,6 +7,25 @@ import (
 	"testing"
 )
 
+func TestMaxUncrossedLines(t *testing.T) {
+	testData := []struct {
+		nums1 []int
+		nums2 []int
+		exp   int
+	}{
+		//{[]int{1, 4, 2}, []int{1, 2, 4}, 2},
+		//{[]int{2, 5, 1, 2, 5}, []int{10, 5, 2, 1, 5, 2}, 3},
+		//{[]int{1, 3, 7, 1, 7, 5}, []int{1, 9, 2, 5, 1}, 2},
+		{[]int{3, 2}, []int{2, 2, 2, 3}, 1},
+	}
+
+	for _, td := range testData {
+		result := DP.MaxUncrossedLines(td.nums1, td.nums2)
+		assert.Equal(t, result, td.exp)
+	}
+
+}
+
 func TestNumSubseq(t *testing.T) {
 	testData := []struct {
 		nums   []int
