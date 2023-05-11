@@ -164,7 +164,7 @@ func MinDistance(word1 string, word2 string) int {
 	dp := make([][]int, len(word1)+1)
 
 	for i := range dp {
-		dp[i] = make([]int, len(word2))
+		dp[i] = make([]int, len(word2)+1)
 
 		if i == 0 {
 			for j := range dp[i] {
@@ -307,7 +307,29 @@ Output: 4
 Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
 */
 func LengthOfLIS(nums []int) int {
-	return 1
+	subArray := make([]int, 0)
+
+	for i := 0; i < len(nums); i++ {
+		if len(subArray) == 0 || subArray[len(subArray)-1] < nums[i] {
+			subArray = append(subArray, nums[i])
+		} else {
+			replaceIndex := 0
+			end := len(subArray) - 1
+
+			for end >= replaceIndex {
+				mid := int(uint(replaceIndex+end) >> 1)
+
+				if subArray[mid] < nums[i] {
+					replaceIndex = mid + 1
+				} else {
+					end = mid - 1
+				}
+			}
+			subArray[replaceIndex] = nums[i]
+		}
+	}
+
+	return len(subArray)
 }
 
 // 122. Best Time to Buy and Sell Stock II
@@ -319,7 +341,14 @@ Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
 Total profit is 4 + 3 = 7.
 */
 func MaxProfit(prices []int) int {
-	return 0
+	profit := 0
+
+	for i := 1; i < len(prices); i++ {
+		if prices[i] > prices[i-1] {
+			profit += prices[i] - prices[i-1]
+		}
+	}
+	return profit
 }
 
 // 45. Jump Game II
@@ -334,7 +363,24 @@ Jump 1 step from index 0 to 1, then 3 steps to the last index.
 */
 
 func JumpII(nums []int) int {
-	return 0
+	maxDistance := nums[0]
+	currentEnd := nums[0]
+	step := 1
+
+	for i := 1; i < len(nums); i++ {
+		maxDistance = __Daily_Prac.Max(maxDistance, i+nums[i])
+
+		if currentEnd == i {
+			step++
+			currentEnd = maxDistance
+			if currentEnd >= len(nums)-1 {
+				return step
+			}
+		}
+
+	}
+
+	return step
 }
 
 // 134. Gas Station
@@ -352,6 +398,22 @@ Therefore, return 3 as the starting index.
 */
 
 func CanCompleteCircuit(gas []int, cost []int) int {
+	totalCost := 0
+	currentTank := 0
+	station := 0
+	for i := 0; i < len(gas); i++ {
+		totalCost += gas[i] - cost[i]
+		currentTank += gas[i] - cost[i]
+
+		if currentTank < 0 {
+			station = i + 1
+			currentTank = 0
+		}
+	}
+
+	if totalCost >= 0 {
+		return station
+	}
 	return -1
 }
 
@@ -362,7 +424,26 @@ Output: 5
 Explanation: You can allocate to the first, second and third child with 2, 1, 2 candies respectively.
 */
 func Candy(ratings []int) int {
-	return 0
+	candies := make([]int, len(ratings))
+	candies[0] = 1
+
+	for i := 1; i < len(ratings); i++ {
+		if ratings[i] > ratings[i-1] {
+			candies[i] = candies[i-1] + 1
+		} else {
+			candies[i] = 1
+		}
+	}
+
+	sum := candies[len(candies)-1]
+	for i := len(ratings) - 2; i >= 0; i-- {
+		if ratings[i] > ratings[i+1] {
+			candies[i] = candies[i+1] + 1
+		}
+		sum += candies[i]
+	}
+
+	return sum
 }
 
 // 42. Trapping Rain Water
@@ -373,7 +454,32 @@ Explanation: The above elevation map (black section) is represented by array [0,
 */
 
 func Trap(height []int) int {
-	return 0
+	leftMax, rightMax := make([]int, len(height)), make([]int, len(height))
+	leftMax[0] = height[0]
+	rightMax[len(rightMax)-1] = height[len(height)-1]
+
+	n := len(height) - 1
+	for i := 1; i < len(height); i++ {
+		if height[i] > leftMax[i-1] {
+			leftMax[i] = height[i]
+		} else {
+			leftMax[i] = leftMax[i-1]
+		}
+
+		if height[n-i] > rightMax[n-i+1] {
+			rightMax[n-i] = height[n-i]
+		} else {
+			rightMax[n-i] = rightMax[n-i+1]
+		}
+	}
+
+	water := 0
+
+	for i := 1; i < n; i++ {
+		water += __Daily_Prac.Min(leftMax[i], rightMax[i]) - height[i]
+	}
+
+	return water
 }
 
 // 209. Minimum Size Subarray Sum
@@ -383,6 +489,26 @@ Output: 2
 Explanation: The subarray [4,3] has the minimal length under the problem constraint.
 */
 func MinSubArrayLen(target int, nums []int) int {
+	l, r, sum, length := 0, 0, 0, math.MaxInt
+
+	for r < len(nums) {
+		sum += nums[r]
+
+		for sum >= target {
+			if r-l+1 < length {
+				length = r - l + 1
+			}
+
+			sum -= nums[l]
+			l++
+		}
+		r++
+	}
+
+	if length != math.MaxInt {
+		return length
+	}
+
 	return 0
 }
 
@@ -392,7 +518,35 @@ Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
 Output: [3,9,20,null,null,15,7]
 */
 func BuildTree(preorder []int, inorder []int) *Tree.TreeNode {
-	return nil
+	indexMaps := make(map[int]int)
+
+	for i, v := range inorder {
+		indexMaps[v] = i
+	}
+
+	index := 0
+	return constructTree(preorder, inorder, 0, len(preorder)-1, &index, indexMaps)
+}
+
+func constructTree(preorder, inorder []int, start, end int, index *int, indexMaps map[int]int) *Tree.TreeNode {
+	if *index >= len(preorder) {
+		return nil
+	}
+
+	rootVal := preorder[*index]
+	root := &Tree.TreeNode{Val: rootVal}
+	*index++
+	pivot := indexMaps[rootVal]
+
+	if pivot-start > 0 {
+		root.Left = constructTree(preorder, inorder, start, pivot-1, index, indexMaps)
+	}
+
+	if end-pivot > 0 {
+		root.Right = constructTree(preorder, inorder, pivot+1, end, index, indexMaps)
+	}
+
+	return root
 }
 
 // 117. Populating Next Right Pointers in Each Node II
@@ -405,7 +559,38 @@ as connected by the next pointers, with '#' signifying the end of each level.
 */
 
 func ConnectTreeNode(root *Tree.NodeN) *Tree.NodeN {
-	return nil
+	current := root
+
+	var head, next *Tree.NodeN
+
+	for current != nil {
+		for current != nil {
+			if current.Left != nil {
+				if next != nil {
+					next.Next = current.Left
+				} else {
+					head = current.Left
+				}
+				next = current.Left
+			}
+
+			if current.Right != nil {
+				if next != nil {
+					next.Next = current.Right
+				} else {
+					head = current.Right
+				}
+				next = current.Right
+			}
+			current = current.Next
+		}
+
+		current = head
+		head = nil
+		next = nil
+	}
+
+	return root
 }
 
 // 1498. Number of Subsequences That Satisfy the Given Sum Condition
@@ -426,5 +611,33 @@ Explanation: There are 4 subsequences that satisfy the condition.
 */
 
 func NumSubseq(nums []int, target int) int {
-	return 0
+	power := make([]int, len(nums))
+	power[0] = 1
+
+	for i := 1; i < len(nums); i++ {
+		power[i] = (power[i-1] * 2) % __Daily_Prac.MOD
+	}
+
+	ans := 0
+	sort.Ints(nums)
+	for i := 0; i < len(nums); i++ {
+		l := 0
+		r := len(nums) - 1
+
+		for r >= l {
+			mid := int(uint(l+r) >> 1)
+
+			if nums[mid] <= target-nums[i] {
+				l = mid + 1
+			} else {
+				r = mid - 1
+			}
+		}
+
+		if r >= i {
+			ans = (ans + power[r-i]) % __Daily_Prac.MOD
+		}
+	}
+
+	return ans
 }
