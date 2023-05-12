@@ -7,6 +7,37 @@ import (
 	"testing"
 )
 
+func TestMostPoints(t *testing.T) {
+	testData := []struct {
+		questions [][]int
+		exp       int64
+	}{
+		{
+			[][]int{
+				{3, 2},
+				{4, 3},
+				{4, 4},
+				{2, 5},
+			}, 5,
+		},
+		{
+			[][]int{
+				{1, 1},
+				{2, 2},
+				{3, 3},
+				{4, 4},
+				{5, 5},
+			}, 7,
+		},
+	}
+
+	for _, td := range testData {
+		result := DP.MostPoints(td.questions)
+		assert.Equal(t, result, td.exp)
+	}
+
+}
+
 func TestMaxUncrossedLines(t *testing.T) {
 	testData := []struct {
 		nums1 []int
