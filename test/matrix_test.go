@@ -6,6 +6,31 @@ import (
 	"testing"
 )
 
+func TestFindMinArrowShots(t *testing.T) {
+	testData := []struct {
+		points [][]int
+		exp    int
+	}{
+		{[][]int{
+			{10, 16},
+			{2, 8},
+			{1, 6},
+			{7, 12},
+		}, 2},
+		{[][]int{
+			{1, 2},
+			{2, 3},
+			{3, 4},
+			{4, 5},
+		}, 2},
+	}
+
+	for _, td := range testData {
+		result := Matrix.FindMinArrowShots(td.points)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestFindBall(t *testing.T) {
 	testData := []struct {
 		grid [][]int
