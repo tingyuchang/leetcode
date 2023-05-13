@@ -7,6 +7,28 @@ import (
 	"testing"
 )
 
+func TestCountGoodStrings(t *testing.T) {
+	testData := []struct {
+		low  int
+		high int
+		zero int
+		one  int
+		exp  int
+	}{
+		{3, 3, 1, 1, 8},
+		{2, 3, 1, 2, 5},
+		{5, 5, 2, 4, 0},
+		{200, 200, 10, 1, 764262396},
+		{500, 500, 5, 2, 873327137},
+		{50000, 100000, 50000, 50000, 6},
+	}
+
+	for _, td := range testData {
+		result := DP.CountGoodStrings(td.low, td.high, td.zero, td.one)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestMostPoints(t *testing.T) {
 	testData := []struct {
 		questions [][]int
