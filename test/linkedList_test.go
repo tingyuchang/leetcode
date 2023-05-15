@@ -7,6 +7,32 @@ import (
 	"testing"
 )
 
+func TestSwapNodes(t *testing.T) {
+	testData := []struct {
+		head *LinkedList.ListNode
+		k    int
+		exp  *LinkedList.ListNode
+	}{
+		{LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 4, 5}),
+			2,
+			LinkedList.GenerateNodeFromArray([]int{1, 4, 3, 2, 5})},
+		{LinkedList.GenerateNodeFromArray([]int{1}),
+			1,
+			LinkedList.GenerateNodeFromArray([]int{1})},
+		{LinkedList.GenerateNodeFromArray([]int{1, 2}),
+			1,
+			LinkedList.GenerateNodeFromArray([]int{2, 1})},
+		{LinkedList.GenerateNodeFromArray([]int{100, 90}),
+			2,
+			LinkedList.GenerateNodeFromArray([]int{90, 100})},
+	}
+
+	for _, td := range testData {
+		result := LinkedList.SwapNodes(td.head, td.k)
+		assert.Equal(t, result.String(), td.exp.String())
+	}
+}
+
 func TestSortList(t *testing.T) {
 	testData := []struct {
 		head *LinkedList.ListNode
