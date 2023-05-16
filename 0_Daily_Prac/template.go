@@ -1,6 +1,9 @@
 package __Daily_Prac
 
-import "leetcode/Tree"
+import (
+	"leetcode/LinkedList"
+	"leetcode/Tree"
+)
 
 // COPY FROM HERE
 type Name struct {
@@ -227,4 +230,25 @@ Explanation: There are 4 subsequences that satisfy the condition.
 
 func NumSubseq(nums []int, target int) int {
 	return 0
+}
+
+// 24. Swap Nodes in Pairs
+// https://leetcode.com/problems/swap-nodes-in-pairs/description/
+
+func SwapPairs(head *LinkedList.ListNode) *LinkedList.ListNode {
+
+	return nil
+}
+
+// 19. Remove Nth Node From End of List
+// https://leetcode.com/problems/remove-nth-node-from-end-of-list/?envType=study-plan-v2&id=top-interview-150
+
+func RemoveNthFromEnd(head *LinkedList.ListNode, n int) *LinkedList.ListNode {
+	return nil
+}
+
+// 92. Reverse Linked List II
+
+func ReverseBetween(head *LinkedList.ListNode, left int, right int) *LinkedList.ListNode {
+	return nil
 }
