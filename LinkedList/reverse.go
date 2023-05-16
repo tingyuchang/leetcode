@@ -66,6 +66,37 @@ func reverseListII(head *ListNode, left, right int) *ListNode {
 	return head
 }
 
+func reverseBetween(head *ListNode, left int, right int) *ListNode {
+	if head == nil {
+		return head
+	}
+	preFirst := &ListNode{}
+	preFirst.Next = head
+	first := head
+	leftCount := left
+	for leftCount > 1 {
+		first = first.Next
+		preFirst = preFirst.Next
+		leftCount -= 1
+	}
+
+	var pre, next, tempHead *ListNode
+	tempHead = first
+	count := right - left + 1
+	for count > 0 && first != nil {
+		next = first.Next
+		first.Next = pre
+		pre = first
+		first = next
+		count -= 1
+	}
+
+	tempHead.Next = next
+	preFirst.Next = pre
+
+	return head
+}
+
 func ReverseList(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
 		return head
