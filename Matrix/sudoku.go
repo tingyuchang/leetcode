@@ -2,6 +2,51 @@ package Matrix
 
 import "fmt"
 
+func SudokuSolver(board [][]int) {
+	sudokuSolver(board)
+}
+
+func sudokuSolver(board [][]int) bool {
+	for i := 0; i < 9; i++ {
+		for j := 0; j < 9; j++ {
+			if board[i][j] == 0 {
+				for k := 1; k <= 9; k++ {
+					if isValidInputInSudoku(board, i, j, k) {
+						board[i][j] = k
+						if sudokuSolver(board) {
+							return true
+						}
+						board[i][j] = 0
+					}
+				}
+				// if no any value
+				return false
+			}
+		}
+	}
+
+	return true
+}
+
+func isValidInputInSudoku(board [][]int, x, y int, input int) bool {
+
+	for i := 0; i < 9; i++ {
+		if board[i][y] == input {
+			return false
+		}
+
+		if board[x][i] == input {
+			return false
+		}
+
+		if board[3*(x/3)+i/3][3*(y/3)+i%3] == input {
+			return false
+		}
+	}
+
+	return true
+}
+
 func isValidSudoku(board [][]byte) bool {
 	for i := 0; i < len(board); i++ {
 		for j := 0; j < len(board[i]); j++ {
