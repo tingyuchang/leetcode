@@ -1,7 +1,46 @@
 package LinkedList
 
 func RotateRight(head *ListNode, k int) *ListNode {
-	return rotateRightII(head, k)
+	return rotateRight2(head, k)
+}
+
+func rotateRight2(head *ListNode, k int) *ListNode {
+	if head == nil || k == 0 {
+		return head
+	}
+
+	first := head
+	count := 0
+
+	for first != nil {
+		first = first.Next
+		count += 1
+	}
+
+	k = k % count
+
+	if k == 0 {
+		return head
+	}
+
+	first = head
+	move := k
+	for move > 0 {
+		first = first.Next
+		move -= 1
+	}
+
+	preEnd := head
+	for first.Next != nil {
+		first = first.Next
+		preEnd = preEnd.Next
+	}
+
+	end := preEnd.Next
+	preEnd.Next = nil
+	first.Next = head
+
+	return end
 }
 
 func rotateRightII(head *ListNode, k int) *ListNode {

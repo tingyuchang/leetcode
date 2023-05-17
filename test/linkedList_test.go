@@ -91,6 +91,16 @@ func TestRotateRight(t *testing.T) {
 			4,
 			LinkedList.GenerateNodeFromArray([]int{2, 0, 1}),
 		},
+		{
+			LinkedList.GenerateNodeFromArray([]int{1}),
+			1,
+			LinkedList.GenerateNodeFromArray([]int{1}),
+		},
+		{
+			LinkedList.GenerateNodeFromArray([]int{1, 2}),
+			2,
+			LinkedList.GenerateNodeFromArray([]int{1, 2}),
+		},
 	}
 
 	for _, td := range testData {
