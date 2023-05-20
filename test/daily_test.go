@@ -6,6 +6,7 @@ import (
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
 	_0230515 "leetcode/0_Daily_Prac/20230515"
+	_0230518 "leetcode/0_Daily_Prac/20230518"
 	"leetcode/Tree"
 	"reflect"
 	"regexp"
@@ -14,17 +15,17 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230515.Name{}
+var name = _0230518.Name{}
 
-var LongestCommonSubsequence = _0230515.LongestCommonSubsequence
-var LongestPalindrome = _0230515.LongestPalindrome
-var LongestPalindromeSubseq = _0230515.LongestPalindromeSubseq
-var CoinChange = _0230515.CoinChange
-var NumberOfArrays = _0230515.NumberOfArrays
-var MinDistance = _0230515.MinDistance
-var WordBreak = _0230515.WordBreak
-var LadderLength = _0230515.LadderLength
-var MaximalSquare = _0230515.MaximalSquare
+var LongestCommonSubsequence = _0230518.LongestCommonSubsequence
+var LongestPalindrome = _0230518.LongestPalindrome
+var LongestPalindromeSubseq = _0230518.LongestPalindromeSubseq
+var CoinChange = _0230518.CoinChange
+var NumberOfArrays = _0230518.NumberOfArrays
+var MinDistance = _0230518.MinDistance
+var WordBreak = _0230518.WordBreak
+var LadderLength = _0230518.LadderLength
+var MaximalSquare = _0230518.MaximalSquare
 var LengthOfLIS = _0230515.LengthOfLIS
 var MaxProfit = _0230515.MaxProfit
 var JumpII = _0230515.JumpII
