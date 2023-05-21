@@ -6,6 +6,43 @@ import (
 	"testing"
 )
 
+func TestShortestBridge(t *testing.T) {
+	testData := []struct {
+		grid [][]int
+		exp  int
+	}{
+		{
+			[][]int{
+				{0, 1},
+				{1, 0},
+			},
+			1,
+		},
+		{
+			[][]int{
+				{0, 1, 0},
+				{0, 0, 0},
+				{0, 0, 1},
+			},
+			2,
+		},
+		{
+			[][]int{
+				{1, 1, 1, 1, 1},
+				{1, 0, 0, 0, 1},
+				{1, 0, 1, 0, 1},
+				{1, 0, 0, 0, 1},
+			},
+			1,
+		},
+	}
+
+	for _, td := range testData {
+		result := traversal.ShortestBridge(td.grid)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestCalcEquation(t *testing.T) {
 	testData := []struct {
 		equations [][]string
