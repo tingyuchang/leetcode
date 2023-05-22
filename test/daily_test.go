@@ -5,8 +5,7 @@ import (
 	"github.com/magiconair/properties/assert"
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
-	_0230515 "leetcode/0_Daily_Prac/20230515"
-	_0230518 "leetcode/0_Daily_Prac/20230518"
+	_0230522 "leetcode/0_Daily_Prac/20230522"
 	"leetcode/Tree"
 	"reflect"
 	"regexp"
@@ -15,27 +14,27 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230518.Name{}
+var name = _0230522.Name{}
 
-var LongestCommonSubsequence = _0230518.LongestCommonSubsequence
-var LongestPalindrome = _0230518.LongestPalindrome
-var LongestPalindromeSubseq = _0230518.LongestPalindromeSubseq
-var CoinChange = _0230518.CoinChange
-var NumberOfArrays = _0230518.NumberOfArrays
-var MinDistance = _0230518.MinDistance
-var WordBreak = _0230518.WordBreak
-var LadderLength = _0230518.LadderLength
-var MaximalSquare = _0230518.MaximalSquare
-var LengthOfLIS = _0230515.LengthOfLIS
-var MaxProfit = _0230515.MaxProfit
-var JumpII = _0230515.JumpII
-var CanCompleteCircuit = _0230515.CanCompleteCircuit
-var Candy = _0230515.Candy
-var Trap = _0230515.Trap
-var MinSubArrayLen = _0230515.MinSubArrayLen
-var BuildTree = _0230515.BuildTree
-var ConnectTreeNode = _0230515.ConnectTreeNode
-var NumSubseq = _0230515.NumSubseq
+var LongestCommonSubsequence = _0230522.LongestCommonSubsequence
+var LongestPalindrome = _0230522.LongestPalindrome
+var LongestPalindromeSubseq = _0230522.LongestPalindromeSubseq
+var CoinChange = _0230522.CoinChange
+var NumberOfArrays = _0230522.NumberOfArrays
+var MinDistance = _0230522.MinDistance
+var WordBreak = _0230522.WordBreak
+var LadderLength = _0230522.LadderLength
+var MaximalSquare = _0230522.MaximalSquare
+var LengthOfLIS = _0230522.LengthOfLIS
+var MaxProfit = _0230522.MaxProfit
+var JumpII = _0230522.JumpII
+var CanCompleteCircuit = _0230522.CanCompleteCircuit
+var Candy = _0230522.Candy
+var Trap = _0230522.Trap
+var MinSubArrayLen = _0230522.MinSubArrayLen
+var BuildTree = _0230522.BuildTree
+var ConnectTreeNode = _0230522.ConnectTreeNode
+var NumSubseq = _0230522.NumSubseq
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
