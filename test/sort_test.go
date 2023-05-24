@@ -6,6 +6,31 @@ import (
 	"testing"
 )
 
+func TestMaxScore(t *testing.T) {
+	testData := []struct {
+		nums1 []int
+		nums2 []int
+		k     int
+		exp   int64
+	}{
+		{
+			[]int{1, 3, 3, 2},
+			[]int{2, 1, 3, 4},
+			3, 12,
+		},
+		{
+			[]int{4, 2, 3, 1, 1},
+			[]int{7, 5, 10, 9, 6},
+			1, 30,
+		},
+	}
+
+	for _, td := range testData {
+		result := Sort.MaxScore(td.nums1, td.nums2, td.k)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestLetterCasePermutation(t *testing.T) {
 	testData := []struct {
 		s        string
