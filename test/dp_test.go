@@ -7,6 +7,26 @@ import (
 	"testing"
 )
 
+func TestNew21Game(t *testing.T) {
+	testData := []struct {
+		n      int
+		k      int
+		maxPts int
+		exp    float64
+	}{
+		{0, 0, 1, 1},
+		{10, 1, 10, 1.0},
+		{6, 1, 10, 0.6},
+		{21, 17, 10, 0.73278},
+		{185, 183, 2, 1},
+	}
+
+	for _, td := range testData {
+		result := DP.New21Game(td.n, td.k, td.maxPts)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestCountGoodStrings(t *testing.T) {
 	testData := []struct {
 		low  int
