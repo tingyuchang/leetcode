@@ -7,8 +7,39 @@ import (
 	"testing"
 )
 
-func TestNew21Game(t *testing.T) {
+func TestStoneGameII(t *testing.T) {
 	testData := []struct {
+		piles []int
+		exp   int
+	}{
+		{[]int{2, 7, 9, 4, 4}, 10},
+		{[]int{1, 2, 3, 4, 5, 100}, 104},
+	}
+
+	for _, td := range testData {
+		result := DP.StoneGameII(td.piles)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
+func TestStoneGame(t *testing.T) {
+	testData := []struct {
+		piles []int
+		exp   bool
+	}{
+		{[]int{5, 3, 4, 5}, true},
+		{[]int{3, 7, 2, 3}, true},
+		{[]int{3, 7, 3, 2, 5, 1, 6, 3, 10, 7}, true},
+	}
+
+	for _, td := range testData {
+		result := DP.StoneGame(td.piles)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
+func TestNew21Game(t *testing.T) {
+	i := []struct {
 		n      int
 		k      int
 		maxPts int
@@ -20,6 +51,7 @@ func TestNew21Game(t *testing.T) {
 		{21, 17, 10, 0.73278},
 		{185, 183, 2, 1},
 	}
+	testData := i
 
 	for _, td := range testData {
 		result := DP.New21Game(td.n, td.k, td.maxPts)
