@@ -7,6 +7,22 @@ import (
 	"testing"
 )
 
+func TestStoneGameIII(t *testing.T) {
+	testData := []struct {
+		stoneValue []int
+		exp        string
+	}{
+		{[]int{1, 2, 3, 7}, "Bob"},
+		{[]int{1, 2, 3, -9}, "Alice"},
+		{[]int{1, 2, 3, 6}, "Tie"},
+	}
+
+	for _, td := range testData {
+		result := DP.StoneGameIII(td.stoneValue)
+		assert.Equal(t, result, td.exp)
+	}
+}
+
 func TestStoneGameII(t *testing.T) {
 	testData := []struct {
 		piles []int

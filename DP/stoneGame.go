@@ -1,5 +1,55 @@
 package DP
 
+func StoneGameIII(stoneValue []int) string {
+	return stoneGameIII(stoneValue)
+}
+
+func stoneGameIII(stoneValue []int) string {
+	// dp[i] means in last n - i stones, first player's score - second player's score
+	// NOTE: first player means who will pick the stone, not Alice always
+	// dp[n] = 0, because there has 0 stone in piles
+
+	dp := make([]int, 4)
+	n := len(stoneValue)
+	for i := n - 1; i >= 0; i-- {
+		dp[i%4] = stoneValue[i] - dp[(i+1)%4]
+		if i+2 <= n {
+			dp[i%4] = max(dp[i%4], stoneValue[i]+stoneValue[i+1]-dp[(i+2)%4])
+		}
+
+		if i+3 <= n {
+			dp[i%4] = max(dp[i%4], stoneValue[i]+stoneValue[i+1]+stoneValue[i+2]-dp[(i+3)%4])
+		}
+	}
+
+	if dp[0] > 0 {
+		return "Alice"
+	}
+
+	if dp[0] < 0 {
+		return "Bob"
+	}
+	return "Tie"
+}
+
+// return stoneGameIIITopDown(stoneValue, 0, n)
+func stoneGameIIITopDown(stoneValue []int, start, n int) int {
+	if start == n {
+		return 0
+	}
+
+	result := stoneValue[start] - stoneGameIIITopDown(stoneValue, start+1, n)
+
+	if start+2 <= n {
+		result = max(result, stoneValue[start]+stoneValue[start+1]-stoneGameIIITopDown(stoneValue, start+2, n))
+	}
+
+	if start+3 <= n {
+		result = max(result, stoneValue[start]+stoneValue[start+1]+stoneValue[start+2]-stoneGameIIITopDown(stoneValue, start+3, n))
+	}
+	return result
+}
+
 func StoneGameII(piles []int) int {
 	return stoneGameII(piles)
 }
