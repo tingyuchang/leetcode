@@ -6,6 +6,7 @@ import (
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
 	_0230528 "leetcode/0_Daily_Prac/20230528"
+	_0230602 "leetcode/0_Daily_Prac/20230602"
 	"leetcode/Tree"
 	"reflect"
 	"regexp"
@@ -14,24 +15,24 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230528.Name{}
+var name = _0230602.Name{}
 
-var LongestCommonSubsequence = _0230528.LongestCommonSubsequence
-var LongestPalindrome = _0230528.LongestPalindrome
-var LongestPalindromeSubseq = _0230528.LongestPalindromeSubseq
-var CoinChange = _0230528.CoinChange
-var NumberOfArrays = _0230528.NumberOfArrays
-var MinDistance = _0230528.MinDistance
-var WordBreak = _0230528.WordBreak
-var LadderLength = _0230528.LadderLength
-var MaximalSquare = _0230528.MaximalSquare
-var LengthOfLIS = _0230528.LengthOfLIS
-var MaxProfit = _0230528.MaxProfit
-var JumpII = _0230528.JumpII
-var CanCompleteCircuit = _0230528.CanCompleteCircuit
-var Candy = _0230528.Candy
-var Trap = _0230528.Trap
-var MinSubArrayLen = _0230528.MinSubArrayLen
+var LongestCommonSubsequence = _0230602.LongestCommonSubsequence
+var LongestPalindrome = _0230602.LongestPalindrome
+var LongestPalindromeSubseq = _0230602.LongestPalindromeSubseq
+var CoinChange = _0230602.CoinChange
+var NumberOfArrays = _0230602.NumberOfArrays
+var MinDistance = _0230602.MinDistance
+var WordBreak = _0230602.WordBreak
+var LadderLength = _0230602.LadderLength
+var MaximalSquare = _0230602.MaximalSquare
+var LengthOfLIS = _0230602.LengthOfLIS
+var MaxProfit = _0230602.MaxProfit
+var JumpII = _0230602.JumpII
+var CanCompleteCircuit = _0230602.CanCompleteCircuit
+var Candy = _0230602.Candy
+var Trap = _0230602.Trap
+var MinSubArrayLen = _0230602.MinSubArrayLen
 var BuildTree = _0230528.BuildTree
 var ConnectTreeNode = _0230528.ConnectTreeNode
 var NumSubseq = _0230528.NumSubseq
