@@ -243,7 +243,39 @@ https://leetcode.com/problems/copy-list-with-random-pointer/
 */
 
 func GCopyRandomList(head *LinkedList.Node) *LinkedList.Node {
-	return nil
+	/*
+		approach: iterating linked list to creating new list
+		and using hashMap to mapping olf nodes and new nodes
+		and leaving random as empty
+		the 2nd run iterating and using hashMap to assign random node in new list
+	*/
+
+	prehead := &LinkedList.Node{}
+	node := &LinkedList.Node{Val: head.Val}
+	prehead.Next = node
+
+	nodesMap := make(map[*LinkedList.Node]*LinkedList.Node)
+	nodesMap[head] = node
+	current := head.Next
+
+	for current != nil {
+		temp := &LinkedList.Node{Val: current.Val}
+		node.Next = temp
+		nodesMap[current] = temp
+		node = node.Next
+		current = current.Next
+	}
+
+	current = head
+	node = prehead.Next
+
+	for current != nil {
+		node.Random = nodesMap[current.Random]
+		current = current.Next
+		node = node.Next
+	}
+
+	return prehead.Next
 }
 
 /*
@@ -254,6 +286,13 @@ https://leetcode.com/problems/invert-binary-tree/
 */
 
 func GInvertTree(root *Tree.TreeNode) *Tree.TreeNode {
+	if root == nil {
+		return nil
+	}
+
+	temp := GInvertTree(root.Left)
+	root.Left = GInvertTree(root.Right)
+	root.Right = temp
 
 	return root
 
@@ -264,7 +303,19 @@ func GInvertTree(root *Tree.TreeNode) *Tree.TreeNode {
 https://leetcode.com/problems/same-tree/
 */
 func GIsSameTree(p *Tree.TreeNode, q *Tree.TreeNode) bool {
-	return true
+	if p == nil && q == nil {
+		return true
+	}
+
+	if p == nil || q == nil {
+		return false
+	}
+
+	if p.Val != q.Val {
+		return false
+	}
+
+	return GIsSameTree(p.Left, q.Left) && GIsSameTree(p.Right, q.Right)
 }
 
 /*
@@ -276,17 +327,29 @@ Note that you are allowed to reuse a dictionary word.
 */
 
 func GWordBreak(s string, wordDict []string) bool {
+	/*
+		approach: DP
+
+		using an array to store each letters for position j to i is existing in wordDict
+
+		dp[i] = true when s[j:i] in wordDict && dp[j] == true
+		j from 0 to i
+
+		TC O(n^2)
+		SC O(n)
+	*/
+
 	dp := make([]bool, len(s)+1)
 	dp[0] = true
-	wordMaps := make(map[string]struct{})
+	wordMap := make(map[string]struct{})
 
 	for _, v := range wordDict {
-		wordMaps[v] = struct{}{}
+		wordMap[v] = struct{}{}
 	}
 
 	for i := 1; i <= len(s); i++ {
 		for j := 0; j < i; j++ {
-			if _, ok := wordMaps[s[j:i]]; ok && dp[j] {
+			if _, ok := wordMap[s[j:i]]; ok && dp[j] {
 				dp[i] = true
 				break
 			}
@@ -304,7 +367,25 @@ Output: 6
 Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
 */
 func GCountSubstrings(s string) int {
-	return 0
+	ans := 0
+
+	for i := 0; i < len(s); i++ {
+		ans += GCountSubstringsCheck(s, i, i)
+		ans += GCountSubstringsCheck(s, i, i+1)
+	}
+
+	return ans
+}
+
+func GCountSubstringsCheck(s string, start, end int) int {
+	count := 0
+	for start >= 0 && end < len(s) && s[start] == s[end] {
+		start -= 1
+		end += 1
+		count += 1
+	}
+
+	return count
 }
 
 /*
@@ -313,24 +394,14 @@ https://leetcode.com/problems/maximum-subarray/
 */
 
 func GMaxSubArray(nums []int) int {
-	current := 0
 	ans := 0
+	current := 0
 
-	max := func(a, b int) int {
-		if a > b {
-			return a
-		}
-		return b
+	for i := 0; i < len(nums); i++ {
+		current = Max(nums[i], current+nums[i])
+		ans = Max(ans, current)
 	}
-
-	for i := range nums {
-		v := nums[i]
-		current = max(v, current+v)
-		ans = max(ans, current)
-	}
-
 	return ans
-
 }
 
 /*

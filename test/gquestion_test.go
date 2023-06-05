@@ -73,7 +73,7 @@ func TestGDeleteNode(t *testing.T) {
 	assert.Equal(t, head.String(), exp.String())
 }
 func TestGCopyRandomList(t *testing.T) {
-
+	// hard to test
 }
 func TestGInvertTree(t *testing.T) {
 
@@ -82,13 +82,71 @@ func TestGIsSameTree(t *testing.T) {
 
 }
 func TestGWordBreak(t *testing.T) {
+	testData := []struct {
+		s        string
+		wordDict []string
+		excepted bool
+	}{
+		{"leetcode", []string{"leet", "code"}, true},
+		{"applepenapple", []string{"apple", "pen"}, true},
+		{"catsandog", []string{"cats", "dog", "sand", "and", "cat"}, false},
+		{"aaaaaaa", []string{"aaaa", "aaa"}, true},
+		{"catcats", []string{"cat", "cats"}, true},
+		{"catsand", []string{"cat", "cats", "and"}, true},
+	}
 
+	for _, td := range testData {
+		result := GWordBreak(td.s, td.wordDict)
+		assert.Equal(t, result, td.excepted)
+	}
 }
 func TestGCountSubstrings(t *testing.T) {
+	testData := []struct {
+		input    string
+		expected int
+	}{
+		{
+			"abc",
+			3,
+		},
+		{
+			"aaa",
+			6,
+		},
+		{
+			"addaccadbabdbdbdbcabdcbcadacccbdddcbddacdaacbbdcbdbccdaaddadcaacdacbaaddbcaadcdab",
+			126,
+		},
+	}
 
+	for _, td := range testData {
+		result := GCountSubstrings(td.input)
+		assert.Equal(t, result, td.expected)
+	}
 }
 func TestGMaxSubArray(t *testing.T) {
+	testData := []struct {
+		nums     []int
+		expected int
+	}{
+		{
+			[]int{-2, 1, -3, 4, -1, 2, 1, -5, 4},
+			6,
+		},
+		{
+			[]int{1},
+			1,
+		},
+		{
+			[]int{5, 4, -1, 7, 8},
+			23,
+		},
+	}
 
+	for _, td := range testData {
+		result := GMaxSubArray(td.nums)
+		assert.Equal(t, result, td.expected)
+	}
 }
 func TestGIsNumber(t *testing.T) {
 
