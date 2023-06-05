@@ -130,7 +130,87 @@ Input: arr = [1,2,3,4,5], k = 4, x = -1
 Output: [1,2,3,4]
 */
 func GFindClosestElements(arr []int, k int, x int) []int {
-	return []int{}
+	abs := func(a int) int {
+		if a < 0 {
+			return -a
+		}
+		return a
+	}
+	/*
+
+		approach1: binary search + expand T: logn+k, s: k
+
+		approach2: 2 point narrow down T: k s: 1
+
+		lower <-----> upper T: n
+		if abs(arr[lower] - x ) >  abs(arr[upper] - x)
+		lower ++
+		else
+		upper--
+	*/
+
+	/*
+		if x <= arr[0] {
+			return arr[:k]
+		}
+
+		if x >= arr[len(arr)-1] {
+			return arr[len(arr)-k:]
+		}
+
+		// binary search
+
+		l := 0
+		r := len(arr) - 1
+
+		for r >= l {
+			mid := int(uint(l+r) >> 1)
+
+			if arr[mid] <= x {
+				l = mid + 1
+			} else {
+				r = mid - 1
+			}
+		}
+
+		l, r = r, l
+
+		ans := make([]int, 0)
+		for k > 0 {
+			if l < 0 {
+				ans = append(ans, arr[r:r+k]...)
+				break
+			}
+
+			if r == len(arr) {
+				ans = append(arr[l-k+1:l+1], ans...)
+				break
+			}
+
+			if abs(arr[l]-x) < abs(arr[r]-x) || abs(arr[l]-x) == abs(arr[r]-x) {
+				ans = append([]int{arr[l]}, ans...)
+				l -= 1
+			} else {
+				ans = append(ans, arr[r])
+				r += 1
+			}
+			k--
+		}
+
+		return ans
+	*/
+	l, r := 0, len(arr)-1
+
+	for r-l >= k {
+		if abs(arr[l]-x) > abs(arr[r]-x) {
+			l += 1
+		} else {
+			r -= 1
+		}
+	}
+
+	return arr[l : r+1]
+
 }
 
 /*

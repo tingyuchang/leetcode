@@ -51,8 +51,13 @@ func TestGFindClosestElements(t *testing.T) {
 		arr []int
 		k   int
 		x   int
-		exp int
-	}{}
+		exp []int
+	}{
+		{[]int{1, 2, 3, 4, 5}, 4, 3, []int{1, 2, 3, 4}},
+		{[]int{1, 2, 3, 4, 5}, 4, -1, []int{1, 2, 3, 4}},
+		{[]int{1}, 1, 1, []int{1}},
+		{[]int{-2, -1, 1, 2, 3, 4, 5}, 7, 3, []int{-2, -1, 1, 2, 3, 4, 5}},
+	}
 
 	for _, td := range testData {
 		result := GFindClosestElements(td.arr, td.k, td.x)
