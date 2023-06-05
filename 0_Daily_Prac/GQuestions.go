@@ -221,7 +221,20 @@ Output: [4,1,9]
 Explanation: You are given the second node with value 5, the linked list should become 4 -> 1 -> 9 after calling your function.
 */
 func GDeleteNode(node *LinkedList.ListNode) {
+	/*
+		appraoch:  copy next node's val to current and remove last node from linked list
+	*/
 
+	for node != nil {
+		node.Val = node.Next.Val
+
+		if node.Next.Next == nil {
+			node.Next = nil
+			break
+		}
+		node = node.Next
+
+	}
 }
 
 /*

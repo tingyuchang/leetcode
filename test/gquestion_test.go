@@ -3,6 +3,7 @@ package test
 import (
 	"github.com/magiconair/properties/assert"
 	__Daily_Prac "leetcode/0_Daily_Prac"
+	"leetcode/LinkedList"
 	"testing"
 )
 
@@ -65,7 +66,11 @@ func TestGFindClosestElements(t *testing.T) {
 	}
 }
 func TestGDeleteNode(t *testing.T) {
-
+	head := LinkedList.GenerateNodeFromArray([]int{4, 5, 1, 9})
+	node := head.Next
+	exp := LinkedList.GenerateNodeFromArray([]int{4, 1, 9})
+	GDeleteNode(node)
+	assert.Equal(t, head.String(), exp.String())
 }
 func TestGCopyRandomList(t *testing.T) {
 
