@@ -419,34 +419,99 @@ func GIsNumber(s string) bool {
 https://leetcode.com/problems/generate-parentheses/
 */
 func GGenerateParenthesis(n int) []string {
-	if n == 0 {
-		return []string{}
-	}
+	/*
+		approach1: brute force
+		generate all possible strings and check it is valid or not
 
-	left, right := n-1, n
-	current := []byte{'('}
+		using queue to do the bfs
+		1 ['(', ')']
+		2 ['()'. '((', ')(', '))']
+		3 ....
+		when string length == 2 * n
+		check validation
 
-	res := []string{}
+		TC O(2^n*n)
+		SC O(2^n)
 
-	dfsGenerateParenthesis(left, right, &res, current)
+		queue := []string{"(", ")"}
+		ans := make([]string, 0)
 
-	return res
+		for len(queue) != 0 {
+			current := queue[0]
+			queue = queue[1:]
+
+			if len(current) == 2*n {
+				if isValidateParenthesis(current) {
+					ans = append(ans, current)
+				}
+				continue
+			}
+			next1 := current + "("
+			next2 := current + ")"
+
+			queue = append(queue, next1, next2)
+
+		}
+
+		return ans
+	*/
+	/*
+			approach 2: backtrack, only build valid string
+
+			like ")" should put it into the queue, we can reduce half size
+			we need 2 vars to help us
+			leftCount: if leftCount < n, newStr = current + '(' then leftCount += 1
+			rightCount: only add ")" when leftCount > rightCount,  newStr = current + ')' then rightCount += 1
+
+		TC O(4^n/(n^(3/2)))
+
+	*/
+	ans := make([]string, 0)
+	backtrackingParenthesis("", 0, 0, n, &ans)
+	return ans
+	/*
+		approach3 divide & conquer
+
+		F(n) = (F(0)F(n-1) + F(1)F(n-2) + .... + F(n-1)F(0))
+
+		F(0)F(n-1) =
+		F(1)F(n-2)
+		F(n-1)F(0)
+	*/
+
 }
 
-func dfsGenerateParenthesis(left, right int, res *[]string, current []byte) {
+func isValidateParenthesis(s string) bool {
+	count := 0
 
-	if left == 0 && right == 0 {
-		temp := current[:len(current)]
-		*res = append(*res, string(temp))
+	for i := 0; i < len(s); i++ {
+		if s[i] == '(' {
+			count += 1
+		} else {
+			count -= 1
+		}
+
+		if count < 0 {
+			return false
+		}
 	}
 
-	if left > 0 {
-		dfsGenerateParenthesis(left-1, right, res, append(current, '('))
+	return count == 0
+}
+
+func backtrackingParenthesis(s string, leftCount, rightCount, n int, ans *[]string) {
+	if len(s) == 2*n {
+		*ans = append(*ans, s)
+		return
+	}
+	if leftCount < n {
+		backtrackingParenthesis(s+"(", leftCount+1, rightCount, n, ans)
 	}
 
-	if right > left {
-		dfsGenerateParenthesis(left, right-1, res, append(current, ')'))
+	if rightCount < leftCount {
+		backtrackingParenthesis(s+")", leftCount, rightCount+1, n, ans)
 	}
+
 }
 
 /*
@@ -529,33 +594,36 @@ func (this *LRUCache) removeElement(e *list.Element) {
 https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 */
 func GSearchRange(nums []int, target int) []int {
+	/*
+		approach binary search find target and expand from target to get start and end position
+		of the same elements
+	*/
+
 	l := 0
 	r := len(nums) - 1
-
 	start, end := -1, -1
 
 	for r >= l {
-		mid := (l + r) / 2
+		mid := int(uint(l+r) >> 1)
 
-		if nums[mid] > target {
-			r = mid - 1
-		} else if nums[mid] < target {
+		if nums[mid] < target {
 			l = mid + 1
+		} else if nums[mid] > target {
+			r = mid - 1
 		} else {
+			// find target
 			start, end = mid, mid
 			for {
 				if start != 0 && nums[start-1] == target {
-					start--
+					start -= 1
 				}
-
 				if end < len(nums)-1 && nums[end+1] == target {
-					end++
+					end += 1
 				}
 				if (start == 0 || nums[start-1] != target) && (end == len(nums)-1 || nums[end+1] != target) {
 					break
 				}
 			}
-
 			break
 		}
 	}
@@ -568,43 +636,66 @@ func GSearchRange(nums []int, target int) []int {
 https://leetcode.com/problems/merge-intervals/
 */
 func GMergeIntervals(intervals [][]int) [][]int {
+	/*
+	   	approach:
+
+	   	sort intervals by start time
+	   	1  2 3  6  8 10 15 18
+	   	[--------]
+	   	          [----]
+	    					[---]
+	*/
+
 	ans := make([][]int, 0)
+	// start: end
+	intervalMap := make(map[int]int)
 
-	intervalMaps := make(map[int]int)
-	startTimes := make([]int, 0)
 	for _, interval := range intervals {
-		end, ok := intervalMaps[interval[0]]
-
-		if ok {
+		if end, ok := intervalMap[interval[0]]; ok {
 			if end < interval[1] {
-				intervalMaps[interval[0]] = interval[1]
+				intervalMap[interval[0]] = interval[1]
 			}
 		} else {
-			intervalMaps[interval[0]] = interval[1]
-			startTimes = append(startTimes, interval[0])
+			intervalMap[interval[0]] = interval[1]
 		}
 	}
 
-	sort.Ints(startTimes)
+	sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i][0] < intervals[j][0]
+	})
+	currentStart := intervals[0][0]
 
-	current := startTimes[0]
-
-	for i := 1; i < len(startTimes); i++ {
-		start := startTimes[i]
-		end := intervalMaps[start]
-		currentEnd := intervalMaps[current]
+	for i := 1; i < len(intervals); i++ {
+		start := intervals[i][0]
+		end := intervals[i][1]
+		currentEnd := intervalMap[currentStart]
 		if start <= currentEnd && end > currentEnd {
-			intervalMaps[current] = end
-		} else {
-			if start > currentEnd {
-				ans = append(ans, []int{current, currentEnd})
-				current = start
-			}
+			intervalMap[currentStart] = end
+		} else if start > currentEnd {
+			ans = append(ans, []int{currentStart, currentEnd})
+			currentStart = start
 		}
 	}
+	ans = append(ans, []int{currentStart, intervalMap[currentStart]})
 
-	ans = append(ans, []int{current, intervalMaps[current]})
 	return ans
+
+	/*
+		Interval search trees
+		1. build BST and using left endpoint as BST key
+		2. store max end point in  subtree rooted at node
+		insert
+		1. if intersects(root.interval, target.interval) update root.interval, min, max
+		2. if insert.min < root.min, root = root.left
+		3  else  root = root.right
+		4. if root == nil, root.left or right = interval
+
+		search
+		1. if intersects(root.interval, target.interval) return root.interval
+		2. else if root.left == nil, root = root.right
+		3. else if root.left.max < target.min, root = root.right
+		4. root = root.left
+	*/
 }
 
 /*
@@ -617,12 +708,35 @@ func GHasPathSum(root *Tree.TreeNode, targetSum int) bool {
 	if root == nil {
 		return false
 	}
+	queue := []*Tree.TreeNode{root}
 
-	if root.Val == targetSum && root.Left == nil && root.Right == nil {
-		return true
+	for len(queue) > 0 {
+		currentSize := len(queue)
+
+		for i := 0; i < currentSize; i++ {
+			currentNode := queue[i]
+
+			if currentNode.Val == targetSum && currentNode.Left == nil && currentNode.Right == nil {
+				return true
+			}
+
+			// move on
+
+			if currentNode.Left != nil && targetSum-currentNode.Val > 0 {
+				currentNode.Left.Val += currentNode.Val
+				queue = append(queue, currentNode.Left)
+			}
+
+			if currentNode.Right != nil && targetSum-currentNode.Val > 0 {
+				currentNode.Right.Val += currentNode.Val
+				queue = append(queue, currentNode.Right)
+			}
+		}
+
+		queue = queue[currentSize:]
 	}
 
-	return GHasPathSum(root.Left, targetSum-root.Val) || GHasPathSum(root.Right, targetSum-root.Val)
+	return false
 }
 
 /*
@@ -630,16 +744,39 @@ func GHasPathSum(root *Tree.TreeNode, targetSum int) bool {
 https://leetcode.com/problems/missing-number/
 */
 func GMissingNumber(nums []int) int {
-	sum := len(nums)
-	if (1+len(nums))%2 != 0 {
-		sum = sum / 2 * (1 + len(nums))
-	} else {
-		sum *= (1 + len(nums)) / 2
+	/*
+				approach1: hasMap to store current  value and using for-loop for 0 to len(nums)
+				TC O(n)
+				SC O(n)
+
+		valMap := make(map[int]struct{})
+			for _, v := range nums {
+				valMap[v] = struct{}{}
+			}
+
+			for i := 0; i <= len(nums); i++ {
+				if _, ok := valMap[i]; !ok {
+					return i
+				}
+			}
+
+			return len(nums)
+
+			approach2: sum from 1 to len(nums)  only work on  0 <= nums[i] <= n
+			and decrease by each val in nums
+			TC O(n)
+			SC O(1)
+	*/
+
+	sum := 0
+
+	for i := 1; i <= len(nums); i++ {
+		sum += i
 	}
+
 	for i := 0; i < len(nums); i++ {
 		sum -= nums[i]
 	}
-
 	return sum
 }
 
@@ -651,19 +788,18 @@ func GReverseList(head *LinkedList.ListNode) *LinkedList.ListNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
-
-	node, next := head, head.Next
+	current := head
+	next := head.Next
 
 	for next != nil {
 		temp := next.Next
-		next.Next = node
-		node = next
+		next.Next = current
+		current = next
 		next = temp
 	}
-
 	head.Next = nil
 
-	return node
+	return current
 }
 
 /*
