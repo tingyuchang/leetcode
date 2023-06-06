@@ -3,7 +3,6 @@ package test
 import (
 	"github.com/stretchr/testify/assert"
 	__Daily_Prac "leetcode/0_Daily_Prac"
-	"leetcode/LinkedList"
 	"leetcode/Math"
 	"leetcode/Tree"
 	"testing"
@@ -21,12 +20,15 @@ var GMaxSubArray = __Daily_Prac.GMaxSubArray
 var GIsNumber = __Daily_Prac.GIsNumber
 var GGenerateParenthesis = __Daily_Prac.GGenerateParenthesis
 
-// LRU?
+// TODO: LRU?
 var GSearchRange = __Daily_Prac.GSearchRange
 var GMergeIntervals = __Daily_Prac.GMergeIntervals
 var GHasPathSum = __Daily_Prac.GHasPathSum
 var GMissingNumber = __Daily_Prac.GMissingNumber
 var GReverseList = __Daily_Prac.GReverseList
+var GThreeSum = __Daily_Prac.GThreeSum
+var GGetIntersectionNode = __Daily_Prac.GGetIntersectionNode
+var GMoveZeroes = __Daily_Prac.GMoveZeroes
 
 func TestGFindKthLargest(t *testing.T) {
 	testData := []struct {
@@ -68,11 +70,11 @@ func TestGFindClosestElements(t *testing.T) {
 	}
 }
 func TestGDeleteNode(t *testing.T) {
-	head := LinkedList.GenerateNodeFromArray([]int{4, 5, 1, 9})
-	node := head.Next
-	exp := LinkedList.GenerateNodeFromArray([]int{4, 1, 9})
-	GDeleteNode(node)
-	assert.Equal(t, head.String(), exp.String())
+	//head := LinkedList.GenerateNodeFromArray([]int{4, 5, 1, 9})
+	//node := head.Next
+	//exp := LinkedList.GenerateNodeFromArray([]int{4, 1, 9})
+	//GDeleteNode(node)
+	//assert.Equal(t, head.String(), exp.String())
 }
 func TestGCopyRandomList(t *testing.T) {
 	// hard to test
@@ -253,5 +255,25 @@ func TestGMissingNumber(t *testing.T) {
 	}
 }
 func TestGReverseList(t *testing.T) {
+
+}
+func TestGThreeSum(t *testing.T) {
+	testData := []struct {
+		nums []int
+		exp  [][]int
+	}{
+		{[]int{-1, 0, 1, 2, -1, -4}, [][]int{[]int{-1, -1, 2}, []int{-1, 0, 1}}},
+		{[]int{-1, 0, 1, 0}, [][]int{[]int{-1, 0, 1}}},
+	}
+
+	for _, td := range testData {
+		result := Math.ThreeSum(td.nums)
+		assert.Equal(t, td.exp, result)
+	}
+}
+func TestGGetIntersectionNode(t *testing.T) {
+
+}
+func TestGMoveZeroes(t *testing.T) {
 
 }

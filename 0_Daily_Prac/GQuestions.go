@@ -220,7 +220,7 @@ Input: head = [4,5,1,9], node = 5
 Output: [4,1,9]
 Explanation: You are given the second node with value 5, the linked list should become 4 -> 1 -> 9 after calling your function.
 */
-func GDeleteNode(node *LinkedList.ListNode) {
+func GDeleteNode(node *ListNode) {
 	/*
 		appraoch:  copy next node's val to current and remove last node from linked list
 	*/
@@ -242,7 +242,7 @@ func GDeleteNode(node *LinkedList.ListNode) {
 https://leetcode.com/problems/copy-list-with-random-pointer/
 */
 
-func GCopyRandomList(head *LinkedList.Node) *LinkedList.Node {
+func GCopyRandomList(head *NodeR) *NodeR {
 	/*
 		approach: iterating linked list to creating new list
 		and using hashMap to mapping olf nodes and new nodes
@@ -250,16 +250,16 @@ func GCopyRandomList(head *LinkedList.Node) *LinkedList.Node {
 		the 2nd run iterating and using hashMap to assign random node in new list
 	*/
 
-	prehead := &LinkedList.Node{}
-	node := &LinkedList.Node{Val: head.Val}
+	prehead := &NodeR{}
+	node := &NodeR{Val: head.Val}
 	prehead.Next = node
 
-	nodesMap := make(map[*LinkedList.Node]*LinkedList.Node)
+	nodesMap := make(map[*NodeR]*NodeR)
 	nodesMap[head] = node
 	current := head.Next
 
 	for current != nil {
-		temp := &LinkedList.Node{Val: current.Val}
+		temp := &NodeR{Val: current.Val}
 		node.Next = temp
 		nodesMap[current] = temp
 		node = node.Next
@@ -784,7 +784,7 @@ func GMissingNumber(nums []int) int {
 206. Reverse Linked List
 https://leetcode.com/problems/reverse-linked-list/
 */
-func GReverseList(head *LinkedList.ListNode) *LinkedList.ListNode {
+func GReverseList(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
@@ -803,29 +803,92 @@ func GReverseList(head *LinkedList.ListNode) *LinkedList.ListNode {
 }
 
 /*
-Determine if the sum of three integers is equal to the given value
+15. 3Sum
+https://leetcode.com/problems/3sum/
+*/
 
-Intersection point of two linked lists
+func GThreeSum(nums []int) [][]int {
+	return [][]int{}
+}
 
-Move zeros to the left
+/*
+160. Intersection of Two Linked Lists
+https://leetcode.com/problems/intersection-of-two-linked-lists/
+*/
+func GGetIntersectionNode(headA, headB *ListNode) *ListNode {
+	return nil
+}
 
-Add two integers
+/*
+283. Move Zeroes
+https://leetcode.com/problems/move-zeroes/
+*/
+func GMoveZeroes(nums []int) {
 
-Merge two sorted linked lists
+}
 
-Convert binary tree to doubly linked list
+/*
+21. Merge Two Sorted Lists
 
-level order traversal of binary tree
+https://leetcode.com/problems/merge-two-sorted-lists/
+*/
+func mergeTwoLists(list1 *ListNode, list2 *LinkedList.ListNode) *ListNode {
+	return list1
+}
 
-Reverse words in a sentence
+/*
+114. Flatten Binary Tree to Linked List
 
-Find maximum single sell profit
+https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
+*/
+func flatten(root *Tree.TreeNode) {
 
-Calculate the power of a number
+}
 
-Find all possible subsets
+/*
+151. Reverse Words in a String
+https://leetcode.com/problems/reverse-words-in-a-string/
+*/
 
-Clone a directed graph
+func reverseWords(s string) string {
+	return ""
+}
+
+/*
+121. Best Time to Buy and Sell Stock
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+*/
+func maxProfit(prices []int) int {
+	return 0
+}
+
+/*
+50. Pow(x, n)
+
+https://leetcode.com/problems/powx-n/
+*/
+
+func myPow(x float64, n int) float64 {
+	return 0
+}
+
+/*
+78. Subsets
+https://leetcode.com/problems/subsets/
+*/
+func subsets(nums []int) [][]int {
+	return [][]int{}
+}
+
+/*
+133. Clone Graph
+https://leetcode.com/problems/clone-graph/
+*/
+func cloneGraph(node *Node) *Node {
+	return nil
+}
+
+/*
 
 Serialize / deserialize binary tree
 
@@ -842,4 +905,10 @@ Clone a directed graph
 Closest meeting point
 
 Search for the given key in a 2d matrix
+
+combination
+
+permutation
+
+decode string
 */
