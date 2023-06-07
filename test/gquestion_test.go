@@ -19,6 +19,7 @@ var GCountSubstrings = __Daily_Prac.GCountSubstrings
 var GMaxSubArray = __Daily_Prac.GMaxSubArray
 var GIsNumber = __Daily_Prac.GIsNumber
 var GGenerateParenthesis = __Daily_Prac.GGenerateParenthesis
+var GReverseWords = __Daily_Prac.GReverseWords
 
 // TODO: LRU?
 var GSearchRange = __Daily_Prac.GSearchRange
@@ -275,5 +276,32 @@ func TestGGetIntersectionNode(t *testing.T) {
 
 }
 func TestGMoveZeroes(t *testing.T) {
+	testData := []struct {
+		nums []int
+		exp  []int
+	}{
+		{[]int{0, 1, 0, 3, 12}, []int{1, 3, 12, 0, 0}},
+		{[]int{0}, []int{0}},
+	}
 
+	for _, td := range testData {
+		GMoveZeroes(td.nums)
+		assert.Equal(t, td.exp, td.nums)
+	}
+}
+func TestGReverseWords(t *testing.T) {
+	testData := []struct {
+		s   string
+		exp string
+	}{
+		{"the sky is blue", "blue is sky the"},
+		{"  hello world  ", "world hello"},
+		{"a good   example", "example good a"},
+		{"", ""},
+	}
+
+	for _, td := range testData {
+		result := GReverseWords(td.s)
+		assert.Equal(t, td.exp, result)
+	}
 }

@@ -2,7 +2,6 @@ package __Daily_Prac
 
 import (
 	"container/list"
-	"leetcode/LinkedList"
 	"leetcode/Tree"
 	"sort"
 )
@@ -808,7 +807,45 @@ https://leetcode.com/problems/3sum/
 */
 
 func GThreeSum(nums []int) [][]int {
-	return [][]int{}
+	/*
+		approach:
+		1. soring array
+		2. iterating array and using  lower & upper to find arr[i] + arr[lower] + arr[upper] = 0
+			- if  arr[i] + arr[lower] + arr[upper] > 0 lower += 1
+			- if arr[i] + arr[lower] + arr[upper] < 0 upper -= 1
+
+		TC O(n^3)
+	*/
+
+	ans := make([][]int, 0)
+	sort.Ints(nums)
+
+	for i := 0; i < len(nums); i++ {
+		if i > 0 && nums[i] == nums[i-1] {
+			continue
+		}
+
+		l := i + 1
+		r := len(nums) - 1
+
+		for r > l {
+			sum := nums[i] + nums[l] + nums[r]
+
+			if sum > 0 {
+				r -= 1
+			} else if sum < 0 {
+				l += 1
+			} else {
+				ans = append(ans, []int{nums[i], nums[l], nums[r]})
+				l++
+				for l < r && nums[l] == nums[l-1] {
+					l++
+				}
+			}
+		}
+	}
+
+	return ans
 }
 
 /*
@@ -816,6 +853,29 @@ func GThreeSum(nums []int) [][]int {
 https://leetcode.com/problems/intersection-of-two-linked-lists/
 */
 func GGetIntersectionNode(headA, headB *ListNode) *ListNode {
+
+	if headA == nil || headB == nil {
+		return nil
+	}
+	nodeA := headA
+	nodeB := headB
+	for nodeB != nodeA {
+		if nodeA == nodeB {
+			return nodeA
+		}
+
+		if nodeA == nil {
+			nodeA = headB
+		} else {
+			nodeA = nodeA.Next
+		}
+
+		if nodeB == nil {
+			nodeB = headA
+		} else {
+			nodeB = nodeB.Next
+		}
+	}
 	return nil
 }
 
@@ -824,7 +884,32 @@ func GGetIntersectionNode(headA, headB *ListNode) *ListNode {
 https://leetcode.com/problems/move-zeroes/
 */
 func GMoveZeroes(nums []int) {
+	/*
+			approach: using nonzero index to address most left zero index
+			if nums[i] != 0, swap nums[nonzero] & nums[i], nonzero += 1
+			e.g. V
+				 0,1,0,3,12
+					V
+				1, 0 0 3, 12
+				 	 V
+				1 3  0  0 12
+			TC O(n)
+			SC O(1)
 
+		 approach2 create new array and fill in 0 in default
+
+		TC O(n)
+		SC O(n)
+	*/
+
+	nonZero := 0
+
+	for i := 0; i < len(nums); i++ {
+		if nums[i] != 0 {
+			nums[nonZero], nums[i] = nums[i], nums[nonZero]
+			nonZero += 1
+		}
+	}
 }
 
 /*
@@ -832,8 +917,28 @@ func GMoveZeroes(nums []int) {
 
 https://leetcode.com/problems/merge-two-sorted-lists/
 */
-func mergeTwoLists(list1 *ListNode, list2 *LinkedList.ListNode) *ListNode {
-	return list1
+func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+	preHead := &ListNode{}
+	var node = &ListNode{}
+	preHead.Next = node
+
+	for list1 != nil || list2 != nil {
+		if list1.Val < list2.Val {
+			node.Next = list1
+			list1 = list1.Next
+		} else {
+			node.Next = list2
+			list2 = list2.Next
+		}
+		node = node.Next
+	}
+
+	if list1 == nil {
+		node.Next = list2
+	} else {
+		node.Next = list1
+	}
+	return preHead.Next.Next
 }
 
 /*
@@ -843,6 +948,54 @@ https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
 */
 func flatten(root *Tree.TreeNode) {
 
+	/*
+
+		approach1: recursive
+		1. flatten(root.Right)
+		2. flatten(root.Left)
+		3. root.Right = root.Left
+		4. root.Left = nil
+		5. make node = root.Right and  node = node.Right until  root.Right = nil
+		6. node.Right = temp
+
+		TC O(n)
+
+		approach 2: using an array to store node in preorder sequence
+
+		then iterating array
+		1. preorder[i].Right = preorder[i+1]
+		2. preorder[i].Left = nil
+
+		TC O(n)
+		SC O(n)
+	*/
+
+	if root == nil {
+		return
+	}
+	var temp *Tree.TreeNode
+
+	if root.Right != nil {
+		flatten(root.Right)
+		temp = root.Right
+	}
+
+	if root.Left != nil {
+		flatten(root.Left)
+		root.Right = root.Left
+		root.Left = nil
+
+		current := root.Right
+
+		for current != nil {
+			if current.Right == nil {
+				break
+			}
+			current = current.Right
+		}
+
+		current.Right = temp
+	}
 }
 
 /*
@@ -850,8 +1003,39 @@ func flatten(root *Tree.TreeNode) {
 https://leetcode.com/problems/reverse-words-in-a-string/
 */
 
-func reverseWords(s string) string {
-	return ""
+func GReverseWords(s string) string {
+
+	/*
+		approach 1 If we are allowed to use split function
+		1. Split string with delimiter " " to an array
+		2. reverse array with " "
+
+		TC O(n)
+		SC O(n)
+
+		approach 2 write split function from end of array and export valid string to result
+	*/
+	ans := ""
+	l := len(s) - 1
+	r := len(s)
+
+	for l >= 0 {
+		if s[l] == ' ' {
+			// export
+			if len(s[l+1:r]) >= 1 && s[l+1:r] != " " {
+				ans += s[l+1:r] + " "
+			}
+			r = l
+		}
+		l -= 1
+	}
+	if r != 0 {
+		ans += s[:r]
+	}
+	if len(ans) > 0 && ans[len(ans)-1] == ' ' {
+		ans = ans[:len(ans)-1]
+	}
+	return ans
 }
 
 /*
