@@ -2,8 +2,10 @@ package __Daily_Prac
 
 import (
 	"container/list"
+	"fmt"
 	"leetcode/Tree"
 	"sort"
+	"strconv"
 )
 
 // Google's questions
@@ -1039,11 +1041,114 @@ func GReverseWords(s string) string {
 }
 
 /*
+91. Decode Ways
+
+https://leetcode.com/problems/decode-ways/
+*/
+
+func GNumDecodings(s string) int {
+	dp := make([]int, len(s)+1)
+	dp[len(s)] = 1
+
+	for i := len(s) - 1; i >= 0; i-- {
+		if s[i] != '0' {
+			dp[i] += dp[i+1]
+
+			if i < len(s)-1 && (s[i] == '1' || s[i] == '2' && s[i+1] < '7') {
+				dp[i] += dp[i+2]
+			}
+		}
+
+	}
+
+	return dp[0]
+}
+
+/*
+394. Decode String
+https://leetcode.com/problems/decode-string/
+
+Input: s = "3[a]2[bc]"
+Output: "aaabcbc"
+Input: s = "3[a2[c]]"
+Output: "accaccacc"
+*/
+
+func GDecodeString(s string) string {
+	/*
+		approach 1: using stack to store temp value
+		1. put element into stack
+		2. when we meet close bracket
+	*/
+	stack := make([]byte, 0)
+	indexOfOpenBrackets := make([]int, 0)
+
+	for i := 0; i < len(s); i++ {
+		if s[i] == ']' {
+			openBraket := indexOfOpenBrackets[len(indexOfOpenBrackets)-1]
+			indexOfOpenBrackets = indexOfOpenBrackets[:len(indexOfOpenBrackets)-1]
+
+			k := openBraket - 2
+			for k >= 0 {
+				if stack[k] > '9' || stack[k] < '0' {
+					break
+				}
+				k -= 1
+			}
+
+			repeatNumber, _ := strconv.Atoi(string(stack[k+1 : openBraket]))
+			currentString := string(stack[openBraket+1:])
+
+			fmt.Println(repeatNumber, currentString, k, openBraket, string(stack))
+			stack = stack[:k+1]
+
+			for j := 0; j < repeatNumber; j++ {
+				stack = append(stack, currentString...)
+			}
+			fmt.Println(string(stack))
+		} else {
+			stack = append(stack, s[i])
+			if s[i] == '[' {
+				indexOfOpenBrackets = append(indexOfOpenBrackets, len(stack)-1)
+			}
+		}
+	}
+
+	return string(stack)
+}
+
+/*
 121. Best Time to Buy and Sell Stock
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 */
-func maxProfit(prices []int) int {
-	return 0
+func GMaxProfit(prices []int) int {
+	/*
+		approach:
+		[7,1,5,3,6,4]
+
+		minVal: 7
+		ans: 0
+
+		if nums[i] > minVal => max(ans, nums[i] - minVal)
+		if nums[i] < minVal => minVal = nums[i]
+
+	*/
+
+	ans := 0
+	minVal := prices[0]
+
+	for i := 1; i < len(prices); i++ {
+		if prices[i] < minVal {
+			minVal = prices[i]
+		} else {
+			profit := prices[i] - minVal
+			if profit > ans {
+				ans = profit
+			}
+		}
+	}
+
+	return ans
 }
 
 /*
@@ -1052,24 +1157,169 @@ func maxProfit(prices []int) int {
 https://leetcode.com/problems/powx-n/
 */
 
-func myPow(x float64, n int) float64 {
-	return 0
+func GMyPow(x float64, n int) float64 {
+	/*
+
+		if x == 1  {
+
+		}
+
+		 ans := 1
+		 for n > 0 {
+			ans = ans * x
+		}
+
+		if n < 0 {
+			ans = 1/ans
+		}
+
+	*/
+
+	if x == 1.0 {
+		return 1.0
+	}
+
+	if x == -1 {
+		if n%2 == 0 {
+			return 1.0
+		} else {
+			return -1.0
+		}
+	}
+
+	if n < 0 {
+		n = -n
+		x = 1 / x
+	}
+
+	ans := 1.0
+	for n != 0 {
+		if n%2 == 1 {
+			ans = ans * x
+			n -= 1
+		}
+
+		x = x * x
+		n = n / 2
+	}
+	return ans
 }
 
 /*
 78. Subsets
 https://leetcode.com/problems/subsets/
 */
-func subsets(nums []int) [][]int {
-	return [][]int{}
+func GSubsets(nums []int) [][]int {
+
+	/*
+		approach1: add new element to current ans to generate new ans
+		initial: []
+		1. add 1
+		[1]  ([]. [1])
+		2, add 2
+		[2], [1,2]  ([], [1], [2], [1,2])
+		3 add 3
+		[3] , [1,3], [2,3], [1,2,3]
+	*/
+	result := [][]int{{}}
+
+	for i := 0; i < len(nums); i++ {
+
+		currentSize := len(result)
+		for j := 0; j < currentSize; j++ {
+			temp := make([]int, len(result[j]))
+			copy(temp[:], result[j][:])
+			temp = append(temp, nums[i])
+			result = append(result, temp)
+		}
+
+	}
+
+	return result
+
+	//result := make([][]int, 0)
+	//currentSet := make([]int, 0)
+	//dfsGSubsets(nums, 0, &currentSet, &result)
+	//return result
+}
+
+func dfsGSubsets(nums []int, index int, currentSet *[]int, result *[][]int) {
+	temp := make([]int, len(*currentSet))
+	copy(temp[:], (*currentSet)[:])
+	*result = append(*result, temp)
+	for i := index; i < len(nums); i++ {
+		*currentSet = append(*currentSet, nums[i])
+		dfsGSubsets(nums, i+1, currentSet, result)
+		*currentSet = (*currentSet)[:len(*currentSet)-1]
+	}
 }
 
 /*
 133. Clone Graph
 https://leetcode.com/problems/clone-graph/
 */
-func cloneGraph(node *Node) *Node {
-	return nil
+func GCloneGraph(node *Node) *Node {
+	/*
+		approach1 BFS
+
+		approach 2 recursive
+	*/
+
+	if node == nil {
+		return nil
+	}
+	//nodeMap := make(map[int]*Node)
+	//queue := []*Node{node}
+	//
+	//for len(queue) != 0 {
+	//	currentNode := queue[0]
+	//	queue = queue[1:]
+	//
+	//	var copyNode *Node
+	//	if node, ok := nodeMap[currentNode.Val]; ok {
+	//		copyNode = node
+	//	} else {
+	//		copyNode = &Node{Val: currentNode.Val, Neighbors: make([]*Node, 0)}
+	//		nodeMap[currentNode.Val] = copyNode
+	//	}
+	//
+	//	if len(currentNode.Neighbors) != len(copyNode.Neighbors) {
+	//		queue = append(queue, currentNode.Neighbors...)
+	//		for _, v := range currentNode.Neighbors {
+	//			queue = append(queue, v)
+	//			var neighbor *Node
+	//			if node, ok := nodeMap[v.Val]; ok {
+	//				neighbor = node
+	//			} else {
+	//				neighbor = &Node{Val: v.Val, Neighbors: make([]*Node, 0)}
+	//				nodeMap[v.Val] = neighbor
+	//			}
+	//
+	//			copyNode.Neighbors = append(copyNode.Neighbors, neighbor)
+	//		}
+	//	}
+	//}
+	//
+	//return nodeMap[node.Val]
+	return recursiveGCloneGraph(node, map[int]*Node{})
+}
+
+func recursiveGCloneGraph(node *Node, nodeMap map[int]*Node) *Node {
+	if res, ok := nodeMap[node.Val]; ok {
+		return res
+	}
+
+	copyNode := &Node{
+		Val:       node.Val,
+		Neighbors: make([]*Node, 0),
+	}
+	nodeMap[node.Val] = copyNode
+
+	for _, neighbor := range node.Neighbors {
+		copyNode.Neighbors = append(copyNode.Neighbors, recursiveGCloneGraph(neighbor, nodeMap))
+	}
+
+	return copyNode
 }
 
 /*
@@ -1094,5 +1344,4 @@ combination
 
 permutation
 
-decode string
 */

@@ -30,6 +30,11 @@ var GReverseList = __Daily_Prac.GReverseList
 var GThreeSum = __Daily_Prac.GThreeSum
 var GGetIntersectionNode = __Daily_Prac.GGetIntersectionNode
 var GMoveZeroes = __Daily_Prac.GMoveZeroes
+var GNumDecodings = __Daily_Prac.GNumDecodings
+var GDecodeString = __Daily_Prac.GDecodeString
+var GMaxProfit = __Daily_Prac.GMaxProfit
+var GMyPow = __Daily_Prac.GMyPow
+var GSubsets = __Daily_Prac.GSubsets
 
 func TestGFindKthLargest(t *testing.T) {
 	testData := []struct {
@@ -303,5 +308,86 @@ func TestGReverseWords(t *testing.T) {
 	for _, td := range testData {
 		result := GReverseWords(td.s)
 		assert.Equal(t, td.exp, result)
+	}
+}
+func TestGNumDecodings(t *testing.T) {
+	testData := []struct {
+		s   string
+		exp int
+	}{
+		{"12", 2},
+		{"226", 3},
+	}
+
+	for _, td := range testData {
+		result := GNumDecodings(td.s)
+		assert.Equal(t, td.exp, result)
+	}
+}
+func TestGDecodeString(t *testing.T) {
+	testData := []struct {
+		s   string
+		exp string
+	}{
+		{"3[a]2[bc]", "aaabcbc"},
+		{"3[a2[c]]", "accaccacc"},
+		{"2[abc]3[cd]ef", "abcabccdcdcdef"},
+		{"3[z]2[2[y]pq4[2[jk]e1[f]]]ef", "zzzyypqjkjkefjkjkefjkjkefjkjkefyypqjkjkefjkjkefjkjkefjkjkefef"},
+		{"100[leetcode]", "leetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcode"},
+	}
+
+	for _, td := range testData {
+		result := GDecodeString(td.s)
+		assert.Equal(t, td.exp, result)
+	}
+}
+func TestGMaxProfit(t *testing.T) {
+	testData := []struct {
+		prices []int
+		exp    int
+	}{
+		{[]int{7, 1, 5, 3, 6, 4}, 5},
+		{[]int{7, 6, 4, 3, 1}, 0},
+	}
+
+	for _, td := range testData {
+		result := GMaxProfit(td.prices)
+		assert.Equal(t, td.exp, result)
+	}
+}
+func TestGMyPow(t *testing.T) {
+	testData := []struct {
+		x   float64
+		n   int
+		exp float64
+	}{
+		{2.0, 10, 1024.0},
+		{2.1, 3, 9.261},
+		{2.0, -2, 0.25},
+	}
+	for _, td := range testData {
+		result := GMyPow(td.x, td.n)
+		assert.Equal(t, td.exp, result)
+	}
+}
+func TestGSubsets(t *testing.T) {
+	testData := []struct {
+		nums []int
+		exp  [][]int
+	}{
+		{
+			[]int{1, 2, 3},
+			[][]int{
+				{}, {1},
+				{2}, {1, 2},
+				{3}, {1, 3},
+				{2, 3}, {1, 2, 3},
+			},
+		},
+	}
+
+	for _, td := range testData {
+		result := GSubsets(td.nums)
+		assert.ElementsMatch(t, td.exp, result)
 	}
 }
