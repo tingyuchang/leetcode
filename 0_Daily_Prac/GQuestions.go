@@ -1322,6 +1322,139 @@ func recursiveGCloneGraph(node *Node, nodeMap map[int]*Node) *Node {
 	return copyNode
 }
 
+func FlattenDictionary(dict map[string]interface{}) map[string]string {
+	return flattenDict(dict, "")
+}
+
+func flattenDict(dict interface{}, prefix string) map[string]string {
+	result := make(map[string]string)
+	d, ok := dict.(map[string]interface{})
+
+	if !ok {
+		return nil
+	}
+
+	for k, v := range d {
+		s, ok2 := v.(string)
+
+		if ok2 {
+			if prefix == "" {
+				result[k] = s
+			} else if k == "" {
+				result[prefix] = s
+			} else {
+				result[prefix+"."+k] = s
+			}
+		} else {
+			var next string
+			if prefix == "" {
+				next = k
+			} else if k == "" {
+				next = prefix
+			} else {
+				next = prefix + "." + k
+			}
+
+			for k2, v2 := range flattenDict(v, next) {
+				result[k2] = v2
+			}
+		}
+
+	}
+
+	return result
+}
+
+/*
+10. Regular Expression Matching
+https://leetcode.com/problems/regular-expression-matching/description/
+*/
+type Result struct {
+	value bool
+}
+
+func GIsMatch(text string, pattern string) bool {
+	/* recursive
+
+	if len(pattern) == 0 {
+		return len(text) == 0
+	}
+	firstMatch := len(text) != 0 && (pattern[0] == text[0] || pattern[0] == '.')
+	if len(pattern) >= 2 && pattern[1] == '*' {
+		return (GIsMatch(text, pattern[2:])) || (firstMatch && GIsMatch(text[1:], pattern))
+	} else {
+		return firstMatch && GIsMatch(text[1:], pattern[1:])
+	}
+	*/
+
+	/*
+			DP:
+			dp[i][j] = text[i:] match pattern[j:]
+
+
+		memo := make([][]*Result, len(text)+1)
+		for i := range memo {
+			memo[i] = make([]*Result, len(pattern)+1)
+		}
+
+		return DPTopDownGIsMatch(0, 0, text, pattern, memo)
+
+	*/
+
+	/*
+			DP: bottom up
+		  a *  a  b a
+		a
+		a
+		a
+		b
+		a f  f f  f  t
+		  f  f f  f  f t
+	*/
+
+	dp := make([][]bool, len(text)+1)
+
+	for i := range dp {
+		dp[i] = make([]bool, len(pattern)+1)
+	}
+
+	dp[len(text)][len(pattern)] = true
+	for i := len(text); i >= 0; i-- {
+		for j := len(pattern) - 1; j >= 0; j-- {
+			firstMatch := i < len(text) && (pattern[j] == text[i] || pattern[j] == '.')
+			if j+1 < len(pattern) && pattern[j+1] == '*' {
+				dp[i][j] = dp[i][j+2] || (firstMatch && dp[i+1][j])
+			} else {
+				dp[i][j] = firstMatch && dp[i+1][j+1]
+			}
+		}
+	}
+
+	return dp[0][0]
+}
+
+func DPTopDownGIsMatch(i, j int, text, pattern string, memo [][]*Result) bool {
+	if memo[i][j] != nil {
+		return memo[i][j].value
+	}
+
+	var ans bool
+	if j == len(pattern) {
+		ans = i == len(text)
+	} else {
+		firstMatch := i < len(text) && (text[i] == pattern[j] || pattern[j] == '.')
+
+		if j+1 < len(pattern) && pattern[j+1] == '*' {
+			ans = DPTopDownGIsMatch(i, j+2, text, pattern, memo) || (firstMatch && DPTopDownGIsMatch(i+1, j, text, pattern, memo))
+		} else {
+			ans = firstMatch && DPTopDownGIsMatch(i+1, j+1, text, pattern, memo)
+		}
+	}
+
+	memo[i][j] = &Result{value: ans}
+	return ans
+}
+
 /*
 
 Serialize / deserialize binary tree

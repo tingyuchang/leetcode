@@ -35,6 +35,7 @@ var GDecodeString = __Daily_Prac.GDecodeString
 var GMaxProfit = __Daily_Prac.GMaxProfit
 var GMyPow = __Daily_Prac.GMyPow
 var GSubsets = __Daily_Prac.GSubsets
+var GIsMatch = __Daily_Prac.GIsMatch
 
 func TestGFindKthLargest(t *testing.T) {
 	testData := []struct {
@@ -389,5 +390,22 @@ func TestGSubsets(t *testing.T) {
 	for _, td := range testData {
 		result := GSubsets(td.nums)
 		assert.ElementsMatch(t, td.exp, result)
+	}
+}
+
+func TestGIsMatch(t *testing.T) {
+	testData := []struct {
+		text    string
+		pattern string
+		exp     bool
+	}{
+		{"aa", "a", false},
+		{"aa", "a*", true},
+		{"ab", ".*", true},
+	}
+
+	for _, td := range testData {
+		result := GIsMatch(td.text, td.pattern)
+		assert.Equal(t, td.exp, result)
 	}
 }
