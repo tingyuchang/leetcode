@@ -1456,25 +1456,111 @@ func DPTopDownGIsMatch(i, j int, text, pattern string, memo [][]*Result) bool {
 }
 
 /*
+449. Serialize and Deserialize BST
 
-Serialize / deserialize binary tree
-
-Search rotated array
-
-Set columns and rows as zeros
-
-Connect all siblings
-
-Find all sum combinations
-
-Clone a directed graph
-
-Closest meeting point
-
-Search for the given key in a 2d matrix
-
-combination
-
-permutation
+https://leetcode.com/problems/serialize-and-deserialize-bst/description/
 
 */
+
+func GSerialize(root *Tree.TreeNode) string {
+	/*
+
+		approach BFS
+		output "3,1,null,4,5"
+	*/
+	if root == nil {
+		return ""
+	}
+	result := strconv.Itoa(root.Val)
+	queue := []*Tree.TreeNode{root}
+	for len(queue) != 0 {
+		currentSize := len(queue)
+
+		for i := 0; i < currentSize; i++ {
+			node := queue[i]
+			if node.Left == nil {
+				result += ",null"
+			} else {
+				result += "," + strconv.Itoa(node.Left.Val)
+				queue = append(queue, node.Left)
+			}
+			if node.Right == nil {
+				result += ",null"
+			} else {
+				result += "," + strconv.Itoa(node.Right.Val)
+				queue = append(queue, node.Right)
+			}
+		}
+		queue = queue[currentSize:]
+	}
+	return result
+}
+
+func GDeserialize(data string) *Tree.TreeNode {
+	return nil
+}
+
+/*
+33. Search in Rotated Sorted Array
+https://leetcode.com/problems/search-in-rotated-sorted-array/
+*/
+func GSearchRotated(nums []int, target int) int {
+	return -1
+}
+
+/*
+73. Set Matrix Zeroes
+https://leetcode.com/problems/set-matrix-zeroes/
+*/
+func GSetZeroes(matrix [][]int) {
+
+}
+
+/*
+116. Populating Next Right Pointers in Each Node
+https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
+*/
+
+func GConnectAllSiblings(root *Node) *Node {
+	return root
+}
+
+/*
+39. Combination Sum
+https://leetcode.com/problems/combination-sum/
+*/
+func combinationSum(candidates []int, target int) [][]int {
+	return nil
+}
+
+/*
+296. Best Meeting Point
+https://just4once.gitbooks.io/leetcode-notes/content/leetcode/math/296-best-meeting-point.html
+*/
+func GBestMeetingPoint(grid [][]int) []int {
+	return nil
+}
+
+/*
+74. Search a 2D Matrix
+https://leetcode.com/problems/search-a-2d-matrix/
+*/
+func GSearchMatrix(matrix [][]int, target int) bool {
+	return false
+}
+
+/*
+77. Combinations
+https://leetcode.com/problems/combinations/
+*/
+func GCombine(n int, k int) [][]int {
+	return nil
+}
+
+/*
+31. Next Permutation
+https://leetcode.com/problems/next-permutation/
+*/
+func nextPermutation(nums []int) {
+
+}

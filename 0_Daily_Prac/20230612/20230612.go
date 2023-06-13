@@ -1,4 +1,4 @@
-package _0230609
+package _0230612
 
 import (
 	__Daily_Prac "leetcode/0_Daily_Prac"
@@ -49,11 +49,12 @@ func LongestPalindrome(s string) string {
 	for i := 0; i < len(s); i++ {
 		ans1 := expand(s, i, i)
 		ans2 := expand(s, i, i+1)
+
 		ans := __Daily_Prac.Max(ans1, ans2)
 
 		if ans > end-start+1 {
 			start = i - (ans-1)/2
-			end = i + ans/2
+			end = i + (ans)/2
 		}
 	}
 
@@ -87,9 +88,9 @@ func LongestPalindromeSubseq(s string) int {
 			} else {
 				dp[i][j] = __Daily_Prac.Max(dp[i+1][j], dp[i][j-1])
 			}
+
 		}
 	}
-
 	return dp[0][len(s)-1]
 }
 
@@ -100,14 +101,13 @@ Output: 3
 Explanation: 11 = 5 + 5 + 1
 */
 func CoinChange(coins []int, amount int) int {
-
 	dp := make([]int, amount+1)
 	sort.Ints(coins)
 
 	for i := 1; i <= amount; i++ {
 		dp[i] = math.MaxInt
 		for _, c := range coins {
-			if i < c {
+			if c > i {
 				break
 			}
 
@@ -131,69 +131,16 @@ Output: 8
 Explanation: Possible arrays are [1317],[131,7],[13,17],[1,317],[13,1,7],[1,31,7],[1,3,17],[1,3,1,7]
 */
 func NumberOfArrays(s string, k int) int {
-
-	/*
-				approach1 : dynamic programing
-
-				dp[i] = s[i:]'s possible results
-				1317 k =1000
-			dp[0] = dp[1] + dp[2] + dp[3] + dp[4]
-			dp[1] = dp[2] + dp[3] + dp[4]
-			dp[3] = dp[4]
-			dp[4] = 1
-
-		dp := make([]int, len(s)+1)
-			dp[len(s)] = 1
-			return dpTopDownNumberOfArrays(s, 0, k, dp)
-	*/
-
-	/*
-
-		bottom up
-		dp[i] = s[:i] possible result
-
-		s[0:start] is valid then  for end: := start+1 to len(s)-1
-		if s[start:end] is valid
-		s[0:stat:end] is valid
-
-		1317   k = 2000   [1, 1, 1, 1, 1]
-		--- initial  dp[0] = 1 start: 0
-		end = 1   	dp[1] += dp[0]
-		end = 13	dp[2] += dp[0]
-		end = 131 	dp[3] += dp[0]
-		end = 1317 	dp[4] += dp[0]
-		start : 1  [1, 1, 2, 2, 2]
-		end = 3   	dp[2] += dp[1]
-		end = 31	dp[3] += dp[1]
-		end = 317 	dp[4] += dp[1]
-		start: 2 [1, 1, 2, 4, 4]
-		end = 1		dp[3] += dp[2]
-		end = 17 	dp[4] += dp[2]
-		start: 3 [1, 1, 2, 4, 8]
-		end = 7		dp[4] += dp[3]
-	*/
-
-	dp := make([]int, len(s)+1)
-	dp[0] = 1
-
-	for i := 0; i < len(s); i++ {
-		if s[i] == '0' {
-			continue
-		}
-
-		for j := i + 1; j <= len(s); j++ {
-			x, _ := strconv.Atoi(s[i:j])
-			if x > k {
-				break
-			}
-			dp[j] = (dp[j] + dp[i]) % __Daily_Prac.MOD
-		}
-	}
-
-	return dp[len(s)]
+	memo := make([]int, len(s)+1)
+	// dfs[0] = dfs[1] + dfs[2] + dfs[3]
+	return dfsNumberOfArrays(s, 0, k, memo)
 }
 
-func dpTopDownNumberOfArrays(s string, start, k int, memo []int) int {
+func dfsNumberOfArrays(s string, start, k int, memo []int) int {
+	if start == len(s) {
+		return 1
+	}
+
 	if memo[start] != 0 {
 		return memo[start]
 	}
@@ -203,16 +150,16 @@ func dpTopDownNumberOfArrays(s string, start, k int, memo []int) int {
 	}
 
 	ans := 0
-
-	for i := start; i < len(s); i++ {
-		x, _ := strconv.Atoi(s[start : i+1])
+	for end := start; end < len(s); end++ {
+		x, _ := strconv.Atoi(s[start : end+1])
 
 		if x > k {
 			break
 		}
 
-		ans = (ans + dpTopDownNumberOfArrays(s, i+1, k, memo)) % __Daily_Prac.MOD
+		ans = (ans + dfsNumberOfArrays(s, end+1, k, memo)) % __Daily_Prac.MOD
 	}
+
 	memo[start] = ans
 	return ans
 }
@@ -227,12 +174,10 @@ rorse -> rose (remove 'r')
 rose -> ros (remove 'e')
 */
 func MinDistance(word1 string, word2 string) int {
-
 	dp := make([][]int, len(word1)+1)
 
 	for i := range dp {
 		dp[i] = make([]int, len(word2)+1)
-
 		if i == 0 {
 			for j := 0; j < len(dp[i]); j++ {
 				dp[i][j] = j
@@ -266,20 +211,22 @@ Note that you are allowed to reuse a dictionary word.
 func WordBreak(s string, wordDict []string) bool {
 	dp := make([]bool, len(s)+1)
 	dp[0] = true
-	wordMaps := make(map[string]struct{})
+
+	wordsMap := make(map[string]struct{})
 
 	for _, v := range wordDict {
-		wordMaps[v] = struct{}{}
+		wordsMap[v] = struct{}{}
 	}
 
 	for i := 1; i <= len(s); i++ {
 		for j := 0; j < i; j++ {
-			if _, ok := wordMaps[s[j:i]]; ok && dp[j] {
+			if _, ok := wordsMap[s[j:i]]; ok && dp[j] {
 				dp[i] = true
 				break
 			}
 		}
 	}
+
 	return dp[len(s)]
 }
 
@@ -292,11 +239,12 @@ Explanation: One shortest transformation sequence is "hit" -> "hot" -> "dot" -> 
 func LadderLength(beginWord string, endWord string, wordList []string) int {
 	queue := []string{beginWord}
 	visitedWords := make(map[string]bool)
-	visitedWords[beginWord] = true
 
 	for _, v := range wordList {
 		visitedWords[v] = false
 	}
+
+	visitedWords[beginWord] = true
 	step := 0
 
 	for len(queue) != 0 {
@@ -322,14 +270,14 @@ func LadderLength(beginWord string, endWord string, wordList []string) int {
 						if word == endWord {
 							return step + 1
 						}
-						queue = append(queue, word)
+
 						visitedWords[word] = true
+						queue = append(queue, word)
 					}
 				}
 			}
 		}
 		queue = queue[currentSize:]
-
 	}
 
 	return 0
@@ -344,22 +292,18 @@ func MaximalSquare(matrix [][]byte) int {
 	m, n := len(matrix), len(matrix[0])
 
 	dp := make([][]int, m+1)
-
 	for i := range dp {
 		dp[i] = make([]int, n+1)
 	}
 	ans := 0
-
 	for i := 1; i <= m; i++ {
 		for j := 1; j <= n; j++ {
 			if matrix[i-1][j-1] == '1' {
 				dp[i][j] = __Daily_Prac.Min(__Daily_Prac.Min(dp[i-1][j], dp[i][j-1]), dp[i-1][j-1]) + 1
-
 				if dp[i][j] > ans {
 					ans = dp[i][j]
 				}
 			}
-
 		}
 	}
 
@@ -374,20 +318,20 @@ Explanation: The longest increasing subsequence is [2,3,7,101], therefore the le
 */
 func LengthOfLIS(nums []int) int {
 	subArray := make([]int, 0)
-
 	for i := 0; i < len(nums); i++ {
-		if len(subArray) == 0 || nums[i] > subArray[len(subArray)-1] {
+		if len(subArray) == 0 || subArray[len(subArray)-1] < nums[i] {
 			subArray = append(subArray, nums[i])
 		} else {
 			l := 0
 			r := len(subArray) - 1
 
 			for r >= l {
-				mid := int(uint(l+r) >> 1)
+				mid := (l + r) / 2
+
 				if subArray[mid] < nums[i] {
-					l = mid + 1
+					l += 1
 				} else {
-					r = mid - 1
+					r -= 1
 				}
 			}
 			subArray[l] = nums[i]
@@ -406,19 +350,8 @@ Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
 Total profit is 4 + 3 = 7.
 */
 func MaxProfit(prices []int) int {
-	/*
-		    10                   11           9
-
-
-		5                 4            8
-
-		           3
-
-
-		(10 -5) + (11  - 3 ) + (9 -8)
-	*/
-
 	profit := 0
+
 	for i := 1; i < len(prices); i++ {
 		if prices[i] > prices[i-1] {
 			profit += prices[i] - prices[i-1]
@@ -441,17 +374,17 @@ Jump 1 step from index 0 to 1, then 3 steps to the last index.
 
 func JumpII(nums []int) int {
 	maxDistance := 0
-	currentEnd := 0
+	currentDend := 0
 	step := 0
 
 	for i := 0; i < len(nums); i++ {
 		maxDistance = __Daily_Prac.Max(maxDistance, i+nums[i])
 
-		if currentEnd == i {
+		if currentDend == i {
 			step += 1
-			currentEnd = maxDistance
+			currentDend = maxDistance
 
-			if currentEnd >= len(nums)-1 {
+			if currentDend >= len(nums)-1 {
 				return step
 			}
 		}
@@ -484,14 +417,15 @@ func CanCompleteCircuit(gas []int, cost []int) int {
 		currentTank += gas[i] - cost[i]
 
 		if currentTank < 0 {
-			station = i + 1
 			currentTank = 0
+			station = i + 1
 		}
 	}
 
 	if totalCost >= 0 {
 		return station
 	}
+
 	return -1
 }
 
@@ -539,7 +473,7 @@ func Trap(height []int) int {
 	leftMax[0] = height[0]
 	rightMax[len(rightMax)-1] = height[len(height)-1]
 	n := len(height) - 1
-	for i := 1; i < len(height); i++ {
+	for i := 1; i <= n; i++ {
 		if height[i] > leftMax[i-1] {
 			leftMax[i] = height[i]
 		} else {
@@ -558,6 +492,7 @@ func Trap(height []int) int {
 	for i := 1; i < len(height)-1; i++ {
 		water += __Daily_Prac.Min(leftMax[i], rightMax[i]) - height[i]
 	}
+
 	return water
 }
 
@@ -568,14 +503,15 @@ Output: 2
 Explanation: The subarray [4,3] has the minimal length under the problem constraint.
 */
 func MinSubArrayLen(target int, nums []int) int {
-	l, r, sum, length := 0, 0, 0, math.MaxInt
+
+	l, r, sum, ans := 0, 0, 0, math.MaxInt
 
 	for r < len(nums) {
 		sum += nums[r]
 
 		for sum >= target {
-			if r-l+1 < length {
-				length = r - l + 1
+			if r-l+1 < ans {
+				ans = r - l + 1
 			}
 
 			sum -= nums[l]
@@ -585,8 +521,8 @@ func MinSubArrayLen(target int, nums []int) int {
 		r += 1
 	}
 
-	if length != math.MaxInt {
-		return length
+	if ans != math.MaxInt {
+		return ans
 	}
 
 	return 0
@@ -599,31 +535,30 @@ Output: [3,9,20,null,null,15,7]
 */
 func BuildTree(preorder []int, inorder []int) *Tree.TreeNode {
 	indexMap := make(map[int]int)
-
 	for i, v := range inorder {
 		indexMap[v] = i
 	}
 	index := 0
-	return constructTree(preorder, inorder, 0, len(preorder)-1, &index, indexMap)
+	return constructTree(preorder, 0, len(preorder)-1, &index, indexMap)
 }
 
-func constructTree(preorder, inorder []int, start, end int, index *int, indexMap map[int]int) *Tree.TreeNode {
+func constructTree(preorder []int, start, end int, index *int, indexMap map[int]int) *Tree.TreeNode {
 	if *index >= len(preorder) {
 		return nil
 	}
 
 	rootVal := preorder[*index]
-	root := &Tree.TreeNode{Val: rootVal}
 	*index += 1
+	root := &Tree.TreeNode{Val: rootVal}
 	pivot := indexMap[rootVal]
 
 	if pivot-start > 0 {
-		root.Left = constructTree(preorder, inorder, start, pivot-1, index, indexMap)
+		root.Left = constructTree(preorder, start, pivot-1, index, indexMap)
+	}
+	if end-pivot > 0 {
+		root.Right = constructTree(preorder, pivot+1, end, index, indexMap)
 	}
 
-	if end-pivot > 0 {
-		root.Right = constructTree(preorder, inorder, pivot+1, end, index, indexMap)
-	}
 	return root
 }
 
@@ -637,8 +572,10 @@ as connected by the next pointers, with '#' signifying the end of each level.
 */
 
 func ConnectTreeNode(root *Tree.NodeN) *Tree.NodeN {
+
 	current := root
-	var next, head *Tree.NodeN
+
+	var head, next *Tree.NodeN
 
 	for current != nil {
 
@@ -658,15 +595,17 @@ func ConnectTreeNode(root *Tree.NodeN) *Tree.NodeN {
 				} else {
 					head = current.Right
 				}
+
 				next = current.Right
 			}
-
 			current = current.Next
 		}
+
 		current = head
 		head = nil
 		next = nil
 	}
+
 	return root
 }
 
@@ -690,10 +629,13 @@ Explanation: There are 4 subsequences that satisfy the condition.
 func NumSubseq(nums []int, target int) int {
 	power := make([]int, len(nums))
 	power[0] = 1
+
 	for i := 1; i < len(power); i++ {
 		power[i] = (power[i-1] * 2) % __Daily_Prac.MOD
 	}
+
 	sort.Ints(nums)
+
 	ans := 0
 	for i := 0; i < len(nums); i++ {
 		l := 0
@@ -709,9 +651,10 @@ func NumSubseq(nums []int, target int) int {
 			}
 		}
 
-		if r-i >= 0 {
+		if r >= i {
 			ans = (ans + power[r-i]) % __Daily_Prac.MOD
 		}
+
 	}
 
 	return ans
