@@ -252,3 +252,61 @@ func RemoveNthFromEnd(head *LinkedList.ListNode, n int) *LinkedList.ListNode {
 func ReverseBetween(head *LinkedList.ListNode, left int, right int) *LinkedList.ListNode {
 	return nil
 }
+
+// 215. Kth Largest Element in an Array
+
+func FindKthLargest(nums []int, k int) int {
+	return 0
+}
+
+// 22. Generate Parentheses
+
+func GenerateParenthesis(n int) []string {
+	return nil
+}
+
+// 56. Merge Intervals
+
+func MergeIntervals(intervals [][]int) [][]int {
+	return nil
+}
+
+// 15. 3Sum
+func ThreeSum(nums []int) [][]int {
+	return nil
+}
+
+// 151. Reverse Words in a String
+
+func ReverseWords(s string) string {
+	return ""
+}
+
+// 91. Decode Ways
+
+func NumDecodings(s string) int {
+	return 0
+}
+
+// 394. Decode String
+
+func DecodeString(s string) string {
+	return ""
+}
+
+// 78. Subsets
+func Subsets(nums []int) [][]int {
+	return nil
+}
+
+// 133. Clone Graph
+
+func CloneGraph(node *LinkedList.Node) *LinkedList.Node {
+	return nil
+}
+
+// 10. Regular Expression Matching
+
+func IsMatch(text string, pattern string) bool {
+	return true
+}

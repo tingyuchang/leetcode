@@ -919,7 +919,7 @@ func GMoveZeroes(nums []int) {
 
 https://leetcode.com/problems/merge-two-sorted-lists/
 */
-func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+func GMergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	preHead := &ListNode{}
 	var node = &ListNode{}
 	preHead.Next = node
@@ -1505,6 +1505,7 @@ func GDeserialize(data string) *Tree.TreeNode {
 https://leetcode.com/problems/search-in-rotated-sorted-array/
 */
 func GSearchRotated(nums []int, target int) int {
+
 	return -1
 }
 

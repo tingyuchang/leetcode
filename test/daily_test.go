@@ -2,10 +2,10 @@ package test
 
 import (
 	"fmt"
-	"github.com/magiconair/properties/assert"
+	"github.com/stretchr/testify/assert"
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
-	_0230612 "leetcode/0_Daily_Prac/20230612"
+	_0230616 "leetcode/0_Daily_Prac/20230616"
 	"leetcode/Tree"
 	"reflect"
 	"regexp"
@@ -14,27 +14,29 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230612.Name{}
+var name = _0230616.Name{}
 
-var LongestCommonSubsequence = _0230612.LongestCommonSubsequence
-var LongestPalindrome = _0230612.LongestPalindrome
-var LongestPalindromeSubseq = _0230612.LongestPalindromeSubseq
-var CoinChange = _0230612.CoinChange
-var NumberOfArrays = _0230612.NumberOfArrays
-var MinDistance = _0230612.MinDistance
-var WordBreak = _0230612.WordBreak
-var LadderLength = _0230612.LadderLength
-var MaximalSquare = _0230612.MaximalSquare
-var LengthOfLIS = _0230612.LengthOfLIS
-var MaxProfit = _0230612.MaxProfit
-var JumpII = _0230612.JumpII
-var CanCompleteCircuit = _0230612.CanCompleteCircuit
-var Candy = _0230612.Candy
-var Trap = _0230612.Trap
-var MinSubArrayLen = _0230612.MinSubArrayLen
-var BuildTree = _0230612.BuildTree
-var ConnectTreeNode = _0230612.ConnectTreeNode
-var NumSubseq = _0230612.NumSubseq
+var LongestCommonSubsequence = _0230616.LongestCommonSubsequence
+var LongestPalindrome = _0230616.LongestPalindrome
+var LongestPalindromeSubseq = _0230616.LongestPalindromeSubseq
+var CoinChange = _0230616.CoinChange
+var NumberOfArrays = _0230616.NumberOfArrays
+var MinDistance = _0230616.MinDistance
+var WordBreak = _0230616.WordBreak
+var LadderLength = _0230616.LadderLength
+var MaximalSquare = _0230616.MaximalSquare
+var LengthOfLIS = _0230616.LengthOfLIS
+var MaxProfit = _0230616.MaxProfit
+var JumpII = _0230616.JumpII
+var CanCompleteCircuit = _0230616.CanCompleteCircuit
+var Candy = _0230616.Candy
+var Trap = _0230616.Trap
+var MinSubArrayLen = _0230616.MinSubArrayLen
+var BuildTree = _0230616.BuildTree
+var ConnectTreeNode = _0230616.ConnectTreeNode
+var NumSubseq = _0230616.NumSubseq
+var FindKthLargest = _0230616.FindKthLargest
+var GenerateParenthesis = _0230616.GenerateParenthesis
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -374,6 +376,41 @@ func TestDaily(t *testing.T) {
 		assert.Equal(t, result, td.exp)
 	}
 	fmt.Printf("End test\tNumSubseq\n")
+
+	FindKthLargesTestData := []struct {
+		nums []int
+		k    int
+		exp  int
+	}{
+		{
+			[]int{3, 2, 1, 5, 6, 4},
+			2, 5,
+		},
+		{
+			[]int{3, 2, 3, 1, 2, 4, 5, 5, 6},
+			4, 4,
+		},
+	}
+	fmt.Printf("Start test\tFindKthLargest\n")
+	for _, td := range FindKthLargesTestData {
+		result := FindKthLargest(td.nums, td.k)
+		assert.Equal(t, result, td.exp)
+	}
+	fmt.Printf("End test\tFindKthLargest\n")
+
+	GenerateParenthesisTestData := []struct {
+		n   int
+		exp []string
+	}{
+		{3, []string{"()()()", "()(())", "(())()", "(()())", "((()))"}},
+		{1, []string{"()"}},
+	}
+	fmt.Printf("Start test\tGenerateParenthesis\n")
+	for _, td := range GenerateParenthesisTestData {
+		result := GenerateParenthesis(td.n)
+		assert.ElementsMatch(t, result, td.exp)
+	}
+	fmt.Printf("End test\tGenerateParenthesis\n")
 }
 
 var mergeSort = _0230403.MergeSort
