@@ -37,6 +37,13 @@ var ConnectTreeNode = _0230616.ConnectTreeNode
 var NumSubseq = _0230616.NumSubseq
 var FindKthLargest = _0230616.FindKthLargest
 var GenerateParenthesis = _0230616.GenerateParenthesis
+var MergeIntervals = _0230616.MergeIntervals
+var ThreeSum = _0230616.ThreeSum
+var ReverseWords = _0230616.ReverseWords
+var NumDecodings = _0230616.NumDecodings
+var DecodeString = _0230616.DecodeString
+var Subsets = _0230616.Subsets
+var IsMatch = _0230616.IsMatch
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -411,6 +418,120 @@ func TestDaily(t *testing.T) {
 		assert.ElementsMatch(t, result, td.exp)
 	}
 	fmt.Printf("End test\tGenerateParenthesis\n")
+
+	MergeIntervalsTestData := []struct {
+		intervals [][]int
+		exp       [][]int
+	}{
+		{[][]int{{1, 3}, {2, 6}, {8, 10}, {15, 18}}, [][]int{{1, 6}, {8, 10}, {15, 18}}},
+		{[][]int{{1, 4}, {4, 5}}, [][]int{{1, 5}}},
+		{[][]int{{1, 4}, {0, 4}}, [][]int{{0, 4}}},
+		{[][]int{{1, 4}, {2, 3}}, [][]int{{1, 4}}},
+	}
+	fmt.Printf("Start test\tMergeIntervals\n")
+	for _, td := range MergeIntervalsTestData {
+		result := MergeIntervals(td.intervals)
+		assert.ElementsMatch(t, result, td.exp)
+	}
+	fmt.Printf("End test\tMergeIntervals\n")
+
+	ThreeSumTestData := []struct {
+		input    []int
+		expected [][]int
+	}{
+		{[]int{-1, 0, 1, 2, -1, -4}, [][]int{[]int{-1, -1, 2}, []int{-1, 0, 1}}},
+		{[]int{-1, 0, 1, 0}, [][]int{[]int{-1, 0, 1}}},
+	}
+	fmt.Printf("Start test\tThreeSum\n")
+	for _, tt := range ThreeSumTestData {
+		result := ThreeSum(tt.input)
+		assert.ElementsMatch(t, result, tt.expected)
+	}
+	fmt.Printf("End test\tThreeSum\n")
+
+	ReverseWordsTestData := []struct {
+		s   string
+		exp string
+	}{
+		{"the sky is blue", "blue is sky the"},
+		{"  hello world  ", "world hello"},
+		{"a good   example", "example good a"},
+		{"", ""},
+	}
+	fmt.Printf("Start test\tReverseWords\n")
+	for _, td := range ReverseWordsTestData {
+		result := ReverseWords(td.s)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("End test\tReverseWords\n")
+
+	NumDecodingsTestData := []struct {
+		s   string
+		exp int
+	}{
+		{"12", 2},
+		{"226", 3},
+	}
+	fmt.Printf("Start test\tNumDecodings\n")
+	for _, td := range NumDecodingsTestData {
+		result := NumDecodings(td.s)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("End test\tNumDecodings\n")
+
+	DecodeStringTestData := []struct {
+		s   string
+		exp string
+	}{
+		{"3[a]2[bc]", "aaabcbc"},
+		//{"3[a2[c]]", "accaccacc"},
+		//{"2[abc]3[cd]ef", "abcabccdcdcdef"},
+		//{"3[z]2[2[y]pq4[2[jk]e1[f]]]ef", "zzzyypqjkjkefjkjkefjkjkefjkjkefyypqjkjkefjkjkefjkjkefjkjkefef"},
+		//{"100[leetcode]", "leetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcode"},
+	}
+	fmt.Printf("Start test\tDecodeString\n")
+	for _, td := range DecodeStringTestData {
+		result := DecodeString(td.s)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("End test\tDecodeString\n")
+
+	SubsetsTestData := []struct {
+		nums []int
+		exp  [][]int
+	}{
+		{
+			[]int{1, 2, 3},
+			[][]int{
+				{}, {1},
+				{2}, {1, 2},
+				{3}, {1, 3},
+				{2, 3}, {1, 2, 3},
+			},
+		},
+	}
+	fmt.Printf("Start test\tSubsets\n")
+	for _, td := range SubsetsTestData {
+		result := Subsets(td.nums)
+		assert.ElementsMatch(t, td.exp, result)
+	}
+	fmt.Printf("End test\tSubsets\n")
+
+	IsMatchTestData := []struct {
+		text    string
+		pattern string
+		exp     bool
+	}{
+		{"aa", "a", false},
+		{"aa", "a*", true},
+		{"ab", ".*", true},
+	}
+	fmt.Printf("Start test\tIsMatch\n")
+	for _, td := range IsMatchTestData {
+		result := IsMatch(td.text, td.pattern)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("End test\tIsMatch\n")
 }
 
 var mergeSort = _0230403.MergeSort

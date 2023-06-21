@@ -773,35 +773,251 @@ func backTrackingOfGenerateParenthesis(s string, openParenthesesCount, closedPar
 // 56. Merge Intervals
 
 func MergeIntervals(intervals [][]int) [][]int {
-	return nil
+	/*
+		approach1: sort by start time and iterating soeted time intervals
+
+		currentStart, currentEnd
+
+		if nextStart <= currentEnd && currentEnd < nextEnd -> merge -> currentEnd = nextEnd
+
+		else if nextStart > currentEnd -> store merged intervals and assign nextStart to currentStart
+
+		approach2: interval BST
+	*/
+	// start: end
+	intervalEnds := make(map[int]int)
+	starts := make([]int, 0)
+	for _, interval := range intervals {
+		start := interval[0]
+		end := interval[1]
+		if end2, ok := intervalEnds[start]; ok {
+			if end > end2 {
+				intervalEnds[start] = end
+			}
+		} else {
+			intervalEnds[start] = end
+			starts = append(starts, start)
+		}
+	}
+
+	sort.Ints(starts)
+
+	currentStart := starts[0]
+	ans := make([][]int, 0)
+	for i := 1; i < len(starts); i++ {
+		nextStart := starts[i]
+
+		if nextStart <= intervalEnds[currentStart] && intervalEnds[nextStart] > intervalEnds[currentStart] {
+			intervalEnds[currentStart] = intervalEnds[nextStart]
+		} else if nextStart > intervalEnds[currentStart] {
+			ans = append(ans, []int{currentStart, intervalEnds[currentStart]})
+			currentStart = nextStart
+		}
+	}
+	ans = append(ans, []int{currentStart, intervalEnds[currentStart]})
+	return ans
 }
 
 // 15. 3Sum
 func ThreeSum(nums []int) [][]int {
-	return nil
+
+	/*
+		approach1: sort nums and for loop iterating current element and run 2 pointer from:
+		l = i +1
+		r = nums[len(nums)] -1
+		T: n^2logn
+		S: n
+
+	*/
+
+	sort.Ints(nums)
+	ans := make([][]int, 0)
+
+	for i := 0; i < len(nums); i++ {
+		if i > 0 && nums[i] == nums[i-1] {
+			continue
+		}
+
+		l := i + 1
+		r := len(nums) - 1
+
+		for r > l {
+			sum := nums[i] + nums[l] + nums[r]
+
+			if sum > 0 {
+				r -= 1
+			} else if sum < 0 {
+				l += 1
+			} else {
+				ans = append(ans, []int{nums[i], nums[l], nums[r]})
+
+				l += 1
+
+				for l < r && nums[l] == nums[l-1] {
+					l += 1
+				}
+			}
+		}
+
+	}
+
+	return ans
 }
 
 // 151. Reverse Words in a String
 
 func ReverseWords(s string) string {
-	return ""
+	reverses := mySplit(s, ' ')
+
+	if len(reverses) == 0 {
+		return ""
+	}
+	ans := reverses[len(reverses)-1]
+
+	for i := len(reverses) - 2; i >= 0; i-- {
+		ans += " " + reverses[i]
+	}
+
+	return ans
+}
+
+func mySplit(s string, delim byte) []string {
+	ans := make([]string, 0)
+	/*
+		approach1; indexOfByte ?
+
+		approach2: iterating string directly
+	*/
+	l, r := 0, 0
+
+	for r < len(s) {
+		if s[r] == delim {
+			// check s[l:r]
+			if r > l {
+				ans = append(ans, s[l:r])
+			}
+			l = r + 1
+		}
+		r += 1
+	}
+
+	if r > l {
+		ans = append(ans, s[l:r])
+	}
+
+	return ans
 }
 
 // 91. Decode Ways
 
 func NumDecodings(s string) int {
-	return 0
+	/*
+		approach: dynamic programing
+
+		1. if s[i] == 0 -> skip
+		2. if s[i] == 1 -> dp[i] = dp[i+1] + dp[i+2]
+		3. if s[i] == 2 && s[i+1] < '7' -> dp[i] = dp[i+1] + dp[i+2]
+		4. others dp[i] = dp[i] = dp[i+1]
+	*/
+
+	dp := make([]int, len(s)+1)
+	dp[len(dp)-1] = 1
+	for i := len(s) - 1; i >= 0; i-- {
+		if s[i] != '0' {
+			dp[i] += dp[i+1]
+
+			if i < len(s)-1 && (s[i] == '1' || (s[i] == '2' && s[i+1] < '7')) {
+				dp[i] += dp[i+2]
+			}
+		}
+	}
+
+	return dp[0]
 }
 
 // 394. Decode String
-
+/*
+Input: s = "3[a2[c]]"
+Output: "accaccacc"
+Input: s = "2[abc]3[cd]ef"
+Output: "abcabccdcdcdef"
+*/
 func DecodeString(s string) string {
-	return ""
+	/*
+			approach1: using stack
+		 	3[a] => aaa2[bc] -> aaabcbc
+			3[a]2[bc]
+	*/
+
+	stack := make([]byte, 0)
+	digitStack := IntStack{}
+	indexOfOpenBracket := IntStack{}
+	i := 0
+	currentDigit := 0
+	for i < len(s) {
+		if s[i] >= '0' && s[i] <= '9' {
+			x, _ := strconv.Atoi(string(s[i]))
+			currentDigit = currentDigit*10 + x
+		} else if s[i] == '[' {
+			digitStack.push(currentDigit)
+			currentDigit = 0
+			stack = append(stack, s[i])
+			indexOfOpenBracket.push(len(stack) - 1)
+		} else if s[i] == ']' {
+			lastOpenBracket := indexOfOpenBracket.pop()
+			currentString := string(stack[lastOpenBracket+1:])
+			stack = stack[:lastOpenBracket]
+			digit := digitStack.pop()
+			for j := 0; j < digit; j++ {
+				stack = append(stack, currentString...)
+			}
+		} else {
+			stack = append(stack, s[i])
+		}
+		i += 1
+	}
+
+	return string(stack)
+}
+
+type IntStack []int
+
+func (s *IntStack) push(num int) {
+	*s = append(*s, num)
+}
+
+func (s *IntStack) pop() int {
+	val := (*s)[len(*s)-1]
+	*s = (*s)[:len(*s)-1]
+	return val
 }
 
 // 78. Subsets
 func Subsets(nums []int) [][]int {
-	return nil
+
+	/*
+
+		approach1: dfs?
+		approach2: bfs?
+		[1,2,3]
+		[]
+		[1]
+		[2], [1,2]
+		[3], [1,3], [2,3], [1,2,3]
+	*/
+
+	ans := [][]int{{}}
+	for i := 0; i < len(nums); i++ {
+		currentSize := len(ans)
+		for j := 0; j < currentSize; j++ {
+			temp := make([]int, len(ans[j]))
+			copy(temp[:], ans[j][:])
+			temp = append(temp, nums[i])
+			ans = append(ans, temp)
+		}
+	}
+
+	return ans
 }
 
 // 133. Clone Graph
@@ -812,6 +1028,37 @@ func CloneGraph(node *LinkedList.Node) *LinkedList.Node {
 
 // 10. Regular Expression Matching
 
+type Result struct {
+	val bool
+}
+
 func IsMatch(text string, pattern string) bool {
-	return true
+	memo := make([][]*Result, len(text)+1)
+	for i := range memo {
+		memo[i] = make([]*Result, len(pattern)+1)
+	}
+	return IsmatchTopDown(text, pattern, 0, 0, memo)
+}
+
+func IsmatchTopDown(text, pattern string, i, j int, memo [][]*Result) bool {
+	if j == len(pattern) {
+		return i == len(text)
+	}
+
+	if memo[i][j] != nil {
+		return memo[i][j].val
+	}
+
+	firstMatch := i < len(text) && (text[i] == pattern[j] || pattern[j] == '.')
+	ans := false
+
+	if j < len(pattern)-1 && pattern[j+1] == '*' {
+		ans = (firstMatch && IsmatchTopDown(text, pattern, i+1, j, memo)) || IsmatchTopDown(text, pattern, i, j+2, memo)
+	} else {
+		ans = firstMatch && IsmatchTopDown(text, pattern, i+1, j+1, memo)
+	}
+
+	memo[i][j] = &Result{ans}
+
+	return ans
 }
