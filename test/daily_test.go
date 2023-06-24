@@ -5,7 +5,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
-	_0230616 "leetcode/0_Daily_Prac/20230616"
+	_0230622 "leetcode/0_Daily_Prac/20230622"
 	"leetcode/Tree"
 	"reflect"
 	"regexp"
@@ -14,36 +14,36 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230616.Name{}
+var name = _0230622.Name{}
 
-var LongestCommonSubsequence = _0230616.LongestCommonSubsequence
-var LongestPalindrome = _0230616.LongestPalindrome
-var LongestPalindromeSubseq = _0230616.LongestPalindromeSubseq
-var CoinChange = _0230616.CoinChange
-var NumberOfArrays = _0230616.NumberOfArrays
-var MinDistance = _0230616.MinDistance
-var WordBreak = _0230616.WordBreak
-var LadderLength = _0230616.LadderLength
-var MaximalSquare = _0230616.MaximalSquare
-var LengthOfLIS = _0230616.LengthOfLIS
-var MaxProfit = _0230616.MaxProfit
-var JumpII = _0230616.JumpII
-var CanCompleteCircuit = _0230616.CanCompleteCircuit
-var Candy = _0230616.Candy
-var Trap = _0230616.Trap
-var MinSubArrayLen = _0230616.MinSubArrayLen
-var BuildTree = _0230616.BuildTree
-var ConnectTreeNode = _0230616.ConnectTreeNode
-var NumSubseq = _0230616.NumSubseq
-var FindKthLargest = _0230616.FindKthLargest
-var GenerateParenthesis = _0230616.GenerateParenthesis
-var MergeIntervals = _0230616.MergeIntervals
-var ThreeSum = _0230616.ThreeSum
-var ReverseWords = _0230616.ReverseWords
-var NumDecodings = _0230616.NumDecodings
-var DecodeString = _0230616.DecodeString
-var Subsets = _0230616.Subsets
-var IsMatch = _0230616.IsMatch
+var LongestCommonSubsequence = _0230622.LongestCommonSubsequence
+var LongestPalindrome = _0230622.LongestPalindrome
+var LongestPalindromeSubseq = _0230622.LongestPalindromeSubseq
+var CoinChange = _0230622.CoinChange
+var NumberOfArrays = _0230622.NumberOfArrays
+var MinDistance = _0230622.MinDistance
+var WordBreak = _0230622.WordBreak
+var LadderLength = _0230622.LadderLength
+var MaximalSquare = _0230622.MaximalSquare
+var LengthOfLIS = _0230622.LengthOfLIS
+var MaxProfit = _0230622.MaxProfit
+var JumpII = _0230622.JumpII
+var CanCompleteCircuit = _0230622.CanCompleteCircuit
+var Candy = _0230622.Candy
+var Trap = _0230622.Trap
+var MinSubArrayLen = _0230622.MinSubArrayLen
+var BuildTree = _0230622.BuildTree
+var ConnectTreeNode = _0230622.ConnectTreeNode
+var NumSubseq = _0230622.NumSubseq
+var FindKthLargest = _0230622.FindKthLargest
+var GenerateParenthesis = _0230622.GenerateParenthesis
+var MergeIntervals = _0230622.MergeIntervals
+var ThreeSum = _0230622.ThreeSum
+var ReverseWords = _0230622.ReverseWords
+var NumDecodings = _0230622.NumDecodings
+var DecodeString = _0230622.DecodeString
+var Subsets = _0230622.Subsets
+var IsMatch = _0230622.IsMatch
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
