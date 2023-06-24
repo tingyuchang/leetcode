@@ -3,6 +3,7 @@ package test
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
+	__Daily_Prac "leetcode/0_Daily_Prac"
 	_0230323 "leetcode/0_Daily_Prac/20230323"
 	_0230403 "leetcode/0_Daily_Prac/20230403"
 	_0230622 "leetcode/0_Daily_Prac/20230622"
@@ -44,6 +45,7 @@ var NumDecodings = _0230622.NumDecodings
 var DecodeString = _0230622.DecodeString
 var Subsets = _0230622.Subsets
 var IsMatch = _0230622.IsMatch
+var WordCountEngine = __Daily_Prac.WordCountEngine
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -532,6 +534,32 @@ func TestDaily(t *testing.T) {
 		assert.Equal(t, td.exp, result)
 	}
 	fmt.Printf("End test\tIsMatch\n")
+
+	WordCountEngineTestData := []struct {
+		document string
+		exp      [][]string
+	}{
+		{
+			"Practice makes perfect, you'll get perfecT by practice. just practice! just just just!!",
+			[][]string{[]string{"just", "4"}, []string{"practice", "3"}, []string{"perfect", "2"}, []string{"makes", "1"}, []string{"youll", "1"}, []string{"get", "1"}, []string{"by", "1"}},
+		},
+		{
+			"To be, or not to be, that is the question:",
+			[][]string{[]string{"to", "2"}, []string{"be", "2"}, []string{"or", "1"}, []string{"not", "1"}, []string{"that", "1"}, []string{"is", "1"}, []string{"the", "1"}, []string{"question", "1"}},
+		},
+		{
+			"Every book is a quotation; and every house is a quotation out of all forests, and mines, and stone quarries; and every man is a quotation from all his ancestors. ",
+			[][]string{[]string{"and", "4"}, []string{"every", "3"}, []string{"is", "3"}, []string{"a", "3"}, []string{"quotation", "3"}, []string{"all", "2"}, []string{"book", "1"}, []string{"house", "1"}, []string{"out", "1"}, []string{"of", "1"}, []string{"forests", "1"}, []string{"mines", "1"}, []string{"stone", "1"}, []string{"quarries", "1"}, []string{"man", "1"}, []string{"from", "1"}, []string{"his", "1"}, []string{"ancestors", "1"}},
+		},
+	}
+
+	fmt.Printf("Start test\tWordCountEngine\n")
+	for _, td := range WordCountEngineTestData {
+		result := WordCountEngine(td.document)
+		assert.ElementsMatch(t, td.exp, result)
+	}
+	fmt.Printf("End test\tWordCountEngine\n")
+
 }
 
 var mergeSort = _0230403.MergeSort

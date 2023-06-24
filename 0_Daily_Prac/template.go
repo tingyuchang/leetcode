@@ -310,3 +310,18 @@ func CloneGraph(node *LinkedList.Node) *LinkedList.Node {
 func IsMatch(text string, pattern string) bool {
 	return true
 }
+
+// word count engine
+/*
+input:  document = "Practice makes perfect. you'll only
+                    get Perfect by practice. just practice!"
+
+output: [ ["practice", "3"], ["perfect", "2"],
+          ["makes", "1"], ["youll", "1"], ["only", "1"],
+          ["get", "1"], ["by", "1"], ["just", "1"] ]
+
+*/
+
+func WordCountEngine(document string) [][]string {
+	return nil
+}
