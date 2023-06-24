@@ -3,10 +3,7 @@ package test
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
-	__Daily_Prac "leetcode/0_Daily_Prac"
-	_0230323 "leetcode/0_Daily_Prac/20230323"
-	_0230403 "leetcode/0_Daily_Prac/20230403"
-	_0230622 "leetcode/0_Daily_Prac/20230622"
+	_0230624 "leetcode/0_Daily_Prac/20230624"
 	"leetcode/Tree"
 	"reflect"
 	"regexp"
@@ -15,37 +12,37 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230622.Name{}
+var name = _0230624.Name{}
 
-var LongestCommonSubsequence = _0230622.LongestCommonSubsequence
-var LongestPalindrome = _0230622.LongestPalindrome
-var LongestPalindromeSubseq = _0230622.LongestPalindromeSubseq
-var CoinChange = _0230622.CoinChange
-var NumberOfArrays = _0230622.NumberOfArrays
-var MinDistance = _0230622.MinDistance
-var WordBreak = _0230622.WordBreak
-var LadderLength = _0230622.LadderLength
-var MaximalSquare = _0230622.MaximalSquare
-var LengthOfLIS = _0230622.LengthOfLIS
-var MaxProfit = _0230622.MaxProfit
-var JumpII = _0230622.JumpII
-var CanCompleteCircuit = _0230622.CanCompleteCircuit
-var Candy = _0230622.Candy
-var Trap = _0230622.Trap
-var MinSubArrayLen = _0230622.MinSubArrayLen
-var BuildTree = _0230622.BuildTree
-var ConnectTreeNode = _0230622.ConnectTreeNode
-var NumSubseq = _0230622.NumSubseq
-var FindKthLargest = _0230622.FindKthLargest
-var GenerateParenthesis = _0230622.GenerateParenthesis
-var MergeIntervals = _0230622.MergeIntervals
-var ThreeSum = _0230622.ThreeSum
-var ReverseWords = _0230622.ReverseWords
-var NumDecodings = _0230622.NumDecodings
-var DecodeString = _0230622.DecodeString
-var Subsets = _0230622.Subsets
-var IsMatch = _0230622.IsMatch
-var WordCountEngine = __Daily_Prac.WordCountEngine
+var LongestCommonSubsequence = _0230624.LongestCommonSubsequence
+var LongestPalindrome = _0230624.LongestPalindrome
+var LongestPalindromeSubseq = _0230624.LongestPalindromeSubseq
+var CoinChange = _0230624.CoinChange
+var NumberOfArrays = _0230624.NumberOfArrays
+var MinDistance = _0230624.MinDistance
+var WordBreak = _0230624.WordBreak
+var LadderLength = _0230624.LadderLength
+var MaximalSquare = _0230624.MaximalSquare
+var LengthOfLIS = _0230624.LengthOfLIS
+var MaxProfit = _0230624.MaxProfit
+var JumpII = _0230624.JumpII
+var CanCompleteCircuit = _0230624.CanCompleteCircuit
+var Candy = _0230624.Candy
+var Trap = _0230624.Trap
+var MinSubArrayLen = _0230624.MinSubArrayLen
+var BuildTree = _0230624.BuildTree
+var ConnectTreeNode = _0230624.ConnectTreeNode
+var NumSubseq = _0230624.NumSubseq
+var FindKthLargest = _0230624.FindKthLargest
+var GenerateParenthesis = _0230624.GenerateParenthesis
+var MergeIntervals = _0230624.MergeIntervals
+var ThreeSum = _0230624.ThreeSum
+var ReverseWords = _0230624.ReverseWords
+var NumDecodings = _0230624.NumDecodings
+var DecodeString = _0230624.DecodeString
+var Subsets = _0230624.Subsets
+var IsMatch = _0230624.IsMatch
+var WordCountEngine = _0230624.WordCountEngine
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -560,183 +557,4 @@ func TestDaily(t *testing.T) {
 	}
 	fmt.Printf("End test\tWordCountEngine\n")
 
-}
-
-var mergeSort = _0230403.MergeSort
-var heapSort = _0230403.HeapSort
-var insertionSort = _0230403.InsertionSort
-var quickSort = _0230403.QuickSort
-var binarySearch = _0230403.BinarySearch
-var longestChar = _0230403.LongestCharatersInReplacement
-var minWindow = _0230403.MinWindow
-var combination = _0230403.Combination
-var coinChange = _0230403.CoinChange
-var longestCommonSubsequence = _0230403.LongestCommonSubsequence
-var medianFinder = _0230323.Constructor()
-
-func testDailyOld(t *testing.T) {
-	re := regexp.MustCompile(`\d{8}`)
-	fmt.Printf("%q\n", re.Find([]byte(reflect.TypeOf(name).PkgPath())))
-
-	mergeSortInput := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-	mergeSortExpected := []int{1, 2, 3, 4, 7, 8, 9, 10, 14, 16}
-	mergeSortAns := mergeSort(mergeSortInput)
-	fmt.Printf("MergeSort")
-	assert.Equal(t, mergeSortAns, mergeSortExpected)
-
-	heapSortInput := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-	heapSortExpected := []int{1, 2, 3, 4, 7, 8, 9, 10, 14, 16}
-	heapSortAns := heapSort(heapSortInput)
-	fmt.Printf("\nHeapSort")
-	assert.Equal(t, heapSortAns, heapSortExpected)
-
-	insertionSortInput := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-	insertionSortExpected := []int{1, 2, 3, 4, 7, 8, 9, 10, 14, 16}
-	insertionSortAns := insertionSort(insertionSortInput)
-	fmt.Printf("\nInsertionSort")
-	assert.Equal(t, insertionSortAns, insertionSortExpected)
-
-	quickSortInput := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-	quickSortExpected := []int{1, 2, 3, 4, 7, 8, 9, 10, 14, 16}
-	quickSortAns := quickSort(quickSortInput, 0, len(quickSortInput)-1)
-	fmt.Printf("\nQuickSort")
-	assert.Equal(t, quickSortAns, quickSortExpected)
-
-	binarySearchInput := []int{3, 5, 7, 9, 11}
-	binarySearchTarget1 := 7
-	binarySearchTarget2 := 11
-	binarySearchTarget3 := 6
-	binarySearchExpected1 := 2
-	binarySearchExpected2 := 4
-	binarySearchExpected3 := -1
-
-	binarySearchAns1 := binarySearch(binarySearchInput, binarySearchTarget1)
-	binarySearchAns2 := binarySearch(binarySearchInput, binarySearchTarget2)
-	binarySearchAns3 := binarySearch(binarySearchInput, binarySearchTarget3)
-	fmt.Printf("\nBinarySearch")
-	assert.Equal(t, binarySearchAns1, binarySearchExpected1)
-	assert.Equal(t, binarySearchAns2, binarySearchExpected2)
-	assert.Equal(t, binarySearchAns3, binarySearchExpected3)
-
-	coinChangeTestData := []struct {
-		coins    []int
-		amount   int
-		expected int
-	}{
-		{[]int{1, 2, 5}, 11, 3},
-		{[]int{2}, 3, -1},
-		{[]int{1}, 0, 0},
-	}
-
-	fmt.Printf("\nCoin Change")
-	for _, td := range coinChangeTestData {
-		result := coinChange(td.coins, td.amount)
-		assert.Equal(t, result, td.expected)
-	}
-
-	longestCommonSubsequenceTestData := []struct {
-		text1    string
-		text2    string
-		expected int
-	}{
-		{"abcde", "ace", 3},
-		{"abc", "abc", 3},
-		{"abc", "def", 0},
-		{"ezupkr", "ubmrapg", 2},
-		{"bsbininm", "jmjkbkjkv", 1},
-		{"oxcpqrsvwf", "shmtulqrypy", 2},
-	}
-
-	fmt.Printf("\nlongest Common Subsequence")
-	for _, td := range longestCommonSubsequenceTestData {
-		result := longestCommonSubsequence(td.text1, td.text2)
-		assert.Equal(t, result, td.expected)
-	}
-
-	LongestCharatersTestData := []struct {
-		input       string
-		replacement int
-		expected    int
-	}{
-		{"ABCDDCABAA", 2, 5},
-		{"ABAB", 2, 4},
-		{"AABABBA", 1, 4},
-		{"KRSCDCSONAJNHLBMDQGIFCPEKPOHQIHLTDIQGEKLRLCQNBOHNDQGHJPNDQPERNFSSSRDEQLFPCCCARFMDLHADJADAGNNSBNCJQOF", 4, 7},
-		{"IMNJJTRMJEGMSOLSCCQICIHLQIOGBJAEHQOCRAJQMBIBATGLJDTBNCPIFRDLRIJHRABBJGQAOLIKRLHDRIGERENNMJSDSSMESSTR", 2, 6},
-	}
-	fmt.Printf("\nLongest Charaters")
-	for _, td := range LongestCharatersTestData {
-		result := longestChar(td.input, td.replacement)
-		assert.Equal(t, result, td.expected)
-	}
-
-	minWindowTestData := []struct {
-		s        string
-		t        string
-		expected string
-	}{
-		{"ADOBECODEBANC", "ABC", "BANC"},
-		{"a", "a", "a"},
-		{"a", "aa", ""},
-	}
-	fmt.Printf("\nmin window substring")
-	for _, td := range minWindowTestData {
-		result := minWindow(td.s, td.t)
-		assert.Equal(t, result, td.expected)
-	}
-
-	fmt.Printf("\ncombination")
-	combinationTestData := []struct {
-		candidates []int
-		target     int
-		expected   [][]int
-	}{
-		{
-			[]int{2, 3, 6, 7},
-			7,
-			[][]int{
-				{2, 2, 3},
-				{7},
-			},
-		},
-		{
-			[]int{2, 3, 5},
-			8,
-			[][]int{
-				{2, 2, 2, 2},
-				{2, 3, 3},
-				{3, 5},
-			},
-		},
-	}
-
-	for _, td := range combinationTestData {
-		result := combination(td.candidates, td.target)
-		assert.Equal(t, result, td.expected)
-	}
-
-	fmt.Printf("\nMedian Finder")
-
-	medianFinder.AddNum(6)
-	assert.Equal(t, medianFinder.FindMedian(), float64(6))
-	medianFinder.AddNum(10)
-	assert.Equal(t, medianFinder.FindMedian(), float64(8))
-	medianFinder.AddNum(2)
-	assert.Equal(t, medianFinder.FindMedian(), float64(6))
-	medianFinder.AddNum(6)
-	assert.Equal(t, medianFinder.FindMedian(), float64(6))
-	medianFinder.AddNum(5)
-	assert.Equal(t, medianFinder.FindMedian(), float64(6))
-	medianFinder.AddNum(0)
-	assert.Equal(t, medianFinder.FindMedian(), 5.5)
-	medianFinder.AddNum(6)
-	assert.Equal(t, medianFinder.FindMedian(), float64(6))
-	medianFinder.AddNum(3)
-	assert.Equal(t, medianFinder.FindMedian(), 5.5)
-	medianFinder.AddNum(1)
-	assert.Equal(t, medianFinder.FindMedian(), float64(5))
-	medianFinder.AddNum(0)
-	assert.Equal(t, medianFinder.FindMedian(), float64(4))
-	medianFinder.AddNum(0)
-	assert.Equal(t, medianFinder.FindMedian(), float64(3))
 }
