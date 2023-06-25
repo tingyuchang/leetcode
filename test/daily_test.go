@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
 	_0230624 "leetcode/0_Daily_Prac/20230624"
+	"leetcode/LinkedList"
 	"leetcode/Tree"
 	"reflect"
 	"regexp"
@@ -43,6 +44,9 @@ var DecodeString = _0230624.DecodeString
 var Subsets = _0230624.Subsets
 var IsMatch = _0230624.IsMatch
 var WordCountEngine = _0230624.WordCountEngine
+var SwapPairs = _0230624.SwapPairs
+var RemoveNthFromEnd = _0230624.RemoveNthFromEnd
+var ReverseBetween = _0230624.ReverseBetween
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -557,4 +561,68 @@ func TestDaily(t *testing.T) {
 	}
 	fmt.Printf("End test\tWordCountEngine\n")
 
+	SwapPairsTestData := []struct {
+		head *LinkedList.ListNode
+		exp  *LinkedList.ListNode
+	}{
+		{
+			LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 4}),
+			LinkedList.GenerateNodeFromArray([]int{2, 1, 4, 3}),
+		},
+		{
+			LinkedList.GenerateNodeFromArray([]int{}),
+			LinkedList.GenerateNodeFromArray([]int{}),
+		},
+		{
+			LinkedList.GenerateNodeFromArray([]int{1}),
+			LinkedList.GenerateNodeFromArray([]int{1}),
+		},
+	}
+
+	fmt.Printf("Start test\tSwapPairs\n")
+	for _, td := range SwapPairsTestData {
+		result := SwapPairs(td.head)
+		assert.EqualValues(t, result.String(), td.exp.String())
+	}
+	fmt.Printf("End test\tSwapPairs\n")
+
+	RemoveNthFromEndTestData := []struct {
+		head *LinkedList.ListNode
+		n    int
+		exp  *LinkedList.ListNode
+	}{
+		{
+			LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 4, 5}),
+			2,
+			LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 5}),
+		},
+	}
+
+	fmt.Printf("Start test\tRemoveNthFromEnd\n")
+	for _, td := range RemoveNthFromEndTestData {
+		result := RemoveNthFromEnd(td.head, td.n)
+		assert.EqualValues(t, result.String(), td.exp.String())
+	}
+	fmt.Printf("End test\tRemoveNthFromEnd\n")
+
+	ReverseBetweenTestData := []struct {
+		head  *LinkedList.ListNode
+		left  int
+		right int
+		exp   *LinkedList.ListNode
+	}{
+		{
+			LinkedList.GenerateNodeFromArray([]int{1, 2, 3, 4, 5}),
+			2,
+			4,
+			LinkedList.GenerateNodeFromArray([]int{1, 4, 3, 2, 5}),
+		},
+	}
+
+	fmt.Printf("Start test\tReverseBetween\n")
+	for _, td := range ReverseBetweenTestData {
+		result := ReverseBetween(td.head, td.left, td.right)
+		assert.EqualValues(t, result.String(), td.exp.String())
+	}
+	fmt.Printf("End test\tReverseBetween\n")
 }

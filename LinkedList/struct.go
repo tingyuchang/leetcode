@@ -9,6 +9,11 @@ type ListNode struct {
 	Next *ListNode
 }
 
+type NodeWithNeighbors struct {
+	Val       int
+	Neighbors []*NodeWithNeighbors
+}
+
 func (n *ListNode) Show() string {
 	dummyNode := &ListNode{}
 	var s string

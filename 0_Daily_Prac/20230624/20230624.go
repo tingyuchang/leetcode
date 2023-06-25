@@ -654,21 +654,104 @@ func NumSubseq(nums []int, target int) int {
 // https://leetcode.com/problems/swap-nodes-in-pairs/description/
 
 func SwapPairs(head *LinkedList.ListNode) *LinkedList.ListNode {
-
-	return nil
+	preHead := &LinkedList.ListNode{}
+	preHead.Next = head
+	pre := preHead
+	for head != nil && head.Next != nil {
+		next := head.Next
+		head.Next = next.Next
+		next.Next = head
+		pre.Next = next
+		pre = head
+		head = head.Next
+	}
+	return preHead.Next
 }
 
 // 19. Remove Nth Node From End of List
 // https://leetcode.com/problems/remove-nth-node-from-end-of-list/?envType=study-plan-v2&id=top-interview-150
 
 func RemoveNthFromEnd(head *LinkedList.ListNode, n int) *LinkedList.ListNode {
-	return nil
+	fast := head
+	move := n - 1
+	for move > 0 {
+		fast = fast.Next
+		move -= 1
+	}
+
+	preHead := &LinkedList.ListNode{}
+	preHead.Next = head
+	pre := preHead
+
+	for fast.Next != nil {
+		fast = fast.Next
+		pre = pre.Next
+	}
+
+	pre.Next = pre.Next.Next
+
+	return preHead.Next
 }
 
 // 92. Reverse Linked List II
 
 func ReverseBetween(head *LinkedList.ListNode, left int, right int) *LinkedList.ListNode {
-	return nil
+	if head == nil {
+		return head
+	}
+
+	preLeft := &LinkedList.ListNode{}
+	preLeft.Next = head
+	fast := head
+	leftCount := left - 1
+
+	for leftCount > 0 {
+		fast = fast.Next
+		preLeft = preLeft.Next
+		leftCount -= 1
+	}
+
+	// reverse
+	var pre, next, end *LinkedList.ListNode
+	end = fast
+	count := right - left + 1
+
+	for count > 0 && fast != nil {
+		next = fast.Next
+		fast.Next = pre
+		pre = fast
+		fast = next
+		count -= 1
+	}
+	end.Next = next
+	preLeft.Next = pre
+
+	if left == 1 {
+		return pre
+	}
+
+	return head
+}
+
+// 133. Clone Graph
+
+func CloneGraph(node *LinkedList.NodeWithNeighbors) *LinkedList.NodeWithNeighbors {
+	return recursiveCloneGraph(node, map[int]*LinkedList.NodeWithNeighbors{})
+}
+
+func recursiveCloneGraph(node *LinkedList.NodeWithNeighbors, nodeMap map[int]*LinkedList.NodeWithNeighbors) *LinkedList.NodeWithNeighbors {
+	if res, ok := nodeMap[node.Val]; ok {
+		return res
+	}
+
+	copyNode := &LinkedList.NodeWithNeighbors{Val: node.Val, Neighbors: []*LinkedList.NodeWithNeighbors{}}
+	nodeMap[node.Val] = copyNode
+
+	for _, neighbor := range node.Neighbors {
+		copyNode.Neighbors = append(copyNode.Neighbors, recursiveCloneGraph(neighbor, nodeMap))
+	}
+
+	return copyNode
 }
 
 // 215. Kth Largest Element in an Array
@@ -914,12 +997,6 @@ func Subsets(nums []int) [][]int {
 	}
 
 	return ans
-}
-
-// 133. Clone Graph
-
-func CloneGraph(node *LinkedList.Node) *LinkedList.Node {
-	return nil
 }
 
 // 10. Regular Expression Matching
