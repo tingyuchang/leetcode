@@ -3,7 +3,7 @@ package test
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
-	_0230624 "leetcode/0_Daily_Prac/20230624"
+	_0230625 "leetcode/0_Daily_Prac/20230625"
 	"leetcode/LinkedList"
 	"leetcode/Tree"
 	"reflect"
@@ -13,40 +13,40 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230624.Name{}
+var name = _0230625.Name{}
 
-var LongestCommonSubsequence = _0230624.LongestCommonSubsequence
-var LongestPalindrome = _0230624.LongestPalindrome
-var LongestPalindromeSubseq = _0230624.LongestPalindromeSubseq
-var CoinChange = _0230624.CoinChange
-var NumberOfArrays = _0230624.NumberOfArrays
-var MinDistance = _0230624.MinDistance
-var WordBreak = _0230624.WordBreak
-var LadderLength = _0230624.LadderLength
-var MaximalSquare = _0230624.MaximalSquare
-var LengthOfLIS = _0230624.LengthOfLIS
-var MaxProfit = _0230624.MaxProfit
-var JumpII = _0230624.JumpII
-var CanCompleteCircuit = _0230624.CanCompleteCircuit
-var Candy = _0230624.Candy
-var Trap = _0230624.Trap
-var MinSubArrayLen = _0230624.MinSubArrayLen
-var BuildTree = _0230624.BuildTree
-var ConnectTreeNode = _0230624.ConnectTreeNode
-var NumSubseq = _0230624.NumSubseq
-var FindKthLargest = _0230624.FindKthLargest
-var GenerateParenthesis = _0230624.GenerateParenthesis
-var MergeIntervals = _0230624.MergeIntervals
-var ThreeSum = _0230624.ThreeSum
-var ReverseWords = _0230624.ReverseWords
-var NumDecodings = _0230624.NumDecodings
-var DecodeString = _0230624.DecodeString
-var Subsets = _0230624.Subsets
-var IsMatch = _0230624.IsMatch
-var WordCountEngine = _0230624.WordCountEngine
-var SwapPairs = _0230624.SwapPairs
-var RemoveNthFromEnd = _0230624.RemoveNthFromEnd
-var ReverseBetween = _0230624.ReverseBetween
+var LongestCommonSubsequence = _0230625.LongestCommonSubsequence
+var LongestPalindrome = _0230625.LongestPalindrome
+var LongestPalindromeSubseq = _0230625.LongestPalindromeSubseq
+var CoinChange = _0230625.CoinChange
+var NumberOfArrays = _0230625.NumberOfArrays
+var MinDistance = _0230625.MinDistance
+var WordBreak = _0230625.WordBreak
+var LadderLength = _0230625.LadderLength
+var MaximalSquare = _0230625.MaximalSquare
+var LengthOfLIS = _0230625.LengthOfLIS
+var MaxProfit = _0230625.MaxProfit
+var JumpII = _0230625.JumpII
+var CanCompleteCircuit = _0230625.CanCompleteCircuit
+var Candy = _0230625.Candy
+var Trap = _0230625.Trap
+var MinSubArrayLen = _0230625.MinSubArrayLen
+var BuildTree = _0230625.BuildTree
+var ConnectTreeNode = _0230625.ConnectTreeNode
+var NumSubseq = _0230625.NumSubseq
+var FindKthLargest = _0230625.FindKthLargest
+var GenerateParenthesis = _0230625.GenerateParenthesis
+var MergeIntervals = _0230625.MergeIntervals
+var ThreeSum = _0230625.ThreeSum
+var ReverseWords = _0230625.ReverseWords
+var NumDecodings = _0230625.NumDecodings
+var DecodeString = _0230625.DecodeString
+var Subsets = _0230625.Subsets
+var IsMatch = _0230625.IsMatch
+var WordCountEngine = _0230625.WordCountEngine
+var SwapPairs = _0230625.SwapPairs
+var RemoveNthFromEnd = _0230625.RemoveNthFromEnd
+var ReverseBetween = _0230625.ReverseBetween
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)

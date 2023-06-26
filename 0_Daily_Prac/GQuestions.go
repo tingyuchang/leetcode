@@ -1565,3 +1565,21 @@ https://leetcode.com/problems/next-permutation/
 func nextPermutation(nums []int) {
 
 }
+
+/*
+37. Sudoku Solver
+
+https://leetcode.com/problems/sudoku-solver/
+*/
+func solveSudoku(board [][]byte) {
+
+}
+
+/*
+347. Top K Frequent Elements
+
+https://leetcode.com/problems/top-k-frequent-elements/
+*/
+func topKFrequent(nums []int, k int) []int {
+	return nil
+}
