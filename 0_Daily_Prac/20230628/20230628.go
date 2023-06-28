@@ -1,11 +1,11 @@
-package __Daily_Prac
+package _0230628
 
 import (
 	"leetcode/LinkedList"
 	"leetcode/Tree"
+	"sort"
 )
 
-// COPY FROM HERE
 type Name struct {
 }
 
@@ -347,6 +347,60 @@ func SolveSudoku(board [][]byte) {
 https://leetcode.com/problems/search-in-rotated-sorted-array/
 */
 func SearchRotated(nums []int, target int) int {
+	if nums[0] < nums[len(nums)-1] || len(nums) == 1 {
+		return binarySearch(nums, target)
+	}
+
+	l := 0
+	r := len(nums) - 1
+	pivot := 0
+
+	for r >= l {
+		mid := (l + r) / 2
+
+		if nums[mid] > nums[mid+1] {
+			pivot = mid + 1
+			break
+		}
+
+		if nums[mid] > nums[r] {
+			l = mid
+		} else {
+			r = mid
+		}
+	}
+
+	if nums[len(nums)-1] >= target {
+		result := binarySearch(nums[pivot:], target)
+
+		if result == -1 {
+			return -1
+		} else {
+			return pivot + result
+		}
+	} else {
+		return binarySearch(nums[:pivot], target)
+	}
+
+	return -1
+}
+
+func binarySearch(nums []int, target int) int {
+	l := 0
+	r := len(nums) - 1
+
+	for r >= l {
+		mid := (l + r) / 2
+
+		if nums[mid] < target {
+			l = mid + 1
+		} else if nums[mid] > target {
+			r = mid - 1
+		} else {
+			return mid
+		}
+	}
+
 	return -1
 }
 
@@ -355,6 +409,40 @@ func SearchRotated(nums []int, target int) int {
 https://leetcode.com/problems/set-matrix-zeroes/
 */
 func SetZeroes(matrix [][]int) {
+	needSetToZero := false
+
+	for i := 0; i < len(matrix); i++ {
+		if matrix[i][0] == 0 {
+			needSetToZero = true
+		}
+
+		for j := 1; j < len(matrix[i]); j++ {
+			if matrix[i][j] == 0 {
+				matrix[i][0] = 0
+				matrix[0][j] = 0
+			}
+		}
+	}
+
+	for i := 1; i < len(matrix); i++ {
+		for j := 1; j < len(matrix[i]); j++ {
+			if matrix[i][0] == 0 || matrix[0][j] == 0 {
+				matrix[i][j] = 0
+			}
+		}
+	}
+
+	if matrix[0][0] == 0 {
+		for i := 1; i < len(matrix[0]); i++ {
+			matrix[0][i] = 0
+		}
+	}
+
+	if needSetToZero {
+		for i := 0; i < len(matrix); i++ {
+			matrix[i][0] = 0
+		}
+	}
 
 }
 
@@ -363,7 +451,29 @@ func SetZeroes(matrix [][]int) {
 https://leetcode.com/problems/combination-sum/
 */
 func CombinationSum(candidates []int, target int) [][]int {
-	return nil
+	result := make([][]int, 0)
+	dfsCombinationSum(candidates, target, 0, 0, &[]int{}, &result)
+	return result
+}
+
+func dfsCombinationSum(candidates []int, target, start, currentSum int, currentResult *[]int, result *[][]int) {
+	if currentSum == target {
+		temp := make([]int, len(*currentResult))
+		copy(temp, *currentResult)
+		*result = append(*result, temp)
+	}
+
+	if currentSum > target {
+		return
+	}
+
+	for i := start; i < len(candidates); i++ {
+		*currentResult = append(*currentResult, candidates[i])
+		currentSum += candidates[i]
+		dfsCombinationSum(candidates, target, i, currentSum, currentResult, result)
+		*currentResult = (*currentResult)[:len(*currentResult)-1]
+		currentSum -= candidates[i]
+	}
 }
 
 /*
@@ -372,7 +482,24 @@ https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
 */
 
 func ConnectAllSiblings(root *Tree.NodeN) *Tree.NodeN {
-	return nil
+	if root == nil {
+		return nil
+	}
+
+	current := root
+	for current != nil {
+		node := current
+		for node != nil {
+			node.Left.Next = node.Right
+			if node.Next != nil {
+				node.Right = node.Next.Left
+			}
+
+			node = node.Next
+		}
+		current = current.Left
+	}
+	return root
 }
 
 /*
@@ -394,7 +521,37 @@ output: 6
 [0,2] is ideal meeting point, so 2 + 2 + 2 = 6
 */
 func BestMeetingPoint(grid [][]int) int {
-	return 0
+	cols := make([]int, 0)
+	rows := make([]int, 0)
+
+	for i := 0; i < len(grid); i++ {
+		for j := 0; j < len(grid[i]); j++ {
+			if grid[i][j] == 1 {
+				rows = append(rows, i)
+				cols = append(cols, j)
+			}
+		}
+	}
+
+	sort.Ints(rows)
+	sort.Ints(cols)
+
+	targetRow := rows[len(rows)/2]
+	targetCol := cols[len(cols)/2]
+
+	distance := 0
+
+	abs := func(a int) int {
+		if a < 0 {
+			return -a
+		}
+		return a
+	}
+	for i := 0; i < len(rows); i++ {
+		distance += abs(rows[i]-targetRow) + abs(cols[i]-targetCol)
+	}
+
+	return distance
 }
 
 /*
@@ -402,6 +559,42 @@ func BestMeetingPoint(grid [][]int) int {
 https://leetcode.com/problems/search-a-2d-matrix/
 */
 func SearchMatrix(matrix [][]int, target int) bool {
+	l := 0
+	r := len(matrix) - 1
+
+	for r >= l {
+		mid := (l + r) / 2
+
+		if matrix[mid][0] < target {
+			l = mid + 1
+		} else if matrix[mid][0] > target {
+			r = mid - 1
+		} else {
+			return true
+		}
+	}
+
+	k := r
+
+	if k < 0 {
+		k = 0
+	}
+
+	l = 0
+	r = len(matrix[k]) - 1
+
+	for r >= l {
+		mid := (l + r) / 2
+
+		if matrix[k][mid] < target {
+			l = mid + 1
+		} else if matrix[k][mid] > target {
+			r = mid - 1
+		} else {
+			return true
+		}
+	}
+
 	return false
 }
 
@@ -410,7 +603,25 @@ func SearchMatrix(matrix [][]int, target int) bool {
 https://leetcode.com/problems/combinations/
 */
 func Combine(n int, k int) [][]int {
-	return nil
+	result := make([][]int, 0)
+	dfsCombine(n, k, 1, &[]int{}, &result)
+	return result
+}
+
+func dfsCombine(n, k, start int, currentResult *[]int, result *[][]int) {
+	if len(*currentResult) == k {
+		temp := make([]int, len(*currentResult))
+		copy(temp, *currentResult)
+		*result = append(*result, temp)
+		return
+	}
+
+	for i := start; i <= n; i++ {
+		*currentResult = append(*currentResult, i)
+		dfsCombine(n, k, i+1, currentResult, result)
+		*currentResult = (*currentResult)[:len(*currentResult)-1]
+	}
+
 }
 
 /*
@@ -418,7 +629,38 @@ func Combine(n int, k int) [][]int {
 https://leetcode.com/problems/next-permutation/
 */
 func NextPermutation(nums []int) {
+	if len(nums) <= 1 {
+		return
+	}
 
+	i := len(nums) - 1
+
+	reverse := func(nums []int, n int) {
+		l := n
+		r := len(nums) - 1
+
+		for r > l {
+			nums[l], nums[r] = nums[r], nums[l]
+			l += 1
+			r -= 1
+		}
+	}
+
+	for nums[i-1] > nums[i] {
+		i -= 1
+		if i == 0 {
+			reverse(nums, 0)
+			return
+		}
+	}
+	j := len(nums) - 1
+
+	for j < i && nums[j] < nums[i-1] {
+		j -= 1
+	}
+
+	nums[i-1], nums[j] = nums[j], nums[i-1]
+	reverse(nums, i)
 }
 
 /*
@@ -432,7 +674,27 @@ https://leetcode.com/problems/top-k-frequent-elements/
 4. random select
 */
 func TopKFrequent(nums []int, k int) []int {
-	return nil
+	buckets := make([][]int, 0)
+	frequentMap := make(map[int]int)
+
+	for _, v := range nums {
+		frequentMap[v] += 1
+		buckets = append(buckets, []int{})
+	}
+
+	for val, frequent := range frequentMap {
+		buckets[frequent-1] = append(buckets[frequent-1], val)
+	}
+
+	ans := make([]int, 0)
+	for i := len(buckets) - 1; i >= 0; i-- {
+		ans = append(ans, buckets[i]...)
+		if len(ans) >= k {
+			break
+		}
+	}
+
+	return ans
 }
 
 /*
@@ -442,24 +704,64 @@ https://leetcode.com/problems/remove-k-digits/
 */
 
 func RemoveKdigits(num string, k int) string {
-	return "0"
+	if len(num) == k {
+		return "0"
+	}
+
+	stack := make([]byte, 0)
+
+	for i := 0; i < len(num); i++ {
+
+		for len(stack) != 0 && k > 0 && stack[len(stack)-1] > num[i] {
+			k -= 1
+			stack = stack[:len(stack)-1]
+		}
+
+		if len(stack) != 0 || num[i] != '0' {
+			stack = append(stack, num[i])
+		}
+	}
+
+	if k > 0 {
+		if k > len(stack) {
+			return "0"
+		} else {
+			stack = stack[:len(stack)-k]
+		}
+	}
+
+	if len(stack) == 0 {
+		return "0"
+	}
+
+	return string(stack)
 }
 
-/*
-Employee Free Time
-Input:
- schedule = [[[1,2],[5,6]],[[1,3]],[[4,10]]]
-
-Output:
- [[3,4]]
-
-Explanation:
-
-There are a total of three employees, and all common
-free time intervals would be [-inf, 1], [3, 4], [10, inf].
-We discard any intervals that contain inf as they aren't finite.
-*/
-
 func EmployeeFreeTime(schedule [][][]int) [][]int {
-	return nil
+	intervals := make([][]int, 0)
+	for i := 0; i < len(schedule); i++ {
+		for j := 0; j < len(schedule[i]); j++ {
+			intervals = append(intervals, schedule[i][j])
+		}
+	}
+
+	sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i][0] < intervals[j][0]
+	})
+
+	result := make([][]int, 0)
+	current := intervals[0]
+	for i := 1; i < len(intervals); i++ {
+		next := intervals[i]
+		if current[1] < next[0] {
+			result = append(result, []int{current[1], next[0]})
+			current = next
+		} else {
+			if next[1] > current[1] {
+				current = next
+			}
+		}
+
+	}
+	return result
 }

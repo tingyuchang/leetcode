@@ -1,5 +1,10 @@
 package _0230626
 
+import (
+	"leetcode/LinkedList"
+	"leetcode/Tree"
+)
+
 type Name struct {
 }
 

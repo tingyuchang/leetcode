@@ -1505,6 +1505,61 @@ func GDeserialize(data string) *Tree.TreeNode {
 https://leetcode.com/problems/search-in-rotated-sorted-array/
 */
 func GSearchRotated(nums []int, target int) int {
+	if nums[0] < nums[len(nums)-1] || len(nums) == 1 {
+		return GBinarysearch(nums, target)
+	}
+
+	l := 0
+	r := len(nums) - 1
+	pivot := -1
+
+	for r >= l {
+		mid := (l + r) / 2
+
+		if nums[mid] > nums[mid+1] {
+			pivot = mid + 1
+			break
+		}
+		/*
+		   4 5 6        1 2 3
+		 l -----  mid  -------r
+
+		*/
+
+		if nums[mid] > nums[r] {
+			l = mid
+		} else {
+			r = mid
+		}
+	}
+
+	if nums[len(nums)-1] >= target {
+		result := GBinarysearch(nums[pivot:], target)
+
+		if result == -1 {
+			return -1
+		} else {
+			return pivot + result
+		}
+	} else {
+		return GBinarysearch(nums[:pivot], target)
+	}
+}
+
+func GBinarysearch(nums []int, target int) int {
+	l := 0
+	r := len(nums) - 1
+
+	for r >= l {
+		mid := (l + r) / 2
+		if nums[mid] < target {
+			l = mid + 1
+		} else if nums[mid] > target {
+			r = mid - 1
+		} else {
+			return mid
+		}
+	}
 
 	return -1
 }
@@ -1514,7 +1569,40 @@ func GSearchRotated(nums []int, target int) int {
 https://leetcode.com/problems/set-matrix-zeroes/
 */
 func GSetZeroes(matrix [][]int) {
+	m, n := len(matrix), len(matrix[0])
+	firstColIsZero := false
+	for i := 0; i < m; i++ {
+		if matrix[i][0] == 0 {
+			firstColIsZero = true
+		}
 
+		for j := 1; j < n; j++ {
+			if matrix[i][j] == 0 {
+				matrix[i][0] = 0
+				matrix[0][j] = 0
+			}
+		}
+	}
+
+	for i := 1; i < m; i++ {
+		for j := 1; j < n; j++ {
+			if matrix[i][0] == 0 || matrix[0][j] == 0 {
+				matrix[i][j] = 0
+			}
+		}
+	}
+
+	if matrix[0][0] == 0 {
+		for i := 1; i < n; i++ {
+			matrix[0][i] = 0
+		}
+	}
+
+	if firstColIsZero {
+		for i := 0; i < m; i++ {
+			matrix[i][0] = 0
+		}
+	}
 }
 
 /*
@@ -1522,7 +1610,25 @@ func GSetZeroes(matrix [][]int) {
 https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
 */
 
-func GConnectAllSiblings(root *Node) *Node {
+func GConnectAllSiblings(root *Tree.NodeN) *Tree.NodeN {
+	if root == nil {
+		return nil
+	}
+
+	current := root
+
+	for current.Left != nil {
+		node := current
+		for node != nil {
+			node.Left.Next = node.Right
+			if node.Next != nil {
+				node.Right.Next = node.Next.Left
+			}
+			node = node.Next
+		}
+		current = current.Left
+	}
+
 	return root
 }
 
@@ -1530,16 +1636,101 @@ func GConnectAllSiblings(root *Node) *Node {
 39. Combination Sum
 https://leetcode.com/problems/combination-sum/
 */
-func combinationSum(candidates []int, target int) [][]int {
-	return nil
+func GcombinationSum(candidates []int, target int) [][]int {
+	result := make([][]int, 0)
+	dfsGCombinationSum(candidates, 0, target, 0, &[]int{}, &result)
+	return result
+}
+
+func dfsGCombinationSum(candidates []int, start, target, currentSum int, currentResult *[]int, result *[][]int) {
+	if currentSum == target {
+		temp := make([]int, len(*currentResult))
+		copy(temp, *currentResult)
+		*result = append(*result, temp)
+		return
+	}
+
+	if currentSum > target {
+		return
+	}
+
+	/*
+		   2, 3 5
+
+			2 2 2 2
+			2 2 2 3 ->X
+			2 2 2 5 ->X
+			2 2 3   ->X
+			2 2 5   ->X
+			2 3 3
+			2 3 5   ->X
+			2 5
+			3 3 3
+			3 3 5
+			3 5
+			5
+	*/
+
+	for i := start; i < len(candidates); i++ {
+		currentSum += candidates[i]
+		*currentResult = append(*currentResult, candidates[i])
+		dfsGCombinationSum(candidates, i, target, currentSum, currentResult, result)
+		currentSum -= candidates[i]
+		*currentResult = (*currentResult)[:len(*currentResult)-1]
+	}
 }
 
 /*
 296. Best Meeting Point
-https://just4once.gitbooks.io/leetcode-notes/content/leetcode/math/296-best-meeting-point.html
+
+A group of two or more people wants to meet and minimize the total travel distance.
+You are given a 2D grid of values 0 or 1, where each 1 marks the home of someone in the group.
+The distance is calculated using Manhattan Distance,
+where distance(p1, p2) = |p2.x - p1.x| + |p2.y - p1.y|.
+
+input:
+
+	1 0 0 0 1
+	0 0 0 0 0
+	0 0 1 0 0
+
+output: 6
+
+[0,2] is ideal meeting point, so 2 + 2 + 2 = 6
 */
-func GBestMeetingPoint(grid [][]int) []int {
-	return nil
+func GBestMeetingPoint(grid [][]int) int {
+	rows := make([]int, 0)
+	cols := make([]int, 0)
+
+	for i := 0; i < len(grid); i++ {
+		for j := 0; j < len(grid[i]); j++ {
+			if grid[i][j] == 1 {
+				rows = append(rows, i)
+				cols = append(cols, j)
+			}
+		}
+	}
+
+	sort.Ints(rows)
+	sort.Ints(cols)
+
+	midOfRow := rows[len(rows)/2]
+	midOfCol := cols[len(cols)/2]
+	sum := 0
+
+	abs := func(a int) int {
+		if a < 0 {
+			return -a
+		}
+		return a
+	}
+
+	for i := 0; i < len(rows); i++ {
+		sum += abs(midOfRow - rows[i])
+		sum += abs(midOfCol - cols[i])
+	}
+
+	return sum
 }
 
 /*
@@ -1547,6 +1738,43 @@ func GBestMeetingPoint(grid [][]int) []int {
 https://leetcode.com/problems/search-a-2d-matrix/
 */
 func GSearchMatrix(matrix [][]int, target int) bool {
+	l := 0
+	r := len(matrix) - 1
+
+	for r >= l {
+		mid := (l + r) / 2
+
+		if matrix[mid][0] < target {
+			l = mid + 1
+		} else if matrix[mid][0] > target {
+			r = mid - 1
+		} else {
+			return true
+		}
+	}
+	k := r
+
+	if k < 0 {
+		k = 0
+	}
+
+	l = 0
+	r = len(matrix[k]) - 1
+
+	for r >= l {
+		mid := (l + r) / 2
+
+		if matrix[k][mid] == target {
+			return true
+		}
+
+		if matrix[k][mid] < target {
+			l = mid + 1
+		} else {
+			r = mid - 1
+		}
+	}
+
 	return false
 }
 
@@ -1555,15 +1783,65 @@ func GSearchMatrix(matrix [][]int, target int) bool {
 https://leetcode.com/problems/combinations/
 */
 func GCombine(n int, k int) [][]int {
-	return nil
+	result := make([][]int, 0)
+	dfsGCombine(1, n, k, &[]int{}, &result)
+	return result
+}
+
+func dfsGCombine(start, n, k int, current *[]int, result *[][]int) {
+	if len(*current) == k {
+		temp := make([]int, k)
+		copy(temp, *current)
+		*result = append(*result, temp)
+		return
+	}
+
+	for i := start; i <= n; i++ {
+		*current = append(*current, i)
+		dfsGCombine(i+1, n, k, current, result)
+		*current = (*current)[:len(*current)-1]
+	}
+
 }
 
 /*
 31. Next Permutation
 https://leetcode.com/problems/next-permutation/
 */
-func nextPermutation(nums []int) {
+func GNextPermutation(nums []int) {
+	if len(nums) <= 1 {
+		return
+	}
 
+	reverse := func(nums []int, n int) {
+		l := n
+		r := len(nums) - 1
+
+		for r > l {
+			nums[l], nums[r] = nums[r], nums[l]
+			l += 1
+			r -= 1
+		}
+	}
+
+	i := len(nums) - 1
+
+	for nums[i-1] > nums[i] {
+		i -= 1
+		if i == 0 {
+			reverse(nums, 0)
+			return
+		}
+	}
+
+	j := len(nums) - 1
+
+	for j < i && nums[j] <= nums[i-1] {
+		j -= 1
+	}
+	nums[j], nums[i-1] = nums[i-1], nums[j]
+
+	reverse(nums, i)
 }
 
 /*
@@ -1571,8 +1849,48 @@ func nextPermutation(nums []int) {
 
 https://leetcode.com/problems/sudoku-solver/
 */
-func solveSudoku(board [][]byte) {
+func GSolveSudoku(board [][]byte) {
+	GSolver(board)
+}
 
+func GSolver(board [][]byte) bool {
+	// n^3
+	for i := 0; i < len(board); i++ {
+		for j := 0; j < len(board[i]); j++ {
+			if board[i][j] == '.' {
+				for k := 1; k <= len(board); k++ {
+					val := strconv.Itoa(k)[0]
+
+					if isValidSudoku(board, i, j, val) {
+						board[i][j] = val
+						if GSolver(board) {
+							return true
+						}
+						board[i][j] = '.'
+					}
+				}
+				return false
+			}
+		}
+	}
+
+	return true
+}
+
+func isValidSudoku(board [][]byte, x, y int, val byte) bool {
+	for i := 0; i < 9; i++ {
+		if board[i][y] == val {
+			return false
+		}
+		if board[x][i] == val {
+			return false
+		}
+		if board[3*(x/3)+i/3][3*(y/3)+i%3] == val {
+			return false
+		}
+	}
+
+	return true
 }
 
 /*
@@ -1580,6 +1898,278 @@ func solveSudoku(board [][]byte) {
 
 https://leetcode.com/problems/top-k-frequent-elements/
 */
-func topKFrequent(nums []int, k int) []int {
-	return nil
+func GTopKFrequent(nums []int, k int) []int {
+	/*
+		approach1: sort by frequent
+		1. store val & count as key & val into hashmap and distinct val array
+		2. sort distinct array by hash map's val
+		3. return top K
+		T: nlogk
+		S: n+k
+		approach2: heap by frequent
+		1. similar with sorting way, but we just maintain heap by frequent
+		2. create a heap and put k element into heap
+
+		approach3: random select
+		1. using quick sort random select algorithm to select top k element
+
+		T: n
+		S: 1
+
+		approach4: bucket sort
+		1. using hashmap to store val & frequent and create a 2D array as bucket
+		2. iterating hashmap and put key into bucket's ith , i = hashmap[val]
+		3. reverse iterating bucket
+
+		T: n
+		S: n
+
+	*/
+	if k == len(nums) {
+		return nums
+	}
+	countMap := make(map[int]int)
+	distinctValues := make([]int, 0)
+	for _, v := range nums {
+		if _, ok := countMap[v]; !ok {
+			distinctValues = append(distinctValues, v)
+		}
+		countMap[v] += 1
+	}
+
+	myHeap := make([]int, 0)
+	for _, v := range distinctValues {
+		if len(myHeap) == k {
+			if countMap[v] > countMap[myHeap[0]] {
+				myHeap[0] = v
+				myMinHeapTopDown(myHeap, 0, countMap)
+			}
+		} else {
+			myHeap = append(myHeap, v)
+			myMinHeapBottomUp(myHeap, len(myHeap)-1, countMap)
+		}
+	}
+	return myHeap
+}
+
+func myMinHeapBottomUp(nums []int, n int, countMap map[int]int) {
+	current := n
+	parrent := (n - 1) / 2
+
+	for current != 0 && countMap[nums[parrent]] > countMap[nums[current]] {
+		nums[parrent], nums[current] = nums[current], nums[parrent]
+		current = parrent
+		parrent = (current - 1) / 2
+	}
+}
+
+func myMinHeapTopDown(nums []int, n int, countMap map[int]int) {
+	l := (n+1)*2 - 1
+	r := (n + 1) * 2
+	var smallest int
+
+	if l < len(nums) && countMap[nums[l]] < countMap[nums[n]] {
+		smallest = l
+	} else {
+		smallest = n
+	}
+
+	if r < len(nums) && countMap[nums[r]] < countMap[nums[smallest]] {
+		smallest = r
+	}
+
+	if smallest != n {
+		nums[n], nums[smallest] = nums[smallest], nums[n]
+		myMinHeapTopDown(nums, smallest, countMap)
+	}
+}
+
+/*
+https://leetcode.com/discuss/interview-question/algorithms/285144/interview-question-minimize-the-distance-to-the-farthest-point
+Assume you're looking to move, and have a set of amenities that you want to have easy access to from your new home. You have found a neighborhood you like, each block of which has zero or more amenities. How would you pick the block to live in such that the farthest distance to any amenity in your list is minimized?
+
+Example:
+Say your list contains {school, grocery}, and the blocks are as follows:
+1: restaurant, grocery
+2: movie theater
+3: school
+4:
+5: school
+
+ans : 2
+
+{
+{false, true, false},
+{true, false, false},
+{true, true, false},
+{false, true, false},
+{false, true, true},
+}
+
+*/
+
+func GMinimizeDistanceToFarthestPoint(blocks [][]bool, requires int) int {
+	distances := make([][]int, len(blocks))
+
+	for i := range distances {
+		distances[i] = make([]int, requires)
+		for j := 0; j < len(distances[i]); j++ {
+			distances[i][j] = -1
+		}
+	}
+
+	/*
+		[1, 0, 4]
+		[0, 1, 3]
+		[0, 0, 2]
+		[1, 0, 1]
+		[2, 0, 0]
+
+		BFS
+	*/
+
+	for i := 0; i < len(distances); i++ {
+		for j := 0; j < len(distances[i]); j++ {
+			if blocks[i][j] {
+				distances[i][j] = 0
+			} else {
+				if i > 0 && distances[i-1][j] != -1 {
+					distances[i][j] = distances[i-1][j] + 1
+				}
+			}
+		}
+	}
+
+	for i := len(distances) - 1; i >= 0; i-- {
+		for j := 0; j < len(distances[i]); j++ {
+			if blocks[i][j] {
+				distances[i][j] = 0
+			} else {
+				if i < len(distances)-1 && distances[i+1][j] != -1 {
+					distances[i][j] = distances[i+1][j] + 1
+				}
+			}
+		}
+	}
+	fmt.Println(distances)
+	minDistance := -1
+	ans := -1
+	for i := 0; i < len(distances); i++ {
+		temp := distances[i][0]
+		for j := 1; j < len(distances[i]); j++ {
+			if distances[i][j] > temp {
+				temp = distances[i][j]
+			}
+		}
+
+		if minDistance == -1 || temp < minDistance {
+			minDistance = temp
+			ans = i
+		}
+	}
+
+	return ans
+}
+
+/*
+402. Remove K Digits
+https://leetcode.com/problems/remove-k-digits/
+
+*/
+
+func GRemoveKdigits(num string, k int) string {
+	/*
+		approach1: brute force
+		1432219
+		push(1) => 1
+		push(4) => 14
+		pop(4) => 1r
+		push(3) => 13
+		pop(3) => 1
+		push(2) => 12
+		push(2) => 12
+
+
+	*/
+	if k >= len(num) {
+		return "0"
+	}
+
+	stack := make([]byte, 0)
+
+	for i := 0; i < len(num); i++ {
+		for len(stack) != 0 && k > 0 && stack[len(stack)-1] > num[i] {
+			stack = stack[:len(stack)-1]
+			k -= 1
+		}
+		if len(stack) != 0 || num[i] != '0' {
+			stack = append(stack, num[i])
+		}
+	}
+	if k > 0 {
+		if len(stack) < k {
+			return "0"
+		} else {
+			stack = stack[:len(stack)-k]
+		}
+
+	}
+
+	if len(stack) == 0 {
+		return "0"
+	}
+
+	return string(stack)
+}
+
+/*
+Employee Free Time
+Input:
+ schedule = [[[1,2],[5,6]],[[1,3]],[[4,10]]]
+
+Output:
+ [[3,4]]
+
+Explanation:
+
+There are a total of three employees, and all common
+free time intervals would be [-inf, 1], [3, 4], [10, inf].
+We discard any intervals that contain inf as they aren't finite.
+*/
+
+func GEmployeeFreeTime(schedule [][][]int) [][]int {
+	/*
+		[[[1,2],[5,6]],[[1,3]],[[4,10]]]
+		[1 2] [5 6]
+		[1 3]
+		[4 10]
+		[[[1,3],[6,7]],[[2,4]],[[2,5],[9,12]]]
+	*/
+	intervals, result := make([][]int, 0), make([][]int, 0)
+
+	for i := 0; i < len(schedule); i++ {
+		for j := 0; j < len(schedule[i]); j++ {
+			intervals = append(intervals, schedule[i][j])
+		}
+	}
+
+	sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i][0] < intervals[j][0]
+	})
+
+	current := intervals[0]
+
+	for i := 0; i < len(intervals); i++ {
+		next := intervals[i]
+		if current[1] < next[0] {
+			result = append(result, []int{current[1], next[0]})
+			current = next
+		} else {
+			if current[1] < next[1] {
+				current = next
+			}
+		}
+	}
+
+	return result
 }

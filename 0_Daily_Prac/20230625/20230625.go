@@ -1113,3 +1113,65 @@ func insertWord(document string, l, r int, wordsMap *map[string]*Wordcount) {
 		(*wordsMap)[string(onlyAlphabet)] = &Wordcount{word: string(onlyAlphabet), count: 1, index: l}
 	}
 }
+
+func MinimizeDistanceToFarthestPoint(blocks [][]bool, requires int) int {
+	distances := make([][]int, len(blocks))
+
+	for i := range distances {
+		distances[i] = make([]int, requires)
+		for j := 0; j < len(distances[i]); j++ {
+			distances[i][j] = math.MaxInt
+		}
+	}
+
+	/*
+		[1, 0, 4]
+		[0, 1, 3]
+		[0, 0, 2]
+		[1, 0, 1]
+		[2, 0, 0]
+
+		BFS
+	*/
+
+	for i := 0; i < len(distances); i++ {
+		for j := 0; j < len(distances[i]); j++ {
+			if blocks[i][j] {
+				distances[i][j] = 0
+			} else {
+				if i > 0 && distances[i-1][j] != math.MaxInt {
+					distances[i][j] = distances[i-1][j] + 1
+				}
+			}
+		}
+	}
+
+	for i := len(distances) - 1; i >= 0; i-- {
+		for j := 0; j < len(distances[i]); j++ {
+			if blocks[i][j] {
+				distances[i][j] = 0
+			} else {
+				if i < len(distances)-1 && distances[i+1][j] != math.MaxInt {
+					distances[i][j] = __Daily_Prac.Min(distances[i+1][j]+1, distances[i][j])
+				}
+			}
+		}
+	}
+	minDistance := -1
+	ans := -1
+	for i := 0; i < len(distances); i++ {
+		temp := distances[i][0]
+		for j := 1; j < len(distances[i]); j++ {
+			if distances[i][j] > temp {
+				temp = distances[i][j]
+			}
+		}
+
+		if minDistance == -1 || temp < minDistance {
+			minDistance = temp
+			ans = i
+		}
+	}
+
+	return ans
+}

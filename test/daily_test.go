@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
 	_0230625 "leetcode/0_Daily_Prac/20230625"
+	_0230628 "leetcode/0_Daily_Prac/20230628"
 	"leetcode/LinkedList"
 	"leetcode/Tree"
 	"reflect"
@@ -13,7 +14,7 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230625.Name{}
+var name = _0230628.Name{}
 
 var LongestCommonSubsequence = _0230625.LongestCommonSubsequence
 var LongestPalindrome = _0230625.LongestPalindrome
@@ -47,6 +48,17 @@ var WordCountEngine = _0230625.WordCountEngine
 var SwapPairs = _0230625.SwapPairs
 var RemoveNthFromEnd = _0230625.RemoveNthFromEnd
 var ReverseBetween = _0230625.ReverseBetween
+var MinimizeDistanceToFarthestPoint = _0230625.MinimizeDistanceToFarthestPoint
+var SearchRotated = _0230628.SearchRotated
+var SetZeroes = _0230628.SetZeroes
+var CombinationSum = _0230628.CombinationSum
+var BestMeetingPoint = _0230628.BestMeetingPoint
+var SearchMatrix = _0230628.SearchMatrix
+var Combine = _0230628.Combine
+var NextPermutation = _0230628.NextPermutation
+var TopKFrequent = _0230628.TopKFrequent
+var RemoveKdigits = _0230628.RemoveKdigits
+var EmployeeFreeTime = _0230628.EmployeeFreeTime
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -625,4 +637,304 @@ func TestDaily(t *testing.T) {
 		assert.EqualValues(t, result.String(), td.exp.String())
 	}
 	fmt.Printf("End test\tReverseBetween\n")
+
+	MinimizeDistanceToFarthestPointTestData := []struct {
+		blocks   [][]bool
+		requires int
+		exp      int
+	}{
+		{
+			[][]bool{
+				{false, true, false},
+				{true, false, false},
+				{true, true, false},
+				{false, true, false},
+				{false, true, true},
+			},
+			3,
+			3,
+		},
+	}
+
+	fmt.Printf("Start test\tMinimizeDistanceToFarthestPoint\n")
+	for _, td := range MinimizeDistanceToFarthestPointTestData {
+		result := MinimizeDistanceToFarthestPoint(td.blocks, td.requires)
+		assert.EqualValues(t, result, td.exp)
+	}
+	fmt.Printf("End test\tMinimizeDistanceToFarthestPoint\n")
+
+	SearchRotatedTestData := []struct {
+		input  []int
+		target int
+		exp    int
+	}{
+		{[]int{4, 5, 6, 7, 0, 1, 2}, 0, 4},
+		{[]int{4, 5, 6, 7, 0, 1, 2}, 3, -1},
+		{[]int{4, 5, 6, 7, 9, 0, 1, 2}, 3, -1},
+		{[]int{1}, 0, -1},
+		{[]int{1, 3}, 3, 1},
+		{[]int{3, 1}, 2, -1},
+		{[]int{3, 1}, 3, 0},
+	}
+	fmt.Printf("Start test\tSearchRotated\n")
+	for _, td := range SearchRotatedTestData {
+		result := SearchRotated(td.input, td.target)
+		assert.Equal(t, result, td.exp)
+	}
+	fmt.Printf("End test\tSearchRotated\n")
+
+	SetZeroesTestData := []struct {
+		matrix [][]int
+		exp    [][]int
+	}{
+		{[][]int{
+			{1, 1, 1},
+			{1, 0, 1},
+			{1, 1, 1},
+		},
+			[][]int{
+				{1, 0, 1},
+				{0, 0, 0},
+				{1, 0, 1},
+			},
+		},
+
+		{
+			[][]int{
+				{0, 1, 2, 0},
+				{3, 4, 5, 2},
+				{1, 3, 1, 5},
+			},
+			[][]int{
+				{0, 0, 0, 0},
+				{0, 4, 5, 0},
+				{0, 3, 1, 0},
+			},
+		},
+	}
+
+	fmt.Printf("Start test\tSetZeroes\n")
+	for _, td := range SetZeroesTestData {
+		SetZeroes(td.matrix)
+		assert.ElementsMatch(t, td.matrix, td.exp)
+	}
+	fmt.Printf("End test\tSetZeroes\n")
+
+	CombinationSumTestData := []struct {
+		candidates []int
+		target     int
+		exp        [][]int
+	}{
+		{
+			[]int{2, 3, 6, 7},
+			7,
+			[][]int{
+				{2, 2, 3},
+				{7},
+			},
+		},
+		{
+			[]int{2, 3, 5},
+			8,
+			[][]int{
+				{2, 2, 2, 2},
+				{2, 3, 3},
+				{3, 5},
+			},
+		},
+	}
+	fmt.Printf("Start test\tCombinationSum\n")
+	for _, td := range CombinationSumTestData {
+		result := CombinationSum(td.candidates, td.target)
+		assert.ElementsMatch(t, td.exp, result)
+	}
+	fmt.Printf("End test\tCombinationSum\n")
+
+	BestMeetingPointTestData := []struct {
+		grid [][]int
+		exp  int
+	}{
+		{
+			[][]int{
+				{1, 0, 0, 0, 1},
+				{0, 0, 0, 0, 0},
+				{0, 0, 1, 0, 0},
+			},
+			6,
+		},
+	}
+
+	fmt.Printf("Start test\tBestMeetingPoint\n")
+	for _, td := range BestMeetingPointTestData {
+		result := BestMeetingPoint(td.grid)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("End test\tBestMeetingPoint\n")
+
+	SearchMatrixTestData := []struct {
+		matrix [][]int
+		target int
+		exp    bool
+	}{
+		{
+			[][]int{
+				{1, 3, 5, 7},
+				{10, 11, 16, 20},
+				{23, 30, 34, 60},
+			},
+			3,
+			true,
+		},
+		{
+			[][]int{
+				{1, 3, 5, 7},
+				{10, 11, 16, 20},
+				{23, 30, 34, 60},
+			},
+			3,
+			true,
+		},
+		{
+			[][]int{
+				{1},
+			},
+			0,
+			false,
+		},
+	}
+
+	fmt.Printf("Start test\tSearchMatrix\n")
+	for _, td := range SearchMatrixTestData {
+		result := SearchMatrix(td.matrix, td.target)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("End test\tSearchMatrix\n")
+
+	CombineTestData := []struct {
+		n   int
+		k   int
+		exp [][]int
+	}{
+		{
+			4, 2,
+			[][]int{
+				{1, 2}, {1, 3}, {1, 4},
+				{2, 3}, {2, 4}, {3, 4},
+			},
+		},
+	}
+
+	fmt.Printf("Start test\tCombine\n")
+	for _, td := range CombineTestData {
+		result := Combine(td.n, td.k)
+		assert.ElementsMatch(t, td.exp, result)
+	}
+	fmt.Printf("End test\tCombine\n")
+
+	NextPermutationTestData := []struct {
+		input []int
+		exp   []int
+	}{
+		{[]int{1, 2, 3, 4, 5, 6}, []int{1, 2, 3, 4, 6, 5}},
+		{[]int{1, 2, 3, 4, 6, 5}, []int{1, 2, 3, 5, 4, 6}},
+		{[]int{1, 2, 3, 5, 4, 6}, []int{1, 2, 3, 5, 6, 4}},
+	}
+
+	fmt.Printf("Start test\tNextPermutation\n")
+	for _, td := range NextPermutationTestData {
+		NextPermutation(td.input)
+		assert.Equal(t, td.exp, td.input)
+	}
+	fmt.Printf("Start test\tNextPermutation\n")
+
+	TopKFrequentTestData := []struct {
+		nums []int
+		k    int
+		exp  []int
+	}{
+		{[]int{1, 1, 1, 2, 2, 3}, 2, []int{1, 2}},
+		{[]int{1}, 1, []int{1}},
+		{[]int{3, 0, 1, 0}, 1, []int{0}},
+		{[]int{1, 1, 1, 2, 2, 2, 3, 3, 3}, 3, []int{1, 2, 3}},
+		{[]int{5, 3, 1, 1, 1, 3, 73, 1}, 2, []int{3, 1}},
+		{[]int{5, 3, 1, 1, 1, 3, 5, 73, 1}, 3, []int{3, 5, 1}},
+		{[]int{4, 1, -1, 2, -1, 2, 3}, 2, []int{-1, 2}},
+		{[]int{5, 2, 5, 3, 5, 3, 1, 1, 3}, 2, []int{3, 5}},
+	}
+	fmt.Printf("Start test\tNextPermutation\n")
+	for _, td := range TopKFrequentTestData {
+		result := TopKFrequent(td.nums, td.k)
+		assert.ElementsMatch(t, td.exp, result)
+	}
+	fmt.Printf("Start test\tNextPermutation\n")
+
+	RemoveKdigitsTestData := []struct {
+		num string
+		k   int
+		exp string
+	}{
+		{"1432219", 3, "1219"},
+		{"10200", 1, "200"},
+		{"10", 2, "0"},
+		{"9", 1, "0"},
+		{"112", 1, "11"},
+		{"10001", 4, "0"},
+	}
+
+	fmt.Printf("Start test\tRemoveKdigits\n")
+	for _, td := range RemoveKdigitsTestData {
+		result := RemoveKdigits(td.num, td.k)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("Start test\tRemoveKdigits\n")
+
+	EmployeeFreeTimeTestData := []struct {
+		schedule [][][]int
+		exp      [][]int
+	}{
+		{
+			[][][]int{
+				{
+					{1, 2},
+					{5, 6},
+				},
+				{
+					{1, 3},
+				},
+				{
+					{4, 10},
+				},
+			},
+			[][]int{
+				{3, 4},
+			},
+		},
+		{
+			[][][]int{
+				{
+					{1, 3},
+					{6, 7},
+				},
+				{
+					{2, 4},
+				},
+				{
+					{2, 5},
+					{9, 12},
+				},
+			},
+			[][]int{
+				{5, 6},
+				{7, 9},
+			},
+		},
+	}
+
+	fmt.Printf("Start test\tEmployeeFreeTime\n")
+	for _, td := range EmployeeFreeTimeTestData {
+		result := EmployeeFreeTime(td.schedule)
+		assert.ElementsMatch(t, td.exp, result)
+	}
+	fmt.Printf("Start test\tEmployeeFreeTime\n")
+
 }
