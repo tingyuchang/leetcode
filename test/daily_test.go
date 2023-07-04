@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
 	_0230625 "leetcode/0_Daily_Prac/20230625"
-	_0230628 "leetcode/0_Daily_Prac/20230628"
+	_0230630 "leetcode/0_Daily_Prac/20230630"
 	"leetcode/LinkedList"
 	"leetcode/Tree"
 	"reflect"
@@ -14,51 +14,55 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230628.Name{}
+var name = _0230630.Name{}
 
-var LongestCommonSubsequence = _0230625.LongestCommonSubsequence
-var LongestPalindrome = _0230625.LongestPalindrome
-var LongestPalindromeSubseq = _0230625.LongestPalindromeSubseq
-var CoinChange = _0230625.CoinChange
-var NumberOfArrays = _0230625.NumberOfArrays
-var MinDistance = _0230625.MinDistance
-var WordBreak = _0230625.WordBreak
-var LadderLength = _0230625.LadderLength
-var MaximalSquare = _0230625.MaximalSquare
-var LengthOfLIS = _0230625.LengthOfLIS
-var MaxProfit = _0230625.MaxProfit
-var JumpII = _0230625.JumpII
-var CanCompleteCircuit = _0230625.CanCompleteCircuit
-var Candy = _0230625.Candy
-var Trap = _0230625.Trap
-var MinSubArrayLen = _0230625.MinSubArrayLen
-var BuildTree = _0230625.BuildTree
-var ConnectTreeNode = _0230625.ConnectTreeNode
-var NumSubseq = _0230625.NumSubseq
-var FindKthLargest = _0230625.FindKthLargest
-var GenerateParenthesis = _0230625.GenerateParenthesis
-var MergeIntervals = _0230625.MergeIntervals
-var ThreeSum = _0230625.ThreeSum
-var ReverseWords = _0230625.ReverseWords
-var NumDecodings = _0230625.NumDecodings
-var DecodeString = _0230625.DecodeString
-var Subsets = _0230625.Subsets
-var IsMatch = _0230625.IsMatch
-var WordCountEngine = _0230625.WordCountEngine
+var LongestCommonSubsequence = _0230630.LongestCommonSubsequence
+var LongestPalindrome = _0230630.LongestPalindrome
+var LongestPalindromeSubseq = _0230630.LongestPalindromeSubseq
+var CoinChange = _0230630.CoinChange
+var NumberOfArrays = _0230630.NumberOfArrays
+var MinDistance = _0230630.MinDistance
+var WordBreak = _0230630.WordBreak
+var LadderLength = _0230630.LadderLength
+var MaximalSquare = _0230630.MaximalSquare
+var LengthOfLIS = _0230630.LengthOfLIS
+var MaxProfit = _0230630.MaxProfit
+var JumpII = _0230630.JumpII
+var CanCompleteCircuit = _0230630.CanCompleteCircuit
+var Candy = _0230630.Candy
+var Trap = _0230630.Trap
+var MinSubArrayLen = _0230630.MinSubArrayLen
+var BuildTree = _0230630.BuildTree
+var ConnectTreeNode = _0230630.ConnectTreeNode
+var NumSubseq = _0230630.NumSubseq
 var SwapPairs = _0230625.SwapPairs
 var RemoveNthFromEnd = _0230625.RemoveNthFromEnd
 var ReverseBetween = _0230625.ReverseBetween
-var MinimizeDistanceToFarthestPoint = _0230625.MinimizeDistanceToFarthestPoint
-var SearchRotated = _0230628.SearchRotated
-var SetZeroes = _0230628.SetZeroes
-var CombinationSum = _0230628.CombinationSum
-var BestMeetingPoint = _0230628.BestMeetingPoint
-var SearchMatrix = _0230628.SearchMatrix
-var Combine = _0230628.Combine
-var NextPermutation = _0230628.NextPermutation
-var TopKFrequent = _0230628.TopKFrequent
-var RemoveKdigits = _0230628.RemoveKdigits
-var EmployeeFreeTime = _0230628.EmployeeFreeTime
+var FindKthLargest = _0230630.FindKthLargest
+var GenerateParenthesis = _0230630.GenerateParenthesis
+var MergeIntervals = _0230630.MergeIntervals
+var ThreeSum = _0230630.ThreeSum
+var ReverseWords = _0230630.ReverseWords
+var NumDecodings = _0230630.NumDecodings
+var DecodeString = _0230630.DecodeString
+var Subsets = _0230630.Subsets
+var IsMatch = _0230630.IsMatch
+var WordCountEngine = _0230630.WordCountEngine
+var MinimizeDistanceToFarthestPoint = _0230630.MinimizeDistanceToFarthestPoint
+var SearchRotated = _0230630.SearchRotated
+var SetZeroes = _0230630.SetZeroes
+var CombinationSum = _0230630.CombinationSum
+var BestMeetingPoint = _0230630.BestMeetingPoint
+var SearchMatrix = _0230630.SearchMatrix
+var Combine = _0230630.Combine
+var NextPermutation = _0230630.NextPermutation
+var TopKFrequent = _0230630.TopKFrequent
+var RemoveKdigits = _0230630.RemoveKdigits
+var EmployeeFreeTime = _0230630.EmployeeFreeTime
+var MaxSubArray = _0230630.MaxSubArray
+var MaxSubarraySumCircular = _0230630.MaxSubarraySumCircular
+var MaxTurbulenceSize = _0230630.MaxTurbulenceSize
+var StrStr = _0230630.StrStr
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -344,7 +348,7 @@ func TestDaily(t *testing.T) {
 	fmt.Printf("Start test\tTrap\n")
 	for _, td := range TrapTestData {
 		result := Trap(td.height)
-		assert.Equal(t, result, td.exp)
+		assert.Equal(t, td.exp, result)
 	}
 	fmt.Printf("End test\tTrap\n")
 
@@ -711,6 +715,18 @@ func TestDaily(t *testing.T) {
 				{0, 3, 1, 0},
 			},
 		},
+		{
+			[][]int{
+				{-4, -2147483648, 6, -7, 0},
+				{-8, 6, -8, -6, 0},
+				{2147483647, 2, -9, -6, -10},
+			},
+			[][]int{
+				{0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0},
+				{2147483647, 2, -9, -6, 0},
+			},
+		},
 	}
 
 	fmt.Printf("Start test\tSetZeroes\n")
@@ -861,12 +877,12 @@ func TestDaily(t *testing.T) {
 		{[]int{4, 1, -1, 2, -1, 2, 3}, 2, []int{-1, 2}},
 		{[]int{5, 2, 5, 3, 5, 3, 1, 1, 3}, 2, []int{3, 5}},
 	}
-	fmt.Printf("Start test\tNextPermutation\n")
+	fmt.Printf("Start test\tTopKFrequent\n")
 	for _, td := range TopKFrequentTestData {
 		result := TopKFrequent(td.nums, td.k)
 		assert.ElementsMatch(t, td.exp, result)
 	}
-	fmt.Printf("Start test\tNextPermutation\n")
+	fmt.Printf("Start test\tTopKFrequent\n")
 
 	RemoveKdigitsTestData := []struct {
 		num string
@@ -936,5 +952,92 @@ func TestDaily(t *testing.T) {
 		assert.ElementsMatch(t, td.exp, result)
 	}
 	fmt.Printf("Start test\tEmployeeFreeTime\n")
+
+	MaxSubArrayTestData := []struct {
+		nums []int
+		exp  int
+	}{
+		{
+			[]int{-2, 1, -3, 4, -1, 2, 1, -5, 4},
+			6,
+		},
+		{
+			[]int{1},
+			1,
+		},
+		{
+			[]int{5, 4, -1, 7, 8},
+			23,
+		},
+	}
+	fmt.Printf("Start test\tMaxSubArray\n")
+	for _, td := range MaxSubArrayTestData {
+		result := MaxSubArray(td.nums)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("Start test\tMaxSubArray\n")
+
+	MaxSubarraySumCircularTestData := []struct {
+		nums []int
+		exp  int
+	}{
+		{
+			[]int{1, -2, 3, -2},
+			3,
+		},
+		{
+			[]int{5, -3, 5},
+			10,
+		},
+		{
+			[]int{1, 2, -3, -4, 5, 6},
+			14,
+		},
+	}
+	fmt.Printf("Start test\tMaxSubarraySumCircular\n")
+	for _, td := range MaxSubarraySumCircularTestData {
+		result := MaxSubarraySumCircular(td.nums)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("Start test\tMaxSubarraySumCircular\n")
+
+	MaxTurbulenceSizeTestData := []struct {
+		arr []int
+		exp int
+	}{
+		{
+			[]int{9, 4, 2, 10, 7, 8, 8, 1, 9},
+			5,
+		},
+		{
+			[]int{4, 8, 12, 16},
+			2,
+		},
+		{
+			[]int{100},
+			1,
+		},
+	}
+	fmt.Printf("Start test\tMaxTurbulenceSize\n")
+	for _, td := range MaxTurbulenceSizeTestData {
+		result := MaxTurbulenceSize(td.arr)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("Start test\tMaxTurbulenceSize\n")
+
+	StrStrTestData := []struct {
+		haystack string
+		needle   string
+		exp      int
+	}{
+		{"sadbutsad", "sad", 0},
+		{"leetcode", "leeto", -1},
+	}
+	fmt.Printf("Start test\tStrStr\n")
+	for _, td := range StrStrTestData {
+		result := StrStr(td.haystack, td.needle)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("Start test\tStrStr\n")
 
 }

@@ -1,6 +1,7 @@
 package _0230628
 
 import (
+	__Daily_Prac "leetcode/0_Daily_Prac"
 	"leetcode/LinkedList"
 	"leetcode/Tree"
 	"sort"
@@ -764,4 +765,88 @@ func EmployeeFreeTime(schedule [][][]int) [][]int {
 
 	}
 	return result
+}
+
+/*
+53. Maximum Subarray
+https://leetcode.com/problems/maximum-subarray/
+*/
+
+func MaxSubArray(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+	ans := nums[0]
+	currentMax := nums[0]
+
+	for i := 1; i < len(nums); i++ {
+		currentMax = __Daily_Prac.Max(nums[i], currentMax+nums[i])
+		ans = __Daily_Prac.Max(ans, currentMax)
+	}
+	return ans
+}
+
+/*
+918. Maximum Sum Circular Subarray
+https://leetcode.com/problems/maximum-sum-circular-subarray/description/
+*/
+func MaxSubarraySumCircular(nums []int) int {
+	n := len(nums)
+	rightMax := make([]int, len(nums))
+	rightMax[n-1] = nums[n-1]
+	suffixSum := nums[n-1]
+
+	for i := n - 2; i >= 0; i-- {
+		suffixSum += nums[i]
+		rightMax[i] = __Daily_Prac.Max(suffixSum, rightMax[i+1])
+	}
+
+	current, ans := 0, nums[0]
+	specialSum := nums[0]
+	prefixSum := 0
+
+	for i := 0; i < n; i++ {
+		current = __Daily_Prac.Max(current, 0) + nums[i]
+		ans = __Daily_Prac.Max(ans, current)
+
+		prefixSum += nums[i]
+		if i < n-1 {
+			specialSum = __Daily_Prac.Max(specialSum, prefixSum+rightMax[i+1])
+		}
+	}
+
+	return __Daily_Prac.Max(specialSum, ans)
+}
+
+/*
+978. Longest Turbulent Subarray
+https://leetcode.com/problems/longest-turbulent-subarray/description/
+*/
+func MaxTurbulenceSize(arr []int) int {
+	compare := func(a, b int) int {
+		if a > b {
+			return -1
+		} else if a < b {
+			return 1
+		} else {
+			return 0
+		}
+	}
+
+	l := 0
+	ans := 1
+
+	for i := 1; i < len(arr); i++ {
+		c := compare(arr[i-1], arr[i])
+
+		if c == 0 {
+			l = i
+		} else if i == len(arr)-1 || c*compare(arr[i], arr[i+1]) != -1 {
+			// if 0 or +1 than we should record temp ans here
+			ans = __Daily_Prac.Max(ans, i-l+1)
+			l = i
+		}
+	}
+
+	return ans
 }

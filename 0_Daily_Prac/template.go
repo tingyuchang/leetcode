@@ -463,3 +463,38 @@ We discard any intervals that contain inf as they aren't finite.
 func EmployeeFreeTime(schedule [][][]int) [][]int {
 	return nil
 }
+
+/*
+53. Maximum Subarray
+https://leetcode.com/problems/maximum-subarray/
+*/
+
+func MaxSubArray(nums []int) int {
+	return 0
+}
+
+/*
+918. Maximum Sum Circular Subarray
+https://leetcode.com/problems/maximum-sum-circular-subarray/description/
+*/
+func MaxSubarraySumCircular(nums []int) int {
+	return 0
+}
+
+/*
+978. Longest Turbulent Subarray
+https://leetcode.com/problems/longest-turbulent-subarray/description/
+*/
+func MaxTurbulenceSize(arr []int) int {
+	return 1
+}
+
+/*
+28. Find the Index of the First Occurrence in a String
+https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
+please using KMP to resolve this question
+*/
+
+func StrStr(haystack string, needle string) int {
+	return -1
+}
