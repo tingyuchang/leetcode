@@ -3,8 +3,7 @@ package test
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
-	_0230625 "leetcode/0_Daily_Prac/20230625"
-	_0230630 "leetcode/0_Daily_Prac/20230630"
+	_0230704 "leetcode/0_Daily_Prac/20230704"
 	"leetcode/LinkedList"
 	"leetcode/Tree"
 	"reflect"
@@ -14,64 +13,65 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230630.Name{}
+var name = _0230704.Name{}
 
-var LongestCommonSubsequence = _0230630.LongestCommonSubsequence
-var LongestPalindrome = _0230630.LongestPalindrome
-var LongestPalindromeSubseq = _0230630.LongestPalindromeSubseq
-var CoinChange = _0230630.CoinChange
-var NumberOfArrays = _0230630.NumberOfArrays
-var MinDistance = _0230630.MinDistance
-var WordBreak = _0230630.WordBreak
-var LadderLength = _0230630.LadderLength
-var MaximalSquare = _0230630.MaximalSquare
-var LengthOfLIS = _0230630.LengthOfLIS
-var MaxProfit = _0230630.MaxProfit
-var JumpII = _0230630.JumpII
-var CanCompleteCircuit = _0230630.CanCompleteCircuit
-var Candy = _0230630.Candy
-var Trap = _0230630.Trap
-var MinSubArrayLen = _0230630.MinSubArrayLen
-var BuildTree = _0230630.BuildTree
-var ConnectTreeNode = _0230630.ConnectTreeNode
-var NumSubseq = _0230630.NumSubseq
-var SwapPairs = _0230625.SwapPairs
-var RemoveNthFromEnd = _0230625.RemoveNthFromEnd
-var ReverseBetween = _0230625.ReverseBetween
-var FindKthLargest = _0230630.FindKthLargest
-var GenerateParenthesis = _0230630.GenerateParenthesis
-var MergeIntervals = _0230630.MergeIntervals
-var ThreeSum = _0230630.ThreeSum
-var ReverseWords = _0230630.ReverseWords
-var NumDecodings = _0230630.NumDecodings
-var DecodeString = _0230630.DecodeString
-var Subsets = _0230630.Subsets
-var IsMatch = _0230630.IsMatch
-var WordCountEngine = _0230630.WordCountEngine
-var MinimizeDistanceToFarthestPoint = _0230630.MinimizeDistanceToFarthestPoint
-var SearchRotated = _0230630.SearchRotated
-var SetZeroes = _0230630.SetZeroes
-var CombinationSum = _0230630.CombinationSum
-var BestMeetingPoint = _0230630.BestMeetingPoint
-var SearchMatrix = _0230630.SearchMatrix
-var Combine = _0230630.Combine
-var NextPermutation = _0230630.NextPermutation
-var TopKFrequent = _0230630.TopKFrequent
-var RemoveKdigits = _0230630.RemoveKdigits
-var EmployeeFreeTime = _0230630.EmployeeFreeTime
-var MaxSubArray = _0230630.MaxSubArray
-var MaxSubarraySumCircular = _0230630.MaxSubarraySumCircular
-var MaxTurbulenceSize = _0230630.MaxTurbulenceSize
-var StrStr = _0230630.StrStr
+var LongestCommonSubsequence = _0230704.LongestCommonSubsequence
+var LongestPalindrome = _0230704.LongestPalindrome
+var LongestPalindromeSubseq = _0230704.LongestPalindromeSubseq
+var CoinChange = _0230704.CoinChange
+var NumberOfArrays = _0230704.NumberOfArrays
+var MinDistance = _0230704.MinDistance
+var WordBreak = _0230704.WordBreak
+var LadderLength = _0230704.LadderLength
+var MaximalSquare = _0230704.MaximalSquare
+var LengthOfLIS = _0230704.LengthOfLIS
+var MaxProfit = _0230704.MaxProfit
+var JumpII = _0230704.JumpII
+var CanCompleteCircuit = _0230704.CanCompleteCircuit
+var Candy = _0230704.Candy
+var Trap = _0230704.Trap
+var MinSubArrayLen = _0230704.MinSubArrayLen
+var BuildTree = _0230704.BuildTree
+var ConnectTreeNode = _0230704.ConnectTreeNode
+var NumSubseq = _0230704.NumSubseq
+var SwapPairs = _0230704.SwapPairs
+var RemoveNthFromEnd = _0230704.RemoveNthFromEnd
+var ReverseBetween = _0230704.ReverseBetween
+var FindKthLargest = _0230704.FindKthLargest
+var GenerateParenthesis = _0230704.GenerateParenthesis
+var MergeIntervals = _0230704.MergeIntervals
+var ThreeSum = _0230704.ThreeSum
+var ReverseWords = _0230704.ReverseWords
+var NumDecodings = _0230704.NumDecodings
+var DecodeString = _0230704.DecodeString
+var Subsets = _0230704.Subsets
+var IsMatch = _0230704.IsMatch
+var WordCountEngine = _0230704.WordCountEngine
+var MinimizeDistanceToFarthestPoint = _0230704.MinimizeDistanceToFarthestPoint
+var SolveSudoku = _0230704.SolveSudoku
+var SearchRotated = _0230704.SearchRotated
+var SetZeroes = _0230704.SetZeroes
+var CombinationSum = _0230704.CombinationSum
+var BestMeetingPoint = _0230704.BestMeetingPoint
+var SearchMatrix = _0230704.SearchMatrix
+var Combine = _0230704.Combine
+var NextPermutation = _0230704.NextPermutation
+var TopKFrequent = _0230704.TopKFrequent
+var RemoveKdigits = _0230704.RemoveKdigits
+var EmployeeFreeTime = _0230704.EmployeeFreeTime
+var MaxSubArray = _0230704.MaxSubArray
+var MaxSubarraySumCircular = _0230704.MaxSubarraySumCircular
+var MaxTurbulenceSize = _0230704.MaxTurbulenceSize
+var StrStr = _0230704.StrStr
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
 	fmt.Printf("%q\n", re.Find([]byte(reflect.TypeOf(name).PkgPath())))
 
 	LongestCommonSubsequenceTestData := []struct {
-		text1    string
-		text2    string
-		expected int
+		text1 string
+		text2 string
+		exp   int
 	}{
 		{"abcde", "ace", 3},
 		{"abc", "abc", 3},
@@ -83,7 +83,7 @@ func TestDaily(t *testing.T) {
 	fmt.Printf("Start test\tLongestCommonSubsequenceTestData\n")
 	for _, td := range LongestCommonSubsequenceTestData {
 		result := LongestCommonSubsequence(td.text1, td.text2)
-		assert.Equal(t, result, td.expected)
+		assert.Equal(t, td.exp, result)
 	}
 	fmt.Printf("End test\tLongestCommonSubsequenceTestData\n")
 
@@ -565,7 +565,7 @@ func TestDaily(t *testing.T) {
 			[][]string{[]string{"to", "2"}, []string{"be", "2"}, []string{"or", "1"}, []string{"not", "1"}, []string{"that", "1"}, []string{"is", "1"}, []string{"the", "1"}, []string{"question", "1"}},
 		},
 		{
-			"Every book is a quotation; and every house is a quotation out of all forests, and mines, and stone quarries; and every man is a quotation from all his ancestors. ",
+			"Every book is a quotation; and every house is a quotation out of all forests, and mines, and stone quarries; and every man is a quotation from all his ancestors.",
 			[][]string{[]string{"and", "4"}, []string{"every", "3"}, []string{"is", "3"}, []string{"a", "3"}, []string{"quotation", "3"}, []string{"all", "2"}, []string{"book", "1"}, []string{"house", "1"}, []string{"out", "1"}, []string{"of", "1"}, []string{"forests", "1"}, []string{"mines", "1"}, []string{"stone", "1"}, []string{"quarries", "1"}, []string{"man", "1"}, []string{"from", "1"}, []string{"his", "1"}, []string{"ancestors", "1"}},
 		},
 	}
@@ -667,6 +667,43 @@ func TestDaily(t *testing.T) {
 	}
 	fmt.Printf("End test\tMinimizeDistanceToFarthestPoint\n")
 
+	SolveSudokutestData := []struct {
+		board [][]byte
+		exp   [][]byte
+	}{
+		{
+			[][]byte{
+				{'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+				{'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+				{'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+				{'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+				{'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+				{'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+				{'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+				{'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+				{'.', '.', '.', '.', '8', '.', '.', '7', '9'},
+			},
+			[][]byte{
+				{'5', '3', '4', '6', '7', '8', '9', '1', '2'},
+				{'6', '7', '2', '1', '9', '5', '3', '4', '8'},
+				{'1', '9', '8', '3', '4', '2', '5', '6', '7'},
+				{'8', '5', '9', '7', '6', '1', '4', '2', '3'},
+				{'4', '2', '6', '8', '5', '3', '7', '9', '1'},
+				{'7', '1', '3', '9', '2', '4', '8', '5', '6'},
+				{'9', '6', '1', '5', '3', '7', '2', '8', '4'},
+				{'2', '8', '7', '4', '1', '9', '6', '3', '5'},
+				{'3', '4', '5', '2', '8', '6', '1', '7', '9'},
+			},
+		},
+	}
+
+	fmt.Printf("Start test\tSolveSudoku\n")
+	for _, td := range SolveSudokutestData {
+		SolveSudoku(td.board)
+		assert.Equal(t, td.exp, td.board)
+	}
+	fmt.Printf("End test\tSolveSudoku\n")
+
 	SearchRotatedTestData := []struct {
 		input  []int
 		target int
@@ -683,7 +720,7 @@ func TestDaily(t *testing.T) {
 	fmt.Printf("Start test\tSearchRotated\n")
 	for _, td := range SearchRotatedTestData {
 		result := SearchRotated(td.input, td.target)
-		assert.Equal(t, result, td.exp)
+		assert.Equal(t, td.exp, result)
 	}
 	fmt.Printf("End test\tSearchRotated\n")
 
