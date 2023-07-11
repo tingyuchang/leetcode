@@ -551,3 +551,26 @@ Explanation: "aabbb" which its length is 5.
 func LengthOfLongestSubstringTwoDistinct(s string) int {
 	return 0
 }
+
+/*
+214. Shortest Palindrome
+https://leetcode.com/problems/shortest-palindrome/description/
+*/
+
+func ShortestPalindrome(s string) string {
+	return ""
+}
+
+/*
+210. Course Schedule II
+https://leetcode.com/problems/course-schedule-ii/description/
+Input: numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]
+Output: [0,2,1,3]
+Explanation: There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0.
+So one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3].
+
+*/
+
+func FindCourseScheduleOrder(numCourses int, prerequisites [][]int) []int {
+	return []int{}
+}

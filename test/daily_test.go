@@ -66,6 +66,8 @@ var StrStr = _0230710.StrStr
 var NumIslands = _0230710.NumIslands
 var GeneratePascalTriangle = _0230710.GeneratePascalTriangle
 var LengthOfLongestSubstringTwoDistinct = _0230710.LengthOfLongestSubstringTwoDistinct
+var ShortestPalindrome = _0230710.ShortestPalindrome
+var FindCourseScheduleOrder = _0230710.FindCourseScheduleOrder
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -1140,4 +1142,42 @@ func TestDaily(t *testing.T) {
 		assert.Equal(t, td.exp, result)
 	}
 	fmt.Printf("Start test\tLengthOfLongestSubstringTwoDistinct\n")
+
+	ShortestPalindromeTestData := []struct {
+		s   string
+		exp string
+	}{
+		{"aacecaaa", "aaacecaaa"},
+		{"abbacd", "dcabbacd"},
+		{"ababbbabbaba", "ababbabbbababbbabbaba"},
+	}
+	fmt.Printf("Start test\tShortestPalindrome\n")
+	for _, td := range ShortestPalindromeTestData {
+		result := ShortestPalindrome(td.s)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("Start test\tShortestPalindrome\n")
+
+	FindCourseScheduleOrderestData := []struct {
+		numCourses    int
+		prerequisites [][]int
+		exp           []int
+	}{
+		{
+			4,
+			[][]int{
+				{1, 0},
+				{2, 0},
+				{3, 1},
+				{3, 2},
+			},
+			[]int{0, 1, 2, 3},
+		},
+	}
+	fmt.Printf("Start test\tFindCourseScheduleOrder\n")
+	for _, td := range FindCourseScheduleOrderestData {
+		result := FindCourseScheduleOrder(td.numCourses, td.prerequisites)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("Start test\tFindCourseScheduleOrder\n")
 }
