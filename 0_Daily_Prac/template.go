@@ -498,3 +498,19 @@ please using KMP to resolve this question
 func StrStr(haystack string, needle string) int {
 	return -1
 }
+
+/*
+200. Number of Islands
+https://leetcode.com/problems/number-of-islands/
+Input: grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+Output: 1
+*/
+
+func NumIslands(grid [][]byte) int {
+	return 0
+}

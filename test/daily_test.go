@@ -63,6 +63,7 @@ var MaxSubArray = _0230710.MaxSubArray
 var MaxSubarraySumCircular = _0230710.MaxSubarraySumCircular
 var MaxTurbulenceSize = _0230710.MaxTurbulenceSize
 var StrStr = _0230710.StrStr
+var NumIslands = _0230710.NumIslands
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -1077,4 +1078,24 @@ func TestDaily(t *testing.T) {
 	}
 	fmt.Printf("Start test\tStrStr\n")
 
+	NumIslandstestData := []struct {
+		grid [][]byte
+		exp  int
+	}{
+		{
+			[][]byte{
+				{'1', '1', '0', '0', '0'},
+				{'1', '1', '0', '0', '0'},
+				{'0', '0', '1', '0', '0'},
+				{'0', '0', '0', '1', '1'},
+			},
+			3,
+		},
+	}
+	fmt.Printf("Start test\tNumIslands\n")
+	for _, td := range NumIslandstestData {
+		result := NumIslands(td.grid)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("Start test\tNumIslands\n")
 }

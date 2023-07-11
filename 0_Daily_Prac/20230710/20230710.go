@@ -1740,3 +1740,68 @@ func StrStr(haystack string, needle string) int {
 
 	return -1
 }
+
+/*
+200. Number of Islands
+https://leetcode.com/problems/number-of-islands/
+Input: grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+Output: 1
+*/
+
+func NumIslands(grid [][]byte) int {
+	ans := 0
+
+	for i := 0; i < len(grid); i++ {
+		for j := 0; j < len(grid[i]); j++ {
+			if grid[i][j] == '1' {
+				bfsNumIslands(grid, i, j)
+				ans += 1
+			}
+		}
+	}
+
+	return ans
+}
+
+func bfsNumIslands(grid [][]byte, x, y int) {
+	queue := [][]int{{x, y}}
+	grid[x][y] = '0'
+
+	directions := [][]int{
+		{-1, 0},
+		{0, 1},
+		{1, 0},
+		{0, -1},
+	}
+
+	for len(queue) != 0 {
+		currentSize := len(queue)
+
+		for i := 0; i < currentSize; i++ {
+			currentX := queue[i][0]
+			currentY := queue[i][1]
+
+			for _, direction := range directions {
+				newX := currentX + direction[0]
+				newY := currentY + direction[1]
+
+				if newX >= 0 &&
+					newX < len(grid) &&
+					newY >= 0 &&
+					newY < len(grid[0]) &&
+					grid[newX][newY] == '1' {
+					grid[newX][newY] = '0'
+					queue = append(queue, []int{newX, newY})
+				}
+			}
+		}
+
+		queue = queue[currentSize:]
+	}
+
+}
