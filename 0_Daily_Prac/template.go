@@ -1,11 +1,11 @@
 package __Daily_Prac
 
+// COPY FROM HERE
 import (
 	"leetcode/LinkedList"
 	"leetcode/Tree"
 )
 
-// COPY FROM HERE
 type Name struct {
 }
 

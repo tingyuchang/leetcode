@@ -3,7 +3,7 @@ package test
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
-	_0230704 "leetcode/0_Daily_Prac/20230704"
+	_0230710 "leetcode/0_Daily_Prac/20230710"
 	"leetcode/LinkedList"
 	"leetcode/Tree"
 	"reflect"
@@ -13,56 +13,56 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230704.Name{}
+var name = _0230710.Name{}
 
-var LongestCommonSubsequence = _0230704.LongestCommonSubsequence
-var LongestPalindrome = _0230704.LongestPalindrome
-var LongestPalindromeSubseq = _0230704.LongestPalindromeSubseq
-var CoinChange = _0230704.CoinChange
-var NumberOfArrays = _0230704.NumberOfArrays
-var MinDistance = _0230704.MinDistance
-var WordBreak = _0230704.WordBreak
-var LadderLength = _0230704.LadderLength
-var MaximalSquare = _0230704.MaximalSquare
-var LengthOfLIS = _0230704.LengthOfLIS
-var MaxProfit = _0230704.MaxProfit
-var JumpII = _0230704.JumpII
-var CanCompleteCircuit = _0230704.CanCompleteCircuit
-var Candy = _0230704.Candy
-var Trap = _0230704.Trap
-var MinSubArrayLen = _0230704.MinSubArrayLen
-var BuildTree = _0230704.BuildTree
-var ConnectTreeNode = _0230704.ConnectTreeNode
-var NumSubseq = _0230704.NumSubseq
-var SwapPairs = _0230704.SwapPairs
-var RemoveNthFromEnd = _0230704.RemoveNthFromEnd
-var ReverseBetween = _0230704.ReverseBetween
-var FindKthLargest = _0230704.FindKthLargest
-var GenerateParenthesis = _0230704.GenerateParenthesis
-var MergeIntervals = _0230704.MergeIntervals
-var ThreeSum = _0230704.ThreeSum
-var ReverseWords = _0230704.ReverseWords
-var NumDecodings = _0230704.NumDecodings
-var DecodeString = _0230704.DecodeString
-var Subsets = _0230704.Subsets
-var IsMatch = _0230704.IsMatch
-var WordCountEngine = _0230704.WordCountEngine
-var MinimizeDistanceToFarthestPoint = _0230704.MinimizeDistanceToFarthestPoint
-var SolveSudoku = _0230704.SolveSudoku
-var SearchRotated = _0230704.SearchRotated
-var SetZeroes = _0230704.SetZeroes
-var CombinationSum = _0230704.CombinationSum
-var BestMeetingPoint = _0230704.BestMeetingPoint
-var SearchMatrix = _0230704.SearchMatrix
-var Combine = _0230704.Combine
-var NextPermutation = _0230704.NextPermutation
-var TopKFrequent = _0230704.TopKFrequent
-var RemoveKdigits = _0230704.RemoveKdigits
-var EmployeeFreeTime = _0230704.EmployeeFreeTime
-var MaxSubArray = _0230704.MaxSubArray
-var MaxSubarraySumCircular = _0230704.MaxSubarraySumCircular
-var MaxTurbulenceSize = _0230704.MaxTurbulenceSize
-var StrStr = _0230704.StrStr
+var LongestCommonSubsequence = _0230710.LongestCommonSubsequence
+var LongestPalindrome = _0230710.LongestPalindrome
+var LongestPalindromeSubseq = _0230710.LongestPalindromeSubseq
+var CoinChange = _0230710.CoinChange
+var NumberOfArrays = _0230710.NumberOfArrays
+var MinDistance = _0230710.MinDistance
+var WordBreak = _0230710.WordBreak
+var LadderLength = _0230710.LadderLength
+var MaximalSquare = _0230710.MaximalSquare
+var LengthOfLIS = _0230710.LengthOfLIS
+var MaxProfit = _0230710.MaxProfit
+var JumpII = _0230710.JumpII
+var CanCompleteCircuit = _0230710.CanCompleteCircuit
+var Candy = _0230710.Candy
+var Trap = _0230710.Trap
+var MinSubArrayLen = _0230710.MinSubArrayLen
+var BuildTree = _0230710.BuildTree
+var ConnectTreeNode = _0230710.ConnectTreeNode
+var NumSubseq = _0230710.NumSubseq
+var SwapPairs = _0230710.SwapPairs
+var RemoveNthFromEnd = _0230710.RemoveNthFromEnd
+var ReverseBetween = _0230710.ReverseBetween
+var FindKthLargest = _0230710.FindKthLargest
+var GenerateParenthesis = _0230710.GenerateParenthesis
+var MergeIntervals = _0230710.MergeIntervals
+var ThreeSum = _0230710.ThreeSum
+var ReverseWords = _0230710.ReverseWords
+var NumDecodings = _0230710.NumDecodings
+var DecodeString = _0230710.DecodeString
+var Subsets = _0230710.Subsets
+var IsMatch = _0230710.IsMatch
+var WordCountEngine = _0230710.WordCountEngine
+var MinimizeDistanceToFarthestPoint = _0230710.MinimizeDistanceToFarthestPoint
+var SolveSudoku = _0230710.SolveSudoku
+var SearchRotated = _0230710.SearchRotated
+var SetZeroes = _0230710.SetZeroes
+var CombinationSum = _0230710.CombinationSum
+var BestMeetingPoint = _0230710.BestMeetingPoint
+var SearchMatrix = _0230710.SearchMatrix
+var Combine = _0230710.Combine
+var NextPermutation = _0230710.NextPermutation
+var TopKFrequent = _0230710.TopKFrequent
+var RemoveKdigits = _0230710.RemoveKdigits
+var EmployeeFreeTime = _0230710.EmployeeFreeTime
+var MaxSubArray = _0230710.MaxSubArray
+var MaxSubarraySumCircular = _0230710.MaxSubarraySumCircular
+var MaxTurbulenceSize = _0230710.MaxTurbulenceSize
+var StrStr = _0230710.StrStr
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -331,7 +331,7 @@ func TestDaily(t *testing.T) {
 	fmt.Printf("Start test\tCandy\n")
 	for _, td := range CandyTestData {
 		result := Candy(td.ratings)
-		assert.Equal(t, result, td.exp)
+		assert.Equal(t, td.exp, result)
 	}
 	fmt.Printf("End test\tCandy\n")
 
@@ -663,7 +663,7 @@ func TestDaily(t *testing.T) {
 	fmt.Printf("Start test\tMinimizeDistanceToFarthestPoint\n")
 	for _, td := range MinimizeDistanceToFarthestPointTestData {
 		result := MinimizeDistanceToFarthestPoint(td.blocks, td.requires)
-		assert.EqualValues(t, result, td.exp)
+		assert.EqualValues(t, td.exp, result)
 	}
 	fmt.Printf("End test\tMinimizeDistanceToFarthestPoint\n")
 
