@@ -530,3 +530,24 @@ Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
 func GeneratePascalTriangle(numRows int) [][]int {
 	return nil
 }
+
+/*
+159. Longest substring which contains 2 unique characters
+Given a string s , find the length of the longest substring t  that contains at most 2 distinct characters.
+
+Example 1:
+
+Input: "eceba"
+Output: 3
+Explanation: "ece" which its length is 3.
+Example 2:
+
+Input: "ccaabbb"
+Output: 5
+Explanation: "aabbb" which its length is 5.
+
+*/
+
+func LengthOfLongestSubstringTwoDistinct(s string) int {
+	return 0
+}

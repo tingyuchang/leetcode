@@ -65,6 +65,7 @@ var MaxTurbulenceSize = _0230710.MaxTurbulenceSize
 var StrStr = _0230710.StrStr
 var NumIslands = _0230710.NumIslands
 var GeneratePascalTriangle = _0230710.GeneratePascalTriangle
+var LengthOfLongestSubstringTwoDistinct = _0230710.LengthOfLongestSubstringTwoDistinct
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -1121,4 +1122,22 @@ func TestDaily(t *testing.T) {
 		assert.Equal(t, td.exp, result)
 	}
 	fmt.Printf("Start test\tGeneratePascalTriangle\n")
+
+	LengthOfLongestSubstringTwoDistinctTestData := []struct {
+		s   string
+		exp int
+	}{
+		{
+			"ccaabbb",
+			5,
+		},
+		{"eceba", 3},
+		{"abcbbbbcccbdddadacb", 10},
+	}
+	fmt.Printf("Start test\tLengthOfLongestSubstringTwoDistinct\n")
+	for _, td := range LengthOfLongestSubstringTwoDistinctTestData {
+		result := LengthOfLongestSubstringTwoDistinct(td.s)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("Start test\tLengthOfLongestSubstringTwoDistinct\n")
 }
