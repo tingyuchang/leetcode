@@ -1805,3 +1805,43 @@ func bfsNumIslands(grid [][]byte, x, y int) {
 	}
 
 }
+
+/*
+118. Pascal's Triangle
+https://leetcode.com/problems/pascals-triangle/
+Input: numRows = 5
+Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+ 		[1]
+ 	   [1,1]
+	  [1,2,1]
+	 [1,3,3,1]
+	[1,4,6,4,1]
+*/
+
+func GeneratePascalTriangle(numRows int) [][]int {
+	result := make([][]int, 0)
+
+	for i := 1; i <= numRows; i++ {
+		if i == 1 {
+			result = append(result, []int{1})
+			continue
+		}
+
+		if i == 2 {
+			result = append(result, []int{1, 1})
+			continue
+		}
+
+		temp := make([]int, i)
+		temp[0] = 1
+		temp[len(temp)-1] = 1
+
+		previous := result[len(result)-1]
+
+		for j := 1; j < len(previous); j++ {
+			temp[j] = previous[j] + previous[j-1]
+		}
+		result = append(result, temp)
+	}
+	return result
+}

@@ -64,6 +64,7 @@ var MaxSubarraySumCircular = _0230710.MaxSubarraySumCircular
 var MaxTurbulenceSize = _0230710.MaxTurbulenceSize
 var StrStr = _0230710.StrStr
 var NumIslands = _0230710.NumIslands
+var GeneratePascalTriangle = _0230710.GeneratePascalTriangle
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -1078,7 +1079,7 @@ func TestDaily(t *testing.T) {
 	}
 	fmt.Printf("Start test\tStrStr\n")
 
-	NumIslandstestData := []struct {
+	NumIslandsTestData := []struct {
 		grid [][]byte
 		exp  int
 	}{
@@ -1093,9 +1094,31 @@ func TestDaily(t *testing.T) {
 		},
 	}
 	fmt.Printf("Start test\tNumIslands\n")
-	for _, td := range NumIslandstestData {
+	for _, td := range NumIslandsTestData {
 		result := NumIslands(td.grid)
 		assert.Equal(t, td.exp, result)
 	}
 	fmt.Printf("Start test\tNumIslands\n")
+
+	GeneratePascalTriangleTestData := []struct {
+		numRows int
+		exp     [][]int
+	}{
+		{
+			5,
+			[][]int{
+				{1},
+				{1, 1},
+				{1, 2, 1},
+				{1, 3, 3, 1},
+				{1, 4, 6, 4, 1},
+			},
+		},
+	}
+	fmt.Printf("Start test\tGeneratePascalTriangle\n")
+	for _, td := range GeneratePascalTriangleTestData {
+		result := GeneratePascalTriangle(td.numRows)
+		assert.Equal(t, td.exp, result)
+	}
+	fmt.Printf("Start test\tGeneratePascalTriangle\n")
 }
