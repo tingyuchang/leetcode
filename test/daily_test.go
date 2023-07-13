@@ -3,7 +3,7 @@ package test
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
-	_0230710 "leetcode/0_Daily_Prac/20230710"
+	_0230712 "leetcode/0_Daily_Prac/20230712"
 	"leetcode/LinkedList"
 	"leetcode/Tree"
 	"reflect"
@@ -13,61 +13,61 @@ import (
 
 var TreeHelper = Tree.Codec{}
 
-var name = _0230710.Name{}
+var name = _0230712.Name{}
 
-var LongestCommonSubsequence = _0230710.LongestCommonSubsequence
-var LongestPalindrome = _0230710.LongestPalindrome
-var LongestPalindromeSubseq = _0230710.LongestPalindromeSubseq
-var CoinChange = _0230710.CoinChange
-var NumberOfArrays = _0230710.NumberOfArrays
-var MinDistance = _0230710.MinDistance
-var WordBreak = _0230710.WordBreak
-var LadderLength = _0230710.LadderLength
-var MaximalSquare = _0230710.MaximalSquare
-var LengthOfLIS = _0230710.LengthOfLIS
-var MaxProfit = _0230710.MaxProfit
-var JumpII = _0230710.JumpII
-var CanCompleteCircuit = _0230710.CanCompleteCircuit
-var Candy = _0230710.Candy
-var Trap = _0230710.Trap
-var MinSubArrayLen = _0230710.MinSubArrayLen
-var BuildTree = _0230710.BuildTree
-var ConnectTreeNode = _0230710.ConnectTreeNode
-var NumSubseq = _0230710.NumSubseq
-var SwapPairs = _0230710.SwapPairs
-var RemoveNthFromEnd = _0230710.RemoveNthFromEnd
-var ReverseBetween = _0230710.ReverseBetween
-var FindKthLargest = _0230710.FindKthLargest
-var GenerateParenthesis = _0230710.GenerateParenthesis
-var MergeIntervals = _0230710.MergeIntervals
-var ThreeSum = _0230710.ThreeSum
-var ReverseWords = _0230710.ReverseWords
-var NumDecodings = _0230710.NumDecodings
-var DecodeString = _0230710.DecodeString
-var Subsets = _0230710.Subsets
-var IsMatch = _0230710.IsMatch
-var WordCountEngine = _0230710.WordCountEngine
-var MinimizeDistanceToFarthestPoint = _0230710.MinimizeDistanceToFarthestPoint
-var SolveSudoku = _0230710.SolveSudoku
-var SearchRotated = _0230710.SearchRotated
-var SetZeroes = _0230710.SetZeroes
-var CombinationSum = _0230710.CombinationSum
-var BestMeetingPoint = _0230710.BestMeetingPoint
-var SearchMatrix = _0230710.SearchMatrix
-var Combine = _0230710.Combine
-var NextPermutation = _0230710.NextPermutation
-var TopKFrequent = _0230710.TopKFrequent
-var RemoveKdigits = _0230710.RemoveKdigits
-var EmployeeFreeTime = _0230710.EmployeeFreeTime
-var MaxSubArray = _0230710.MaxSubArray
-var MaxSubarraySumCircular = _0230710.MaxSubarraySumCircular
-var MaxTurbulenceSize = _0230710.MaxTurbulenceSize
-var StrStr = _0230710.StrStr
-var NumIslands = _0230710.NumIslands
-var GeneratePascalTriangle = _0230710.GeneratePascalTriangle
-var LengthOfLongestSubstringTwoDistinct = _0230710.LengthOfLongestSubstringTwoDistinct
-var ShortestPalindrome = _0230710.ShortestPalindrome
-var FindCourseScheduleOrder = _0230710.FindCourseScheduleOrder
+var LongestCommonSubsequence = _0230712.LongestCommonSubsequence
+var LongestPalindrome = _0230712.LongestPalindrome
+var LongestPalindromeSubseq = _0230712.LongestPalindromeSubseq
+var CoinChange = _0230712.CoinChange
+var NumberOfArrays = _0230712.NumberOfArrays
+var MinDistance = _0230712.MinDistance
+var WordBreak = _0230712.WordBreak
+var LadderLength = _0230712.LadderLength
+var MaximalSquare = _0230712.MaximalSquare
+var LengthOfLIS = _0230712.LengthOfLIS
+var MaxProfit = _0230712.MaxProfit
+var JumpII = _0230712.JumpII
+var CanCompleteCircuit = _0230712.CanCompleteCircuit
+var Candy = _0230712.Candy
+var Trap = _0230712.Trap
+var MinSubArrayLen = _0230712.MinSubArrayLen
+var BuildTree = _0230712.BuildTree
+var ConnectTreeNode = _0230712.ConnectTreeNode
+var NumSubseq = _0230712.NumSubseq
+var SwapPairs = _0230712.SwapPairs
+var RemoveNthFromEnd = _0230712.RemoveNthFromEnd
+var ReverseBetween = _0230712.ReverseBetween
+var FindKthLargest = _0230712.FindKthLargest
+var GenerateParenthesis = _0230712.GenerateParenthesis
+var MergeIntervals = _0230712.MergeIntervals
+var ThreeSum = _0230712.ThreeSum
+var ReverseWords = _0230712.ReverseWords
+var NumDecodings = _0230712.NumDecodings
+var DecodeString = _0230712.DecodeString
+var Subsets = _0230712.Subsets
+var IsMatch = _0230712.IsMatch
+var WordCountEngine = _0230712.WordCountEngine
+var MinimizeDistanceToFarthestPoint = _0230712.MinimizeDistanceToFarthestPoint
+var SolveSudoku = _0230712.SolveSudoku
+var SearchRotated = _0230712.SearchRotated
+var SetZeroes = _0230712.SetZeroes
+var CombinationSum = _0230712.CombinationSum
+var BestMeetingPoint = _0230712.BestMeetingPoint
+var SearchMatrix = _0230712.SearchMatrix
+var Combine = _0230712.Combine
+var NextPermutation = _0230712.NextPermutation
+var TopKFrequent = _0230712.TopKFrequent
+var RemoveKdigits = _0230712.RemoveKdigits
+var EmployeeFreeTime = _0230712.EmployeeFreeTime
+var MaxSubArray = _0230712.MaxSubArray
+var MaxSubarraySumCircular = _0230712.MaxSubarraySumCircular
+var MaxTurbulenceSize = _0230712.MaxTurbulenceSize
+var StrStr = _0230712.StrStr
+var NumIslands = _0230712.NumIslands
+var GeneratePascalTriangle = _0230712.GeneratePascalTriangle
+var LengthOfLongestSubstringTwoDistinct = _0230712.LengthOfLongestSubstringTwoDistinct
+var ShortestPalindrome = _0230712.ShortestPalindrome
+var FindCourseScheduleOrder = _0230712.FindCourseScheduleOrder
 
 func TestDaily(t *testing.T) {
 	re := regexp.MustCompile(`\d{8}`)
@@ -262,7 +262,7 @@ func TestDaily(t *testing.T) {
 	fmt.Printf("Start test\tLengthOfLIS\n")
 	for _, td := range LengthOfLISTestData {
 		result := LengthOfLIS(td.nums)
-		assert.Equal(t, result, td.exp)
+		assert.Equal(t, td.exp, result)
 	}
 	fmt.Printf("End test\tLengthOfLIS\n")
 
@@ -371,7 +371,7 @@ func TestDaily(t *testing.T) {
 	fmt.Printf("Start test\tMinSubArrayLen\n")
 	for _, td := range MinSubArrayLenTestData {
 		result := MinSubArrayLen(td.target, td.nums)
-		assert.Equal(t, result, td.exp)
+		assert.Equal(t, td.exp, result)
 	}
 	fmt.Printf("End test\tMinSubArrayLen\n")
 
@@ -643,7 +643,7 @@ func TestDaily(t *testing.T) {
 	fmt.Printf("Start test\tReverseBetween\n")
 	for _, td := range ReverseBetweenTestData {
 		result := ReverseBetween(td.head, td.left, td.right)
-		assert.EqualValues(t, result.String(), td.exp.String())
+		assert.EqualValues(t, td.exp.String(), result.String())
 	}
 	fmt.Printf("End test\tReverseBetween\n")
 
@@ -903,7 +903,7 @@ func TestDaily(t *testing.T) {
 		NextPermutation(td.input)
 		assert.Equal(t, td.exp, td.input)
 	}
-	fmt.Printf("Start test\tNextPermutation\n")
+	fmt.Printf("End test\tNextPermutation\n")
 
 	TopKFrequentTestData := []struct {
 		nums []int
@@ -924,7 +924,7 @@ func TestDaily(t *testing.T) {
 		result := TopKFrequent(td.nums, td.k)
 		assert.ElementsMatch(t, td.exp, result)
 	}
-	fmt.Printf("Start test\tTopKFrequent\n")
+	fmt.Printf("End test\tTopKFrequent\n")
 
 	RemoveKdigitsTestData := []struct {
 		num string
@@ -944,7 +944,7 @@ func TestDaily(t *testing.T) {
 		result := RemoveKdigits(td.num, td.k)
 		assert.Equal(t, td.exp, result)
 	}
-	fmt.Printf("Start test\tRemoveKdigits\n")
+	fmt.Printf("End test\tRemoveKdigits\n")
 
 	EmployeeFreeTimeTestData := []struct {
 		schedule [][][]int
@@ -993,7 +993,7 @@ func TestDaily(t *testing.T) {
 		result := EmployeeFreeTime(td.schedule)
 		assert.ElementsMatch(t, td.exp, result)
 	}
-	fmt.Printf("Start test\tEmployeeFreeTime\n")
+	fmt.Printf("End test\tEmployeeFreeTime\n")
 
 	MaxSubArrayTestData := []struct {
 		nums []int
@@ -1017,7 +1017,7 @@ func TestDaily(t *testing.T) {
 		result := MaxSubArray(td.nums)
 		assert.Equal(t, td.exp, result)
 	}
-	fmt.Printf("Start test\tMaxSubArray\n")
+	fmt.Printf("End test\tMaxSubArray\n")
 
 	MaxSubarraySumCircularTestData := []struct {
 		nums []int
@@ -1041,7 +1041,7 @@ func TestDaily(t *testing.T) {
 		result := MaxSubarraySumCircular(td.nums)
 		assert.Equal(t, td.exp, result)
 	}
-	fmt.Printf("Start test\tMaxSubarraySumCircular\n")
+	fmt.Printf("End test\tMaxSubarraySumCircular\n")
 
 	MaxTurbulenceSizeTestData := []struct {
 		arr []int
@@ -1065,7 +1065,7 @@ func TestDaily(t *testing.T) {
 		result := MaxTurbulenceSize(td.arr)
 		assert.Equal(t, td.exp, result)
 	}
-	fmt.Printf("Start test\tMaxTurbulenceSize\n")
+	fmt.Printf("End test\tMaxTurbulenceSize\n")
 
 	StrStrTestData := []struct {
 		haystack string
@@ -1080,7 +1080,7 @@ func TestDaily(t *testing.T) {
 		result := StrStr(td.haystack, td.needle)
 		assert.Equal(t, td.exp, result)
 	}
-	fmt.Printf("Start test\tStrStr\n")
+	fmt.Printf("End test\tStrStr\n")
 
 	NumIslandsTestData := []struct {
 		grid [][]byte
@@ -1101,7 +1101,7 @@ func TestDaily(t *testing.T) {
 		result := NumIslands(td.grid)
 		assert.Equal(t, td.exp, result)
 	}
-	fmt.Printf("Start test\tNumIslands\n")
+	fmt.Printf("End test\tNumIslands\n")
 
 	GeneratePascalTriangleTestData := []struct {
 		numRows int
@@ -1123,16 +1123,13 @@ func TestDaily(t *testing.T) {
 		result := GeneratePascalTriangle(td.numRows)
 		assert.Equal(t, td.exp, result)
 	}
-	fmt.Printf("Start test\tGeneratePascalTriangle\n")
+	fmt.Printf("End test\tGeneratePascalTriangle\n")
 
 	LengthOfLongestSubstringTwoDistinctTestData := []struct {
 		s   string
 		exp int
 	}{
-		{
-			"ccaabbb",
-			5,
-		},
+		{"ccaabbb", 5},
 		{"eceba", 3},
 		{"abcbbbbcccbdddadacb", 10},
 	}
@@ -1141,7 +1138,7 @@ func TestDaily(t *testing.T) {
 		result := LengthOfLongestSubstringTwoDistinct(td.s)
 		assert.Equal(t, td.exp, result)
 	}
-	fmt.Printf("Start test\tLengthOfLongestSubstringTwoDistinct\n")
+	fmt.Printf("End test\tLengthOfLongestSubstringTwoDistinct\n")
 
 	ShortestPalindromeTestData := []struct {
 		s   string
@@ -1156,7 +1153,7 @@ func TestDaily(t *testing.T) {
 		result := ShortestPalindrome(td.s)
 		assert.Equal(t, td.exp, result)
 	}
-	fmt.Printf("Start test\tShortestPalindrome\n")
+	fmt.Printf("End test\tShortestPalindrome\n")
 
 	FindCourseScheduleOrderestData := []struct {
 		numCourses    int
@@ -1179,5 +1176,5 @@ func TestDaily(t *testing.T) {
 		result := FindCourseScheduleOrder(td.numCourses, td.prerequisites)
 		assert.Equal(t, td.exp, result)
 	}
-	fmt.Printf("Start test\tFindCourseScheduleOrder\n")
+	fmt.Printf("End test\tFindCourseScheduleOrder\n")
 }
